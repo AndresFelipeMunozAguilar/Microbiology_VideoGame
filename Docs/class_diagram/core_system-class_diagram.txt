@@ -1,0 +1,141 @@
+---
+config:
+  theme: neo-dark
+---
+classDiagram
+direction TB
+    class GameManager {
+	    - static GameManager instance
+	    - bool isGameOver
+	    - DataManager dataManager
+	    - List~IGameOverSubscriber~ gameOverSubscribers
+	    - GameManager()
+	    + GetInstance() GameManager
+	    + ChangeScene(sceneName: string)
+	    + notifySubscribers()
+	    + OnGameOver(reason: string)
+	    + OnVictory()
+	    + Subscribe(observer: IGameOverSubscriber)
+	    + Unsubscribe(observer: IGameOverSubscriber)
+    }
+
+    class PlayerController {
+	    - float moveSpeed
+	    + Move(direction: Vector2)
+	    + OnGameOver()
+    }
+
+    class HealthManager {
+	    - int maxLives
+	    - int currentLives
+	    - bool isDead
+	    + TakeDamage(amount: int)
+	    + IsDead() bool
+	    + NotifyDeath()
+    }
+
+    class TimerManager {
+	    - float maxTime
+	    - float currentTime
+	    + UpdateTimer(deltaTime: float)
+	    + ResetTimer()
+	    + IsTimeExceeded() bool
+	    + NotifyTimeout()
+    }
+
+    class IGameOverSubscriber {
+	    + OnGameOver()
+    }
+
+    class IPuzzleManager {
+	    + StartPuzzle()
+	    + CompletePuzzle()
+	    + GetScore() float
+	    + GetPerformanceResult() PerformanceResult
+    }
+
+    class PuzzleManager {
+	    - int score
+	    - PerformanceResult performance
+	    - FeedbackText feedbackText
+	    - PuzzleGameplay puzzleGameplay
+	    + StartPuzzle()
+	    + CompletePuzzle()
+	    + CalculateScore() float
+	    + ShowFeedback()
+	    + getPerformanceResult() PerformanceResult
+    }
+
+    class PerformanceResult {
+	    - int numericScore
+	    - string qualitativeResult
+	    + toString() string
+    }
+
+    class PuzzleTutorial {
+	    - string title
+	    - Image gifTutorial
+	    - string tutorialDescription
+        + close()
+    }
+
+    class FeedbackText {
+	    - string text
+	    + Show(position: Vector3, text: string)
+    }
+
+    class DataManager {
+	    - string basePath
+        - static DataManager instance
+        - RunData runData
+	    + SaveTutorialFlag(puzzleId: string)
+	    + LoadTutorialFlag(puzzleId: string) bool
+	    + SaveRunResult()
+	    + LoadRunHistory() List~RunData~
+        - DataManager()
+        + getInstance() DataManager
+        + savePuzzleScore(puzzleId: string)
+    }
+
+    class RunData {
+	    + int runId
+	    + Dictionary~string,int~ puzzleScores
+    }
+
+    class JournalManager {
+        - string[] puzzlesIds
+	    + LoadDiscoveredPuzzles()
+	    + ShowJournalUI()
+    }
+
+    class EasterEgg {
+	    - bool isActivated
+	    + OnClick()
+	    + PlayAnimation()
+    }
+
+    class PuzzleGameplay {
+        - DataManager dataManager
+	    + showTutorial()
+        + isFirstTime()
+
+    }
+
+	<<interface>> IGameOverSubscriber
+	<<interface>> IPuzzleManager
+
+    PlayerController ..|> IGameOverSubscriber
+    GameManager <.. HealthManager : notifica derrota
+    GameManager <.. TimerManager : notifica timeout
+    IGameOverSubscriber --o GameManager
+    IPuzzleManager <|.. PuzzleManager
+    PuzzleManager *-- FeedbackText
+    PuzzleManager *-- PerformanceResult
+    PuzzleTutorial -- PuzzleGameplay 
+    PuzzleManager *-- PuzzleGameplay
+    PuzzleManager --> DataManager
+    DataManager o-- RunData
+    PuzzleGameplay o-- DataManager
+    DataManager -- JournalManager 
+    GameManager o-- DataManager
+    PuzzleManager --> GameManager : reporta resultado
