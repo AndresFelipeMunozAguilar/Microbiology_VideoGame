@@ -62,13 +62,15 @@ direction TB
 	    + StartPuzzle()
 	    + CompletePuzzle()
 	    + CalculateScore() float
-	    + ShowFeedback()
+	    + ShowFeedback(string: qualitativeResult)
 	    + getPerformanceResult() PerformanceResult
     }
 
     class PerformanceResult {
 	    - int numericScore
 	    - string qualitativeResult
+		+ calculateNumericScore()
+		+ setQualitativeResult()
 	    + toString() string
     }
 
@@ -99,7 +101,7 @@ direction TB
 
     class RunData {
 	    + int runId
-	    + Dictionary~string,int~ puzzleScores
+	    + Dictionary~string,int[]~ puzzleScores
     }
 
     class JournalManager {
