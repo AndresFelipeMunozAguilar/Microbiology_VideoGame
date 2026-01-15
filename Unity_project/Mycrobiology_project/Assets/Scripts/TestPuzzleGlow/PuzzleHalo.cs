@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PuzzleHalo : MonoBehaviour
@@ -14,6 +15,8 @@ public class PuzzleHalo : MonoBehaviour
     // Punto más bajo de la transparencia del glow
     public float minimumTransparency = 0.25f;
 
+    bool isPlayerClose = false;
+
     void Awake()
     {
         haloSr = GetComponent<SpriteRenderer>();
@@ -23,13 +26,15 @@ public class PuzzleHalo : MonoBehaviour
 
     void Update()
     {
-        // Generar valores entre 0 y 1,
-        // basado en el tiempo de inicio del frame actual
-        float drawTime = (Mathf.Sin(Time.time * pulseSpeed) + 1f) * 0.5f;
+        if (isPlayerClose)
+        {
+            // Generar valores entre 0 y 1,
+            // basado en el tiempo de inicio del frame actual
+            float drawTime = (Mathf.Sin(Time.time * pulseSpeed) + 1f) * 0.5f;
 
-        Pulse(drawTime);
-        Glow(drawTime);
-
+            Pulse(drawTime);
+            Glow(drawTime);
+        }
     }
 
     // Función que transforma la escala del halo pulsantemente
@@ -50,6 +55,33 @@ public class PuzzleHalo : MonoBehaviour
         haloColor.a = Mathf.Lerp(minimumTransparency, haloSr.color.a, referenceTime);
         haloSr.color = haloColor;
 
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Si el jugador entra a la colisión, por tanto
+        // el jugador está cerca
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isPlayerClose = true;
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        // Si el jugador sale de la colisión, por tanto
+        // se restauran los valores base del halo
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isPlayerClose = false;
+
+            transform.localScale = Vector3.one;
+            Color haloColor = haloSr.color;
+            haloColor.a = minimumTransparency;
+            haloSr.color = haloColor;
+        }
     }
 
 }
