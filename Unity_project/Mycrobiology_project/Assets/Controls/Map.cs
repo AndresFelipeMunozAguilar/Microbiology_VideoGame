@@ -286,17 +286,6 @@ public partial class @Map: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e160f414-f649-4a61-8834-8a75a93921e2"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pickdown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""52309698-1127-4ed0-9a6f-5ee649f278d9"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
