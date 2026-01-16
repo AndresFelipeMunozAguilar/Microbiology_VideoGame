@@ -89,7 +89,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
     ""name"": ""Map"",
     ""maps"": [
         {
-            ""name"": ""controls"",
+            ""name"": ""Player"",
             ""id"": ""d29f5840-2caa-4921-b846-d6683f9126c1"",
             ""actions"": [
                 {
@@ -123,6 +123,15 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""name"": ""Pickdown"",
                     ""type"": ""Button"",
                     ""id"": ""a062a811-1a1f-4df7-8522-1cfc1a4482bb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StartPuzzle"",
+                    ""type"": ""Button"",
+                    ""id"": ""332461ca-2b36-49be-b08a-98dd5ee17fd9"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -294,6 +303,28 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""action"": ""Pickdown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fb65f08-296c-48bb-8e6f-595538c66447"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartPuzzle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33e1fe6f-88a8-44c2-bc2c-2ff6b375fb7e"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartPuzzle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -306,17 +337,18 @@ public partial class @Map: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // controls
-        m_controls = asset.FindActionMap("controls", throwIfNotFound: true);
-        m_controls_Move = m_controls.FindAction("Move", throwIfNotFound: true);
-        m_controls_Click = m_controls.FindAction("Click", throwIfNotFound: true);
-        m_controls_PickUp = m_controls.FindAction("PickUp", throwIfNotFound: true);
-        m_controls_Pickdown = m_controls.FindAction("Pickdown", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
+        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
+        m_Player_Pickdown = m_Player.FindAction("Pickdown", throwIfNotFound: true);
+        m_Player_StartPuzzle = m_Player.FindAction("StartPuzzle", throwIfNotFound: true);
     }
 
     ~@Map()
     {
-        UnityEngine.Debug.Assert(!m_controls.enabled, "This will cause a leak and performance issues, Map.controls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, Map.Player.Disable() has not been called.");
     }
 
     /// <summary>
@@ -389,44 +421,49 @@ public partial class @Map: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // controls
-    private readonly InputActionMap m_controls;
-    private List<IControlsActions> m_ControlsActionsCallbackInterfaces = new List<IControlsActions>();
-    private readonly InputAction m_controls_Move;
-    private readonly InputAction m_controls_Click;
-    private readonly InputAction m_controls_PickUp;
-    private readonly InputAction m_controls_Pickdown;
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Click;
+    private readonly InputAction m_Player_PickUp;
+    private readonly InputAction m_Player_Pickdown;
+    private readonly InputAction m_Player_StartPuzzle;
     /// <summary>
-    /// Provides access to input actions defined in input action map "controls".
+    /// Provides access to input actions defined in input action map "Player".
     /// </summary>
-    public struct ControlsActions
+    public struct PlayerActions
     {
         private @Map m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public ControlsActions(@Map wrapper) { m_Wrapper = wrapper; }
+        public PlayerActions(@Map wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "controls/Move".
+        /// Provides access to the underlying input action "Player/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_controls_Move;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "controls/Click".
+        /// Provides access to the underlying input action "Player/Click".
         /// </summary>
-        public InputAction @Click => m_Wrapper.m_controls_Click;
+        public InputAction @Click => m_Wrapper.m_Player_Click;
         /// <summary>
-        /// Provides access to the underlying input action "controls/PickUp".
+        /// Provides access to the underlying input action "Player/PickUp".
         /// </summary>
-        public InputAction @PickUp => m_Wrapper.m_controls_PickUp;
+        public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         /// <summary>
-        /// Provides access to the underlying input action "controls/Pickdown".
+        /// Provides access to the underlying input action "Player/Pickdown".
         /// </summary>
-        public InputAction @Pickdown => m_Wrapper.m_controls_Pickdown;
+        public InputAction @Pickdown => m_Wrapper.m_Player_Pickdown;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/StartPuzzle".
+        /// </summary>
+        public InputAction @StartPuzzle => m_Wrapper.m_Player_StartPuzzle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_controls; }
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -434,9 +471,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="ControlsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(ControlsActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -444,11 +481,11 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="ControlsActions" />
-        public void AddCallbacks(IControlsActions instance)
+        /// <seealso cref="PlayerActions" />
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_ControlsActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ControlsActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -461,6 +498,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Pickdown.started += instance.OnPickdown;
             @Pickdown.performed += instance.OnPickdown;
             @Pickdown.canceled += instance.OnPickdown;
+            @StartPuzzle.started += instance.OnStartPuzzle;
+            @StartPuzzle.performed += instance.OnStartPuzzle;
+            @StartPuzzle.canceled += instance.OnStartPuzzle;
         }
 
         /// <summary>
@@ -469,8 +509,8 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="ControlsActions" />
-        private void UnregisterCallbacks(IControlsActions instance)
+        /// <seealso cref="PlayerActions" />
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -484,15 +524,18 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Pickdown.started -= instance.OnPickdown;
             @Pickdown.performed -= instance.OnPickdown;
             @Pickdown.canceled -= instance.OnPickdown;
+            @StartPuzzle.started -= instance.OnStartPuzzle;
+            @StartPuzzle.performed -= instance.OnStartPuzzle;
+            @StartPuzzle.canceled -= instance.OnStartPuzzle;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ControlsActions.UnregisterCallbacks(IControlsActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
         /// </summary>
-        /// <seealso cref="ControlsActions.UnregisterCallbacks(IControlsActions)" />
-        public void RemoveCallbacks(IControlsActions instance)
+        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_ControlsActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -502,21 +545,21 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="ControlsActions.AddCallbacks(IControlsActions)" />
-        /// <seealso cref="ControlsActions.RemoveCallbacks(IControlsActions)" />
-        /// <seealso cref="ControlsActions.UnregisterCallbacks(IControlsActions)" />
-        public void SetCallbacks(IControlsActions instance)
+        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_ControlsActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_ControlsActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="ControlsActions" /> instance referencing this action map.
+    /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
-    public ControlsActions @controls => new ControlsActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
     private int m_ControlsSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -531,11 +574,11 @@ public partial class @Map: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "controls" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="ControlsActions.AddCallbacks(IControlsActions)" />
-    /// <seealso cref="ControlsActions.RemoveCallbacks(IControlsActions)" />
-    public interface IControlsActions
+    /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+    /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+    public interface IPlayerActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -565,5 +608,12 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickdown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "StartPuzzle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnStartPuzzle(InputAction.CallbackContext context);
     }
 }

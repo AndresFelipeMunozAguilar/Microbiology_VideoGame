@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class ControlsManager : MonoBehaviour
 {
     Map map;
-    static Map.ControlsActions controls;
+    static Map.PlayerActions controls;
     public static ControlsManager instance;
     private void Awake()
     {
         map = new Map();
-        controls = map.controls;
+        controls = map.Player;
         instance = this;
     }
-    public static Map.ControlsActions getControls() { return controls; }
+    public static Map.PlayerActions getControls() { return controls; }
     private void OnEnable()
     {
         map.Enable();

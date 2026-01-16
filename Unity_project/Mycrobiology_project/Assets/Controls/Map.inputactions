@@ -3,7 +3,7 @@
     "name": "Map",
     "maps": [
         {
-            "name": "controls",
+            "name": "Player",
             "id": "d29f5840-2caa-4921-b846-d6683f9126c1",
             "actions": [
                 {
@@ -37,6 +37,15 @@
                     "name": "Pickdown",
                     "type": "Button",
                     "id": "a062a811-1a1f-4df7-8522-1cfc1a4482bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartPuzzle",
+                    "type": "Button",
+                    "id": "332461ca-2b36-49be-b08a-98dd5ee17fd9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -206,6 +215,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pickdown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0fb65f08-296c-48bb-8e6f-595538c66447",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPuzzle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33e1fe6f-88a8-44c2-bc2c-2ff6b375fb7e",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPuzzle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
