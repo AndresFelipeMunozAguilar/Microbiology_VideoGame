@@ -6,10 +6,10 @@ public class ControlsManager : MonoBehaviour
     static Map.ControlsActions controls;
     public static ControlsManager instance;
     private void Awake()
-    {        
+    {
         map = new Map();
-        controls= map.controls;
-        instance=this;
+        controls = map.controls;
+        instance = this;
     }
     public static Map.ControlsActions getControls() { return controls; }
     private void OnEnable()
@@ -20,5 +20,5 @@ public class ControlsManager : MonoBehaviour
     {
         map.Disable();
     }
-  
+
 }
