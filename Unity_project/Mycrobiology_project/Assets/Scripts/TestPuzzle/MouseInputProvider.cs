@@ -13,6 +13,7 @@ public class MouseInputProvider : MonoBehaviour
 
     public void OnAction(InputValue _)
     {
-        Clicked?.Invoke();
+        Clicked.Invoke();
+        Debug.Log("Mouse Clicked");
     }
 }
