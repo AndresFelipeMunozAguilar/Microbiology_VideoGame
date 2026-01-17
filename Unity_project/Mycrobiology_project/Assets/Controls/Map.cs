@@ -102,15 +102,6 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Click"",
-                    ""type"": ""Button"",
-                    ""id"": ""8a60c70e-1bf9-4e41-9777-7fc0832c1ce4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""PickUp"",
                     ""type"": ""Button"",
                     ""id"": ""7761735c-cd27-41a0-a6ea-e4d56f7eae1d"",
@@ -129,9 +120,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""StartPuzzle"",
+                    ""name"": ""Action"",
                     ""type"": ""Button"",
-                    ""id"": ""332461ca-2b36-49be-b08a-98dd5ee17fd9"",
+                    ""id"": ""6607f3c3-63ce-46bc-b9f2-448a8430e1a1"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -262,17 +253,6 @@ public partial class @Map: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""aa66b77b-080e-498e-8097-455b8a449c88"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9a7b5d25-71d6-4edb-97cb-2983bb73a174"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
@@ -306,23 +286,12 @@ public partial class @Map: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0fb65f08-296c-48bb-8e6f-595538c66447"",
+                    ""id"": ""50f0dce5-0898-4c86-b420-8f8f090ccf2a"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""StartPuzzle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""33e1fe6f-88a8-44c2-bc2c-2ff6b375fb7e"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartPuzzle"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -340,10 +309,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Pickdown = m_Player.FindAction("Pickdown", throwIfNotFound: true);
-        m_Player_StartPuzzle = m_Player.FindAction("StartPuzzle", throwIfNotFound: true);
+        m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
     }
 
     ~@Map()
@@ -425,10 +393,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Click;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Pickdown;
-    private readonly InputAction m_Player_StartPuzzle;
+    private readonly InputAction m_Player_Action;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -445,10 +412,6 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Click".
-        /// </summary>
-        public InputAction @Click => m_Wrapper.m_Player_Click;
-        /// <summary>
         /// Provides access to the underlying input action "Player/PickUp".
         /// </summary>
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
@@ -457,9 +420,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Pickdown => m_Wrapper.m_Player_Pickdown;
         /// <summary>
-        /// Provides access to the underlying input action "Player/StartPuzzle".
+        /// Provides access to the underlying input action "Player/Action".
         /// </summary>
-        public InputAction @StartPuzzle => m_Wrapper.m_Player_StartPuzzle;
+        public InputAction @Action => m_Wrapper.m_Player_Action;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -489,18 +452,15 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Click.started += instance.OnClick;
-            @Click.performed += instance.OnClick;
-            @Click.canceled += instance.OnClick;
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
             @Pickdown.started += instance.OnPickdown;
             @Pickdown.performed += instance.OnPickdown;
             @Pickdown.canceled += instance.OnPickdown;
-            @StartPuzzle.started += instance.OnStartPuzzle;
-            @StartPuzzle.performed += instance.OnStartPuzzle;
-            @StartPuzzle.canceled += instance.OnStartPuzzle;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
         }
 
         /// <summary>
@@ -515,18 +475,15 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Click.started -= instance.OnClick;
-            @Click.performed -= instance.OnClick;
-            @Click.canceled -= instance.OnClick;
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
             @Pickdown.started -= instance.OnPickdown;
             @Pickdown.performed -= instance.OnPickdown;
             @Pickdown.canceled -= instance.OnPickdown;
-            @StartPuzzle.started -= instance.OnStartPuzzle;
-            @StartPuzzle.performed -= instance.OnStartPuzzle;
-            @StartPuzzle.canceled -= instance.OnStartPuzzle;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
         }
 
         /// <summary>
@@ -588,13 +545,6 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnClick(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "PickUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -609,11 +559,11 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickdown(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "StartPuzzle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnStartPuzzle(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
 }

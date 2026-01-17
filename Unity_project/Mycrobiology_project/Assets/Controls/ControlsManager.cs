@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,7 @@ public class ControlsManager : MonoBehaviour
     Map map;
     static Map.PlayerActions controls;
     public static ControlsManager instance;
-    private void Awake()
+    public void Awake()
     {
         map = new Map();
         controls = map.Player;
@@ -21,5 +22,11 @@ public class ControlsManager : MonoBehaviour
     {
         map.Disable();
     }
+
+    public void Greet()
+    {
+        Debug.Log("Hello from ControlsManager");
+    }
+
 
 }

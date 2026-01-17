@@ -16,15 +16,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Click",
-                    "type": "Button",
-                    "id": "8a60c70e-1bf9-4e41-9777-7fc0832c1ce4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "PickUp",
                     "type": "Button",
                     "id": "7761735c-cd27-41a0-a6ea-e4d56f7eae1d",
@@ -43,9 +34,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "StartPuzzle",
+                    "name": "Action",
                     "type": "Button",
-                    "id": "332461ca-2b36-49be-b08a-98dd5ee17fd9",
+                    "id": "6607f3c3-63ce-46bc-b9f2-448a8430e1a1",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -176,17 +167,6 @@
                 },
                 {
                     "name": "",
-                    "id": "aa66b77b-080e-498e-8097-455b8a449c88",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9a7b5d25-71d6-4edb-97cb-2983bb73a174",
                     "path": "<Keyboard>/z",
                     "interactions": "",
@@ -220,23 +200,12 @@
                 },
                 {
                     "name": "",
-                    "id": "0fb65f08-296c-48bb-8e6f-595538c66447",
+                    "id": "50f0dce5-0898-4c86-b420-8f8f090ccf2a",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "StartPuzzle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "33e1fe6f-88a8-44c2-bc2c-2ff6b375fb7e",
-                    "path": "<Touchscreen>/primaryTouch/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "StartPuzzle",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
