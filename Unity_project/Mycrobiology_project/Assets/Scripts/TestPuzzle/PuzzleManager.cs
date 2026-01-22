@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class PuzzleManager : MonoBehaviour
+public class PuzzleManager : MonoBehaviour, ITapAction
 {
 
-    public void StartPuzzle()
+    public void OnTap(GameObject target)
     {
-        Debug.Log("Puzzle Started");
+        Debug.Log($"Tap detectado sobre: {target.name}");
     }
 
 }
