@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Tap",
+                    "name": "Click",
                     "type": "Button",
                     "id": "6607f3c3-63ce-46bc-b9f2-448a8430e1a1",
                     "expectedControlType": "",
@@ -200,23 +200,12 @@
                 },
                 {
                     "name": "",
-                    "id": "50f0dce5-0898-4c86-b420-8f8f090ccf2a",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": ";Controls",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "fec35f42-b8c0-406a-aa84-7ad60914a3f4",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Controls",
-                    "action": "Tap",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

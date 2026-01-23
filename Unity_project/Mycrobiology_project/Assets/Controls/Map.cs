@@ -120,7 +120,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Tap"",
+                    ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""6607f3c3-63ce-46bc-b9f2-448a8430e1a1"",
                     ""expectedControlType"": """",
@@ -286,23 +286,12 @@ public partial class @Map: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""50f0dce5-0898-4c86-b420-8f8f090ccf2a"",
-                    ""path"": ""<Touchscreen>/Press"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": "";Controls"",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""fec35f42-b8c0-406a-aa84-7ad60914a3f4"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Controls"",
-                    ""action"": ""Tap"",
+                    ""groups"": """",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -322,7 +311,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Pickdown = m_Player.FindAction("Pickdown", throwIfNotFound: true);
-        m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
+        m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
     }
 
     ~@Map()
@@ -406,7 +395,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Pickdown;
-    private readonly InputAction m_Player_Tap;
+    private readonly InputAction m_Player_Click;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -431,9 +420,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Pickdown => m_Wrapper.m_Player_Pickdown;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Tap".
+        /// Provides access to the underlying input action "Player/Click".
         /// </summary>
-        public InputAction @Tap => m_Wrapper.m_Player_Tap;
+        public InputAction @Click => m_Wrapper.m_Player_Click;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -469,9 +458,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Pickdown.started += instance.OnPickdown;
             @Pickdown.performed += instance.OnPickdown;
             @Pickdown.canceled += instance.OnPickdown;
-            @Tap.started += instance.OnTap;
-            @Tap.performed += instance.OnTap;
-            @Tap.canceled += instance.OnTap;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
         /// <summary>
@@ -492,9 +481,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Pickdown.started -= instance.OnPickdown;
             @Pickdown.performed -= instance.OnPickdown;
             @Pickdown.canceled -= instance.OnPickdown;
-            @Tap.started -= instance.OnTap;
-            @Tap.performed -= instance.OnTap;
-            @Tap.canceled -= instance.OnTap;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
         /// <summary>
@@ -570,11 +559,11 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickdown(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Tap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTap(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }
