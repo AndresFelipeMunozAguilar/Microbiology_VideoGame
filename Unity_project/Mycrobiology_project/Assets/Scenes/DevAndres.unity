@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 93376556}
   - component: {fileID: 93376555}
   - component: {fileID: 93376554}
+  - component: {fileID: 93376557}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -330,12 +331,24 @@ Transform:
   m_GameObject: {fileID: 93376553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3, y: -0.45, z: 0}
+  m_LocalPosition: {x: 3.53, y: 2.24, z: 0}
   m_LocalScale: {x: 2.1314, y: 2.1314, z: 2.1314}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &93376557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93376553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51094e276fc1b340b028e9e398ea803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
 --- !u!1 &215249076
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +787,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387122114}
   m_CullTransparentMesh: 1
+--- !u!1 &423713890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423713891}
+  m_Layer: 0
+  m_Name: Raycaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &423713891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423713890}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664734882
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,50 +897,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664734882}
   m_CullTransparentMesh: 1
---- !u!1 &725443820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 725443822}
-  - component: {fileID: 725443821}
-  m_Layer: 0
-  m_Name: InputHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &725443821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725443820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6d58c7922a1014c95571d516216ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputHandler
---- !u!4 &725443822
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725443820}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805373663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8534803753062833337, guid: f48c1522795114c4da5467e309efa2da, type: 3}
@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: e8cf638ed7f69334fb6e9170e024221f, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -932,19 +932,7 @@ MonoBehaviour:
     m_ActionId: 49325885-c84b-4d4f-9065-9e9467a462a9
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1776792670}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 7761735c-cd27-41a0-a6ea-e4d56f7eae1d
     m_ActionName: 'Player/PickUp[/Keyboard/z]'
   - m_PersistentCalls:
@@ -952,7 +940,19 @@ MonoBehaviour:
     m_ActionId: a062a811-1a1f-4df7-8522-1cfc1a4482bb
     m_ActionName: 'Player/Pickdown[/Keyboard/x]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 805373669}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: OnTap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6607f3c3-63ce-46bc-b9f2-448a8430e1a1
     m_ActionName: 'Player/Click[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -960,6 +960,31 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &805373669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805373663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6d58c7922a1014c95571d516216ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+  raycaster: {fileID: 805373670}
+--- !u!114 &805373670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805373663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4f429a3d1172848b1715dcfb73028b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Raycaster
 --- !u!1 &965028539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,20 +1199,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993617830}
   m_CullTransparentMesh: 1
---- !u!114 &1143099611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: Player/Tap
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: e8cf638ed7f69334fb6e9170e024221f, type: 3}
-  m_ActionId: 6607f3c3-63ce-46bc-b9f2-448a8430e1a1
 --- !u!1 &1603213277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,8 +1210,7 @@ GameObject:
   - component: {fileID: 1603213280}
   - component: {fileID: 1603213279}
   - component: {fileID: 1603213281}
-  - component: {fileID: 1603213286}
-  - component: {fileID: 1603213285}
+  - component: {fileID: 1603213282}
   m_Layer: 0
   m_Name: PuzzleManager
   m_TagString: Untagged
@@ -1329,21 +1339,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1603213285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603213277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878f9d41fcb52184f9b9071d143a94bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TapDetector
-  tapAction: {fileID: 1143099611}
-  tapActionBehaviour: {fileID: 1603213286}
---- !u!114 &1603213286
+--- !u!114 &1603213282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1960,7 +1956,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8534803753062833337, guid: f48c1522795114c4da5467e309efa2da, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 805373670}
+    - targetCorrespondingSourceObject: {fileID: 8534803753062833337, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 805373666}
+    - targetCorrespondingSourceObject: {fileID: 8534803753062833337, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805373669}
   m_SourcePrefab: {fileID: 100100000, guid: f48c1522795114c4da5467e309efa2da, type: 3}
 --- !u!1 &2087595075
 GameObject:
@@ -2053,4 +2055,4 @@ SceneRoots:
   - {fileID: 74235273}
   - {fileID: 1603213280}
   - {fileID: 93376556}
-  - {fileID: 725443822}
+  - {fileID: 423713891}
