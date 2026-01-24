@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PuzzleManager : MonoBehaviour, ITapAction
+public class PuzzleManager : MonoBehaviour
 {
 
     public void OnTap(GameObject target)
