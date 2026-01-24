@@ -189,17 +189,6 @@
                 },
                 {
                     "name": "",
-                    "id": "fec35f42-b8c0-406a-aa84-7ad60914a3f4",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
                     "path": "<Touchscreen>/Press",
                     "interactions": "Tap",
