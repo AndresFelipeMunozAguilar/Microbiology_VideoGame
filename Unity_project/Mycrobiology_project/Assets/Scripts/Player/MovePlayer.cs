@@ -1,6 +1,5 @@
 using UnityEngine;
-
-
+using UnityEngine.InputSystem;
 
 public class MovePlayer : MonoBehaviour, IPausable
 {
@@ -14,14 +13,17 @@ public class MovePlayer : MonoBehaviour, IPausable
         ControlsManager.getControls().PickUp.performed += ctr => pickup();
         ControlsManager.getControls().Pickdown.performed += ctr => pickdown();
     }
+
     void pickup()
     {
         if (objectCollision) objectCollision.SetParent(this.transform);
     }
+
     void pickdown()
     {
         transform.GetChild(0).SetParent(null);
     }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         objectCollision = other.transform;

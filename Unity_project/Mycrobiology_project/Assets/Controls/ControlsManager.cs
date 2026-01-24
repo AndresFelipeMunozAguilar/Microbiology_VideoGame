@@ -23,10 +23,4 @@ public class ControlsManager : MonoBehaviour
         map.Disable();
     }
 
-    public void Greet()
-    {
-        Debug.Log("Hello from ControlsManager");
-    }
-
-
 }

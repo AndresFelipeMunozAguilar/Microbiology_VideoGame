@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "6607f3c3-63ce-46bc-b9f2-448a8430e1a1",
                     "expectedControlType": "",
@@ -178,17 +178,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c7449994-c3ec-475b-a168-345faa8aad59",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PickUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "52309698-1127-4ed0-9a6f-5ee649f278d9",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -200,12 +189,12 @@
                 },
                 {
                     "name": "",
-                    "id": "50f0dce5-0898-4c86-b420-8f8f090ccf2a",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
-                    "action": "Action",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
