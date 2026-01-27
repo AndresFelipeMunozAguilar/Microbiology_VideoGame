@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 215249078}
   - component: {fileID: 215249079}
   - component: {fileID: 215249080}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1682758583
   m_SortingLayer: 3
-  m_SortingOrder: 49
+  m_SortingOrder: 25
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.9245283, g: 0.5247676, b: 0.09158063, a: 1}
@@ -1222,7 +1222,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 1
+  m_LayerOverridePriority: 20
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
