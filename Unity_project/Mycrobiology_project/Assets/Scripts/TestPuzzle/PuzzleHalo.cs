@@ -15,7 +15,7 @@ public class PuzzleHalo : MonoBehaviour
     // Punto más bajo de la transparencia del glow
     public float minimumTransparency = 0.25f;
 
-    bool isPlayerClose = false;
+    public bool isPlayerClose = false;
 
     void Awake()
     {
