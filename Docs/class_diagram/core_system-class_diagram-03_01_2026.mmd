@@ -4,6 +4,8 @@ config:
 ---
 classDiagram
 direction TB
+	
+
     class GameManager {
 	    - static GameManager instance
 	    - bool isGameOver
@@ -34,6 +36,8 @@ direction TB
 	    + NotifyDeath()
     }
 
+	
+
     class TimerManager {
 	    - float maxTime
 	    - float currentTime
@@ -47,12 +51,16 @@ direction TB
 	    + OnGameOver()
     }
 
+	
+
     class IPuzzleManager {
 	    + StartPuzzle()
 	    + CompletePuzzle()
 	    + GetScore() float
 	    + GetPerformanceResult() PerformanceResult
     }
+
+	
 
     class PuzzleManager {
 	    - int score
@@ -64,6 +72,33 @@ direction TB
 	    + CalculateScore() float
 	    + ShowFeedback(string: qualitativeResult)
 	    + getPerformanceResult() PerformanceResult
+    }
+
+	class ITappable{
+		OnTap()
+	}
+
+	class InputHandler {
+        -Raycaster raycaster
+        +void Start()
+        +void OnDestroy()
+        +void OnTap(InputAction.CallbackContext context)
+    }
+
+    class Raycaster {
+        -Camera mainCamera
+        +void Start()
+        +void ProcessTap(Vector2 screenPosition)
+    }
+
+    class ControlsManager {
+        -Map map
+        -static Map.PlayerActions controls
+        -static ControlsManager instance
+        +void Awake()
+        +static Map.PlayerActions getControls()
+        +void OnEnable()
+        +void OnDisable()
     }
 
     class PerformanceResult {
@@ -103,19 +138,33 @@ direction TB
 	    + int runId
 	    + Dictionary~string,int[]~ puzzleScores
     }
-
+	class PuzzleHalo {
+        +float pulseSpeed
+        +float maxScale
+        -SpriteRenderer haloSr
+        -Vector3 haloBaseScale
+        +float minimumTransparency
+        +bool isPlayerClose
+        -void Awake()
+        -void Update()
+        -void Pulse(float referenceTime)
+        -void Glow(float referenceTime)
+        -void OnTriggerEnter2D(Collider2D other)
+        -void OnTriggerExit2D(Collider2D other)
+    }
     class JournalManager {
         - string[] puzzlesIds
 	    + LoadDiscoveredPuzzles()
 	    + ShowJournalUI()
     }
-
+	
     class EasterEgg {
 	    - bool isActivated
 	    + OnClick()
 	    + PlayAnimation()
     }
 
+	
     class PuzzleGameplay {
         - DataManager dataManager
 	    + showTutorial()
@@ -123,21 +172,35 @@ direction TB
 
     }
 
-	<<interface>> IGameOverSubscriber
-	<<interface>> IPuzzleManager
+	
 
+	<<interface>> IGameOverSubscriber
+	<<interface>> ITappable
+	<<interface>> IPuzzleManager
+	
+	
     PlayerController ..|> IGameOverSubscriber
     GameManager <.. HealthManager : notifica derrota
     GameManager <.. TimerManager : notifica timeout
     IGameOverSubscriber --o GameManager
     IPuzzleManager <|.. PuzzleManager
+	ITappable <|.. PuzzleManager
     PuzzleManager *-- FeedbackText
     PuzzleManager *-- PerformanceResult
+	PuzzleManager *-- PuzzleHalo : Serialized field
     PuzzleTutorial -- PuzzleGameplay 
     PuzzleManager *-- PuzzleGameplay
+	
     PuzzleManager --> DataManager
+	
     DataManager o-- RunData
     PuzzleGameplay o-- DataManager
     DataManager -- JournalManager 
     GameManager o-- DataManager
+	
     PuzzleManager --> GameManager : reporta resultado
+
+
+	InputHandler -- Raycaster : serialized field
+    InputHandler -- ControlsManager : uses getControls()
+	Raycaster --> ITappable : TryGetComponent and calls OnTap()
