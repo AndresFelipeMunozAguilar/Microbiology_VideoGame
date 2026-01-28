@@ -1083,6 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
   halo: {fileID: 215249079}
+  background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
 --- !u!1 &1610166284
 GameObject:
   m_ObjectHideFlags: 0
