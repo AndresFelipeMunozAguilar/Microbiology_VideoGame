@@ -930,6 +930,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993617830}
   m_CullTransparentMesh: 1
+--- !u!1 &1076131075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1076131077}
+  - component: {fileID: 1076131076}
+  m_Layer: 9
+  m_Name: PuzzleGameplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1076131076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076131075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab289e92439467458b093203f7276ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleGameplay
+  background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
+--- !u!4 &1076131077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076131075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1603213280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603213277
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,6 +987,7 @@ GameObject:
   - component: {fileID: 1603213279}
   - component: {fileID: 1603213281}
   - component: {fileID: 1603213282}
+  - component: {fileID: 1603213283}
   m_Layer: 9
   m_Name: PuzzleManager
   m_TagString: Untagged
@@ -1022,6 +1068,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 215249077}
+  - {fileID: 1076131077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1603213281
@@ -1083,7 +1130,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
   halo: {fileID: 215249079}
-  background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
+  gameplay: {fileID: 1076131076}
+  performanceResult: {fileID: 1603213283}
+--- !u!114 &1603213283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603213277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4006f1b464a325f498c74f5cffc33d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerformanceResult
+  sampleText: Hola, soy la clase PerformanceResult
 --- !u!1 &1610166284
 GameObject:
   m_ObjectHideFlags: 0

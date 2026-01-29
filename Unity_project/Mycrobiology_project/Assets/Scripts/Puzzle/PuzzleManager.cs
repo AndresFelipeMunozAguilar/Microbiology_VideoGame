@@ -1,29 +1,45 @@
 using UnityEngine;
 
-public class PuzzleManager : MonoBehaviour, ITappable
+public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager
 {
 
     [SerializeField]
     private PuzzleHalo halo;
 
     [SerializeField]
-    private GameObject background;
+    private PuzzleGameplay gameplay;
+
+    [SerializeField]
+    private PerformanceResult performanceResult;
 
     public void OnTap()
     {
         if (halo.isPlayerClose)
         {
-            Vector3 inFrontOfCamera = Camera.main.transform.position;
-            inFrontOfCamera.z = 0f;
-            SpawnBackground(inFrontOfCamera, Quaternion.identity, this.transform);
-
+            StartPuzzle();
         }
 
     }
 
-    public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
+    public void StartPuzzle()
     {
-        Instantiate(background, position, rotation, parent);
+        gameplay.StartGameplay();
     }
 
+    public void CompletePuzzle()
+    {
+        Debug.Log("Puzzle completed!");
+    }
+
+    public float GetScore()
+    {
+        Debug.Log($"Score is: 100");
+
+        return 100f;
+    }
+
+    public PerformanceResult GetPerformanceResult()
+    {
+        return performanceResult;
+    }
 }

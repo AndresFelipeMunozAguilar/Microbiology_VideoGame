@@ -1,4 +1,6 @@
-public class PerformanceResult
+using UnityEngine;
+
+public class PerformanceResult : MonoBehaviour
 {
     public string sampleText = "Hola, soy la clase PerformanceResult";
 
