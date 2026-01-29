@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void PuzzlePauseAll()
     {
-        isPuzzleActive = true;
+        Debug.Log("Pausing all puzzles...");
+        Debug.Log($"Puzzle is active: {isPuzzleActive}");
 
         foreach (IPuzzlePausable puzzlePausable in puzzlePausables)
         {
@@ -55,12 +56,18 @@ public class GameManager : MonoBehaviour
 
     public void PuzzleResumeAll()
     {
-        isPuzzleActive = false;
+        Debug.Log("Resuming all puzzles...");
+        Debug.Log($"Puzzle is active: {isPuzzleActive}");
 
         foreach (IPuzzlePausable puzzlePausable in puzzlePausables)
         {
             puzzlePausable.PuzzleResumeMe();
         }
+    }
+
+    public void SwitchIsPuzzleActive()
+    {
+        isPuzzleActive = !isPuzzleActive;
     }
 
 }

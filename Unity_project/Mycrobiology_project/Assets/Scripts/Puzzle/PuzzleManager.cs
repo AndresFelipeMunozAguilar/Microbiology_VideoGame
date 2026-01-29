@@ -12,11 +12,16 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     [SerializeField]
     private PerformanceResult performanceResult;
 
+    private GameManager gameManager;
+
     public void OnTap()
     {
         if (halo.isPlayerClose)
         {
+            gameManager.SwitchIsPuzzleActive();
+            gameManager.PuzzlePauseAll();
             StartPuzzle();
+
         }
 
     }
@@ -45,21 +50,23 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     public void PuzzlePauseMe()
     {
-        Debug.Log("Puzzle paused.");
+        Debug.Log("I am GAME MANAGER and i have been PAUSED.");
+        this.GetComponent<Collider2D>().enabled = false;
     }
 
     public void PuzzleResumeMe()
     {
-        Debug.Log("Puzzle resumed.");
+        Debug.Log("I am GAME MANAGER and i have been RESUMED.");
     }
 
     public void OnEnable()
     {
-        GameManager.GetInstance().SubscribePuzzlePausable(this);
+        gameManager = GameManager.GetInstance();
+        gameManager.SubscribePuzzlePausable(this);
     }
 
     public void OnDisable()
     {
-        GameManager.GetInstance().UnsubscribePuzzlePausable(this);
+        gameManager.UnsubscribePuzzlePausable(this);
     }
 }
