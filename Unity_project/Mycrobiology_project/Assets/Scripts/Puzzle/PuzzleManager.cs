@@ -43,13 +43,23 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         return performanceResult;
     }
 
-    public void PausePuzzle()
+    public void PuzzlePauseMe()
     {
         Debug.Log("Puzzle paused.");
     }
 
-    public void ResumePuzzle()
+    public void PuzzleResumeMe()
     {
         Debug.Log("Puzzle resumed.");
+    }
+
+    public void OnEnable()
+    {
+        GameManager.GetInstance().SubscribePuzzlePausable(this);
+    }
+
+    public void OnDisable()
+    {
+        GameManager.GetInstance().UnsubscribePuzzlePausable(this);
     }
 }

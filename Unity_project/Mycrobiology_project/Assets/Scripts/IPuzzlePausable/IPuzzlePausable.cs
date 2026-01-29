@@ -1,8 +1,8 @@
 public interface IPuzzlePausable
 {
     // Lógica que pausa el puzzle
-    public void PausePuzzle();
+    public void PuzzlePauseMe();
 
     // Lógica que reanuda el puzzle
-    public void ResumePuzzle();
+    public void PuzzleResumeMe();
 }
