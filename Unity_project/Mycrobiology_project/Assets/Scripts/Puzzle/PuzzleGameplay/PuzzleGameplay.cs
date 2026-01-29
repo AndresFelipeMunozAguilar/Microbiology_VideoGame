@@ -25,4 +25,13 @@ public class PuzzleGameplay : MonoBehaviour
 
         Destroy(this.gameObject);
     }
+
+    public void Defeat()
+    {
+        Debug.Log("You lost the Puzzle: Defeat!");
+
+        //Falta añadir la lógica de calcular la performance en el puzzle
+
+        Destroy(this.gameObject);
+    }
 }

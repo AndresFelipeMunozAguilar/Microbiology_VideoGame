@@ -14,6 +14,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     private GameManager gameManager;
 
+    public bool isVictoryAchieved = false;
+
     public void OnTap()
     {
         if (halo.isPlayerClose)
@@ -40,7 +42,19 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void CompletePuzzle()
     {
         Debug.Log("Puzzle completed!");
-        gameplay.Victory();
+
+        if (isVictoryAchieved)
+        {
+            Debug.Log("Felicidades, ganaste el puzzle!");
+            gameplay.Victory();
+        }
+        else
+        {
+            Debug.Log("Lo siento, perdiste el puzzle.");
+            gameplay.Defeat();
+        }
+
+
         gameManager.SwitchIsPuzzleActive();
         gameManager.PuzzleResumeAll();
     }
@@ -66,7 +80,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void PuzzleResumeMe()
     {
         Debug.Log("I am GAME MANAGER and i have been RESUMED.");
-        this.GetComponent<Collider2D>().enabled = true;
     }
 
 
