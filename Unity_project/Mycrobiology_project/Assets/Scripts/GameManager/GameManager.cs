@@ -4,6 +4,10 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
+    public bool isGameOver = false;
+
+
+
     public void Awake()
     {
         instance = this;
