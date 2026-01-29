@@ -66,6 +66,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void PuzzleResumeMe()
     {
         Debug.Log("I am GAME MANAGER and i have been RESUMED.");
+        this.GetComponent<Collider2D>().enabled = true;
     }
 
 
