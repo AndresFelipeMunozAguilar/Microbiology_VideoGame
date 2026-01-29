@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager
+public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePausable
 {
 
     [SerializeField]
@@ -41,5 +41,15 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager
     public PerformanceResult GetPerformanceResult()
     {
         return performanceResult;
+    }
+
+    public void PausePuzzle()
+    {
+        Debug.Log("Puzzle paused.");
+    }
+
+    public void ResumePuzzle()
+    {
+        Debug.Log("Puzzle resumed.");
     }
 }
