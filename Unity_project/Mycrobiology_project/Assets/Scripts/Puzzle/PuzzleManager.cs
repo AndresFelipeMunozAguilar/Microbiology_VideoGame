@@ -26,6 +26,12 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     }
 
+    public void Start()
+    {
+        gameManager = GameManager.GetInstance();
+        gameManager.SubscribePuzzlePausable(this);
+    }
+
     public void StartPuzzle()
     {
         gameplay.StartGameplay();
@@ -59,13 +65,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         Debug.Log("I am GAME MANAGER and i have been RESUMED.");
     }
 
-    public void OnEnable()
-    {
-        gameManager = GameManager.GetInstance();
-        gameManager.SubscribePuzzlePausable(this);
-    }
 
-    public void OnDisable()
+    public void OnDestroy()
     {
         gameManager.UnsubscribePuzzlePausable(this);
     }
