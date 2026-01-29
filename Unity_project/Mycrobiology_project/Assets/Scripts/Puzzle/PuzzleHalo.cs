@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PuzzleHalo : MonoBehaviour
+public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
 {
 
     // Que tan rápido pulsa el glow
@@ -17,11 +17,12 @@ public class PuzzleHalo : MonoBehaviour
 
     public bool isPlayerClose = false;
 
-    void Awake()
+    void Start()
     {
         haloSr = GetComponent<SpriteRenderer>();
         haloBaseScale = Vector3.one;
         transform.localScale = haloBaseScale;
+        GameManager.GetInstance().SubscribePuzzlePausable(this);
     }
 
     void Update()
@@ -82,6 +83,24 @@ public class PuzzleHalo : MonoBehaviour
             haloColor.a = minimumTransparency;
             haloSr.color = haloColor;
         }
+    }
+
+    // Lógica que pausa el puzzle
+    public void PuzzlePauseMe()
+    {
+        Debug.Log("I am PUZZLE HALO and i have been PAUSED.");
+        Destroy(this.gameObject);
+    }
+
+    // Lógica que reanuda el puzzle
+    public void PuzzleResumeMe()
+    {
+        Debug.Log("I am PUZZLE HALO and i have been RESUMED.");
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.GetInstance().UnsubscribePuzzlePausable(this);
     }
 
 }

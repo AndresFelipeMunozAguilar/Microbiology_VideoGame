@@ -40,6 +40,9 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void CompletePuzzle()
     {
         Debug.Log("Puzzle completed!");
+        gameplay.Victory();
+        gameManager.SwitchIsPuzzleActive();
+        gameManager.PuzzleResumeAll();
     }
 
     public float GetScore()

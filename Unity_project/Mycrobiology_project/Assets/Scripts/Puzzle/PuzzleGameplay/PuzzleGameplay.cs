@@ -16,4 +16,13 @@ public class PuzzleGameplay : MonoBehaviour
     {
         Instantiate(background, position, rotation, parent);
     }
+
+    public void Victory()
+    {
+        Debug.Log("You won the Puzzle: Victory!");
+
+        //Falta añadir la lógica de calcular la performance en el puzzle
+
+        Destroy(this.gameObject);
+    }
 }

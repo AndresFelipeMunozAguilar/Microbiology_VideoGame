@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public void SwitchIsPuzzleActive()
     {
         isPuzzleActive = !isPuzzleActive;
+        Debug.Log($"is the puzzle active?: {isPuzzleActive}");
     }
 
 }
