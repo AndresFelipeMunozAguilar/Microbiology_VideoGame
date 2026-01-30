@@ -22,7 +22,16 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         {
             gameManager.SwitchIsPuzzleActive();
             gameManager.PuzzlePauseAll();
-            StartPuzzle();
+
+            if (gameplay.isFirstTime())
+            {
+                gameplay.ShowTutorial();
+            }
+            else
+            {
+                StartPuzzle();
+            }
+
 
         }
 

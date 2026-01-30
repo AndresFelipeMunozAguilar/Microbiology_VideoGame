@@ -4,6 +4,12 @@ public class PuzzleGameplay : MonoBehaviour
 {
     [SerializeField]
     private GameObject background;
+
+    private bool isFirstTimePlaying = false;
+
+    [SerializeField]
+    private GameObject tutorialPrefab;
+
     public void StartGameplay()
     {
         Vector3 inFrontOfCamera = Camera.main.transform.position;
@@ -33,5 +39,17 @@ public class PuzzleGameplay : MonoBehaviour
         //Falta añadir la lógica de calcular la performance en el puzzle
 
         Destroy(this.gameObject);
+    }
+
+    public void ShowTutorial()
+    {
+        Debug.Log("Showing Puzzle Tutorial");
+        Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+    }
+
+    public bool isFirstTime()
+    {
+        Debug.Log("Is the first time playing the puzzle?");
+        return isFirstTimePlaying;
     }
 }
