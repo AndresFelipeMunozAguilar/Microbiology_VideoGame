@@ -13,8 +13,15 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         puzzlePausables = new List<IPuzzlePausable>();
 
@@ -25,15 +32,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager GetInstance()
     {
-        if (instance == null)
-        {
-            GameObject gameManagerObject = GameObject.Find("GameManager");
-
-            GameManager hola = gameManagerObject.AddComponent<GameManager>();
-
-            instance = gameManagerObject.GetComponent<GameManager>();
-        }
-
         return instance;
     }
 
