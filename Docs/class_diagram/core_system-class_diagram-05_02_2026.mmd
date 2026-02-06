@@ -4,27 +4,45 @@ config:
 ---
 classDiagram
 direction TB
-	
+
+    class IPuzzlePausable {
+        <<Interface>>
+        + PuzzlePauseMe()
+        + PuzzleResumeMe()
+    }
 
     class GameManager {
+        <<Singleton>>
 	    - static GameManager instance
 	    - bool isGameOver
+        - bool isPuzzleActive
 	    - DataManager dataManager
 	    - List~IGameOverSubscriber~ gameOverSubscribers
+        - List~IPuzzlePausable~ puzzlePausables
 	    - GameManager()
-	    + GetInstance() GameManager
+	    + static GetInstance() GameManager
 	    + ChangeScene(sceneName: string)
 	    + notifySubscribers()
 	    + OnGameOver(reason: string)
 	    + OnVictory()
 	    + Subscribe(observer: IGameOverSubscriber)
 	    + Unsubscribe(observer: IGameOverSubscriber)
+        + SubscribePuzzlePausable(IPuzzlePausable)
+        + UnsubscribePuzzlePausable(IPuzzlePausable)
+        + PuzzlePauseAll()
+        + PuzzleResumeAll()
+        + SwitchIsPuzzleActive()
     }
 
     class PlayerController {
 	    - float moveSpeed
+        + Start()
+        + Update()
+        + PuzzlePauseMe()
+        + PuzzleResumeMe()
 	    + Move(direction: Vector2)
 	    + OnGameOver()
+        + OnDestroy()
     }
 
     class HealthManager {
@@ -36,7 +54,23 @@ direction TB
 	    + NotifyDeath()
     }
 
-	
+	class PuzzleHalo {
+        + float pulseSpeed
+        + float maxScale
+        + SpriteRenderer haloSr
+        + Vector3 haloBaseScale
+        + float minimumTransparency
+        + bool isPlayerClose
+        + Start()
+        + Update()
+        + Pulse(float)
+        + Glow(float)
+        + OnTriggerEnter2D(Collider2D)
+        + OnTriggerExit2D(Collider2D)
+        + PuzzlePauseMe()
+        + PuzzleResumeMe()
+        + OnDestroy()
+    }
 
     class TimerManager {
 	    - float maxTime
@@ -64,14 +98,15 @@ direction TB
 
     class PuzzleManager {
 	    - int score
-	    - PerformanceResult performance
 	    - FeedbackText feedbackText
-	    - PuzzleGameplay puzzleGameplay
-	    + StartPuzzle()
-	    + CompletePuzzle()
-	    + CalculateScore() float
+        - PuzzleHalo halo
+        - PuzzleGameplay gameplay
+        - PerformanceResult performanceResult
+        - GameManager gameManager
+        + OnTap()
+        + Start()
+        + OnDestroy()
 	    + ShowFeedback(string: qualitativeResult)
-	    + getPerformanceResult() PerformanceResult
     }
 
 	class ITappable{
@@ -138,20 +173,7 @@ direction TB
 	    + int runId
 	    + Dictionary~string,int[]~ puzzleScores
     }
-	class PuzzleHalo {
-        +float pulseSpeed
-        +float maxScale
-        -SpriteRenderer haloSr
-        -Vector3 haloBaseScale
-        +float minimumTransparency
-        +bool isPlayerClose
-        -void Awake()
-        -void Update()
-        -void Pulse(float referenceTime)
-        -void Glow(float referenceTime)
-        -void OnTriggerEnter2D(Collider2D other)
-        -void OnTriggerExit2D(Collider2D other)
-    }
+	
     class JournalManager {
         - string[] puzzlesIds
 	    + LoadDiscoveredPuzzles()
@@ -167,17 +189,33 @@ direction TB
 	
     class PuzzleGameplay {
         - DataManager dataManager
+        - GameObject background
+        - bool isFirstTimePlaying
+        - GameObject tutorialPrefab
+        + StartGameplay()
+        + SpawnBackground(Vector3, Quaternion, Transform)
+        + Victory()
+        + Defeat()
 	    + showTutorial()
-        + isFirstTime()
+        + isFirstTime() bool 
 
     }
 
 	
+    GameManager <.. PuzzleHalo: subscribes
 
 	<<interface>> IGameOverSubscriber
 	<<interface>> ITappable
 	<<interface>> IPuzzleManager
-	
+
+    IPuzzlePausable <|.. PuzzleHalo
+    IPuzzlePausable <|.. PuzzleManager
+    IPuzzlePausable <|.. PlayerController
+    
+
+    
+    GameManager <.. PlayerController: subscribes
+    GameManager <.. PuzzleManager: subscribes
 	
     PlayerController ..|> IGameOverSubscriber
     GameManager <.. HealthManager : notifica derrota
@@ -197,7 +235,7 @@ direction TB
     PuzzleGameplay o-- DataManager
     DataManager -- JournalManager 
     GameManager o-- DataManager
-	
+	IPuzzlePausable --o GameManager
     PuzzleManager --> GameManager : reporta resultado
 
 
