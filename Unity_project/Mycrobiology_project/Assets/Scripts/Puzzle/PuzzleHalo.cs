@@ -9,8 +9,8 @@ public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
     // Que tan grande se puede hacer el glow
     public float maxScale = 1.4f;
 
-    SpriteRenderer haloSr;
-    Vector3 haloBaseScale;
+    public SpriteRenderer haloSr;
+    public Vector3 haloBaseScale;
 
     // Punto más bajo de la transparencia del glow
     public float minimumTransparency = 0.25f;
@@ -39,7 +39,7 @@ public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
     }
 
     // Función que transforma la escala del halo pulsantemente
-    void Pulse(float referenceTime)
+    public void Pulse(float referenceTime)
     {
 
         float stretchFactor = Mathf.Lerp(1f, maxScale, referenceTime);
@@ -49,7 +49,7 @@ public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
 
     // Función que determina la transparencia del halo
     // como si brillara
-    void Glow(float referenceTime)
+    public void Glow(float referenceTime)
     {
 
         Color haloColor = haloSr.color;
