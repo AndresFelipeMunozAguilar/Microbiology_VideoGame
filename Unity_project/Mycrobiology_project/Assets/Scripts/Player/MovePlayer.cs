@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovePlayer : MonoBehaviour, IPausable
+public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable
 {
     Rigidbody2D rb;
     [SerializeField] private float speed;
@@ -12,6 +12,8 @@ public class MovePlayer : MonoBehaviour, IPausable
         rb = GetComponent<Rigidbody2D>();
         ControlsManager.getControls().PickUp.performed += ctr => pickup();
         ControlsManager.getControls().Pickdown.performed += ctr => pickdown();
+
+        GameManager.GetInstance().SubscribePuzzlePausable(this);
     }
 
     void pickup()
@@ -50,5 +52,22 @@ public class MovePlayer : MonoBehaviour, IPausable
     public void Pause()
     {
         this.enabled = false;
+    }
+
+    public void PuzzlePauseMe()
+    {
+        Debug.Log("Soy el MOVIMIENTO del jugador y he sido PAUSADO.");
+        this.enabled = false;
+    }
+
+    public void PuzzleResumeMe()
+    {
+        Debug.Log("Soy el MOVIMIENTO del jugador y he sido RESUMIDO.");
+        this.enabled = true;
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.GetInstance().UnsubscribePuzzlePausable(this);
     }
 }

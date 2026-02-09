@@ -53,5 +53,8 @@ TagManager:
   - name: Player
     uniqueID: 2959544077
     locked: 0
+  - name: Puzzles
+    uniqueID: 445897211
+    locked: 0
   m_RenderingLayers:
   - Default
