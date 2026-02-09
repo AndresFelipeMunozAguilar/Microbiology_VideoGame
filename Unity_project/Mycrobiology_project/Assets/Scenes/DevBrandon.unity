@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 269477620}
   - component: {fileID: 269477619}
   - component: {fileID: 269477622}
+  - component: {fileID: 269477623}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -323,6 +324,50 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &269477623
+MonoBehaviour:
+  m_ObjectHideFlags: 64
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269477618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &924137857
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,11 +506,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!4 &1776792673 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3590162174718702625, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
-  m_PrefabInstance: {fileID: 6975174098224976098}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2027827472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,10 +668,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2188802423819538089, guid: a3ca8a9d938c8e245a77390b2287c16a, type: 3}
-      propertyPath: Target.TrackingTarget
-      value: 
-      objectReference: {fileID: 1776792673}
     - target: {fileID: 3241346524504387255, guid: a3ca8a9d938c8e245a77390b2287c16a, type: 3}
       propertyPath: m_Name
       value: Secenary
@@ -689,10 +725,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2362924934395372657, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
-      propertyPath: speed
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 3421245318980145064, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
       propertyPath: m_Name
       value: Player
@@ -736,6 +768,10 @@ PrefabInstance:
     - target: {fileID: 3590162174718702625, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102750775207951025, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
