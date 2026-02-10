@@ -72,13 +72,12 @@ direction TB
         + OnDestroy()
     }
 
-    class TimerManager {
+    class CountdownManager {
 	    - float maxTime
 	    - float currentTime
-	    + UpdateTimer(deltaTime: float)
-	    + ResetTimer()
-	    + IsTimeExceeded() bool
-	    + NotifyTimeout()
+	    + UpdateCountdown(deltaTime: float)
+	    + ResetCountdown()
+	    + NotifyTimeUp()
     }
 
     class IGameOverSubscriber {
@@ -107,6 +106,12 @@ direction TB
         + Start()
         + OnDestroy()
 	    + ShowFeedback(string: qualitativeResult)
+        + PuzzlePauseMe()
+        + PuzzleResumeMe()
+         + StartPuzzle()
+	    + CompletePuzzle()
+	    + GetScore() float
+	    + GetPerformanceResult() PerformanceResult
     }
 
 	class ITappable{
@@ -219,7 +224,7 @@ direction TB
 	
     PlayerController ..|> IGameOverSubscriber
     GameManager <.. HealthManager : notifica derrota
-    GameManager <.. TimerManager : notifica timeout
+    GameManager <.. CountdownManager : notifica timeout
     IGameOverSubscriber --o GameManager
     IPuzzleManager <|.. PuzzleManager
 	ITappable <|.. PuzzleManager
