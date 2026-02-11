@@ -368,6 +368,11 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!4 &274449352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3590162174718702625, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
+  m_PrefabInstance: {fileID: 6975174098224976098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &924137857
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +576,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1260135541802859862, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260135541802859862, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 790
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545738360119799933, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -219
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433166090272544736, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433166090272544736, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433166090272544736, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 5391878996187505814, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -655,6 +712,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Controls
       objectReference: {fileID: 0}
+    - target: {fileID: 6621577640734250897, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621577640734250897, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853578990659745530, guid: 112715ba7fbd6c240b006352cf6b447a, type: 3}
+      propertyPath: m_MovementRange
+      value: 115
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -668,6 +737,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2188802423819538089, guid: a3ca8a9d938c8e245a77390b2287c16a, type: 3}
+      propertyPath: Target.TrackingTarget
+      value: 
+      objectReference: {fileID: 274449352}
     - target: {fileID: 3241346524504387255, guid: a3ca8a9d938c8e245a77390b2287c16a, type: 3}
       propertyPath: m_Name
       value: Secenary
