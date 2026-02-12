@@ -729,6 +729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03af7223c0b9fbd46a81fc452a9102ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallBehaviour
+  canvas: {fileID: 2012835271}
+  mainCamera: {fileID: 0}
+  zDistanceToCamera: 0
 --- !u!212 &858297949
 SpriteRenderer:
   serializedVersion: 2
