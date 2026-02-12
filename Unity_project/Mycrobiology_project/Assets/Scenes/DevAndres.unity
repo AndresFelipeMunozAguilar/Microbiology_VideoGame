@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 858297948}
   - component: {fileID: 858297947}
   - component: {fileID: 858297946}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 1776792671}
   - component: {fileID: 1776792674}
   - component: {fileID: 1776792675}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
