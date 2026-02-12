@@ -191,7 +191,7 @@
                     "name": "",
                     "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
                     "path": "<Touchscreen>/Press",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
