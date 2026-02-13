@@ -28,7 +28,10 @@ public class BallBehaviour : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        // Al empezar, le decimos al Rigidbody que ignore la gravedad y fuerzas
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -54,11 +57,13 @@ public class BallBehaviour : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         // fuerza hacia abajo y, por tanto, al soltar el balón salga despedido 
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0;
+
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     public void OnPointerDown(PointerEventData eventData)
