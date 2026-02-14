@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5340306496994136067}
   - component: {fileID: 7916226256583120379}
-  - component: {fileID: 1139501453283688633}
   m_Layer: 12
   m_Name: Basket
   m_TagString: Untagged
@@ -83,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 445897211
   m_SortingLayer: 5
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2000726247262814106, guid: f75df01b3df8a5649a9d7bc27dca80a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,27 +94,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!65 &1139501453283688633
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571525966326516746}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 7.63, y: 8.27, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6772232736221046147
 GameObject:
   m_ObjectHideFlags: 0
