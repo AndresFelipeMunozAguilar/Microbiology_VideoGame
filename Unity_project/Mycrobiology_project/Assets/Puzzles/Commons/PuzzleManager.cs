@@ -54,12 +54,12 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         if (isVictoryAchieved)
         {
-            Debug.Log("Felicidades, ganaste el puzzle!");
+            Debug.Log("PuzzleManager: Felicidades, ganaste el puzzle!");
             gameplay.Victory();
         }
         else
         {
-            Debug.Log("Lo siento, perdiste el puzzle.");
+            Debug.Log("PuzzleManager: Lo siento, perdiste el puzzle.");
             gameplay.Defeat();
         }
 

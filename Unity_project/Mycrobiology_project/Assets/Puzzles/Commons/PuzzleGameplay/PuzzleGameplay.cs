@@ -10,11 +10,16 @@ public class PuzzleGameplay : MonoBehaviour
     [SerializeField]
     private GameObject tutorialPrefab;
 
+    [SerializeField]
+    private GameplayDirector gameplayDirector;
+
+
     public void StartGameplay()
     {
         Vector3 inFrontOfCamera = Camera.main.transform.position;
         inFrontOfCamera.z = 0f;
         SpawnBackground(inFrontOfCamera, Quaternion.identity, this.transform);
+        gameplayDirector.StartGameplay(this.transform);
 
     }
 
@@ -25,7 +30,7 @@ public class PuzzleGameplay : MonoBehaviour
 
     public void Victory()
     {
-        Debug.Log("You won the Puzzle: Victory!");
+        Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
 
         //Falta añadir la lógica de calcular la performance en el puzzle
 
@@ -34,7 +39,7 @@ public class PuzzleGameplay : MonoBehaviour
 
     public void Defeat()
     {
-        Debug.Log("You lost the Puzzle: Defeat!");
+        Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
 
         //Falta añadir la lógica de calcular la performance en el puzzle
 
@@ -49,7 +54,7 @@ public class PuzzleGameplay : MonoBehaviour
 
     public bool isFirstTime()
     {
-        Debug.Log("Is the first time playing the puzzle?");
+        Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
         return isFirstTimePlaying;
     }
 }
