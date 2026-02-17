@@ -23,7 +23,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             gameManager.SwitchIsPuzzleActive();
             gameManager.PuzzlePauseAll();
 
-            if (gameplay.isFirstTime())
+            if (gameplay.IsFirstTime())
             {
                 gameplay.ShowTutorial();
             }
