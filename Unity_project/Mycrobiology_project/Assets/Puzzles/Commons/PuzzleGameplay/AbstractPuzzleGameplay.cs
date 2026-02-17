@@ -2,10 +2,17 @@ using UnityEngine;
 
 public abstract class AbstractPuzzleGameplay : MonoBehaviour
 {
-    private DataManager dataManager;
-    private GameObject background;
-    private bool isFirstTimePlaying;
-    private GameObject tutorialPrefab;
+    [SerializeField]
+    protected DataManager dataManager;
+
+    [SerializeField]
+    protected GameObject background;
+
+    [SerializeField]
+    protected bool isFirstTimePlaying;
+
+    [SerializeField]
+    protected GameObject tutorialPrefab;
 
 
     public abstract void StartGameplay();

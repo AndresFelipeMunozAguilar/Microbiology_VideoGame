@@ -7,7 +7,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     private PuzzleHalo halo;
 
     [SerializeField]
-    private PuzzleGameplay gameplay;
+    private AbstractPuzzleGameplay gameplay;
 
     [SerializeField]
     private PerformanceResult performanceResult;

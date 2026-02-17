@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PuzzleGameplay : AbstractPuzzleGameplay
 {
-    [SerializeField]
-    private GameObject background;
+    // [SerializeField]
+    // private GameObject background;
 
-    private bool isFirstTimePlaying = false;
+    // private bool isFirstTimePlaying = false;
 
-    [SerializeField]
-    private GameObject tutorialPrefab;
+    // [SerializeField]
+    // private GameObject tutorialPrefab;
 
     [SerializeField]
     private GameplayDirector gameplayDirector;
