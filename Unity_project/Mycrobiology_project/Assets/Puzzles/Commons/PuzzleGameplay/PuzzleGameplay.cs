@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PuzzleGameplay : MonoBehaviour
+public class PuzzleGameplay : AbstractPuzzleGameplay
 {
     [SerializeField]
     private GameObject background;
@@ -14,7 +14,7 @@ public class PuzzleGameplay : MonoBehaviour
     private GameplayDirector gameplayDirector;
 
 
-    public void StartGameplay()
+    public override void StartGameplay()
     {
         Vector3 inFrontOfCamera = Camera.main.transform.position;
         inFrontOfCamera.z = 0f;
@@ -23,12 +23,8 @@ public class PuzzleGameplay : MonoBehaviour
 
     }
 
-    public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
-    {
-        Instantiate(background, position, rotation, parent);
-    }
 
-    public void Victory()
+    public override void Victory()
     {
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
 
@@ -37,7 +33,7 @@ public class PuzzleGameplay : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void Defeat()
+    public override void Defeat()
     {
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
 
@@ -46,13 +42,13 @@ public class PuzzleGameplay : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void ShowTutorial()
+    public override void ShowTutorial()
     {
         Debug.Log("Showing Puzzle Tutorial");
         Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
     }
 
-    public bool isFirstTime()
+    public override bool IsFirstTime()
     {
         Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
         return isFirstTimePlaying;
