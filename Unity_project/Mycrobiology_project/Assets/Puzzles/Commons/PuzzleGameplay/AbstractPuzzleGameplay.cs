@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AbstractPuzzleGameplay
+public abstract class AbstractPuzzleGameplay : MonoBehaviour
 {
     private DataManager dataManager;
     private GameObject background;
@@ -10,7 +10,10 @@ public abstract class AbstractPuzzleGameplay
 
     public abstract void StartGameplay();
 
-    public abstract void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent);
+    public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
+    {
+        Instantiate(background, position, rotation, parent);
+    }
 
     public abstract void Victory();
 
