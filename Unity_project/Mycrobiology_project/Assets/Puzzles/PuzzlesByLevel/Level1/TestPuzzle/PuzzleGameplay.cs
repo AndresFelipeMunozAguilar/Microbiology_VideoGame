@@ -80,15 +80,20 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
         Destroy(this.gameObject);
     }
 
-    public override void ShowTutorial()
+    public void Hola()
     {
-        Debug.Log("Showing Puzzle Tutorial");
-        Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+        Debug.Log("Hola");
     }
 
-    public override bool IsFirstTime()
-    {
-        Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
-        return isFirstTimePlaying;
-    }
+    // public override void ShowTutorial()
+    // {
+    //     // Debug.Log("Showing Puzzle Tutorial");
+    //     Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+    // }
+
+    // public override bool IsFirstTime()
+    // {
+    //     Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
+    //     return isFirstTimePlaying;
+    // }
 }

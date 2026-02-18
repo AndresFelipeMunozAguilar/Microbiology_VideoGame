@@ -26,8 +26,16 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     public abstract void Defeat();
 
-    public abstract void ShowTutorial();
+    public void ShowTutorial()
+    {
+        // Debug.Log("Showing Puzzle Tutorial");
+        Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+    }
 
-    public abstract bool IsFirstTime();
+    public bool IsFirstTime()
+    {
+        Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
+        return isFirstTimePlaying;
+    }
 
 }
