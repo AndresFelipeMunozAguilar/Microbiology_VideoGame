@@ -10,11 +10,22 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     private AbstractPuzzleGameplay gameplay;
 
     [SerializeField]
+    private GameObject puzzleGameplayPrefab;
+
+    [SerializeField]
     private PerformanceResult performanceResult;
 
     private GameManager gameManager;
 
     public bool isVictoryAchieved = false;
+
+
+    public void Start()
+    {
+        gameManager = GameManager.GetInstance();
+        gameManager.SubscribePuzzlePausable(this);
+    }
+
 
     public void OnTap()
     {
@@ -22,6 +33,20 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         {
             gameManager.SwitchIsPuzzleActive();
             gameManager.PuzzlePauseAll();
+
+            Debug.Log("Puzzlemanager: Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
+            Instantiate(puzzleGameplayPrefab, this.transform)
+            .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
+
+            if (puzzelGameplayOut == null)
+            {
+                Debug.LogWarning("No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
+                return;
+            }
+
+            Debug.Log("Puzzlemanager: Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
+            gameplay = puzzelGameplayOut;
+
 
             if (gameplay.IsFirstTime())
             {
@@ -35,12 +60,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         }
 
-    }
-
-    public void Start()
-    {
-        gameManager = GameManager.GetInstance();
-        gameManager.SubscribePuzzlePausable(this);
     }
 
     public void StartPuzzle()
@@ -82,13 +101,13 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     public void PuzzlePauseMe()
     {
-        Debug.Log("I am GAME MANAGER and i have been PAUSED.");
+        Debug.Log("I am PuzzleMANAGER and my collider2d has been PAUSED.");
         this.GetComponent<Collider2D>().enabled = false;
     }
 
     public void PuzzleResumeMe()
     {
-        Debug.Log("I am GAME MANAGER and i have been RESUMED.");
+        Debug.Log("I am PuzzleMANAGER and i have been RESUMED without my collider2d.");
     }
 
 

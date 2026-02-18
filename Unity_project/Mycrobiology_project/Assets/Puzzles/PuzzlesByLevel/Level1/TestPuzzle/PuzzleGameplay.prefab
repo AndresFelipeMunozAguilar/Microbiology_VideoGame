@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &716249032572011630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240119909051480772}
+  - component: {fileID: 1367269877804794657}
+  m_Layer: 9
+  m_Name: PuzzleGameplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1240119909051480772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716249032572011630}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367269877804794657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716249032572011630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab289e92439467458b093203f7276ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleGameplay
+  dataManager: {fileID: 0}
+  background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
+  isFirstTimePlaying: 0
+  tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
+  floorPrefab: {fileID: 8632702558573709591, guid: f956128a6821a2a42a1951c5a20394b0, type: 3}
+  ballPrefab: {fileID: 2029610987954448589, guid: ecc76fba3c7f6684ab4ec2ba80b13851, type: 3}
+  victoryBasketPrefab: {fileID: 1571525966326516746, guid: 816cd16b588da43448e8b0a03c486e3a, type: 3}
+  defeatBasketPrefab: {fileID: 1571525966326516746, guid: 816cd16b588da43448e8b0a03c486e3a, type: 3}
+  ballSpawnPlace: {x: 0, y: 0.5, z: 0}
+  floorSpawnPlace: {x: 0, y: -3, z: 0}
+  vicBasketSpawnPlace: {x: -5, y: -0.5, z: 0}
+  defBasketSpawnPlace: {x: 5, y: -0.5, z: 0}
