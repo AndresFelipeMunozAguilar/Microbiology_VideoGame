@@ -6,8 +6,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     [SerializeField]
     private PuzzleHalo halo;
 
-    [SerializeField]
-    private AbstractPuzzleGameplay gameplay;
+    public AbstractPuzzleGameplay gameplay;
 
     [SerializeField]
     private GameObject puzzleGameplayPrefab;
@@ -35,8 +34,9 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             gameManager.PuzzlePauseAll();
 
             Debug.Log("Puzzlemanager: Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
+
             Instantiate(puzzleGameplayPrefab, this.transform)
-            .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
+                .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
 
             if (puzzelGameplayOut == null)
             {

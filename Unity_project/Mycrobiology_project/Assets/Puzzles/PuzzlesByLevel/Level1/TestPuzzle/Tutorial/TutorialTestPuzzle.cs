@@ -4,29 +4,23 @@ using UnityEngine;
 public class TutorialTestPuzzle : MonoBehaviour
 {
     [SerializeField]
-    private PuzzleGameplay puzzleGameplay;
+    private AbstractPuzzleGameplay puzzleGameplay;
 
     private String puzzleName = "PuzzleManager";
 
     private void Start()
     {
-        puzzleGameplay = GameObject.Find(puzzleName).GetComponent<PuzzleGameplay>();
-
-        if (puzzleGameplay == null)
-        {
-            Debug.LogError("PuzzleGameplay component not found on " + puzzleName);
-        }
 
         if (transform.parent != null)
         {
             RectTransform parentRect = transform.parent.GetComponent<RectTransform>();
             if (parentRect != null)
             {
-            parentRect.localPosition = Vector3.zero;
+                parentRect.localPosition = Vector3.zero;
             }
             else
             {
-            Debug.LogError("RectTransform not found on parent of " + gameObject.name);
+                Debug.LogError("RectTransform not found on parent of " + gameObject.name);
             }
         }
         else
@@ -37,6 +31,13 @@ public class TutorialTestPuzzle : MonoBehaviour
 
     public void StartPuzzleGameplay()
     {
+
+        puzzleGameplay = GameObject.Find(puzzleName).GetComponentInChildren<AbstractPuzzleGameplay>();
+
+        if (puzzleGameplay == null)
+        {
+            Debug.LogError("PuzzleGameplay component not found on " + puzzleName);
+        }
 
         RectTransform tutorialRectTransform = transform.parent.GetComponent<RectTransform>();
         tutorialRectTransform.localScale = Vector3.one * 0.2f;
