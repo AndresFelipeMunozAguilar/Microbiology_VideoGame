@@ -87,10 +87,11 @@ direction TB
 	
 
     class IPuzzleManager {
-	    + StartPuzzle()
-	    + CompletePuzzle()
-	    + GetScore() float
-	    + GetPerformanceResult() PerformanceResult
+        <<interface>>
+        + StartPuzzle() void
+        + CompletePuzzle() void
+        + GetScore() float
+        + GetPerformanceResult() PerformanceResult
     }
 
 	
@@ -99,9 +100,11 @@ direction TB
 	    - int score
 	    - FeedbackText feedbackText
         - PuzzleHalo halo
-        - PuzzleGameplay gameplay
+        - GameObject puzzleGameplayPrefab
+        - AbstractPuzzleGameplay gameplay
         - PerformanceResult performanceResult
         - GameManager gameManager
+        + bool isVictoryAchieved
         + OnTap()
         + Start()
         + OnDestroy()
@@ -114,31 +117,32 @@ direction TB
 	    + GetPerformanceResult() PerformanceResult
     }
 
-	class ITappable{
-		OnTap()
-	}
+	class ITappable {
+        <<interface>>
+        + OnTap()
+    }
 
 	class InputHandler {
-        -Raycaster raycaster
-        +void Start()
-        +void OnDestroy()
-        +void OnTap(InputAction.CallbackContext context)
+        - Raycaster raycaster
+        + void Start()
+        + void OnDestroy()
+        + void OnTap(InputAction.CallbackContext context)
     }
 
     class Raycaster {
-        -Camera mainCamera
-        +void Start()
-        +void ProcessTap(Vector2 screenPosition)
+        - Camera mainCamera
+        + void Start()
+        + void ProcessTap(Vector2 screenPosition)
     }
 
     class ControlsManager {
-        -Map map
-        -static Map.PlayerActions controls
-        -static ControlsManager instance
-        +void Awake()
-        +static Map.PlayerActions getControls()
-        +void OnEnable()
-        +void OnDisable()
+        - Map map
+        - static Map.PlayerActions controls
+        - static ControlsManager instance
+        + void Awake()
+        + static Map.PlayerActions getControls()
+        + void OnEnable()
+        + void OnDisable()
     }
 
     class PerformanceResult {
@@ -191,27 +195,26 @@ direction TB
 	    + PlayAnimation()
     }
 
-	
-    class PuzzleGameplay {
-        - DataManager dataManager
-        - GameObject background
-        - bool isFirstTimePlaying
-        - GameObject tutorialPrefab
-        + StartGameplay()
-        + SpawnBackground(Vector3, Quaternion, Transform)
-        + Victory()
-        + Defeat()
-	    + showTutorial()
-        + isFirstTime() bool 
 
+    %% Abstract Class
+    class AbstractPuzzleGameplay {
+        <<abstract>>
+        # DataManager dataManager
+        # GameObject background
+        # bool isFirstTimePlaying
+        # GameObject tutorialPrefab
+        + StartGameplay()* 
+        + SpawnBackground(Vector3, Quaternion, Transform) 
+        + Victory()* 
+        + Defeat()* 
+        + ShowTutorial() 
+        + IsFirstTime() bool
     }
 
 	
     GameManager <.. PuzzleHalo: subscribes
 
 	<<interface>> IGameOverSubscriber
-	<<interface>> ITappable
-	<<interface>> IPuzzleManager
 
     IPuzzlePausable <|.. PuzzleHalo
     IPuzzlePausable <|.. PuzzleManager
@@ -231,19 +234,19 @@ direction TB
     PuzzleManager *-- FeedbackText
     PuzzleManager *-- PerformanceResult
 	PuzzleManager *-- PuzzleHalo : Serialized field
-    PuzzleTutorial -- PuzzleGameplay 
-    PuzzleManager *-- PuzzleGameplay
+    PuzzleTutorial -- AbstractPuzzleGameplay 
+    PuzzleManager *-- AbstractPuzzleGameplay
 	
-    PuzzleManager --> DataManager
+    PuzzleManager -- DataManager
 	
     DataManager o-- RunData
-    PuzzleGameplay o-- DataManager
+    AbstractPuzzleGameplay o-- DataManager
     DataManager -- JournalManager 
     GameManager o-- DataManager
 	IPuzzlePausable --o GameManager
-    PuzzleManager --> GameManager : reporta resultado
+    PuzzleManager -- GameManager : reporta resultado
 
 
 	InputHandler -- Raycaster : serialized field
     InputHandler -- ControlsManager : uses getControls()
-	Raycaster --> ITappable : TryGetComponent and calls OnTap()
+	Raycaster -- ITappable : TryGetComponent and calls OnTap()
