@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5340306496994136067}
   - component: {fileID: 7916226256583120379}
   m_Layer: 12
-  m_Name: Basket
+  m_Name: BasketDefeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2000726247262814106, guid: f75df01b3df8a5649a9d7bc27dca80a7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8396226, g: 0.099012084, b: 0.099012084, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
