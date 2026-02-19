@@ -10,30 +10,25 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
     // [SerializeField]
     // private GameObject tutorialPrefab;
 
+    [Header("Ball Settings")]
+    [Tooltip("Prefab de la pelota principal")]
+    [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private Vector3 ballSpawnPlace;
 
-    [SerializeField]
-    private GameObject floorPrefab;
 
-    [SerializeField]
-    private GameObject ballPrefab;
+    [Header("Environment Setup")]
+    [SerializeField] private GameObject floorPrefab;
+    [SerializeField] private Vector3 floorSpawnPlace;
 
-    [SerializeField]
-    private GameObject victoryBasketPrefab;
 
-    [SerializeField]
-    private GameObject defeatBasketPrefab;
+    [Header("Baskets (Win/Loss)")]
+    [SerializeField] private GameObject victoryBasketPrefab;
+    [SerializeField] private Vector3 vicBasketSpawnPlace;
 
-    [SerializeField]
-    private Vector3 ballSpawnPlace;
+    [Space(5)]
+    [SerializeField] private GameObject defeatBasketPrefab;
 
-    [SerializeField]
-    private Vector3 floorSpawnPlace;
-
-    [SerializeField]
-    private Vector3 vicBasketSpawnPlace;
-
-    [SerializeField]
-    private Vector3 defBasketSpawnPlace;
+    [SerializeField] private Vector3 defBasketSpawnPlace;
 
     public override void StartGameplay()
     {

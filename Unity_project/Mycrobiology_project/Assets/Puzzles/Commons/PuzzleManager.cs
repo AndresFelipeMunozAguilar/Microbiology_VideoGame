@@ -3,20 +3,28 @@ using UnityEngine;
 public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePausable
 {
 
+
+    [Header("PuzzleManager")]
     [SerializeField]
     private PuzzleHalo halo;
 
+    public bool isVictoryAchieved = false;
+
+
+    [Header("PuzzleGameplay")]
     public AbstractPuzzleGameplay gameplay;
 
     [SerializeField]
     private GameObject puzzleGameplayPrefab;
 
+    [Header("Others")]
     [SerializeField]
     private PerformanceResult performanceResult;
 
+    [SerializeField]
     private GameManager gameManager;
 
-    public bool isVictoryAchieved = false;
+
 
 
     public void Start()
