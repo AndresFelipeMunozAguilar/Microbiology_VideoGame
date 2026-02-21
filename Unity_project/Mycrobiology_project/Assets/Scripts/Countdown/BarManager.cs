@@ -26,21 +26,27 @@ public class BarManager : MonoBehaviour
 
     public void Update()
     {
+        // ======== LOGICA PRINCIPAL ========
+        // Se disminuye el tiempo restante
+        timeRemaining -= Time.deltaTime;
+
         // Guard Clause principal: Si el tiempo se acabó, 
         // ejecutamos la lógica de time up y salimos del update.
+
+        // OJO
+        // Esto se coloca aquí para que comprobar la disminución 
+        // del tiempo sea lo primero que se haga, así los pasos 
+        // siguientes tendrán la certeza de que el tiempo restante 
+        // será siempre mayor a 0, evitando que se dibuje la barra
+        //  o se actualice el cronometro con un valor negativo
         if (timeRemaining <= 0)
         {
             TimeIsUp();
             return;
         }
 
-        // ======== LOGICA PRINCIPAL ========
-        // Se disminuye el tiempo restante
-        timeRemaining -= Time.deltaTime;
-
         // Se actualiza la barra de progreso
         countdownBar.fillAmount = timeRemaining / maxTime;
-
 
         // Segundo Guard Clause: Si el segundo no ha cambiado, salimos.
         if (Mathf.FloorToInt(timeRemaining) == previousTimeRemaining) return;
@@ -49,8 +55,6 @@ public class BarManager : MonoBehaviour
 
         Debug.Log($"BarManager: Disparo el delegate Action OnTimeChanged con valor: {previousTimeRemaining}");
         OnTimeChanged?.Invoke(previousTimeRemaining);
-
-
 
     }
 
