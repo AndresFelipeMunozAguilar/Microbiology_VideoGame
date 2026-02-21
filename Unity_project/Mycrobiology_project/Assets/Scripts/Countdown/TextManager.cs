@@ -8,20 +8,6 @@ public class TextManager : MonoBehaviour
     private int showMinutes;
     private int showSeconds;
 
-    void Start()
-    {
-        BarManager.OnTimeChanged += UpdateTextInMinutes;
-    }
-
-    public void UpdateTextInMinutes(int seconds)
-    {
-        showMinutes = seconds / 60;
-        showSeconds = seconds % 60;
-
-        showText.SetText($"{showMinutes:00}:{showSeconds:00}");
-    }
-
-
     public void OnEnable()
     {
         // Suscripción: "Cuando se cambie el tiempo restante, actualiza mi texto"
@@ -35,5 +21,16 @@ public class TextManager : MonoBehaviour
         // destruido o desactivado, causando un Crash o Memory Leak.
         BarManager.OnTimeChanged -= UpdateTextInMinutes;
     }
+
+    public void UpdateTextInMinutes(int seconds)
+    {
+        showMinutes = seconds / 60;
+        showSeconds = seconds % 60;
+
+        showText.SetText($"{showMinutes:00}:{showSeconds:00}");
+    }
+
+
+
 
 }
