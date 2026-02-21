@@ -6,7 +6,8 @@ public class BarManager : MonoBehaviour
 {
     [SerializeField] private Image countdownBar;
 
-    // Se define el delegate que se dispara cuando cambia el tiempo restante
+    // Se define el delegate que se dispara cuando cambia
+    //  el tiempo restante
     public static Action<int> OnTimeChanged;
 
     private int previousTimeRemaining;
@@ -27,17 +28,15 @@ public class BarManager : MonoBehaviour
     {
         if (timeRemaining > 0)
         {
+            // Se disminuye el tiempo restante
             timeRemaining -= Time.deltaTime;
+
+            // Se actualiza la barra de progreso
             countdownBar.fillAmount = timeRemaining / maxTime;
         }
         else
         {
-            timeRemaining = 0f;
-            Debug.Log("CountdownBarMngr: Time is up!");
-
-            OnTimeChanged?.Invoke(Mathf.FloorToInt(timeRemaining));
-            // Dejar de actualizarse al terminar la cuenta regresiva
-            this.enabled = false;
+            TimeIsUp();
         }
 
         if (Mathf.FloorToInt(timeRemaining) != previousTimeRemaining)
@@ -54,5 +53,23 @@ public class BarManager : MonoBehaviour
         timeRemaining = maxTime;
         countdownBar.fillAmount = 1f;
     }
+
+    public void TimeIsUp()
+    {
+        // Nos aseguramos de que el tiempo no sea negativo 
+        // ni en la variable, ni en el texto de la UI, 
+        // aunque la barra ya esté vacía
+        timeRemaining = 0f;
+        OnTimeChanged?.Invoke(Mathf.FloorToInt(timeRemaining));
+
+        Debug.Log("CountdownBarMngr: Time is up! Invoking OnTimeUp Action dlgt...");
+
+        GameManager.GetInstance().OnGameOver("Time is up!");
+
+        // Dejar de actualizarse al terminar la cuenta regresiva
+        this.enabled = false;
+    }
+
+
 
 }

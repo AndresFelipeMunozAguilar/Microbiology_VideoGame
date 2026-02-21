@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+
     // Evitar la instanciación externa
     private GameManager() { }
 
@@ -71,6 +72,12 @@ public class GameManager : MonoBehaviour
     {
         isPuzzleActive = !isPuzzleActive;
         Debug.Log($"is the puzzle active?: {isPuzzleActive}");
+    }
+
+    public void OnGameOver(string reason)
+    {
+        Debug.Log($"Game Over! Reason: {reason}");
+        isGameOver = true;
     }
 
 }

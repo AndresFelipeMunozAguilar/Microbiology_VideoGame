@@ -21,27 +21,18 @@ public class TextManager : MonoBehaviour
         showText.SetText($"{showMinutes:00}:{showSeconds:00}");
     }
 
-    // --- GESTIÓN DE EVENTOS ---
 
     public void OnEnable()
     {
-        // Suscripción: "Cuando pase esto, ejecuta mi función"
+        // Suscripción: "Cuando se cambie el tiempo restante, actualiza mi texto"
         BarManager.OnTimeChanged += UpdateTextInMinutes;
-    }
-
-    // --- GESTIÓN DE EVENTOS ---
-
-    public void OnDestroy()
-    {
-        // Suscripción: "Cuando pase esto, ejecuta mi función"
-        BarManager.OnTimeChanged -= UpdateTextInMinutes;
     }
 
 
     public void OnDisable()
     {
-        // PUNTO CIEGO CRÍTICO: Si no te desvives, Unity intentará 
-        // llamar a un objeto destruido, causando un Crash o Leak.
+        // Esto evita que Unity intente llamar a un objeto 
+        // destruido o desactivado, causando un Crash o Memory Leak.
         BarManager.OnTimeChanged -= UpdateTextInMinutes;
     }
 
