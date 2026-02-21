@@ -6,15 +6,23 @@ public class BarManager : MonoBehaviour
 {
     [SerializeField] private Image countdownBar;
 
+
+    [Header("Main Behaviour")]
+
+    [SerializeField] private bool isPaused = false;
+
     // Se define el delegate que se dispara cuando cambia
     //  el tiempo restante
     public static Action<int> OnTimeChanged;
 
     private int previousTimeRemaining;
 
+
     [Header("Time Settings (In seconds)")]
     [SerializeField] private float timeRemaining;
     [SerializeField] private float maxTime = 60f;
+
+
 
     // Para activar la lógica de vaciado de la barra, 
     // el script debe estar activo, pues sólo mientras lo esté, 
@@ -26,6 +34,9 @@ public class BarManager : MonoBehaviour
 
     public void Update()
     {
+        // Guard Clause de Pausa: Si está pausado, no gastamos CPU en el resto.
+        if (isPaused) return;
+
         // ======== LOGICA PRINCIPAL ========
         // Se disminuye el tiempo restante
         timeRemaining -= Time.deltaTime;
@@ -61,7 +72,29 @@ public class BarManager : MonoBehaviour
     public void StartCountdown()
     {
         timeRemaining = maxTime;
-        countdownBar.fillAmount = 1f;
+
+        // IMPORTANTE: Resetear esta variable evita que el evento OnTimeChanged 
+        // no se dispare en el primer segundo del nuevo conteo.
+        previousTimeRemaining = Mathf.FloorToInt(maxTime);
+
+        // Forzamos la barra al máximo de inmediato
+        if (countdownBar != null) countdownBar.fillAmount = 1f;
+
+        isPaused = false;
+        Debug.Log("BarManager: Countdown Reiniciado");
+    }
+
+    // Pausar o reanudar el tiempo
+    public void SetPaused(bool paused)
+    {
+        isPaused = paused;
+        Debug.Log($"BarManager: Tiempo {(isPaused ? "Pausado" : "Reanudado")}");
+    }
+
+    // Reinicia el contador a su estado original
+    public void ResetCountdown()
+    {
+        StartCountdown();
     }
 
     public void TimeIsUp()
