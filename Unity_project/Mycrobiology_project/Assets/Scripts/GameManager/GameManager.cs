@@ -1,9 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     private static GameManager instance;
+
+    // WARNING: Este enum debe coincidir con 
+    // los nombres y orden de las escenas en 
+    // Build Settings, o el sistema de cambio 
+    // de escenas no funcionará.
+    public enum GameScenes
+    {
+        DevAndres,
+        DevBrandon,
+        Develop,
+        TempGameOver,
+    }
 
     public bool isGameOver = false;
 
@@ -78,6 +92,13 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Game Over! Reason: {reason}");
         isGameOver = true;
+
+        LoadScene(GameScenes.TempGameOver);
+    }
+
+    public void LoadScene(GameScenes scene)
+    {
+        SceneManager.LoadScene((int)scene);
     }
 
 }
