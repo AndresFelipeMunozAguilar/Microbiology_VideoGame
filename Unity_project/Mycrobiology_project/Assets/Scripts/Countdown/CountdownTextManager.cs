@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TextManager : MonoBehaviour
+public class CountdownTextManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI showText;
 
@@ -11,7 +11,7 @@ public class TextManager : MonoBehaviour
     public void OnEnable()
     {
         // Suscripción: "Cuando se cambie el tiempo restante, actualiza mi texto"
-        BarManager.OnTimeChanged += UpdateTextInMinutes;
+        CountdownBarManager.OnTimeChanged += UpdateTextInMinutes;
     }
 
 
@@ -19,7 +19,7 @@ public class TextManager : MonoBehaviour
     {
         // Esto evita que Unity intente llamar a un objeto 
         // destruido o desactivado, causando un Crash o Memory Leak.
-        BarManager.OnTimeChanged -= UpdateTextInMinutes;
+        CountdownBarManager.OnTimeChanged -= UpdateTextInMinutes;
     }
 
     public void UpdateTextInMinutes(int seconds)
@@ -29,8 +29,5 @@ public class TextManager : MonoBehaviour
 
         showText.SetText($"{showMinutes:00}:{showSeconds:00}");
     }
-
-
-
 
 }

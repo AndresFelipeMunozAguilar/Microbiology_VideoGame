@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BarManager : MonoBehaviour
+public class CountdownBarManager : MonoBehaviour
 {
     [SerializeField] private Image countdownBar;
 
