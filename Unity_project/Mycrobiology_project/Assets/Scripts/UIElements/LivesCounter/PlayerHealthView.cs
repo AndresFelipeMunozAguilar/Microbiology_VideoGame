@@ -1,16 +1,23 @@
+using System;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealthView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private TMPro.TextMeshProUGUI healthText;
+    public void OnEnable()
     {
-        
+        PlayerHealthLogic.OnHealthChanged += UpdateHealthText;
+
+        TryGetComponent<TextMeshProUGUI>(out healthText);
+
+        if (healthText == null) Debug.LogError($"PlayerHealthView: No se encontró el componente TextMeshProUGUI en el GameObject: {this.gameObject.name}");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateHealthText(int currentLives)
     {
-        
+        healthText.SetText(currentLives.ToString());
     }
+
 }

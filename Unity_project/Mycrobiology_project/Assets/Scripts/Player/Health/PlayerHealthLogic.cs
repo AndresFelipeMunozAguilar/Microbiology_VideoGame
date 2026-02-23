@@ -18,6 +18,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable
     void OnEnable()
     {
         currentLives = maxLives;
+        OnHealthChanged?.Invoke(currentLives);
         isDead = false;
     }
 
