@@ -1,11 +1,9 @@
-using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealthView : MonoBehaviour
 {
-    [SerializeField] private TMPro.TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI healthText;
     public void OnEnable()
     {
         PlayerHealthLogic.OnHealthChanged += UpdateHealthText;
@@ -18,6 +16,11 @@ public class PlayerHealthView : MonoBehaviour
     public void UpdateHealthText(int currentLives)
     {
         healthText.SetText(currentLives.ToString());
+    }
+
+    public void OnDisable()
+    {
+        PlayerHealthLogic.OnHealthChanged -= UpdateHealthText;
     }
 
 }
