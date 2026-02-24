@@ -9,7 +9,7 @@ public class CountdownBarManager : MonoBehaviour
 
     [Header("Main Behaviour")]
 
-    [SerializeField] private bool isPaused = false;
+    [SerializeField] private bool isPaused;
 
     // Se define el delegate que se dispara cuando cambia
     //  el tiempo restante
