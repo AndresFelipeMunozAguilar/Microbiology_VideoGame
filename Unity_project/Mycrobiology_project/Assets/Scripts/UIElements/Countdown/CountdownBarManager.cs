@@ -107,7 +107,7 @@ public class CountdownBarManager : MonoBehaviour
 
         Debug.Log("CountdownBarMngr: Time is up! Invoking OnTimeUp Action dlgt...");
 
-        GameManager.GetInstance().OnGameOver("Time is up!");
+        GameManager.GetInstance().GameOver("Time is up!");
 
         // Dejar de actualizarse al terminar la cuenta regresiva
         this.enabled = false;

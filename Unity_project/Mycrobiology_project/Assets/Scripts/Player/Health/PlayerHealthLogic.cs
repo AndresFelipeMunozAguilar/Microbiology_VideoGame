@@ -35,7 +35,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable
         {
             Debug.Log("Player: I'm dead, executing death logic");
             isDead = true;
-            GameManager.GetInstance().OnGameOver("Player has died");
+            GameManager.GetInstance().GameOver("Player has died");
         }
 
     }

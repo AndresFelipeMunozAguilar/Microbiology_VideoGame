@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"is the puzzle active?: {isPuzzleActive}");
     }
 
-    public void OnGameOver(string reason)
+    public void GameOver(string reason)
     {
         Debug.Log($"Game Over! Reason: {reason}");
         isGameOver = true;
