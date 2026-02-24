@@ -14,6 +14,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable
 
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
@@ -28,13 +29,15 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable
         // para evitar bugs con vidas negativas
         ReduceLivesNBound(damageAmount);
 
+        OnHealthChanged?.Invoke(currentLives);
+
         if (currentLives <= 0)
         {
             Debug.Log("Player: I'm dead, executing death logic");
             isDead = true;
+            GameManager.GetInstance().OnGameOver("Player has died");
         }
 
-        OnHealthChanged?.Invoke(currentLives);
     }
 
     // Esta función es necesaria, ya que garantiza 
