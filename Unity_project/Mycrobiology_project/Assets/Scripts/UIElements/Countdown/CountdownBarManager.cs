@@ -94,6 +94,11 @@ public class CountdownBarManager : MonoBehaviour
     // Reinicia el contador a su estado original
     public void ResetCountdown()
     {
+        // Me aseguro de que el script este activo,
+        // para actualizar la barra, de lo contrario
+        // se quedaria pegado en el maximo valor y 
+        // no descontaría tiempo
+        this.enabled = true;
         StartCountdown();
     }
 
