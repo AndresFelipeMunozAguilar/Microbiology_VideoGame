@@ -114,6 +114,10 @@ public class GameManager : MonoBehaviour
     // =====================================================
     // =========== LÓGICA DEL DELEGATE GAME OVER ===========
     // =====================================================
+
+    // Nos aseguramos de que SÓLO los 
+    // IGameOverSubscriber puedan suscribirse 
+    // y desuscribirse al evento OnGameOver
     public static void SubscribeToGameOver(IGameOverSubscriber subscriber)
     {
         OnGameOver += subscriber.OnGameOver;
@@ -130,9 +134,14 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
 
         // Se dispara la logica de muerte para 
-        OnGameOver?.Invoke();
+        NotifyGameOverSubscribers();
 
         LoadScene(GameScenes.TempGameOver);
+    }
+
+    public void NotifyGameOverSubscribers()
+    {
+        OnGameOver?.Invoke();
     }
 
     public void LoadScene(GameScenes scene)
