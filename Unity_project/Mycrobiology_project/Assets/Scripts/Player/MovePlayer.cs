@@ -1,31 +1,42 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable
+public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSubscriber
 {
     Rigidbody2D rb;
     [SerializeField] private float speed;
-    Transform objectCollision;
+    // Transform objectCollision;
     private Vector2 input;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         GameManager.GetInstance().SubscribePuzzlePausable(this);
+
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    public void OnEnable()
     {
-        objectCollision = other.transform;
+        GameManager.GetInstance().OnGameOver += OnGameOver;
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    public void OnDisable()
     {
-        if (other.transform == objectCollision)
-        {
-            objectCollision = null;
-        }
+        GameManager.GetInstance().OnGameOver -= OnGameOver;
     }
+
+    // void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     objectCollision = other.transform;
+    // }
+
+    // void OnCollisionExit2D(Collision2D other)
+    // {
+    //     if (other.transform == objectCollision)
+    //     {
+    //         objectCollision = null;
+    //     }
+    // }
 
     void FixedUpdate()
     {
@@ -39,23 +50,39 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable
 
     public void Pause()
     {
-        this.enabled = false;
+        DeactivateScript();
     }
 
     public void PuzzlePauseMe()
     {
         Debug.Log("Soy el MOVIMIENTO del jugador y he sido PAUSADO.");
-        this.enabled = false;
+        DeactivateScript();
     }
 
     public void PuzzleResumeMe()
     {
         Debug.Log("Soy el MOVIMIENTO del jugador y he sido RESUMIDO.");
-        this.enabled = true;
+        ActivateScript();
     }
 
     public void OnDestroy()
     {
         GameManager.GetInstance().UnsubscribePuzzlePausable(this);
+    }
+
+    public void OnGameOver()
+    {
+        Debug.Log("MovePlayer: I have received the GameOver event. Executing logic");
+        DeactivateScript();
+
+    }
+
+    public void DeactivateScript()
+    {
+        this.enabled = false;
+    }
+    public void ActivateScript()
+    {
+        this.enabled = true;
     }
 }
