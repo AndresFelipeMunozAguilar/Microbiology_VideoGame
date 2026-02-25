@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c603d08e0069b46a50e0333ba4226d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthManager
-  maxLives: 3
+  maxLives: 5
   currentLives: 0
   isDead: 0
 --- !u!114 &2362924934395372657
