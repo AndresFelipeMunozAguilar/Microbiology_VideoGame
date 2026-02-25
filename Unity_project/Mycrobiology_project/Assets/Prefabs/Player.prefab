@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3590162174718702625}
   - component: {fileID: 866221393219722019}
+  - component: {fileID: 7096213716368816935}
   - component: {fileID: 2362924934395372657}
   - component: {fileID: 5102750775207951025}
   - component: {fileID: 5688521997261811385}
@@ -94,6 +95,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &7096213716368816935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3421245318980145064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c603d08e0069b46a50e0333ba4226d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthManager
+  maxLives: 3
+  currentLives: 0
+  isDead: 0
 --- !u!114 &2362924934395372657
 MonoBehaviour:
   m_ObjectHideFlags: 0
