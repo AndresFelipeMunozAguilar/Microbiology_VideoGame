@@ -16,11 +16,17 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void OnEnable()
+    public void OnEnable()
     {
+        GameManager.SubscribeToGameOver(this);
         currentLives = maxLives;
         OnHealthChanged?.Invoke(currentLives);
         isDead = false;
+    }
+
+    public void OnDisable()
+    {
+        GameManager.UnsubscribeToGameOver(this);
     }
 
     public void TakeDamage(int damageAmount)
@@ -46,7 +52,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
     public int ReduceLivesNBound(int damageAmount)
     {
         currentLives -= damageAmount;
-        currentLives = Mathf.Max(currentLives, 0);
+        currentLives = Mathf.Max(0, currentLives);
 
         Debug.Log("Player: I took damage. Current lives: " + currentLives);
         return currentLives;
@@ -55,6 +61,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
     public void OnGameOver()
     {
         Debug.Log("PlayerHealthLogic: I have received the GameOver event. Executing logic");
+
         // Aquí podríamos agregar lógica adicional
         //  que queramos que suceda en el PlayerHealthLogic 
         // cuando se active el Game Over, como desactivar 

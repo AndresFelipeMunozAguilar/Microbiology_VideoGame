@@ -29,7 +29,14 @@ public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
     // se vaciará la barra sin detenerse.
     public void OnEnable()
     {
+        GameManager.SubscribeToGameOver(this);
+
         StartCountdown();
+    }
+
+    public void OnDisable()
+    {
+        GameManager.UnsubscribeToGameOver(this);
     }
 
     public void Update()
@@ -126,4 +133,5 @@ public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
         SetPaused(true);
         this.enabled = false;
     }
+
 }

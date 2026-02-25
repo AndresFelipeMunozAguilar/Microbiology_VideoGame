@@ -15,6 +15,7 @@ public class PlayerHealthView : MonoBehaviour
 
     public void UpdateHealthText(int currentLives)
     {
+        Debug.Log($"PlayerHealthView: Updating health text. Current lives: {currentLives}");
         healthText.SetText(currentLives.ToString());
     }
 
