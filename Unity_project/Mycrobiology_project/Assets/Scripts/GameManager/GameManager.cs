@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     public bool isPuzzleActive = false;
 
     private List<IPuzzlePausable> puzzlePausables;
+
+    public Action OnGameOver;
 
     public void Awake()
     {
