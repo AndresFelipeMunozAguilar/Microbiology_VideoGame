@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CountdownBarManager : MonoBehaviour
+public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
 {
     [SerializeField] private Image countdownBar;
 
@@ -118,6 +118,11 @@ public class CountdownBarManager : MonoBehaviour
         this.enabled = false;
     }
 
-
-
+    public void OnGameOver()
+    {
+        Debug.Log("CountdownBarMngr: I have received the GameOver event. Executing logic");
+        // Al recibir el evento de Game Over, pausamos el tiempo para detener la cuenta regresiva
+        SetPaused(true);
+        this.enabled = false;
+    }
 }
