@@ -55,13 +55,11 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
 
     public void PuzzlePauseMe()
     {
-        Debug.Log("Soy el MOVIMIENTO del jugador y he sido PAUSADO.");
         DeactivateScript();
     }
 
     public void PuzzleResumeMe()
     {
-        Debug.Log("Soy el MOVIMIENTO del jugador y he sido RESUMIDO.");
         ActivateScript();
     }
 
@@ -79,10 +77,12 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
 
     public void DeactivateScript()
     {
+        Debug.Log("MovePlayer: He sido PAUSADO.");
         this.enabled = false;
     }
     public void ActivateScript()
     {
+        Debug.Log("MovePlayer: He sido REANUDADO.");
         this.enabled = true;
     }
 }
