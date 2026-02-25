@@ -17,26 +17,14 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
 
     public void OnEnable()
     {
-        GameManager.GetInstance().OnGameOver += OnGameOver;
+        // if (GameManager.GetInstance() == null) Debug.LogError("MovePlayer: GameManager instance es null en OnEnable. Esto no deberia pasar.");
+        GameManager.SubscribeToGameOver(this);
     }
 
     public void OnDisable()
     {
-        GameManager.GetInstance().OnGameOver -= OnGameOver;
+        GameManager.UnsubscribeToGameOver(this);
     }
-
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     objectCollision = other.transform;
-    // }
-
-    // void OnCollisionExit2D(Collision2D other)
-    // {
-    //     if (other.transform == objectCollision)
-    //     {
-    //         objectCollision = null;
-    //     }
-    // }
 
     void FixedUpdate()
     {

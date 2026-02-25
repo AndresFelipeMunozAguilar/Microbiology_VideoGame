@@ -26,7 +26,20 @@ public class GameManager : MonoBehaviour
 
     private List<IPuzzlePausable> puzzlePausables;
 
-    public Action OnGameOver;
+    // Se hace `static` para que no hayan problemas 
+    // de acceso a este evento, porque un objeto 
+    // llame al Action sin tener una instancia 
+    // de GameManager primero. 
+    // 
+    // ========= Explicacion técnica (Too Long) =========
+    // Debido a que los metodos Awake(), OnEnable() y Start() no 
+    // se ejecutan cronologicamente paso por 
+    // paso para todos los objetos, sino que se 
+    // ejecutan por lotes, por tanto, un objeto 
+    // que llame a la instancia de GameManager 
+    // puede estar en un lote anterior a la 
+    // instanciación de GameManager
+    private static Action OnGameOver;
 
     public void Awake()
     {
@@ -39,6 +52,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
 
         puzzlePausables = new List<IPuzzlePausable>();
 
@@ -53,6 +67,10 @@ public class GameManager : MonoBehaviour
         return instance;
     }
 
+
+    // ===========================================================
+    // =========== LÓGICA DEL OBSERVER PUZZLE PAUSABLE ===========
+    // ===========================================================
     public void SubscribePuzzlePausable(IPuzzlePausable puzzlePausable)
     {
         puzzlePausables.Add(puzzlePausable);
@@ -62,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         puzzlePausables.Remove(puzzlePausable);
     }
+
 
     public void PuzzlePauseAll()
     {
@@ -91,10 +110,27 @@ public class GameManager : MonoBehaviour
         Debug.Log($"is the puzzle active?: {isPuzzleActive}");
     }
 
+
+    // =====================================================
+    // =========== LÓGICA DEL DELEGATE GAME OVER ===========
+    // =====================================================
+    public static void SubscribeToGameOver(IGameOverSubscriber subscriber)
+    {
+        OnGameOver += subscriber.OnGameOver;
+    }
+
+    public static void UnsubscribeToGameOver(IGameOverSubscriber subscriber)
+    {
+        OnGameOver -= subscriber.OnGameOver;
+    }
+
     public void GameOver(string reason)
     {
         Debug.Log($"Game Over! Reason: {reason}");
         isGameOver = true;
+
+        // Se dispara la logica de muerte para 
+        OnGameOver?.Invoke();
 
         LoadScene(GameScenes.TempGameOver);
     }
