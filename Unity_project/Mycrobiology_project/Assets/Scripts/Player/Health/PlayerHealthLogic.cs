@@ -39,9 +39,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 
         if (currentLives <= 0)
         {
-            Debug.Log("Player: I'm dead, executing death logic");
-            isDead = true;
-            GameManager.GetInstance().GameOver("Player has died");
+            PlayerDead();
         }
 
     }
@@ -56,6 +54,13 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 
         Debug.Log("Player: I took damage. Current lives: " + currentLives);
         return currentLives;
+    }
+
+    public void PlayerDead()
+    {
+        Debug.Log("Player: I'm dead, executing death logic");
+        isDead = true;
+        GameManager.GetInstance().GameOver("Player has died");
     }
 
     public void OnGameOver()
