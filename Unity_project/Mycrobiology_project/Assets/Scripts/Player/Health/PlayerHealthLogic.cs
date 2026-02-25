@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealthLogic : MonoBehaviour, IDamageable
+public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 {
     [Header("Player Health Settings")]
     [SerializeField] private int maxLives = 3;
@@ -50,5 +50,16 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable
 
         Debug.Log("Player: I took damage. Current lives: " + currentLives);
         return currentLives;
+    }
+
+    public void OnGameOver()
+    {
+        Debug.Log("PlayerHealthLogic: I have received the GameOver event. Executing logic");
+        // Aquí podríamos agregar lógica adicional
+        //  que queramos que suceda en el PlayerHealthLogic 
+        // cuando se active el Game Over, como desactivar 
+        // el script para evitar que siga recibiendo 
+        // daño o actualizando la UI.
+        this.enabled = false;
     }
 }

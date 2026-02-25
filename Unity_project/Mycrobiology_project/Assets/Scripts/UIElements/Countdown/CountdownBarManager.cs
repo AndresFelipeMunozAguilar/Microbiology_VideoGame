@@ -121,7 +121,8 @@ public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
     public void OnGameOver()
     {
         Debug.Log("CountdownBarMngr: I have received the GameOver event. Executing logic");
-        // Al recibir el evento de Game Over, pausamos el tiempo para detener la cuenta regresiva
+        // Al recibir el evento de Game Over, pausamos 
+        // el tiempo para detener la cuenta regresiva
         SetPaused(true);
         this.enabled = false;
     }
