@@ -2,14 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CountdownBarManager : MonoBehaviour
+public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
 {
     [SerializeField] private Image countdownBar;
 
 
     [Header("Main Behaviour")]
 
-    [SerializeField] private bool isPaused = false;
+    [SerializeField] private bool isPaused;
 
     // Se define el delegate que se dispara cuando cambia
     //  el tiempo restante
@@ -29,7 +29,14 @@ public class CountdownBarManager : MonoBehaviour
     // se vaciará la barra sin detenerse.
     public void OnEnable()
     {
+        GameManager.SubscribeToGameOver(this);
+
         StartCountdown();
+    }
+
+    public void OnDisable()
+    {
+        GameManager.UnsubscribeToGameOver(this);
     }
 
     public void Update()
@@ -94,6 +101,11 @@ public class CountdownBarManager : MonoBehaviour
     // Reinicia el contador a su estado original
     public void ResetCountdown()
     {
+        // Me aseguro de que el script este activo,
+        // para actualizar la barra, de lo contrario
+        // se quedaria pegado en el maximo valor y 
+        // no descontaría tiempo
+        this.enabled = true;
         StartCountdown();
     }
 
@@ -107,12 +119,19 @@ public class CountdownBarManager : MonoBehaviour
 
         Debug.Log("CountdownBarMngr: Time is up! Invoking OnTimeUp Action dlgt...");
 
-        GameManager.GetInstance().OnGameOver("Time is up!");
+        GameManager.GetInstance().GameOver("Time is up!");
 
         // Dejar de actualizarse al terminar la cuenta regresiva
         this.enabled = false;
     }
 
-
+    public void OnGameOver()
+    {
+        Debug.Log("CountdownBarMngr: I have received the GameOver event. Executing logic");
+        // Al recibir el evento de Game Over, pausamos 
+        // el tiempo para detener la cuenta regresiva
+        SetPaused(true);
+        this.enabled = false;
+    }
 
 }

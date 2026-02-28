@@ -7,59 +7,83 @@ direction TB
 
     class IPuzzlePausable {
         <<Interface>>
-        + PuzzlePauseMe()
-        + PuzzleResumeMe()
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
     }
 
 
     class GameScenes {
-        <<enu ameOver 
+        <<enumeration>> 
+        DevAndres
+        DevBrandon
+        Develop
+        TempGameOver
     }
 
     class GameManager {
         <<Singleton>>
-	    - static GameManager instance
+	    - GameManager instance$
         + enum GameScenes
 	    - bool isGameOver
         - bool isPuzzleActive
+        - Action OnGameOver$
 	    - DataManager dataManager
-	    - List~IGameOverSubscriber~ gameOverSubscribers
         - List~IPuzzlePausable~ puzzlePausables
 	    - GameManager() void
         + Awake() void
-	    + static GetInstance() GameManager
+	    + GetInstance() GameManager$
 	    + LoadScene(scene: GameScenes) void
-	    + notifySubscribers() void
-	    + OnGameOver(reason: string) void
+	    + NotifyGameOverSubscribers() void
+	    + GameOver(reason: string) void
 	    + OnVictory() void
-	    + Subscribe(observer: IGameOverSubscriber) void
-	    + Unsubscribe(observer: IGameOverSubscriber) void
-        + SubscribePuzzlePausable(IPuzzlePausable) void
-        + UnsubscribePuzzlePausable(IPuzzlePausable) void
+	    + SubscribeToGameOver(subscriber: IGameOverSubscriber ) void$
+        + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void$
+        + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
+        + UnsubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
         + PuzzlePauseAll() void
         + PuzzleResumeAll() void
         + SwitchIsPuzzleActive() void
     }
 
-    class PlayerController {
-	    - float moveSpeed
+    class MovePlayer {
+        - Rigidbody2D rb
+        - float speed
+        - Vector2 input
         + Start() void
-        + Update() void
+        + OnEnable() void
+        + OnDisable() void
+        + FixedUpdate() void
+        + Pause() void
         + PuzzlePauseMe() void
         + PuzzleResumeMe() void
-	    + Move(direction: Vector2) void
-	    + OnGameOver() void
         + OnDestroy() void
+        + OnGameOver() void
+        + DeactivateScript() void
+        + ActivateScript() void
     }
 
-    class HealthManager {
-	    - int maxLives
-	    - int currentLives
-	    - bool isDead
-	    + TakeDamage(amount: int) void
-	    + IsDead() bool
-	    + NotifyDeath() void
+
+    class PlayerHealthLogic {
+        - int maxLives
+        - int currentLives
+        - bool isDead
+        + Action~int~ OnHealthChanged$
+        + OnEnable() void
+        + OnDisable() void
+        + TakeDamage(damageAmount: int) void
+        + int ReduceLivesNBound(damageAmount: int)
+        + PlayerDead() void
+        + OnGameOver() void
     }
+
+        
+    class PlayerHealthView {
+        - TextMeshProUGUI healthText
+        + OnEnable() void
+        + UpdateHealthText(currentLives: int) void
+        + OnDisable() void
+    }
+
 
 	class PuzzleHalo {
         + float pulseSpeed
@@ -70,10 +94,10 @@ direction TB
         + bool isPlayerClose
         + Start() void
         + Update() void
-        + Pulse(float) void
-        + Glow(float) void
-        + OnTriggerEnter2D(Collider2D) void
-        + OnTriggerExit2D(Collider2D) void
+        + Pulse(referenceTime: float) void
+        + Glow(referenceTime: float) void
+        + OnTriggerEnter2D(other: Collider2D) void
+        + OnTriggerExit2D(other: Collider2D) void
         + PuzzlePauseMe() void
         + PuzzleResumeMe() void
         + OnDestroy() void
@@ -82,14 +106,14 @@ direction TB
     class CountdownBarManager {
         -Image countdownBar
         -bool isPaused
-        +static Action~int~ OnTimeChanged
+        + Action~int~ OnTimeChanged$
         -int previousTimeRemaining
         -float timeRemaining
         -float maxTime
         + OnEnable() void
         + Update() void
         + StartCountdown() void
-        + SetPaused(bool paused) void
+        + SetPaused(paused: bool) void
         + ResetCountdown() void
         + TimeIsUp() void
     }
@@ -100,14 +124,17 @@ direction TB
         -int showSeconds
         + OnEnable() void
         + OnDisable() void
-        + UpdateTextInMinutes(int seconds) void
+        + UpdateTextInMinutes(seconds: int) void
     }
 
     class IGameOverSubscriber {
 	    + OnGameOver() void
     }
 
-	
+	class IDamageable {
+        <<interface>>
+        + TakeDamage(damageAmount: int) void
+    }
 
     class IPuzzleManager {
         <<interface>>
@@ -131,7 +158,7 @@ direction TB
         + OnTap() void
         + Start() void
         + OnDestroy() void
-	    + ShowFeedback(string: qualitativeResult) void
+	    + ShowFeedback(qualitativeResult: string) void
         + PuzzlePauseMe() void
         + PuzzleResumeMe() void
          + StartPuzzle() void
@@ -149,21 +176,21 @@ direction TB
         - Raycaster raycaster
         + void Start() void
         + void OnDestroy() void
-        + void OnTap(InputAction.CallbackContext context) void
+        + void OnTap(context: InputAction.CallbackContext ) void
     }
 
     class Raycaster {
         - Camera mainCamera
         + void Start() void
-        + void ProcessTap(Vector2 screenPosition) void
+        + void ProcessTap(screenPosition: Vector2 ) void
     }
 
     class ControlsManager {
         - Map map
-        - static Map.PlayerActions controls
-        - static ControlsManager instance
+        - Map.PlayerActions controls$
+        - ControlsManager instance$
         + void Awake() void
-        + static Map.PlayerActions getControls() Map.PlayerActions
+        + Map.PlayerActions getControls() Map.PlayerActions$
         + void OnEnable() void
         + void OnDisable() void
     }
@@ -191,7 +218,7 @@ direction TB
     class DataManager {
         <<singleton>>
 	    - string basePath
-        - static DataManager instance
+        - DataManager instance$
         - RunData runData
 	    + SaveTutorialFlag(puzzleId: string) void
 	    + LoadTutorialFlag(puzzleId: string) bool
@@ -228,7 +255,7 @@ direction TB
         # bool isFirstTimePlaying
         # GameObject tutorialPrefab
         + StartGameplay() void* 
-        + SpawnBackground(Vector3, Quaternion, Transform) void
+        + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
         + Victory() void* 
         + Defeat() void* 
         + ShowTutorial() void
@@ -242,19 +269,23 @@ direction TB
 
     IPuzzlePausable <|.. PuzzleHalo
     IPuzzlePausable <|.. PuzzleManager
-    IPuzzlePausable <|.. PlayerController
+    IPuzzlePausable <|.. MovePlayer
+
+    IDamageable <|.. PlayerHealthLogic
+    PlayerHealthLogic ..|> IGameOverSubscriber
+    PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
     
 
     GameScenes --* GameManager  
-    GameManager <.. PlayerController: subscribes
+    GameManager <.. MovePlayer: subscribes
+    GameManager <.. PlayerHealthLogic : notifica GameOver por vida
     GameManager <.. PuzzleManager: subscribes
-    GameManager <.. CountdownBarManager : usa en TimeIsUp()
+    GameManager <.. CountdownBarManager : notifica time up
     CountdownBarManager <.. CountdownTextManager : se suscribe a OnTimeChanged
 
 	
-    PlayerController ..|> IGameOverSubscriber
-    GameManager <.. HealthManager : notifica derrota
-    GameManager <.. CountdownManager : notifica timeout
+    MovePlayer ..|> IGameOverSubscriber
+
     IGameOverSubscriber --o GameManager
     IPuzzleManager <|.. PuzzleManager
 	ITappable <|.. PuzzleManager

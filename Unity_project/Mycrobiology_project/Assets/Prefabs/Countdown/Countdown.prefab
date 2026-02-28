@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownManager
   countdownBar: {fileID: 7427914229247531737}
+  isPaused: 1
   timeRemaining: 0
   maxTime: 60
 --- !u!1 &8536791745351612190
