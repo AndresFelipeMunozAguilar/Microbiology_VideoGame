@@ -30,6 +30,11 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
 
     [SerializeField] private Vector3 defBasketSpawnPlace;
 
+    private MinigameController score;
+    void Start()
+    {
+        score=GetComponent<MinigameController>();
+    }
     public override void StartGameplay()
     {
         Vector3 inFrontOfCamera = Camera.main.transform.position;
@@ -60,7 +65,7 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
     public override void Victory()
     {
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
-
+        score.AddPoints("ganar");
         //Falta añadir la lógica de calcular la performance en el puzzle
 
         Destroy(this.gameObject);
@@ -69,7 +74,7 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
     public override void Defeat()
     {
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
-
+        score.RemovePoints("perder");
         //Falta añadir la lógica de calcular la performance en el puzzle
 
         Destroy(this.gameObject);

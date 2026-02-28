@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1240119909051480772}
   - component: {fileID: 1367269877804794657}
+  - component: {fileID: -720969880984847073}
   m_Layer: 9
   m_Name: PuzzleGameplay
   m_TagString: Untagged
@@ -56,3 +57,26 @@ MonoBehaviour:
   vicBasketSpawnPlace: {x: -5, y: -0.5, z: 0}
   defeatBasketPrefab: {fileID: 1571525966326516746, guid: cdc644ea849b1c04481bd7c0336e9244, type: 3}
   defBasketSpawnPlace: {x: 5, y: -0.5, z: 0}
+--- !u!114 &-720969880984847073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716249032572011630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e61fb80c6eb034488481a9093a3156f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameController
+  puzzleID: basquet
+  maxScore: 100
+  minScore: -50
+  winScoreThreshold: 100
+  loseScoreThreshold: -30
+  values:
+  - key: ganar
+    value: 100
+  - key: perder
+    value: 100
+  ScreenScore: {fileID: 8460548930382919465, guid: 3346638223903114dadcb4cebb1cc3b9, type: 3}

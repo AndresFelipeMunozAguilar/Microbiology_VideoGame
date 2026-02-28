@@ -21,10 +21,7 @@ public class InputHandler : MonoBehaviour
     public void OnTap(InputAction.CallbackContext context)
     {
         // Debug.Log("Se ha entrado a OnTap");
-        if (!context.started) return;
-
-        Vector2 tapPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-
+        Vector2 tapPosition = context.ReadValue<Vector2>();
         // Debug.Log($"La posicion del tap es: {tapPosition}");
 
         raycaster.ProcessTap(tapPosition);

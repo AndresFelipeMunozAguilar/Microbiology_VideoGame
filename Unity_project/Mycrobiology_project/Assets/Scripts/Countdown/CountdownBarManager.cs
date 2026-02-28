@@ -64,7 +64,7 @@ public class CountdownBarManager : MonoBehaviour
 
         previousTimeRemaining = Mathf.FloorToInt(timeRemaining);
 
-        Debug.Log($"BarManager: Disparo el delegate Action OnTimeChanged con valor: {previousTimeRemaining}");
+        //Debug.Log($"BarManager: Disparo el delegate Action OnTimeChanged con valor: {previousTimeRemaining}");
         OnTimeChanged?.Invoke(previousTimeRemaining);
 
     }

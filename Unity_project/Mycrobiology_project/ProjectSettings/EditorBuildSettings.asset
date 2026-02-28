@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TestMenu.unity
+    guid: 12f81766ec52e594295770db8e7d6e62
+  - enabled: 1
     path: Assets/Scenes/DevAndres.unity
     guid: be765e1634fec4c49b704f4251fb48a1
   - enabled: 1
@@ -17,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TempGameOver.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/testPuzzle.unity
+    guid: c12eeede2ad0b6d4b80f23fe21f9917a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: e8cf638ed7f69334fb6e9170e024221f, type: 3}
   m_UseUCBPForAssetBundles: 0
