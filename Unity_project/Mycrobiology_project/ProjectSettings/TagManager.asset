@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - TestPuzzleBall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Background
+  - World
+  - 
+  - Player
+  - 
+  - PuzzleBackground
+  - PuzzleGameplay
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3465757073
+    locked: 0
+  - name: World
+    uniqueID: 2551701935
+    locked: 0
+  - name: Objects
+    uniqueID: 1682758583
+    locked: 0
+  - name: Player
+    uniqueID: 2959544077
+    locked: 0
+  - name: Puzzles
+    uniqueID: 445897211
+    locked: 0
+  m_RenderingLayers:
+  - Default

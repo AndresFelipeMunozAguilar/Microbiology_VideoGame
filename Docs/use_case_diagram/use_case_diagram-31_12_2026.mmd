@@ -1,0 +1,40 @@
+---
+config:
+  theme: neo-dark
+  look: neo
+  layout: fixed
+---
+flowchart LR
+ subgraph Sistema["Serious Game de Bioseguridad"]
+        UC_Moverse(("Moverse por el Nivel"))
+        UC_Interactuar(("Interactuar con Objeto de Puzzle"))
+        UC_EjecutarPuzzle(("Ejecutar Puzzle"))
+        UC_Calificar(("Calificar Desempeño"))
+        UC_MostrarTutorial(("Mostrar tutorial puzzle"))
+        UC_RecibirFeedbackPuzzle(("Mostrar desemepeño"))
+        UC_Cronometrar(("Hacer cuenta atrás"))
+        UC_RecibirDanio(("Recibir Daño"))
+        UC_GameOverSalud(("Activar Game Over por Salud"))
+        UC_GameOverTiempo(("Activar Game Over por Tiempo"))
+        UC_RegistrarResultado(("Registrar Resultado de Puzzle"))
+        UC_ActualizarLog(("Actualizar Log de Desempeño"))
+        UC_ConsultarPersistencia(("Consultar si es primera vez jugando al puzzle"))
+        UC_LibroPuzzles(("Consultar Libro de Puzzles"))
+        UC_EasterEgg(("Activar Animación Easter Egg"))
+        UC_GanarJuego(("Ganar el juego"))
+  end
+    Jugador["Jugador"] --> UC_Moverse & UC_Interactuar & UC_LibroPuzzles & UC_EasterEgg
+    Core["Sistema de Juego"] --> UC_Cronometrar
+    PuzzleSys["Sistema de Puzzles"] --> UC_EjecutarPuzzle & UC_RegistrarResultado & UC_ActualizarLog & UC_MostrarTutorial & UC_RecibirFeedbackPuzzle & UC_GanarJuego
+    Persistencia["Sistema de Persistencia"] --> UC_RegistrarResultado & UC_ActualizarLog & UC_ConsultarPersistencia
+    UC_Interactuar -- &lt;&lt; include &gt;&gt; --> UC_ConsultarPersistencia
+    UC_Calificar -- &lt;&lt; include &gt;&gt; --> UC_RegistrarResultado
+    UC_RegistrarResultado -- &lt;&lt; include &gt;&gt; --> UC_RecibirFeedbackPuzzle
+    UC_MostrarTutorial -- &lt;&lt; include &gt;&gt; --> UC_EjecutarPuzzle
+    UC_EjecutarPuzzle -- &lt;&lt; include &gt;&gt; --> UC_Calificar
+    UC_GameOverSalud -- &lt;&lt; extend &gt;&gt; --> UC_RecibirDanio
+    UC_MostrarTutorial -- &lt;&lt; extend &gt;&gt; --> UC_ConsultarPersistencia
+    UC_EjecutarPuzzle -- &lt;&lt; extend &gt;&gt; --> UC_ConsultarPersistencia
+    UC_GameOverTiempo -- &lt;&lt; extend &gt;&gt; --> UC_Cronometrar
+    UC_ActualizarLog -- &lt;&lt; include &gt;&gt; --> UC_GanarJuego
+    UC_RecibirDanio -- &lt;&lt; extend &gt;&gt; --> UC_RecibirFeedbackPuzzle
