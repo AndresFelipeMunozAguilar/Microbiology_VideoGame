@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinigameController : MonoBehaviour
+public class PuzzleEvaluation : MonoBehaviour
 {
     [Header("Config")]
     public string puzzleID;

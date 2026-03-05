@@ -76,7 +76,9 @@ MonoBehaviour:
   loseScoreThreshold: -30
   values:
   - key: ganar
-    value: 100
+    value: 70
   - key: perder
-    value: 100
+    value: 65
+  - key: si
+    value: 65
   ScreenScore: {fileID: 8460548930382919465, guid: 3346638223903114dadcb4cebb1cc3b9, type: 3}

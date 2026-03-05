@@ -13,7 +13,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     [SerializeField]
     protected GameObject tutorialPrefab;
-
+    protected PuzzleEvaluation score;
 
     public abstract void StartGameplay();
 

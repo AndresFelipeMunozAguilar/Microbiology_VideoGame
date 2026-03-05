@@ -30,10 +30,10 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
 
     [SerializeField] private Vector3 defBasketSpawnPlace;
 
-    private MinigameController score;
+   
     void Start()
     {
-        score=GetComponent<MinigameController>();
+        score=GetComponent<PuzzleEvaluation>();
     }
     public override void StartGameplay()
     {
