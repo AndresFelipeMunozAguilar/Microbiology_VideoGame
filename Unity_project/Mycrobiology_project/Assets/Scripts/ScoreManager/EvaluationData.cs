@@ -7,6 +7,7 @@ public class PuzzleResultData
     public string puzzleID;
     public int score;
     public int bestScore;
+    public bool tutorialFlag;
     public string performance;
 }
 

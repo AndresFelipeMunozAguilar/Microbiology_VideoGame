@@ -78,11 +78,12 @@ public class EvaluationSystem : MonoBehaviour
             puzzles = results
         };
 
-        SaveSystem.SaveEvaluation(data);
+        DataManager.Instance.SaveEvaluation(data);
     }
     public int? GetBestScore(string puzzleID)
     {
-        PuzzleResultData data = JsonManager.Instance.GetPuzzleByID(puzzleID);
+        
+        PuzzleResultData data = DataManager.Instance.GetPuzzleByID(puzzleID);
 
         if (data == null)
             return null;
