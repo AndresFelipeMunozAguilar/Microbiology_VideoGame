@@ -5,308 +5,359 @@ config:
 classDiagram
 direction TB
 
-    class IPuzzlePausable {
-        <<Interface>>
-        + PuzzlePauseMe() void
-        + PuzzleResumeMe() void
-    }
+class IPuzzlePausable {
+    <<Interface>>
+    + PuzzlePauseMe() void
+    + PuzzleResumeMe() void
+}
 
+class GameScenes {
+    <<enumeration>> 
+    DevAndres
+    DevBrandon
+    Develop
+    TempGameOver
+}
 
-    class GameScenes {
-        <<enumeration>> 
-        DevAndres
-        DevBrandon
-        Develop
-        TempGameOver
-    }
+class GameManager {
+    <<Singleton>>
+    - GameManager instance$
+    + enum GameScenes
+    - bool isGameOver
+    - bool isPuzzleActive
+    - Action OnGameOver$
+    - DataManager dataManager
+    - List~IPuzzlePausable~ puzzlePausables
+    - GameManager() void
+    + Awake() void
+    + GetInstance() GameManager$
+    + LoadScene(scene: GameScenes) void
+    + NotifyGameOverSubscribers() void
+    + GameOver(reason: string) void
+    + OnVictory() void
+    + SubscribeToGameOver(subscriber: IGameOverSubscriber ) void$
+    + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void$
+    + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
+    + UnsubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
+    + PuzzlePauseAll() void
+    + PuzzleResumeAll() void
+    + SwitchIsPuzzleActive() void
+}
 
-    class GameManager {
-        <<Singleton>>
-	    - GameManager instance$
-        + enum GameScenes
-	    - bool isGameOver
-        - bool isPuzzleActive
-        - Action OnGameOver$
-	    - DataManager dataManager
-        - List~IPuzzlePausable~ puzzlePausables
-	    - GameManager() void
-        + Awake() void
-	    + GetInstance() GameManager$
-	    + LoadScene(scene: GameScenes) void
-	    + NotifyGameOverSubscribers() void
-	    + GameOver(reason: string) void
-	    + OnVictory() void
-	    + SubscribeToGameOver(subscriber: IGameOverSubscriber ) void$
-        + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void$
-        + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
-        + UnsubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
-        + PuzzlePauseAll() void
-        + PuzzleResumeAll() void
-        + SwitchIsPuzzleActive() void
-    }
+class MovePlayer {
+    - Rigidbody2D rb
+    - float speed
+    - Vector2 input
+    + Start() void
+    + OnEnable() void
+    + OnDisable() void
+    + FixedUpdate() void
+    + Pause() void
+    + PuzzlePauseMe() void
+    + PuzzleResumeMe() void
+    + OnDestroy() void
+    + OnGameOver() void
+    + DeactivateScript() void
+    + ActivateScript() void
+}
 
-    class MovePlayer {
-        - Rigidbody2D rb
-        - float speed
-        - Vector2 input
-        + Start() void
-        + OnEnable() void
-        + OnDisable() void
-        + FixedUpdate() void
-        + Pause() void
-        + PuzzlePauseMe() void
-        + PuzzleResumeMe() void
-        + OnDestroy() void
-        + OnGameOver() void
-        + DeactivateScript() void
-        + ActivateScript() void
-    }
+class PlayerHealthLogic {
+    - int maxLives
+    - int currentLives
+    - bool isDead
+    + Action~int~ OnHealthChanged$
+    + OnEnable() void
+    + OnDisable() void
+    + TakeDamage(damageAmount: int) void
+    + int ReduceLivesNBound(damageAmount: int)
+    + PlayerDead() void
+    + OnGameOver() void
+}
 
+class PlayerHealthView {
+    - TextMeshProUGUI healthText
+    + OnEnable() void
+    + UpdateHealthText(currentLives: int) void
+    + OnDisable() void
+}
 
-    class PlayerHealthLogic {
-        - int maxLives
-        - int currentLives
-        - bool isDead
-        + Action~int~ OnHealthChanged$
-        + OnEnable() void
-        + OnDisable() void
-        + TakeDamage(damageAmount: int) void
-        + int ReduceLivesNBound(damageAmount: int)
-        + PlayerDead() void
-        + OnGameOver() void
-    }
+class PuzzleHalo {
+    + float pulseSpeed
+    + float maxScale
+    + SpriteRenderer haloSr
+    + Vector3 haloBaseScale
+    + float minimumTransparency
+    + bool isPlayerClose
+    + Start() void
+    + Update() void
+    + Pulse(referenceTime: float) void
+    + Glow(referenceTime: float) void
+    + OnTriggerEnter2D(other: Collider2D) void
+    + OnTriggerExit2D(other: Collider2D) void
+    + PuzzlePauseMe() void
+    + PuzzleResumeMe() void
+    + OnDestroy() void
+}
 
-        
-    class PlayerHealthView {
-        - TextMeshProUGUI healthText
-        + OnEnable() void
-        + UpdateHealthText(currentLives: int) void
-        + OnDisable() void
-    }
+class CountdownBarManager {
+    - Image countdownBar
+    - bool isPaused
+    + Action~int~ OnTimeChanged$
+    - int previousTimeRemaining
+    - float timeRemaining
+    - float maxTime
+    + OnEnable() void
+    + Update() void
+    + StartCountdown() void
+    + SetPaused(paused: bool) void
+    + ResetCountdown() void
+    + TimeIsUp() void
+}
 
+class CountdownTextManager {
+    - TextMeshProUGUI showText
+    - int showMinutes
+    - int showSeconds
+    + OnEnable() void
+    + OnDisable() void
+    + UpdateTextInMinutes(seconds: int) void
+}
 
-	class PuzzleHalo {
-        + float pulseSpeed
-        + float maxScale
-        + SpriteRenderer haloSr
-        + Vector3 haloBaseScale
-        + float minimumTransparency
-        + bool isPlayerClose
-        + Start() void
-        + Update() void
-        + Pulse(referenceTime: float) void
-        + Glow(referenceTime: float) void
-        + OnTriggerEnter2D(other: Collider2D) void
-        + OnTriggerExit2D(other: Collider2D) void
-        + PuzzlePauseMe() void
-        + PuzzleResumeMe() void
-        + OnDestroy() void
-    }
+class IGameOverSubscriber {
+    + OnGameOver() void
+}
 
-    class CountdownBarManager {
-        -Image countdownBar
-        -bool isPaused
-        + Action~int~ OnTimeChanged$
-        -int previousTimeRemaining
-        -float timeRemaining
-        -float maxTime
-        + OnEnable() void
-        + Update() void
-        + StartCountdown() void
-        + SetPaused(paused: bool) void
-        + ResetCountdown() void
-        + TimeIsUp() void
-    }
+class IDamageable {
+    <<interface>>
+    + TakeDamage(damageAmount: int) void
+}
 
-    class CountdownTextManager {
-        -TextMeshProUGUI showText
-        -int showMinutes
-        -int showSeconds
-        + OnEnable() void
-        + OnDisable() void
-        + UpdateTextInMinutes(seconds: int) void
-    }
+class IPuzzleManager {
+    <<interface>>
+    + StartPuzzle() void
+    + CompletePuzzle() void
+    + GetScore() float
+    + GetPerformanceResult() PerformanceResult
+}
 
-    class IGameOverSubscriber {
-	    + OnGameOver() void
-    }
+class PuzzleManager {
+    - int score
+    - FeedbackText feedbackText
+    - PuzzleHalo halo
+    - GameObject puzzleGameplayPrefab
+    - AbstractPuzzleGameplay gameplay
+    - PerformanceResult performanceResult
+    - GameManager gameManager
+    + bool isVictoryAchieved
+    + OnTap() void
+    + Start() void
+    + OnDestroy() void
+    + ShowFeedback(qualitativeResult: string) void
+    + PuzzlePauseMe() void
+    + PuzzleResumeMe() void
+    + StartPuzzle() void
+    + CompletePuzzle() void
+    + GetScore() float
+    + GetPerformanceResult() PerformanceResult
+}
 
-	class IDamageable {
-        <<interface>>
-        + TakeDamage(damageAmount: int) void
-    }
+class ITappable {
+    <<interface>>
+    + OnTap() void
+}
 
-    class IPuzzleManager {
-        <<interface>>
-        + StartPuzzle() void
-        + CompletePuzzle() void
-        + GetScore() float
-        + GetPerformanceResult() PerformanceResult
-    }
+class InputHandler {
+    - Raycaster raycaster
+    + Start() void
+    + OnDestroy() void
+    + OnTap(context: InputAction.CallbackContext ) void
+}
 
-	
+class Raycaster {
+    - Camera mainCamera
+    + ProcessTap(screenPosition: Vector2 ) void
+}
 
-    class PuzzleManager {
-	    - int score
-	    - FeedbackText feedbackText
-        - PuzzleHalo halo
-        - GameObject puzzleGameplayPrefab
-        - AbstractPuzzleGameplay gameplay
-        - PerformanceResult performanceResult
-        - GameManager gameManager
-        + bool isVictoryAchieved
-        + OnTap() void
-        + Start() void
-        + OnDestroy() void
-	    + ShowFeedback(qualitativeResult: string) void
-        + PuzzlePauseMe() void
-        + PuzzleResumeMe() void
-         + StartPuzzle() void
-	    + CompletePuzzle() void
-	    + GetScore() float
-	    + GetPerformanceResult() PerformanceResult
-    }
+class ControlsManager {
+    - Map map
+    - Map.PlayerActions controls$
+    - ControlsManager instance$
+    + Awake() void
+    + Map.PlayerActions getControls() Map.PlayerActions$
+    + OnEnable() void
+    + OnDisable() void
+}
 
-	class ITappable {
-        <<interface>>
-        + OnTap() void
-    }
+class PerformanceResult {
+    - int numericScore
+    - string qualitativeResult
+    + calculateNumericScore() void
+    + setQualitativeResult() void
+    + toString() string
+}
 
-	class InputHandler {
-        - Raycaster raycaster
-        + void Start() void
-        + void OnDestroy() void
-        + void OnTap(context: InputAction.CallbackContext ) void
-    }
+class PuzzleTutorial {
+    - string title
+    - Image gifTutorial
+    - string tutorialDescription
+    + close() void
+}
 
-    class Raycaster {
-        - Camera mainCamera
-        + void Start() void
-        + void ProcessTap(screenPosition: Vector2 ) void
-    }
+class FeedbackText {
+    - string text
+    + Show(position: Vector3, text: string) void
+}
 
-    class ControlsManager {
-        - Map map
-        - Map.PlayerActions controls$
-        - ControlsManager instance$
-        + void Awake() void
-        + Map.PlayerActions getControls() Map.PlayerActions$
-        + void OnEnable() void
-        + void OnDisable() void
-    }
+class DataManager {
+    - EvaluationData CurrentData
+    + static DataManager Instance
+    + Start() void
+    + SaveEvaluation(data: EvaluationData) void
+    - LoadEvaluation() EvaluationData
+    + GetPuzzleByID(ID: string) PuzzleResultData
+    + LoadTutorialFlag(ID: string) bool
+}
 
-    class PerformanceResult {
-	    - int numericScore
-	    - string qualitativeResult
-		+ calculateNumericScore() void
-		+ setQualitativeResult() void
-	    + toString() string
-    }
+class PuzzleResultData {
+    + string puzzleID
+    + int score
+    + int bestScore
+    + bool tutorialFlag
+    + string performance
+}
 
-    class PuzzleTutorial {
-	    - string title
-	    - Image gifTutorial
-	    - string tutorialDescription
-        + close() void
-    }
+class EvaluationData {
+    + string playerID
+    + int totalScore
+    + string date
+    + List~PuzzleResultData~ puzzles
+}
 
-    class FeedbackText {
-	    - string text
-	    + Show(position: Vector3, text: string) void
-    }
+class EvaluationSystem {
+    <<Singleton>>
+    + static EvaluationSystem Instance
+    - string playerID
+    - List~PuzzleResultData~ results
+    - Dictionary~string,int~ puzzleFinalScores
+    - int totalScore
+    + Awake() void
+    + RegisterPuzzleResult(puzzleID: string, finalScore: int, maxScore: int, bestScore: int) string
+    + GetTotalScore() int
+    + GetPuzzleScore(puzzleID: string) int
+    - CalculatePerformance(score: int, maxScore: int) string
+    + SaveAllResults(playerID: string) void
+    + GetBestScore(puzzleID: string) int?
+}
 
-    class DataManager {
-        <<singleton>>
-	    - string basePath
-        - DataManager instance$
-        - RunData runData
-	    + SaveTutorialFlag(puzzleId: string) void
-	    + LoadTutorialFlag(puzzleId: string) bool
-	    + SaveRunResult() void
-	    + LoadRunHistory() List~RunData~
-        - DataManager() void
-        + getInstance() DataManager
-        + savePuzzleScore(puzzleId: string) void
-    }
+class PuzzleEvaluation {
+    - string puzzleID
+    - int maxScore
+    - int minScore
+    - int winScoreThreshold
+    - int loseScoreThreshold
+    - int currentScore
+    - bool finished
+    - List~AcationKey~ values
+    - GameObject ScreenScore
+    - Dictionary~string,int~ runtimeDict
+    + Awake() void
+    + GetValue(key: string) int
+    + AddPoints(key: string) void
+    + AddPoints(amount: int) void
+    + RemovePoints(key: string) void
+    + RemovePoints(amount: int) void
+    + AddCustom(amount: int) void
+    + FinishGame(victory: bool) void
+    + GetCurrentScore() int
+    - ClampScore() void
+    - CheckAutoEnd() void
+    - SendResultToGlobal() void
+    + ShowResults(score: int, maxScore: int, performance: string, bestScore: int) void
+}
 
-    class RunData {
-	    + int runId
-	    + Dictionary~string,int[]~ puzzleScores
-    }
-	
-    class JournalManager {
-        - string[] puzzlesIds
-	    + LoadDiscoveredPuzzles()
-	    + ShowJournalUI()
-    }
-	
-    class EasterEgg {
-	    - bool isActivated
-	    + OnClick()
-	    + PlayAnimation()
-    }
+class ScoreScreen {
+    - TextMeshProUGUI ScoreTx
+    - TextMeshProUGUI PerformanceTx
+    - TextMeshProUGUI BestScoreTx
+    + SendData(score:int,maxScore:int,performance:string,bestScore:int) void
+    - ScoreAnimation(text:TextMeshProUGUI,score:int,maxScore:int) IEnumerator
+    - PerformanceAnimation(performance:string) IEnumerator
+    + Close() void
+}
 
+class AcationKey {
+    + string key
+    + int value
+}
 
-    %% Abstract Class
-    class AbstractPuzzleGameplay {
-        <<abstract>>
-        # DataManager dataManager
-        # GameObject background
-        # bool isFirstTimePlaying
-        # GameObject tutorialPrefab
-        + StartGameplay() void* 
-        + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
-        + Victory() void* 
-        + Defeat() void* 
-        + ShowTutorial() void
-        + IsFirstTime() bool
-    }
+class EasterEgg {
+    - bool isActivated
+    + OnClick()
+    + PlayAnimation()
+}
 
-	
-    GameManager <.. PuzzleHalo: subscribes
+class AbstractPuzzleGameplay {
+    <<abstract>>
+    # DataManager dataManager
+    # PuzzleEvaluation score
+    # GameObject background
+    # bool isFirstTimePlaying
+    # GameObject tutorialPrefab
+    + StartGameplay() void*
+    + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
+    + Victory() void*
+    + Defeat() void*
+    + ShowTutorial() void
+    + IsFirstTime() bool
+}
 
-	<<interface>> IGameOverSubscriber
+GameManager <.. PuzzleHalo : subscribes
 
-    IPuzzlePausable <|.. PuzzleHalo
-    IPuzzlePausable <|.. PuzzleManager
-    IPuzzlePausable <|.. MovePlayer
+IPuzzlePausable <|.. PuzzleHalo
+IPuzzlePausable <|.. PuzzleManager
+IPuzzlePausable <|.. MovePlayer
 
-    IDamageable <|.. PlayerHealthLogic
-    PlayerHealthLogic ..|> IGameOverSubscriber
-    PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
-    
+IDamageable <|.. PlayerHealthLogic
+PlayerHealthLogic ..|> IGameOverSubscriber
+PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
 
-    GameScenes --* GameManager  
-    GameManager <.. MovePlayer: subscribes
-    GameManager <.. PlayerHealthLogic : notifica GameOver por vida
-    GameManager <.. PuzzleManager: subscribes
-    GameManager <.. CountdownBarManager : notifica time up
-    CountdownBarManager <.. CountdownTextManager : se suscribe a OnTimeChanged
+GameScenes --* GameManager
+GameManager <.. MovePlayer : subscribes
+GameManager <.. PlayerHealthLogic : notifica GameOver por vida
+GameManager <.. PuzzleManager : subscribes
+GameManager <.. CountdownBarManager : notifica time up
+CountdownBarManager <.. CountdownTextManager : se suscribe a OnTimeChanged
 
-	
-    MovePlayer ..|> IGameOverSubscriber
+MovePlayer ..|> IGameOverSubscriber
 
-    IGameOverSubscriber --o GameManager
-    IPuzzleManager <|.. PuzzleManager
-	ITappable <|.. PuzzleManager
+IGameOverSubscriber --o GameManager
+IPuzzleManager <|.. PuzzleManager
+ITappable <|.. PuzzleManager
 
+PuzzleManager *-- FeedbackText
+PuzzleManager *-- PerformanceResult
+PuzzleManager *-- PuzzleHalo
+PuzzleTutorial -- AbstractPuzzleGameplay
+PuzzleManager *-- AbstractPuzzleGameplay
 
-    PuzzleManager *-- FeedbackText
-    PuzzleManager *-- PerformanceResult
-	PuzzleManager *-- PuzzleHalo : Serialized field
-    PuzzleTutorial -- AbstractPuzzleGameplay 
-    PuzzleManager *-- AbstractPuzzleGameplay
-	
-    PuzzleManager -- DataManager
-	
-    DataManager o-- RunData
-    AbstractPuzzleGameplay o-- DataManager
-    DataManager -- JournalManager 
-    GameManager o-- DataManager
-	IPuzzlePausable --o GameManager
-    PuzzleManager -- GameManager : reporta resultado
+PuzzleManager -- DataManager
+AbstractPuzzleGameplay -- DataManager
+GameManager o-- DataManager
 
+DataManager o-- EvaluationData
+EvaluationData o-- PuzzleResultData
 
-	InputHandler -- Raycaster : serialized field
-    InputHandler -- ControlsManager : uses getControls()
-	Raycaster -- ITappable : TryGetComponent and calls OnTap()
+EvaluationSystem -- PuzzleResultData
+EvaluationSystem -- DataManager
+PuzzleEvaluation -- EvaluationSystem
+PuzzleEvaluation -- ScoreScreen
+PuzzleEvaluation o-- AcationKey
+
+AbstractPuzzleGameplay o-- PuzzleEvaluation
+
+IPuzzlePausable --o GameManager
+PuzzleManager -- GameManager : reporta resultado
+
+InputHandler -- Raycaster
+InputHandler -- ControlsManager
+Raycaster -- ITappable
