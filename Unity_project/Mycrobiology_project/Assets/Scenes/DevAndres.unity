@@ -1699,7 +1699,7 @@ PrefabInstance:
     - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: gameplay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1367269877804794657, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
     - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: puzzleGameplayPrefab
       value: 

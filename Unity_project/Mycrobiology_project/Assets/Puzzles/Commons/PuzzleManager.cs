@@ -25,8 +25,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     private GameManager gameManager;
 
 
-
-
     public void Start()
     {
         gameManager = GameManager.GetInstance();

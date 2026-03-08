@@ -16,28 +16,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PickUp",
-                    "type": "Button",
-                    "id": "7761735c-cd27-41a0-a6ea-e4d56f7eae1d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pickdown",
-                    "type": "Button",
-                    "id": "a062a811-1a1f-4df7-8522-1cfc1a4482bb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "6607f3c3-63ce-46bc-b9f2-448a8430e1a1",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "5df044d2-f22a-4bda-9372-0c571dd138a5",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -167,30 +158,8 @@
                 },
                 {
                     "name": "",
-                    "id": "9a7b5d25-71d6-4edb-97cb-2983bb73a174",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PickUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "52309698-1127-4ed0-9a6f-5ee649f278d9",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pickdown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
-                    "path": "<Touchscreen>/primaryTouch/startPosition",
+                    "id": "0519ec60-e49b-42aa-9ad3-a43fb3270c70",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -200,12 +169,34 @@
                 },
                 {
                     "name": "",
-                    "id": "07bc0b33-bc7e-47af-b46e-a5aa5595ff71",
+                    "id": "0e6b6e76-12b7-4cdb-adf9-948484f1392e",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44fc5cad-7e4d-4d23-a715-547ace6c3572",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea7a9f48-8632-491c-99a3-36106df65c75",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
