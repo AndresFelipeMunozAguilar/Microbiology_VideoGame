@@ -154,9 +154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
   halo: {fileID: 393735534203666645}
-  gameplay: {fileID: 0}
-  performanceResult: {fileID: 5384294113285294433}
   isVictoryAchieved: 0
+  gameplay: {fileID: 1367269877804794657, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
+  puzzleGameplayPrefab: {fileID: 716249032572011630, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
+  performanceResult: {fileID: 5384294113285294433}
+  gameManager: {fileID: 0}
 --- !u!114 &5384294113285294433
 MonoBehaviour:
   m_ObjectHideFlags: 0
