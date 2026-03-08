@@ -8,22 +8,18 @@ public class InputHandler : MonoBehaviour
 
     public void Start()
     {
-        ControlsManager.getControls().Interact.started += OnTap;
-        // Debug.Log("Se ha suscrito interact al evento on tap");
+        ControlsManager.getControls().Interact.performed += OnTap;
     }
 
     public void OnDestroy()
     {
-        ControlsManager.getControls().Interact.started -= OnTap;
-        // Debug.Log("Desuscrito interact al evento on tap");
+        ControlsManager.getControls().Interact.performed -= OnTap;
     }
 
     public void OnTap(InputAction.CallbackContext context)
     {
-        // Debug.Log("Se ha entrado a OnTap");
-        Vector2 tapPosition = context.ReadValue<Vector2>();
-        // Debug.Log($"La posicion del tap es: {tapPosition}");
-
+        Vector2 tapPosition = Pointer.current.position.ReadValue();
+        Debug.Log("tap" + tapPosition);
         raycaster.ProcessTap(tapPosition);
     }
 }

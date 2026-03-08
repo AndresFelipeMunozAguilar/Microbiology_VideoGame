@@ -190,7 +190,7 @@
                 {
                     "name": "",
                     "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
-                    "path": "<Touchscreen>/primaryTouch/startPosition",
+                    "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -201,7 +201,7 @@
                 {
                     "name": "",
                     "id": "07bc0b33-bc7e-47af-b46e-a5aa5595ff71",
-                    "path": "<Mouse>/position",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
