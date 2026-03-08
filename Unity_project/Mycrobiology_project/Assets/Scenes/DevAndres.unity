@@ -1591,10 +1591,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5102750775207951025, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1611,54 +1607,6 @@ PrefabInstance:
     - target: {fileID: 310497863040409449, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Name
       value: PuzzleManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: ballPrefab
-      value: 
-      objectReference: {fileID: 2029610987954448589, guid: ecc76fba3c7f6684ab4ec2ba80b13851, type: 3}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: floorPrefab
-      value: 
-      objectReference: {fileID: 8632702558573709591, guid: f956128a6821a2a42a1951c5a20394b0, type: 3}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: ballSpawnPlace.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: gameplayDirector
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: floorSpawnPlace.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: defeatBasketPrefab
-      value: 
-      objectReference: {fileID: 1571525966326516746, guid: 816cd16b588da43448e8b0a03c486e3a, type: 3}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: victoryBasketPrefab
-      value: 
-      objectReference: {fileID: 1571525966326516746, guid: 816cd16b588da43448e8b0a03c486e3a, type: 3}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: defBasketSpawnPlace.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: defBasketSpawnPlace.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: vicBasketSpawnPlace.x
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5521365487259155438, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: vicBasketSpawnPlace.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311496561287724193, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: m_Name
-      value: TestPuzzleGameplay
       objectReference: {fileID: 0}
     - target: {fileID: 7239192439233506365, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1700,14 +1648,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: gameplay
-      value: 
-      objectReference: {fileID: 1367269877804794657, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
-    - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: puzzleGameplayPrefab
-      value: 
-      objectReference: {fileID: 716249032572011630, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
