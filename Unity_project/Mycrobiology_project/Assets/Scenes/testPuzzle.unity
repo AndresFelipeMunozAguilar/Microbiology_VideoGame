@@ -755,14 +755,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 532306072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596550d6294391c4eb5cd3ed6fec2d97, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ce18792cac2c9f4fb6f7f890c97f22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JsonManager
-  playerData:
-    playerID: player
-    totalScore: 0
-    date: 
-    puzzles: []
 --- !u!4 &532306074
 Transform:
   m_ObjectHideFlags: 0
