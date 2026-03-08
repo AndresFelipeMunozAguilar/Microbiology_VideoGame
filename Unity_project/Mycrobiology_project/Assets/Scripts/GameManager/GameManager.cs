@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     // de escenas no funcionará.
     public enum GameScenes
     {
+        TestMenu,
         DevAndres,
         DevBrandon,
         Develop,
         TempGameOver,
+        TestPuzzle,
     }
 
     public bool isGameOver = false;
