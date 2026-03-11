@@ -105,20 +105,20 @@ public class PuzzleEvaluation : MonoBehaviour
 
     private void SendResultToGlobal()
     {
-        if(currentScore<0)currentScore=0; //mantener el minimo como 0
+        if (currentScore < 0) currentScore = 0; //mantener el minimo como 0
         int? best = EvaluationSystem.Instance.GetBestScore(puzzleID);
-        if ((best.HasValue && best< currentScore) || !best.HasValue)
+        if ((best.HasValue && best < currentScore) || !best.HasValue)
         {
-            best=currentScore;
+            best = currentScore;
         }
         int bestScore = (int)best;
-        string evaluation = EvaluationSystem.Instance.RegisterPuzzleResult(puzzleID, currentScore, maxScore,bestScore);
+        string evaluation = EvaluationSystem.Instance.RegisterPuzzleResult(puzzleID, currentScore, maxScore, bestScore);
         Debug.Log($"MiniGame {puzzleID} terminó con {currentScore} → {evaluation}");
-        ShowResults(currentScore,maxScore,evaluation,bestScore);
+        ShowResults(currentScore, maxScore, evaluation, bestScore);
     }
-    public void ShowResults(int Score,int MaxScore, string Performance,int bestScore)
+    public void ShowResults(int Score, int MaxScore, string Performance, int bestScore)
     {
         GameObject scoreScreen = Instantiate(ScreenScore);
-        scoreScreen.GetComponent<ScoreScreen>().SendData(Score,MaxScore,Performance,bestScore);
+        scoreScreen.GetComponent<ScoreScreen>().SendData(Score, MaxScore, Performance, bestScore);
     }
 }
