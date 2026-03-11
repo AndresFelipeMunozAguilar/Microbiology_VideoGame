@@ -18,8 +18,8 @@ public class InputHandler : MonoBehaviour
 
     public void OnTap(InputAction.CallbackContext context)
     {
-        Vector2 tapPosition = Pointer.current.position.ReadValue();
-        Debug.Log("tap" + tapPosition);
+        Vector2 tapPosition = ControlsManager.getControls().Position.ReadValue<Vector2>();
+
         raycaster.ProcessTap(tapPosition);
     }
 }
