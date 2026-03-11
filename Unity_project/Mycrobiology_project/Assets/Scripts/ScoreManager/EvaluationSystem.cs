@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class EvaluationSystem : MonoBehaviour
 {
     public static EvaluationSystem Instance;
-    string playerID="player";
+    string playerID = "player";
     private List<PuzzleResultData> results = new List<PuzzleResultData>();
     private Dictionary<string, int> puzzleFinalScores = new Dictionary<string, int>();
     private int totalScore = 0;
@@ -22,26 +22,35 @@ public class EvaluationSystem : MonoBehaviour
         }
     }
 
-    public string RegisterPuzzleResult(string puzzleID, int finalScore, int maxScore,int bestScore)
+    public string RegisterPuzzleResult(string puzzleID, int finalScore, int maxScore, int bestScore)
     {
+        Debug.Log($"EvaluationSystem: Registrando el resultado del puzzle:\n PuzzleID: {puzzleID}\n FinalScore: {finalScore}\n maxScore: {maxScore}\n bestScore: {bestScore}");
         if (puzzleFinalScores.ContainsKey(puzzleID))
-            return CalculatePerformance(finalScore, maxScore);
 
+        {
+            Debug.Log($"EvaluationSystem: Se encontró la key {puzzleID} en los puzzleFinalScores");
+            return CalculatePerformance(finalScore, maxScore);
+        }
+
+        Debug.Log($"EvaluationSystem: Añadiendo puntajes del puzzle {puzzleID} a los resultados finales");
         puzzleFinalScores.Add(puzzleID, finalScore);
         totalScore += finalScore;
 
+        Debug.Log($"EvaluationSystem: Calculando el performance del puzzle {puzzleID} con finalScore: {finalScore} y maxScore: {maxScore}");
         string performance = CalculatePerformance(finalScore, maxScore);
+
+        Debug.Log($"EvaluationSystem: Añadiendo resultado del puzzle {puzzleID} a la lista de resultados");
         results.Add(new PuzzleResultData
         {
             puzzleID = puzzleID,
             score = finalScore,
-            bestScore=bestScore,
+            bestScore = bestScore,
             performance = performance
         });
 
         Debug.Log($"Puzzle {puzzleID} registrado con {finalScore} puntos → {performance}");
         SaveAllResults(playerID);
-       
+
         return performance;
     }
 
@@ -82,7 +91,7 @@ public class EvaluationSystem : MonoBehaviour
     }
     public int? GetBestScore(string puzzleID)
     {
-        
+
         PuzzleResultData data = DataManager.Instance.GetPuzzleByID(puzzleID);
 
         if (data == null)

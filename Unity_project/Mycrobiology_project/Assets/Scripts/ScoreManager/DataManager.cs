@@ -18,7 +18,7 @@ public class DataManager : MonoBehaviour
         // Debug de entrada: Verificar que no estemos intentando guardar datos nulos
         if (data == null)
         {
-            Debug.LogError("SaveEvaluation: Se intentó guardar un objeto EvaluationData nulo.");
+            Debug.LogError("DataManager: Se intentó guardar un objeto EvaluationData nulo.");
             return;
         }
 
@@ -28,11 +28,11 @@ public class DataManager : MonoBehaviour
         try
         {
             File.WriteAllText(path, json);
-            Debug.Log($"<color=green>SaveEvaluation:</color> Datos guardados exitosamente en: {path}");
+            Debug.Log($"<color=green>DataManager:</color> Datos guardados exitosamente en: {path}");
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"SaveEvaluation: Fallo crítico al escribir el archivo en {path}. Error: {e.Message}");
+            Debug.LogError($"DataManager: Fallo crítico al escribir el archivo en {path}. Error: {e.Message}");
         }
     }
 
@@ -42,7 +42,7 @@ public class DataManager : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"LoadEvaluation: No se encontró el archivo en {path}. Se retornará null.");
+            Debug.LogWarning($"DataManager: No se encontró el archivo en {path}. Se retornará null.");
             return null;
         }
 
@@ -51,11 +51,11 @@ public class DataManager : MonoBehaviour
 
         if (data == null)
         {
-            Debug.LogError("LoadEvaluation: El JSON existe pero la deserialización falló (JSON corrupto o vacío).");
+            Debug.LogError("DataManager: El JSON existe pero la deserialización falló (JSON corrupto o vacío).");
         }
         else
         {
-            Debug.Log("<color=cyan>LoadEvaluation:</color> Datos cargados y deserializados correctamente.");
+            Debug.Log("<color=cyan>DataManager:</color> Datos cargados y deserializados correctamente.");
         }
 
         return data;
@@ -65,38 +65,44 @@ public class DataManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(ID))
         {
-            Debug.LogWarning("GetPuzzleByID: El ID proporcionado está vacío o es nulo.");
+            Debug.LogWarning("DataManager: El ID proporcionado está vacío o es nulo.");
             return null;
+        }
+
+        if (CurrentData == null || CurrentData.puzzles == null)
+        {
+            Debug.LogWarning("DataManager: CurrentData o la lista de puzzles es nula. No se pueden buscar puzzles.");
+
         }
 
         foreach (PuzzleResultData puzzle in CurrentData.puzzles)
         {
             if (puzzle.puzzleID.Equals(ID))
             {
-                Debug.Log($"GetPuzzleByID: Se encontró coincidencia para el ID: {ID}");
+                Debug.Log($"DataManager: Se encontró coincidencia para el ID: {ID}");
                 return puzzle;
             }
         }
 
-        Debug.LogWarning($"GetPuzzleByID: No se encontró ningún puzzle con el ID: {ID} en CurrentData.");
+        Debug.LogWarning($"DataManager: No se encontró ningún puzzle con el ID: {ID} en CurrentData.");
         return null;
     }
 
     public bool LoadTutorialFlag(string ID)
     {
-        Debug.Log($"LoadTutorialFlag: Consultando estado del tutorial para ID: {ID}");
+        Debug.Log($"DataManager: Consultando estado del tutorial para ID: {ID}");
 
         PuzzleResultData puzzle = GetPuzzleByID(ID);
 
 
         if (puzzle != null && puzzle.tutorialFlag)
         {
-            Debug.Log($"LoadTutorialFlag: Puzzle encontrado. Valor de flag: {puzzle.tutorialFlag}");
+            Debug.Log($"DataManager: Puzzle encontrado. Valor de flag: {puzzle.tutorialFlag}");
             return true;
         }
         else
         {
-            Debug.LogWarning($"LoadTutorialFlag: No se pudo cargar el flag porque el puzzle {ID} no existe.");
+            Debug.LogWarning($"DataManager: No se pudo cargar el flag porque el puzzle {ID} no existe.");
             return false;
         }
 

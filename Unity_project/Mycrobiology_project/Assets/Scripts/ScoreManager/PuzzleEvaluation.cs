@@ -138,6 +138,15 @@ public class PuzzleEvaluation : MonoBehaviour
 
         Debug.Log($"PuzzleEvaluation: Obteniendo instancia del sistema de evaluacion");
 
+        if (EvaluationSystem.Instance == null)
+        {
+            Debug.Log($"PuzzleEvaluation: No se encontró la instancia de EvaluationSystem");
+        }
+        else
+        {
+            Debug.Log($"PuzzleEvaluation: Instancia de EvaluationSystem encontrada correctamente");
+        }
+
         int? best = EvaluationSystem.Instance.GetBestScore(puzzleID);
 
         if ((best.HasValue && best < currentScore) || !best.HasValue)
