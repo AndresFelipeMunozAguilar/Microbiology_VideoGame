@@ -28,15 +28,34 @@ public class PuzzleEvaluation : MonoBehaviour
 
     public int GetValue(string key)
     {
+        Debug.Log($"PuzzleEvaluation: Intentando obtener valor para key: {key}");
+
+        if (runtimeDict.ContainsKey(key))
+        {
+            Debug.Log($"PuzzleEvaluation: Clave encontrada. Valor: {runtimeDict[key]}");
+        }
+        else
+        {
+            Debug.LogWarning($"PuzzleEvaluation: Clave '{key}' no encontrada en runtimeDict. Retornando 0.");
+        }
+
         return runtimeDict.TryGetValue(key, out int v) ? v : 0;
     }
     public void AddPoints(string key)
     {
         if (finished) return;
 
+        Debug.Log($"PuzzleEvaluation: Not finished, por tanto añadir puntaje a currentScore");
         currentScore += Mathf.Abs(GetValue(key));
+
+
         ClampScore();
+
+        Debug.Log($"PuzzleEvaluation: Finish clamp score");
+
         CheckAutoEnd();
+
+        Debug.Log($"PuzzleEvaluation: FinishCheckAutoEnd");
     }
     public void AddPoints(int amount)
     {
@@ -77,6 +96,9 @@ public class PuzzleEvaluation : MonoBehaviour
         if (finished) return;
 
         finished = true;
+
+        Debug.Log($"PuzzleEvaluation: El juago se acabó");
+
         SendResultToGlobal();
     }
 
@@ -89,26 +111,36 @@ public class PuzzleEvaluation : MonoBehaviour
     private void ClampScore()
     {
         currentScore = Mathf.Clamp(currentScore, minScore, maxScore);
+        Debug.Log($"PuzzleEvaluation: CurrentScore after clamp: {currentScore}");
     }
 
     private void CheckAutoEnd()
     {
         if (currentScore >= winScoreThreshold)
         {
+            Debug.Log($"PuzzleEvaluation: el puntaje actual es mayor o igual al puntaje umbral de victoria");
             FinishGame(true);
         }
         else if (currentScore <= loseScoreThreshold)
         {
+            Debug.Log($"PuzzleEvaluation: El puntaje actual es menor o igual al puntaje de umbral de derrota");
             FinishGame(false);
         }
     }
 
     private void SendResultToGlobal()
     {
+        Debug.Log($"PuzzleEvaluation: Enviando resultados al global");
+
         if (currentScore < 0) currentScore = 0; //mantener el minimo como 0
+
+        Debug.Log($"PuzzleEvaluation: Obteniendo instancia del sistema de evaluacion");
+
         int? best = EvaluationSystem.Instance.GetBestScore(puzzleID);
+
         if ((best.HasValue && best < currentScore) || !best.HasValue)
         {
+            Debug.Log($"PuzzleEvaluation: Nuevo mejor puntaje encontrado: {currentScore}");
             best = currentScore;
         }
         int bestScore = (int)best;
