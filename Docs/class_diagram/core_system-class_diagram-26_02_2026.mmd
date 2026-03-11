@@ -347,7 +347,7 @@ GameManager o-- DataManager
 DataManager o-- EvaluationData
 EvaluationData o-- PuzzleResultData
 
-EvaluationSystem -- PuzzleResultData
+EvaluationSystem o-- PuzzleResultData
 EvaluationSystem -- DataManager
 PuzzleEvaluation -- EvaluationSystem
 PuzzleEvaluation -- ScoreScreen
