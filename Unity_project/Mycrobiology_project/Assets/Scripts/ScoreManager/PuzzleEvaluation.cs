@@ -23,7 +23,9 @@ public class PuzzleEvaluation : MonoBehaviour
         runtimeDict = new Dictionary<string, int>();
 
         foreach (var pair in values)
+        {
             runtimeDict[pair.key] = pair.value;
+        }
     }
 
     public int GetValue(string key)
