@@ -25,6 +25,9 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "0ecd03d7-bf3d-4373-a511-f9f31c163272",
                     "name": "PointerPosition",
                     "type": "Value",
                     "id": "5df044d2-f22a-4bda-9372-0c571dd138a5",
@@ -169,6 +172,19 @@
                 },
                 {
                     "name": "",
+                    "id": "52309698-1127-4ed0-9a6f-5ee649f278d9",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pickdown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
+                    "path": "<Touchscreen>/primaryTouch/tap",
                     "id": "0e6b6e76-12b7-4cdb-adf9-948484f1392e",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
@@ -186,6 +202,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b55f807f-dfa9-47f3-883b-159fb80ca472",
+                    "path": "<Pointer>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8b20b6f-ffa3-4bfa-8a52-1ab91f0a1beb",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
