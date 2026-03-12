@@ -111,7 +111,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Position"",
+                    ""name"": ""PointerPosition"",
                     ""type"": ""Value"",
                     ""id"": ""0ecd03d7-bf3d-4373-a511-f9f31c163272"",
                     ""expectedControlType"": ""Vector2"",
@@ -277,45 +277,12 @@ public partial class @Map: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""44fc5cad-7e4d-4d23-a715-547ace6c3572"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PointerPosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ea7a9f48-8632-491c-99a3-36106df65c75"",
-                    ""path"": ""<Touchscreen>/primaryTouch/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PointerPosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b55f807f-dfa9-47f3-883b-159fb80ca472"",
-                    ""path"": ""<Pointer>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b8b20b6f-ffa3-4bfa-8a52-1ab91f0a1beb"",
                     ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Position"",
+                    ""action"": ""PointerPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -334,7 +301,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Position = m_Player.FindAction("Position", throwIfNotFound: true);
+        m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
     }
 
     ~@Map()
@@ -417,7 +384,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Position;
+    private readonly InputAction m_Player_PointerPosition;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -438,9 +405,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Position".
+        /// Provides access to the underlying input action "Player/PointerPosition".
         /// </summary>
-        public InputAction @Position => m_Wrapper.m_Player_Position;
+        public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -473,9 +440,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @Position.started += instance.OnPosition;
-            @Position.performed += instance.OnPosition;
-            @Position.canceled += instance.OnPosition;
+            @PointerPosition.started += instance.OnPointerPosition;
+            @PointerPosition.performed += instance.OnPointerPosition;
+            @PointerPosition.canceled += instance.OnPointerPosition;
         }
 
         /// <summary>
@@ -493,9 +460,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @Position.started -= instance.OnPosition;
-            @Position.performed -= instance.OnPosition;
-            @Position.canceled -= instance.OnPosition;
+            @PointerPosition.started -= instance.OnPointerPosition;
+            @PointerPosition.performed -= instance.OnPointerPosition;
+            @PointerPosition.canceled -= instance.OnPointerPosition;
         }
 
         /// <summary>
@@ -564,11 +531,11 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Position" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "PointerPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPosition(InputAction.CallbackContext context);
+        void OnPointerPosition(InputAction.CallbackContext context);
     }
 }
