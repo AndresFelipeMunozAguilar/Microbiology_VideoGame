@@ -16,7 +16,7 @@ public class Raycaster : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
 
         RaycastHit2D rayHit = Physics2D.GetRayIntersection(ray);
-
+        ControlsManager.instance.setError(rayHit.collider.name.ToString());
         if (!rayHit.collider) return;
 
         Debug.Log($"Se hizo tap sobre el objeto {rayHit.collider.gameObject.name}");

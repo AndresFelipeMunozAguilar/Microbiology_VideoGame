@@ -67,7 +67,7 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
         score.AddPoints("ganar");
         //Falta añadir la lógica de calcular la performance en el puzzle
-
+        score.FinishGame(true);
         Destroy(this.gameObject);
     }
 
@@ -76,7 +76,7 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
         score.RemovePoints("perder");
         //Falta añadir la lógica de calcular la performance en el puzzle
-
+        score.FinishGame(false);
         Destroy(this.gameObject);
     }
 
