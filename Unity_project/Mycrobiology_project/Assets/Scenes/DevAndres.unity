@@ -198,6 +198,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &86841721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5387192619926567762, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+  m_PrefabInstance: {fileID: 2027827472}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4f429a3d1172848b1715dcfb73028b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Raycaster
 --- !u!1 &225240878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,6 +1628,22 @@ PrefabInstance:
     - target: {fileID: 1317378333714845139, guid: f48c1522795114c4da5467e309efa2da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426640551534106158, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+      propertyPath: raycaster
+      value: 
+      objectReference: {fileID: 86841721}
+    - target: {fileID: 2426640551534106158, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+      propertyPath: _interactAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426640551534106158, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+      propertyPath: _interactAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 2cb432e5-fe20-4cc7-91ee-e93d7fcb5f2a
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426640551534106158, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+      propertyPath: _interactAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 8534803753062833337, guid: f48c1522795114c4da5467e309efa2da, type: 3}
       propertyPath: m_Name
