@@ -48,13 +48,18 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
+        Debug.Log("GameManager Awake called");
+
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+
+            Debug.Log("GameManager DontDestroyOnLoad instance set in Awake");
         }
         else
         {
+            Debug.LogWarning($"GameManager instance already exists. Destroying duplicate on GameObject: {this.gameObject.name}");
             Destroy(this.gameObject);
         }
 
@@ -73,7 +78,15 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("La instancia estática de GameManager es null, instanciando uno nuevo");
 
-            instance = Instantiate(_gameManagerPrefab).GetComponent<GameManager>();
+            // Dado que se entra al condicional cuando 
+            // instance == null, puedo garantizar que, 
+            // al instanciar el prefab y entrar en el 
+            // Awake del GameManager, se asignará la 
+            // instancia estática correctamente y se
+            //  asignará como DontDestroyOnLoad, evitando 
+            // así problemas de acceso a la instancia 
+            // desde otros objetos
+            Instantiate(_gameManagerPrefab);
         }
 
         return instance;
