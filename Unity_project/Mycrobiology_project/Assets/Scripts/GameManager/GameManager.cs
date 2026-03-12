@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     // instanciación de GameManager
     private static Action OnGameOver;
 
+    // Prefab que se usa para una instanciación perezosa (Lazy Instantiation)
+    [SerializeField] private static GameObject _gameManagerPrefab;
+
     public void Awake()
     {
         if (instance == null)
@@ -66,6 +69,13 @@ public class GameManager : MonoBehaviour
 
     public static GameManager GetInstance()
     {
+        if (instance == null)
+        {
+            Debug.Log("La instancia estática de GameManager es null, instanciando uno nuevo");
+
+            instance = Instantiate(_gameManagerPrefab).GetComponent<GameManager>();
+        }
+
         return instance;
     }
 
