@@ -89,14 +89,6 @@ MonoBehaviour:
     m_ActionId: 49325885-c84b-4d4f-9065-9e9467a462a9
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7761735c-cd27-41a0-a6ea-e4d56f7eae1d
-    m_ActionName: 'Player/PickUp[/Keyboard/z]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a062a811-1a1f-4df7-8522-1cfc1a4482bb
-    m_ActionName: 'Player/Pickdown[/Keyboard/x]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2426640551534106158}
         m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
@@ -112,6 +104,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6607f3c3-63ce-46bc-b9f2-448a8430e1a1
     m_ActionName: 'Player/Click[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5df044d2-f22a-4bda-9372-0c571dd138a5
+    m_ActionName: 'Player/PointerPosition[/Mouse/position,/Touchscreen/primaryTouch/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -130,3 +126,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   raycaster: {fileID: 6499737074680295084}
+  _interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ad4d8184-6b55-485a-8e9a-154482f901ea
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _pointerPositionAction:
+    m_Name: Pointer Position
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 057e0de8-ba0c-4a96-8060-7d1483445c2e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

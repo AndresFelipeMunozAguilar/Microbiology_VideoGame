@@ -6,7 +6,7 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
     Rigidbody2D rb;
     [SerializeField] private float speed;
     // Transform objectCollision;
-    private Vector2 input;
+    private Vector2 _input;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,12 +26,20 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
         GameManager.UnsubscribeToGameOver(this);
     }
 
-    void FixedUpdate()
+
+    public void Update()
     {
-        input = ControlsManager.getControls().Move.ReadValue<Vector2>();
-        if (input.sqrMagnitude > 0.01f)
+        // 1. Capturamos el input en cada frame de renderizado (Máxima precisión)
+        _input = ControlsManager.getControls().Move.ReadValue<Vector2>();
+    }
+    public void FixedUpdate()
+    {
+        // 2. Aplicamos la física basándonos en el último input capturado
+        // Usamos sqrMagnitude por eficiencia (evita el cálculo de raíz cuadrada)
+        if (_input.sqrMagnitude > 0.01f)
         {
-            Vector2 targetPos = rb.position + input * speed * Time.fixedDeltaTime;
+            // Nota: En FixedUpdate, multiplicamos por Time.fixedDeltaTime
+            Vector2 targetPos = rb.position + _input * speed * Time.fixedDeltaTime;
             rb.MovePosition(targetPos);
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 {
@@ -11,8 +12,6 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
     [SerializeField] private bool isDead;
 
     public static Action<int> OnHealthChanged;
-
-
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
