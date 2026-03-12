@@ -106,7 +106,7 @@ public class PuzzleEvaluation : MonoBehaviour
     private void SendResultToGlobal()
     {
         if(currentScore<0)currentScore=0; //mantener el minimo como 0
-        int? best = EvaluationSystem.Instance.GetBestScore(puzzleID);
+        int? best = EvaluationSystem.Instance.GetBestScore(puzzleID) ?? 0;
         if ((best.HasValue && best< currentScore) || !best.HasValue)
         {
             best=currentScore;

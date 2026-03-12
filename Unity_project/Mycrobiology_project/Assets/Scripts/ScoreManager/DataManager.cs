@@ -36,11 +36,13 @@ public class DataManager : MonoBehaviour
     }
     public PuzzleResultData GetPuzzleByID(string ID)
     {
-        foreach (PuzzleResultData puzzle in CurrentData.puzzles)
-        {
-            if (puzzle.puzzleID.Equals(ID))
+        if(CurrentData != null){
+            foreach (PuzzleResultData puzzle in CurrentData.puzzles)
             {
-                return puzzle;
+                if (puzzle.puzzleID.Equals(ID))
+                {
+                    return puzzle;
+                }
             }
         }
         return null;
