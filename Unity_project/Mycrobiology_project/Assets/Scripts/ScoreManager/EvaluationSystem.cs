@@ -8,6 +8,8 @@ public class EvaluationSystem : MonoBehaviour
     private List<PuzzleResultData> results = new List<PuzzleResultData>();
     private Dictionary<string, int> puzzleFinalScores = new Dictionary<string, int>();
     private int totalScore = 0;
+    [SerializeField]private int MaxTotalScore=100;
+    private string totalPerformance;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class EvaluationSystem : MonoBehaviour
 
         puzzleFinalScores.Add(puzzleID, finalScore);
         totalScore += finalScore;
+        totalPerformance =CalculatePerformance(totalScore, MaxTotalScore);
 
         string performance = CalculatePerformance(finalScore, maxScore);
         results.Add(new PuzzleResultData
@@ -47,6 +50,7 @@ public class EvaluationSystem : MonoBehaviour
 
 
     public int GetTotalScore() => totalScore;
+    public string GetTotalPerformance() => totalPerformance;
 
     public int GetPuzzleScore(string puzzleID)
     {
