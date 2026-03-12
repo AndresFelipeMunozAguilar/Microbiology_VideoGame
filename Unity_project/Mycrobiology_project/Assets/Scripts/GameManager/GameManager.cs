@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     // de escenas no funcionará.
     public enum GameScenes
     {
-        TestMenu,
         DevAndres,
+        TestMenu,
         DevBrandon,
         Develop,
         TempGameOver,
