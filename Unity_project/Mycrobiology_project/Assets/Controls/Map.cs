@@ -72,7 +72,7 @@ using UnityEngine.InputSystem.Utilities;
 /// }
 /// </code>
 /// </example>
-public partial class @Map : IInputActionCollection2, IDisposable
+public partial class @Map: IInputActionCollection2, IDisposable
 {
     /// <summary>
     /// Provides access to the underlying asset instance.
@@ -256,7 +256,7 @@ public partial class @Map : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0e6b6e76-12b7-4cdb-adf9-948484f1392e"",
-                    ""path"": ""<Touchscreen>/Press"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -266,19 +266,8 @@ public partial class @Map : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""44fc5cad-7e4d-4d23-a715-547ace6c3572"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PointerPosition"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ea7a9f48-8632-491c-99a3-36106df65c75"",
-                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""id"": ""dc0c8ac8-5447-4caf-aefa-01b3f78910f8"",
+                    ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
