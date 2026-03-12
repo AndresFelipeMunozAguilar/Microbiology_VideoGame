@@ -21,6 +21,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
         currentLives = maxLives;
         OnHealthChanged?.Invoke(currentLives);
         isDead = false;
+
     }
 
     public void OnDisable()
