@@ -676,6 +676,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5796881941057689035, guid: 6105c6b92c72cfd489ed22479d3c1364, type: 3}
+      propertyPath: m_text
+      value: DEFAULT
+      objectReference: {fileID: 0}
     - target: {fileID: 6174733936129562716, guid: 6105c6b92c72cfd489ed22479d3c1364, type: 3}
       propertyPath: m_Name
       value: Countdown
@@ -1390,6 +1394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LivesCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 2302330203163697240, guid: 4627233276fc36e458fc7bbce133d70a, type: 3}
+      propertyPath: m_text
+      value: Dft
+      objectReference: {fileID: 0}
     - target: {fileID: 4083364929215346731, guid: 4627233276fc36e458fc7bbce133d70a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1650,6 +1658,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f48c1522795114c4da5467e309efa2da, type: 3}
+--- !u!1 &2128791617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 310497863040409449, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+  m_PrefabInstance: {fileID: 6912646116774164512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2128791619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128791617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91dec657b7d1e949a7820892e4ed30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageDealer
+  damageAmount: 3
 --- !u!1001 &2732756911771623591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1763,10 +1789,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: performanceResult
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: _playerHealthLogic
+      value: 
+      objectReference: {fileID: 1883528563}
+    - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: _playerDamageDealer
+      value: 
+      objectReference: {fileID: 2128791619}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 310497863040409449, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 2128791619}
   m_SourcePrefab: {fileID: 100100000, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
