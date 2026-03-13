@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6153627273138089844}
   - component: {fileID: 2130455722197755066}
   - component: {fileID: 8526291106525290407}
-  - component: {fileID: 5384294113285294433}
   m_Layer: 9
   m_Name: PuzzleManager
   m_TagString: Untagged
@@ -157,21 +156,8 @@ MonoBehaviour:
   isVictoryAchieved: 0
   gameplay: {fileID: 1367269877804794657, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
   puzzleGameplayPrefab: {fileID: 716249032572011630, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
-  performanceResult: {fileID: 5384294113285294433}
+  performanceResult: {fileID: 0}
   gameManager: {fileID: 0}
---- !u!114 &5384294113285294433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310497863040409449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4006f1b464a325f498c74f5cffc33d57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PerformanceResult
-  sampleText: Hola, soy la clase PerformanceResult
 --- !u!1 &7593797587746177536
 GameObject:
   m_ObjectHideFlags: 0
