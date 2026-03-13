@@ -108,7 +108,10 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void ExecuteDefeatLogic()
     {
         Debug.Log("PuzzleManager: Lo siento, perdiste el puzzle.");
+
+        _playerDamageDealer.CalculateDamage();
         _playerDamageDealer.DealDamage(_playerHealthLogic);
+
         gameplay.Defeat();
     }
 
