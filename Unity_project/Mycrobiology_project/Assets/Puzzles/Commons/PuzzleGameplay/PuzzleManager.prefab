@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7239192439233506365}
   - component: {fileID: 6153627273138089844}
   - component: {fileID: 2130455722197755066}
+  - component: {fileID: 9111576306358749388}
   - component: {fileID: 8526291106525290407}
   m_Layer: 9
   m_Name: PuzzleManager
@@ -140,6 +141,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &9111576306358749388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310497863040409449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91dec657b7d1e949a7820892e4ed30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageDealer
+  _damageAmount: 3
 --- !u!114 &8526291106525290407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +170,8 @@ MonoBehaviour:
   isVictoryAchieved: 0
   gameplay: {fileID: 1367269877804794657, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
   puzzleGameplayPrefab: {fileID: 716249032572011630, guid: f40ade4014dfbec4786316e251e1c834, type: 3}
+  _playerHealthLogic: {fileID: 0}
+  _playerDamageDealer: {fileID: 9111576306358749388}
   performanceResult: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!1 &7593797587746177536
