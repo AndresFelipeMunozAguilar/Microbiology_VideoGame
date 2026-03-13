@@ -17,12 +17,21 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     [SerializeField]
     private GameObject puzzleGameplayPrefab;
 
+    [Header("Player Damage and Health Logic")]
+    [SerializeField]
+    private PlayerHealthLogic _playerHealthLogic;
+
+    [SerializeField]
+    private PlayerDamageDealer _playerDamageDealer;
+
     [Header("Others")]
     [SerializeField]
     private PerformanceResult performanceResult;
 
     [SerializeField]
     private GameManager gameManager;
+
+
 
 
     public void Start()
@@ -54,15 +63,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             gameplay = puzzelGameplayOut;
 
 
-            if (gameplay.IsFirstTime())
-            {
-                gameplay.ShowTutorial();
-            }
-            else
-            {
-                StartPuzzle();
-            }
-
+            StartPuzzle();
 
         }
 
@@ -70,7 +71,14 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     public void StartPuzzle()
     {
-        gameplay.StartGameplay();
+        if (gameplay.IsFirstTime())
+        {
+            gameplay.ShowTutorial();
+        }
+        else
+        {
+            gameplay.StartGameplay();
+        }
     }
 
     public void CompletePuzzle()
@@ -79,18 +87,29 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         if (isVictoryAchieved)
         {
-            Debug.Log("PuzzleManager: Felicidades, ganaste el puzzle!");
-            gameplay.Victory();
+            ExecuteVictoryLogic();
         }
         else
         {
-            Debug.Log("PuzzleManager: Lo siento, perdiste el puzzle.");
-            gameplay.Defeat();
+            ExecuteDefeatLogic();
         }
 
 
         gameManager.SwitchIsPuzzleActive();
         gameManager.PuzzleResumeAll();
+    }
+
+    public void ExecuteVictoryLogic()
+    {
+        Debug.Log("PuzzleManager: Felicidades, ganaste el puzzle!");
+        gameplay.Victory();
+    }
+
+    public void ExecuteDefeatLogic()
+    {
+        Debug.Log("PuzzleManager: Lo siento, perdiste el puzzle.");
+        _playerDamageDealer.DealDamage(_playerHealthLogic);
+        gameplay.Defeat();
     }
 
     public float GetScore()
