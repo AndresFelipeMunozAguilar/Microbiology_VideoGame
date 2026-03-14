@@ -7,7 +7,7 @@ public interface IPuzzleManager
 
     public void CompletePuzzle();
 
-    public float GetScore();
+    public int GetScore();
 
     public PerformanceResult GetPerformanceResult();
 }
