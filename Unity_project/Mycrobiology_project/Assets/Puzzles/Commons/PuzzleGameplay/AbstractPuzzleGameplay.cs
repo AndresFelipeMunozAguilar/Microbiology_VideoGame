@@ -13,7 +13,9 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     [SerializeField]
     protected GameObject tutorialPrefab;
-    protected PuzzleEvaluation score;
+
+    [SerializeField]
+    protected PuzzleEvaluation puzzleEvaluation;
 
     public abstract void StartGameplay();
 
@@ -36,6 +38,11 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     {
         Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
         return isFirstTimePlaying;
+    }
+
+    public PuzzleEvaluation GetPuzzleEvaluation()
+    {
+        return puzzleEvaluation;
     }
 
 }
