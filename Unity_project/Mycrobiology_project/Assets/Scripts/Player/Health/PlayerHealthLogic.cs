@@ -13,11 +13,32 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 
     public static Action<int> OnHealthChanged;
 
+    [SerializeField] private GameManager _gameManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public void Awake()
+    {
+
+        _gameManager = GameManager.GetInstance();
+
+        if (_gameManager == null)
+        {
+            Debug.Log($"PlayerHealthLogic: GameManager instance not found: Is null ");
+        }
+        else
+        {
+            Debug.Log($"PlayerHealthLogic: GameManager instance found: {_gameManager.gameObject.name}");
+        }
+
+    }
+
+
     public void OnEnable()
     {
-        GameManager.SubscribeToGameOver(this);
+
+        _gameManager.SubscribeToGameOver(this);
         currentLives = maxLives;
         OnHealthChanged?.Invoke(currentLives);
         isDead = false;
@@ -26,7 +47,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
 
     public void OnDisable()
     {
-        GameManager.UnsubscribeToGameOver(this);
+        _gameManager.UnsubscribeToGameOver(this);
     }
 
     public void TakeDamage(int damageAmount)
@@ -60,7 +81,7 @@ public class PlayerHealthLogic : MonoBehaviour, IDamageable, IGameOverSubscriber
     {
         Debug.Log("Player: I'm dead, executing death logic");
         isDead = true;
-        GameManager.GetInstance().GameOver("Player has died");
+        _gameManager.GameOver("Player has died");
     }
 
     public void OnGameOver()
