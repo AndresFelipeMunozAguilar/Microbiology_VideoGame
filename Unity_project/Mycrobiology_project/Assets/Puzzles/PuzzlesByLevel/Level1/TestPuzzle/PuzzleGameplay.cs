@@ -30,10 +30,10 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
 
     [SerializeField] private Vector3 defBasketSpawnPlace;
 
-   
+
     void Start()
     {
-        score=GetComponent<PuzzleEvaluation>();
+        puzzleEvaluation = GetComponent<PuzzleEvaluation>();
     }
     public override void StartGameplay()
     {
@@ -65,18 +65,18 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
     public override void Victory()
     {
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
-        score.AddPoints("ganar");
+        puzzleEvaluation.AddPoints("ganar");
         //Falta añadir la lógica de calcular la performance en el puzzle
-        score.FinishGame(true);
+        puzzleEvaluation.FinishGame(true);
         Destroy(this.gameObject);
     }
 
     public override void Defeat()
     {
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
-        score.RemovePoints("perder");
+        puzzleEvaluation.RemovePoints("perder");
         //Falta añadir la lógica de calcular la performance en el puzzle
-        score.FinishGame(false);
+        puzzleEvaluation.FinishGame(false);
         Destroy(this.gameObject);
     }
 
