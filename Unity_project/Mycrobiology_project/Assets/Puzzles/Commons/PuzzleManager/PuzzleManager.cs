@@ -109,7 +109,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     {
         Debug.Log("PuzzleManager: Lo siento, perdiste el puzzle.");
 
-        _playerDamageDealer.CalculateDamage();
+        // Llar a mi gameplay y preguntarle el score 
+        _playerDamageDealer.CalculateDamage(29);
         _playerDamageDealer.DealDamage(_playerHealthLogic);
 
         gameplay.Defeat();

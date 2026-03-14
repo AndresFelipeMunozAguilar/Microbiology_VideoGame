@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91dec657b7d1e949a7820892e4ed30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageDealer
-  _damageAmount: 3
+  _damageAmount: 0
+  _puzzleDamageTable: {fileID: 0}
 --- !u!114 &8526291106525290407
 MonoBehaviour:
   m_ObjectHideFlags: 0
