@@ -62,7 +62,8 @@ public class EvaluationSystem : MonoBehaviour
     {
         if(puzzlesAmount == 0)
         {
-            puzzlesAmount =  Object.FindObjectsByType<PuzzleManager>(FindObjectsSortMode.None).Length;
+            PuzzleManager[] puzzles = Object.FindObjectsByType<PuzzleManager>(FindObjectsSortMode.None);
+            int total = puzzles.Length;
         }
         return puzzlesAmount;
     }
