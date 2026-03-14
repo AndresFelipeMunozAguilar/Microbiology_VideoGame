@@ -65,6 +65,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
             StartPuzzle();
 
+
         }
 
     }
