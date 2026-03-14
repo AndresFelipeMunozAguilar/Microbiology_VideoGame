@@ -8,6 +8,10 @@ public class EvaluationSystem : MonoBehaviour
     private List<PuzzleResultData> results = new List<PuzzleResultData>();
     private Dictionary<string, int> puzzleFinalScores = new Dictionary<string, int>();
     private int totalScore = 0;
+    private int FinalScore;
+    [SerializeField]private int MaxTotalScore=100;
+    private string totalPerformance;
+    int puzzlesAmount;
 
     private void Awake()
     {
@@ -35,11 +39,11 @@ public class EvaluationSystem : MonoBehaviour
         Debug.Log($"EvaluationSystem: Añadiendo puntajes del puzzle {puzzleID} a los resultados finales");
         puzzleFinalScores.Add(puzzleID, finalScore);
         totalScore += finalScore;
+        totalPerformance = CalculatePerformance(GetFinalScore(), MaxTotalScore);
 
         Debug.Log($"EvaluationSystem: Calculando el performance del puzzle {puzzleID} con finalScore: {finalScore} y maxScore: {maxScore}");
         string performance = CalculatePerformance(finalScore, maxScore);
-
-        Debug.Log($"EvaluationSystem: Añadiendo resultado del puzzle {puzzleID} a la lista de resultados");
+        Debug.Log("Final Performance"+performance);
         results.Add(new PuzzleResultData
         {
             puzzleID = puzzleID,
@@ -54,8 +58,16 @@ public class EvaluationSystem : MonoBehaviour
         return performance;
     }
 
-
-    public int GetTotalScore() => totalScore;
+    public int GetPuzzlesAmount()
+    {
+        if(puzzlesAmount == 0)
+        {
+            puzzlesAmount =  Object.FindObjectsByType<PuzzleManager>(FindObjectsSortMode.None).Length;
+        }
+        return puzzlesAmount;
+    }
+    public int GetFinalScore() => (totalScore/GetPuzzlesAmount());
+    public string GetTotalPerformance() => totalPerformance;
 
     public int GetPuzzleScore(string puzzleID)
     {
