@@ -22,6 +22,24 @@ public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
     [SerializeField] private float timeRemaining;
     [SerializeField] private float maxTime = 60f;
 
+    [SerializeField] private GameManager _gameManager;
+
+
+    public void Awake()
+    {
+        _gameManager = GameManager.GetInstance();
+
+
+        if (_gameManager == null)
+        {
+            Debug.Log($"CountdownBarManager: GameManager instance not found: Is null ");
+        }
+        else
+        {
+            Debug.Log($"CountdownBarManager: GameManager instance found: {_gameManager.gameObject.name}");
+        }
+
+    }
 
 
     // Para activar la lógica de vaciado de la barra, 
@@ -29,14 +47,14 @@ public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
     // se vaciará la barra sin detenerse.
     public void OnEnable()
     {
-        GameManager.SubscribeToGameOver(this);
+        _gameManager.SubscribeToGameOver(this);
 
         StartCountdown();
     }
 
     public void OnDisable()
     {
-        GameManager.UnsubscribeToGameOver(this);
+        _gameManager.UnsubscribeToGameOver(this);
     }
 
     public void Update()
@@ -119,7 +137,7 @@ public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
 
         Debug.Log("CountdownBarMngr: Time is up! Invoking OnTimeUp Action dlgt...");
 
-        GameManager.GetInstance().GameOver("Time is up!");
+        _gameManager.GameOver("Time is up!");
 
         // Dejar de actualizarse al terminar la cuenta regresiva
         this.enabled = false;

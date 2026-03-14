@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    private static GameManager instance;
+    private static GameManager _instance;
 
     // WARNING: Este enum debe coincidir con 
     // los nombres y orden de las escenas en 
@@ -28,11 +28,10 @@ public class GameManager : MonoBehaviour
 
     private List<IPuzzlePausable> puzzlePausables;
 
-    // Se hace `static` para que no hayan problemas 
-    // de acceso a este evento, porque un objeto 
-    // llame al Action sin tener una instancia 
-    // de GameManager primero. 
-    // 
+    // Este delegate funciona gracias al LazyInstantiation
+    // de lo contrario, la manera como Unity carga
+    // los objetos no lo permitiría.
+    //
     // ========= Explicacion técnica (Too Long) =========
     // Debido a que los metodos Awake(), OnEnable() y Start() no 
     // se ejecutan cronologicamente paso por 
@@ -41,18 +40,17 @@ public class GameManager : MonoBehaviour
     // que llame a la instancia de GameManager 
     // puede estar en un lote anterior a la 
     // instanciación de GameManager
-    private static Action OnGameOver;
+    private Action OnGameOver;
 
-    // Prefab que se usa para una instanciación perezosa (Lazy Instantiation)
-    [SerializeField] private static GameObject _gameManagerPrefab;
+
 
     public void Awake()
     {
         Debug.Log("GameManager Awake called");
 
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(this.gameObject);
 
             Debug.Log("GameManager DontDestroyOnLoad instance set in Awake");
@@ -72,24 +70,45 @@ public class GameManager : MonoBehaviour
     // Evitar la instanciación externa
     private GameManager() { }
 
+
+    // Este método viola el principio de una 
+    // única fuente de verdad, ya que ese deber 
+    // lo tiene el GameManager prefab (Establece 
+    // la verdad sobre que compone a un GameManager) 
+    // y, en cambio aquí instanciamos un nuevo 
+    // GameManager confiando en que tú desarrollador
+    // te basarás en este prefab. 
+    private static GameManager CreateNewInstance()
+    {
+
+        GameObject newGameManager = new GameObject("GameManager");
+
+        // Si hay más componente, añadirlos aquí
+
+        return newGameManager.AddComponent<GameManager>();
+
+    }
+
     public static GameManager GetInstance()
     {
-        if (instance == null)
+        if (_instance == null)
         {
             Debug.Log("La instancia estática de GameManager es null, instanciando uno nuevo");
 
             // Dado que se entra al condicional cuando 
-            // instance == null, puedo garantizar que, 
+            // _instance == null, puedo garantizar que, 
             // al instanciar el prefab y entrar en el 
             // Awake del GameManager, se asignará la 
             // instancia estática correctamente y se
             //  asignará como DontDestroyOnLoad, evitando 
             // así problemas de acceso a la instancia 
             // desde otros objetos
-            Instantiate(_gameManagerPrefab);
+
+            _instance = CreateNewInstance();
+
         }
 
-        return instance;
+        return _instance;
     }
 
 
@@ -143,12 +162,12 @@ public class GameManager : MonoBehaviour
     // Nos aseguramos de que SÓLO los 
     // IGameOverSubscriber puedan suscribirse 
     // y desuscribirse al evento OnGameOver
-    public static void SubscribeToGameOver(IGameOverSubscriber subscriber)
+    public void SubscribeToGameOver(IGameOverSubscriber subscriber)
     {
         OnGameOver += subscriber.OnGameOver;
     }
 
-    public static void UnsubscribeToGameOver(IGameOverSubscriber subscriber)
+    public void UnsubscribeToGameOver(IGameOverSubscriber subscriber)
     {
         OnGameOver -= subscriber.OnGameOver;
     }

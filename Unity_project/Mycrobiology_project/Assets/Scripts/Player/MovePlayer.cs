@@ -7,23 +7,42 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
     [SerializeField] private float speed;
     // Transform objectCollision;
     private Vector2 _input;
+
+    [SerializeField]
+    private GameManager _gameManager;
+
+    public void Awake()
+    {
+
+        _gameManager = GameManager.GetInstance();
+
+        if (_gameManager == null)
+        {
+            Debug.Log($"MovePlayer: GameManager instance not found: Is null ");
+        }
+        else
+        {
+            Debug.Log($"MovePlayer: GameManager instance found: {_gameManager.gameObject.name}");
+        }
+
+    }
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        GameManager.GetInstance().SubscribePuzzlePausable(this);
-
+        _gameManager.SubscribePuzzlePausable(this);
     }
 
     public void OnEnable()
     {
         // if (GameManager.GetInstance() == null) Debug.LogError("MovePlayer: GameManager instance es null en OnEnable. Esto no deberia pasar.");
-        GameManager.SubscribeToGameOver(this);
+        _gameManager.SubscribeToGameOver(this);
     }
 
     public void OnDisable()
     {
-        GameManager.UnsubscribeToGameOver(this);
+        _gameManager.UnsubscribeToGameOver(this);
     }
 
 
@@ -57,11 +76,6 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
     public void PuzzleResumeMe()
     {
         ActivateScript();
-    }
-
-    public void OnDestroy()
-    {
-        GameManager.GetInstance().UnsubscribePuzzlePausable(this);
     }
 
     public void OnGameOver()
