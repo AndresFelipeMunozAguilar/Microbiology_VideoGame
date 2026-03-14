@@ -48,7 +48,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             gameManager.SwitchIsPuzzleActive();
             gameManager.PuzzlePauseAll();
 
-            Debug.Log("Puzzlemanager: Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
+            Debug.Log("<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
 
             Instantiate(puzzleGameplayPrefab, this.transform)
                 .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
@@ -59,7 +59,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
                 return;
             }
 
-            Debug.Log("Puzzlemanager: Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
+            Debug.Log("<color=green>PuzzleManager:</color> Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
             gameplay = puzzelGameplayOut;
 
 
@@ -101,26 +101,26 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     public void ExecuteVictoryLogic()
     {
-        Debug.Log("PuzzleManager: Felicidades, ganaste el puzzle!");
+        Debug.Log("<color=green>PuzzleManager:</color> Felicidades, ganaste el puzzle!");
         gameplay.Victory();
     }
 
     public void ExecuteDefeatLogic()
     {
-        Debug.Log("PuzzleManager: Lo siento, perdiste el puzzle.");
+        Debug.Log("<color=green>PuzzleManager:</color> Lo siento, perdiste el puzzle.");
 
-        // Llar a mi gameplay y preguntarle el score 
-        _playerDamageDealer.CalculateDamage(29);
+
+        _playerDamageDealer.CalculateDamage(GetScore());
         _playerDamageDealer.DealDamage(_playerHealthLogic);
 
         gameplay.Defeat();
     }
 
-    public float GetScore()
+    public int GetScore()
     {
-        Debug.Log($"Score is: 100");
-
-        return 100f;
+        int currentGameplayScore = gameplay.GetPuzzleEvaluation().GetCurrentScore();
+        Debug.Log($"<color=green>PuzzleManager:</color> El puntaje obtenido fue: {currentGameplayScore}");
+        return currentGameplayScore;
     }
 
     public PerformanceResult GetPerformanceResult()
