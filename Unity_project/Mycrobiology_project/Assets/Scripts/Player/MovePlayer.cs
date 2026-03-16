@@ -45,6 +45,11 @@ public class MovePlayer : MonoBehaviour, IPausable, IPuzzlePausable, IGameOverSu
         _gameManager.UnsubscribeToGameOver(this);
     }
 
+    public void OnDestroy()
+    {
+        _gameManager.UnsubscribePuzzlePausable(this);
+    }
+
 
     public void Update()
     {

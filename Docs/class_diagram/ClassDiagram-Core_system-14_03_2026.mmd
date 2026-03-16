@@ -14,29 +14,32 @@ class IPuzzlePausable {
 class GameScenes {
     <<enumeration>> 
     DevAndres
+    TestMenu
     DevBrandon
     Develop
     TempGameOver
+    TestPuzzle
 }
 
 class GameManager {
     <<Singleton>>
     - GameManager instance$
     + enum GameScenes
-    - bool isGameOver
-    - bool isPuzzleActive
-    - Action OnGameOver$
+    + bool isGameOver
+    + bool isPuzzleActive
+    - Action OnGameOver
     - DataManager dataManager
     - List~IPuzzlePausable~ puzzlePausables
     - GameManager() void
+    - CreateNewInstance() GameManager$
     + Awake() void
     + GetInstance() GameManager$
     + LoadScene(scene: GameScenes) void
     + NotifyGameOverSubscribers() void
     + GameOver(reason: string) void
     + OnVictory() void
-    + SubscribeToGameOver(subscriber: IGameOverSubscriber ) void$
-    + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void$
+    + SubscribeToGameOver(subscriber: IGameOverSubscriber) void
+    + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void
     + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
     + UnsubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
     + PuzzlePauseAll() void
@@ -47,15 +50,18 @@ class GameManager {
 class MovePlayer {
     - Rigidbody2D rb
     - float speed
-    - Vector2 input
-    + Start() void
+    - Vector2 _input
+    - GameManager _gameManager
+
+    + Awake() void
+    - Start() void
     + OnEnable() void
     + OnDisable() void
-    + FixedUpdate() void
+    - Update() void
+    - FixedUpdate() void
     + Pause() void
     + PuzzlePauseMe() void
     + PuzzleResumeMe() void
-    + OnDestroy() void
     + OnGameOver() void
     + DeactivateScript() void
     + ActivateScript() void
@@ -66,20 +72,17 @@ class PlayerHealthLogic {
     - int currentLives
     - bool isDead
     + Action~int~ OnHealthChanged$
+    - GameManager _gameManager
+
+    + Awake() void
     + OnEnable() void
     + OnDisable() void
     + TakeDamage(damageAmount: int) void
-    + int ReduceLivesNBound(damageAmount: int)
+    + ReduceLivesNBound(damageAmount: int) int
     + PlayerDead() void
     + OnGameOver() void
 }
 
-class PlayerHealthView {
-    - TextMeshProUGUI healthText
-    + OnEnable() void
-    + UpdateHealthText(currentLives: int) void
-    + OnDisable() void
-}
 
 class PuzzleHalo {
     + float pulseSpeed
@@ -106,12 +109,17 @@ class CountdownBarManager {
     - int previousTimeRemaining
     - float timeRemaining
     - float maxTime
+    - GameManager _gameManager
+
+    + Awake() void
     + OnEnable() void
+    + OnDisable() void
     + Update() void
     + StartCountdown() void
     + SetPaused(paused: bool) void
     + ResetCountdown() void
     + TimeIsUp() void
+    + OnGameOver() void
 }
 
 class CountdownTextManager {
@@ -127,6 +135,13 @@ class IGameOverSubscriber {
     + OnGameOver() void
 }
 
+class PlayerHealthView {
+    - TextMeshProUGUI healthText
+    + OnEnable() void
+    + UpdateHealthText(currentLives: int) void
+    + OnDisable() void
+}
+
 class IDamageable {
     <<interface>>
     + TakeDamage(damageAmount: int) void
@@ -136,8 +151,18 @@ class IPuzzleManager {
     <<interface>>
     + StartPuzzle() void
     + CompletePuzzle() void
-    + GetScore() float
+    + GetScore() int
     + GetPerformanceResult() PerformanceResult
+}
+
+class DamageThreshold {
+    + int threshold
+    + int damage
+}
+
+class PuzzleDamageTable {
+    <<ScriptableObject>>
+    + List<DamageThreshold> damageThresholdPairs
 }
 
 class PuzzleManager {
@@ -146,19 +171,31 @@ class PuzzleManager {
     - PuzzleHalo halo
     - GameObject puzzleGameplayPrefab
     - AbstractPuzzleGameplay gameplay
+    - PlayerHealthLogic _playerHealthLogic
+    - PlayerDamageDealer _playerDamageDealer
     - PerformanceResult performanceResult
-    - GameManager gameManager
+    - GameManager _gameManager
     + bool isVictoryAchieved
     + OnTap() void
     + Start() void
     + OnDestroy() void
+    + ExecuteVictoryLogic() void
+    + ExecuteDefeatLogic() void
     + ShowFeedback(qualitativeResult: string) void
     + PuzzlePauseMe() void
     + PuzzleResumeMe() void
     + StartPuzzle() void
     + CompletePuzzle() void
-    + GetScore() float
+    + GetScore() int
     + GetPerformanceResult() PerformanceResult
+}
+
+class PlayerDamageDealer {
+    - int _damageAmount
+    - PuzzleDamageTable _puzzleDamageTable
+
+    + CalculateDamage(gameplayScore: int) void
+    + DealDamage(target: IDamageable) void
 }
 
 class ITappable {
@@ -235,14 +272,21 @@ class EvaluationData {
 
 class EvaluationSystem {
     <<Singleton>>
-    + static EvaluationSystem Instance
+    + EvaluationSystem Instance$
     - string playerID
     - List~PuzzleResultData~ results
     - Dictionary~string,int~ puzzleFinalScores
     - int totalScore
-    + Awake() void
+    - int FinalScore
+    - int MaxTotalScore
+    - string totalPerformance
+    - int puzzlesAmount
+
+    - Awake() void
     + RegisterPuzzleResult(puzzleID: string, finalScore: int, maxScore: int, bestScore: int) string
-    + GetTotalScore() int
+    + GetPuzzlesAmount() int
+    + GetFinalScore() int
+    + GetTotalPerformance() string
     + GetPuzzleScore(puzzleID: string) int
     - CalculatePerformance(score: int, maxScore: int) string
     + SaveAllResults(playerID: string) void
@@ -257,7 +301,7 @@ class PuzzleEvaluation {
     - int loseScoreThreshold
     - int currentScore
     - bool finished
-    - List~AcationKey~ values
+    - List~ActionKey~ values
     - GameObject ScreenScore
     - Dictionary~string,int~ runtimeDict
     + Awake() void
@@ -285,7 +329,7 @@ class ScoreScreen {
     + Close() void
 }
 
-class AcationKey {
+class ActionKey {
     + string key
     + int value
 }
@@ -299,7 +343,7 @@ class EasterEgg {
 class AbstractPuzzleGameplay {
     <<abstract>>
     # DataManager dataManager
-    # PuzzleEvaluation score
+    # PuzzleEvaluation puzzleEvaluation
     # GameObject background
     # bool isFirstTimePlaying
     # GameObject tutorialPrefab
@@ -309,9 +353,9 @@ class AbstractPuzzleGameplay {
     + Defeat() void*
     + ShowTutorial() void
     + IsFirstTime() bool
+    + GetPuzzleEvaluation() PuzzleEvaluation
 }
 
-GameManager <.. PuzzleHalo : subscribes
 
 IPuzzlePausable <|.. PuzzleHalo
 IPuzzlePausable <|.. PuzzleManager
@@ -322,23 +366,33 @@ PlayerHealthLogic ..|> IGameOverSubscriber
 PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
 
 GameScenes --* GameManager
-GameManager <.. MovePlayer : subscribes
+
 GameManager <.. PlayerHealthLogic : notifica GameOver por vida
-GameManager <.. PuzzleManager : subscribes
+
 GameManager <.. CountdownBarManager : notifica time up
 CountdownBarManager <.. CountdownTextManager : se suscribe a OnTimeChanged
 
 MovePlayer ..|> IGameOverSubscriber
 
-IGameOverSubscriber --o GameManager
+
+
+DamageThreshold --* PuzzleDamageTable
+PuzzleDamageTable --o PlayerDamageDealer
+
+
+IGameOverSubscriber --o GameManager: subscribes
 IPuzzleManager <|.. PuzzleManager
 ITappable <|.. PuzzleManager
 
 PuzzleManager *-- FeedbackText
 PuzzleManager *-- PerformanceResult
 PuzzleManager *-- PuzzleHalo
+PuzzleManager o-- PlayerHealthLogic
+PuzzleManager *-- PlayerDamageDealer
+PuzzleManager <.. EvaluationSystem
 PuzzleTutorial -- AbstractPuzzleGameplay
 PuzzleManager *-- AbstractPuzzleGameplay
+
 
 PuzzleManager -- DataManager
 AbstractPuzzleGameplay -- DataManager
@@ -351,11 +405,11 @@ EvaluationSystem o-- PuzzleResultData
 EvaluationSystem -- DataManager
 PuzzleEvaluation -- EvaluationSystem
 PuzzleEvaluation -- ScoreScreen
-PuzzleEvaluation o-- AcationKey
+PuzzleEvaluation o-- ActionKey
 
 AbstractPuzzleGameplay o-- PuzzleEvaluation
 
-IPuzzlePausable --o GameManager
+IPuzzlePausable --o GameManager: Subscribes
 PuzzleManager -- GameManager : reporta resultado
 
 InputHandler -- Raycaster

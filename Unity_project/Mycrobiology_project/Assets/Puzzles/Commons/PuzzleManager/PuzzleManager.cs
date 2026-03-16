@@ -29,15 +29,15 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     private PerformanceResult performanceResult;
 
     [SerializeField]
-    private GameManager gameManager;
+    private GameManager _gameManager;
 
 
 
 
     public void Start()
     {
-        gameManager = GameManager.GetInstance();
-        gameManager.SubscribePuzzlePausable(this);
+        _gameManager = GameManager.GetInstance();
+        _gameManager.SubscribePuzzlePausable(this);
     }
 
 
@@ -45,8 +45,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     {
         if (halo.isPlayerClose)
         {
-            gameManager.SwitchIsPuzzleActive();
-            gameManager.PuzzlePauseAll();
+            _gameManager.SwitchIsPuzzleActive();
+            _gameManager.PuzzlePauseAll();
 
             Debug.Log("<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
 
@@ -96,8 +96,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         }
 
 
-        gameManager.SwitchIsPuzzleActive();
-        gameManager.PuzzleResumeAll();
+        _gameManager.SwitchIsPuzzleActive();
+        _gameManager.PuzzleResumeAll();
     }
 
     public void ExecuteVictoryLogic()
@@ -143,6 +143,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     public void OnDestroy()
     {
-        gameManager.UnsubscribePuzzlePausable(this);
+        _gameManager.UnsubscribePuzzlePausable(this);
     }
 }
