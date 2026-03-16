@@ -20,4 +20,6 @@ public class GamePlayElements : MonoBehaviour
             SelectElements.RemoveAt(pos);
         }
     }
+
+
 }
