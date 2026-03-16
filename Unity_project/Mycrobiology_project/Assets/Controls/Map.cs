@@ -118,6 +118,15 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""58a0374e-cbe4-49dc-ad5c-d15aa3f65d25"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -285,6 +294,56 @@ public partial class @Map: IInputActionCollection2, IDisposable
                     ""action"": ""PointerPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd1d18f1-6841-4148-89e4-df48a113f0a4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03f243bb-2b20-4c45-a295-11802af337e2"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""New action map"",
+            ""id"": ""c3063ad2-c83b-488b-be27-ea2642232a0f"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""93fe9350-6b35-431d-bb69-eebe526239cb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f0569d59-343e-4e6e-8441-bc5604941eed"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -302,11 +361,16 @@ public partial class @Map: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_PointerPosition = m_Player.FindAction("PointerPosition", throwIfNotFound: true);
+        m_Player_Drag = m_Player.FindAction("Drag", throwIfNotFound: true);
+        // New action map
+        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
+        m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
     }
 
     ~@Map()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, Map.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Newactionmap.enabled, "This will cause a leak and performance issues, Map.Newactionmap.Disable() has not been called.");
     }
 
     /// <summary>
@@ -385,6 +449,7 @@ public partial class @Map: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_PointerPosition;
+    private readonly InputAction m_Player_Drag;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -408,6 +473,10 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/PointerPosition".
         /// </summary>
         public InputAction @PointerPosition => m_Wrapper.m_Player_PointerPosition;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Drag".
+        /// </summary>
+        public InputAction @Drag => m_Wrapper.m_Player_Drag;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -443,6 +512,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @PointerPosition.started += instance.OnPointerPosition;
             @PointerPosition.performed += instance.OnPointerPosition;
             @PointerPosition.canceled += instance.OnPointerPosition;
+            @Drag.started += instance.OnDrag;
+            @Drag.performed += instance.OnDrag;
+            @Drag.canceled += instance.OnDrag;
         }
 
         /// <summary>
@@ -463,6 +535,9 @@ public partial class @Map: IInputActionCollection2, IDisposable
             @PointerPosition.started -= instance.OnPointerPosition;
             @PointerPosition.performed -= instance.OnPointerPosition;
             @PointerPosition.canceled -= instance.OnPointerPosition;
+            @Drag.started -= instance.OnDrag;
+            @Drag.performed -= instance.OnDrag;
+            @Drag.canceled -= instance.OnDrag;
         }
 
         /// <summary>
@@ -496,6 +571,102 @@ public partial class @Map: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
     public PlayerActions @Player => new PlayerActions(this);
+
+    // New action map
+    private readonly InputActionMap m_Newactionmap;
+    private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
+    private readonly InputAction m_Newactionmap_Newaction;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "New action map".
+    /// </summary>
+    public struct NewactionmapActions
+    {
+        private @Map m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public NewactionmapActions(@Map wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Newactionmap/Newaction".
+        /// </summary>
+        public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="NewactionmapActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="NewactionmapActions" />
+        public void AddCallbacks(INewactionmapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="NewactionmapActions" />
+        private void UnregisterCallbacks(INewactionmapActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="NewactionmapActions.UnregisterCallbacks(INewactionmapActions)" />.
+        /// </summary>
+        /// <seealso cref="NewactionmapActions.UnregisterCallbacks(INewactionmapActions)" />
+        public void RemoveCallbacks(INewactionmapActions instance)
+        {
+            if (m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="NewactionmapActions.AddCallbacks(INewactionmapActions)" />
+        /// <seealso cref="NewactionmapActions.RemoveCallbacks(INewactionmapActions)" />
+        /// <seealso cref="NewactionmapActions.UnregisterCallbacks(INewactionmapActions)" />
+        public void SetCallbacks(INewactionmapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NewactionmapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="NewactionmapActions" /> instance referencing this action map.
+    /// </summary>
+    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
     private int m_ControlsSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -537,5 +708,27 @@ public partial class @Map: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPointerPosition(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Drag" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDrag(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "New action map" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="NewactionmapActions.AddCallbacks(INewactionmapActions)" />
+    /// <seealso cref="NewactionmapActions.RemoveCallbacks(INewactionmapActions)" />
+    public interface INewactionmapActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
