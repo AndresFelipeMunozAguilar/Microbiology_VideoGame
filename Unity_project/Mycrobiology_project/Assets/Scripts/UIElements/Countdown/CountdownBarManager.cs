@@ -4,25 +4,24 @@ using UnityEngine.UI;
 
 public class CountdownBarManager : MonoBehaviour, IGameOverSubscriber
 {
+    [Header("Objetos asociados")]
     [SerializeField] private Image countdownBar;
+    [SerializeField] private GameManager _gameManager;
 
-
-    [Header("Main Behaviour")]
+    [Header("Comportamiento Principal")]
 
     [SerializeField] private bool isPaused;
 
     // Se define el delegate que se dispara cuando cambia
     //  el tiempo restante
-    public static Action<int> OnTimeChanged;
+    public Action<int> OnTimeChanged;
 
     private int previousTimeRemaining;
 
 
-    [Header("Time Settings (In seconds)")]
+    [Header("Configuracion del tiempo (En segundos)")]
     [SerializeField] private float timeRemaining;
     [SerializeField] private float maxTime = 60f;
-
-    [SerializeField] private GameManager _gameManager;
 
 
     public void Awake()

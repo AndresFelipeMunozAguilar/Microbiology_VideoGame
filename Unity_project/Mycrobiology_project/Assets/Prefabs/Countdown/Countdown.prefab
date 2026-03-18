@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownManager
   countdownBar: {fileID: 7427914229247531737}
+  _gameManager: {fileID: 0}
   isPaused: 1
   timeRemaining: 0
   maxTime: 60
@@ -263,7 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf32834397bc3354b9a7d26f47358965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextManager
-  showText: {fileID: 5796881941057689035}
+  _showText: {fileID: 5796881941057689035}
+  _countdownBarManager: {fileID: 3849297419537599101}
 --- !u!114 &5796881941057689035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ERROR
+  m_text: DEFAULT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
