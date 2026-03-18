@@ -17,12 +17,15 @@ public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
 
     public bool isPlayerClose = false;
 
+    private GameManager _gameManager;
+
     void Start()
     {
         haloSr = GetComponent<SpriteRenderer>();
         haloBaseScale = Vector3.one;
         transform.localScale = haloBaseScale;
-        GameManager.GetInstance().SubscribePuzzlePausable(this);
+        _gameManager = GameManager.GetInstance();
+        _gameManager.SubscribePuzzlePausable(this);
     }
 
     void Update()
@@ -100,7 +103,7 @@ public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
 
     public void OnDestroy()
     {
-        GameManager.GetInstance().UnsubscribePuzzlePausable(this);
+        _gameManager.UnsubscribePuzzlePausable(this);
     }
 
 }
