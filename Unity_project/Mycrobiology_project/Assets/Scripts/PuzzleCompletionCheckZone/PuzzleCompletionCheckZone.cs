@@ -10,7 +10,8 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
 
 
 
-    public Action<int, int> OnPuzzleCompletionStatusChanged;
+    public Action<int, int> OnPlayerGetsClose;
+    public Action OnPlayerLeaves;
 
     public void Start()
     {
@@ -31,7 +32,7 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
             _totalPuzzles = CalculateTotalPuzzles();
 
 
-            OnPuzzleCompletionStatusChanged?.Invoke(_completedPuzzles, _totalPuzzles);
+            OnPlayerGetsClose?.Invoke(_completedPuzzles, _totalPuzzles);
             // Si los puzzles completados son menores a los iguales y mayor que cero, mostrar el texto
             // De lo contrario Si es igual al numero total de puzzles, enviar al gameManger que se ganó el juego.    
         }
@@ -59,5 +60,10 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
     public void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Trigger exited by: {other.gameObject.name}");
+
+        if (other.CompareTag(playerTag))
+        {
+            OnPlayerLeaves?.Invoke();
+        }
     }
 }
