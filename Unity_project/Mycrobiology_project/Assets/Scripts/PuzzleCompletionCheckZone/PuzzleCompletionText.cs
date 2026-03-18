@@ -38,6 +38,8 @@ public class PuzzleCompletionText : MonoBehaviour
     {
         _puzzleCompletionCheckZone.OnPlayerGetsClose -= ShowPuzzleCompletionText;
         _puzzleCompletionCheckZone.OnPlayerLeaves -= HidePuzzleCompletionText;
+
+        StopCurrentAnimation();
     }
 
     // =======================[Lógica de la corrutina]=======================
