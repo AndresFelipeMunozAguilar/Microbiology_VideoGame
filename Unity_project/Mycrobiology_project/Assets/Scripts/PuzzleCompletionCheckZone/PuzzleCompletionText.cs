@@ -38,7 +38,10 @@ public class PuzzleCompletionText : MonoBehaviour
     {
         _puzzleCompletionCheckZone.OnPlayerGetsClose -= ShowPuzzleCompletionText;
         _puzzleCompletionCheckZone.OnPlayerLeaves -= HidePuzzleCompletionText;
+    }
 
+    public void OnDisable()
+    {
         StopCurrentAnimation();
     }
 
