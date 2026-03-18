@@ -22,22 +22,19 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
     {
         Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Trigger entered by: {other.gameObject.name}");
 
-        if (other.CompareTag(playerTag))
-        {
-            _completedPuzzles = CalculateCompletedPuzzles();
-            // Calcular el total de Puzzles aquí evita
-            // condiciones de carrera con el instanciamento 
-            // de los puzzles y permite que se añadan 
-            // nuevos puzzles dinámicamente
-            _totalPuzzles = CalculateTotalPuzzles();
+        if (!other.CompareTag(playerTag)) return;
+
+        _completedPuzzles = CalculateCompletedPuzzles();
+        // Calcular el total de Puzzles aquí evita
+        // condiciones de carrera con el instanciamento 
+        // de los puzzles y permite que se añadan 
+        // nuevos puzzles dinámicamente
+        _totalPuzzles = CalculateTotalPuzzles();
 
 
-            OnPlayerGetsClose?.Invoke(_completedPuzzles, _totalPuzzles);
-            // Si los puzzles completados son menores a los iguales y mayor que cero, mostrar el texto
-            // De lo contrario Si es igual al numero total de puzzles, enviar al gameManger que se ganó el juego.    
-        }
+        OnPlayerGetsClose?.Invoke(_completedPuzzles, _totalPuzzles);
 
-
+        if (_completedPuzzles >= _totalPuzzles) GameManager.GetInstance().Victory();
     }
 
     public int CalculateCompletedPuzzles()
