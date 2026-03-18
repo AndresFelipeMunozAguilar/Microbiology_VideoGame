@@ -1,38 +1,87 @@
+using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PuzzleCompletionText : MonoBehaviour
 {
+    [Header("Objetos Asociados")]
     // Se usa TextMeshPro porque el texto no aparece en la UI
     [SerializeField] private TextMeshPro _textMeshPro;
-
     [SerializeField] private PuzzleCompletionCheckZone _puzzleCompletionCheckZone;
 
-    public void OnEnable()
+
+    [Header("Configuración de Animación")]
+    [SerializeField] private float _duration = 1.5f;
+    [SerializeField] private float _yOffset = 20f;
+    private Coroutine _activeAnimation;
+    private Vector3 _initialPosition;
+
+    // =======================[Métodos Iniciales]=======================
+    public void Start()
     {
+        _textMeshPro = GetComponent<TextMeshPro>();
+        _initialPosition = transform.localPosition;
+
         if (_puzzleCompletionCheckZone == null)
         {
             Debug.LogError("PuzzleCompletionText: PuzzleCompletionCheckZone reference is null. Please assign it in the inspector.");
             return;
         }
+        _puzzleCompletionCheckZone.OnPlayerGetsClose += ShowPuzzleCompletionText;
+        _puzzleCompletionCheckZone.OnPlayerLeaves += HidePuzzleCompletionText;
 
-        _puzzleCompletionCheckZone.OnPuzzleCompletionStatusChanged += UpdatePuzzleCompletionText;
+        // El objeto inicia desactivado por seguridad
+        gameObject.SetActive(false);
     }
 
-    public void OnDisable()
+    public void OnDestroy()
     {
-        _puzzleCompletionCheckZone.OnPuzzleCompletionStatusChanged -= UpdatePuzzleCompletionText;
+        _puzzleCompletionCheckZone.OnPlayerGetsClose -= ShowPuzzleCompletionText;
+        _puzzleCompletionCheckZone.OnPlayerLeaves -= HidePuzzleCompletionText;
     }
 
-    public void UpdatePuzzleCompletionText(int completedPuzzles, int totalPuzzles)
+    // =======================[Lógica de la corrutina]=======================
+
+    private IEnumerator AnimateText(float startAlpha, float endAlpha, Vector3 startPos, Vector3 endPos, bool disableAtEnd = false)
     {
-        string completionMessage = GetCompletionMessage(completedPuzzles, totalPuzzles);
-        _textMeshPro.SetText(completionMessage);
+        float elapsedTime = 0;
+        Color color = _textMeshPro.color;
+
+        while (elapsedTime < _duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float percent = elapsedTime / _duration;
+
+            // Interpolar posición y transparencia
+            transform.localPosition = Vector3.Lerp(startPos, endPos, percent);
+            color.a = Mathf.Lerp(startAlpha, endAlpha, percent);
+            _textMeshPro.color = color;
+
+            yield return null;
+        }
+
+        if (disableAtEnd) gameObject.SetActive(false);
     }
 
+    private void StopCurrentAnimation()
+    {
+        if (_activeAnimation != null) StopCoroutine(_activeAnimation);
+    }
+
+    public void Show()
+    {
+        StopCurrentAnimation();
+        gameObject.SetActive(true);
+        _activeAnimation = StartCoroutine(AnimateText(0, 1, _initialPosition, _initialPosition + Vector3.up * _yOffset));
+    }
+
+    public void Hide()
+    {
+        StopCurrentAnimation();
+        _activeAnimation = StartCoroutine(AnimateText(1, 0, transform.localPosition, transform.localPosition - Vector3.up * _yOffset, true));
+    }
+
+    // =======================[Triggers de activar o desactivar animacion]=======================
     public string GetCompletionMessage(int completedPuzzles, int totalPuzzles)
     {
         if (totalPuzzles <= 0) return "Espera... ¿Donde están los puzzles?";
@@ -43,5 +92,19 @@ public class PuzzleCompletionText : MonoBehaviour
 
         return "Caso no especificado. Numero invalido";
     }
+
+    public void ShowPuzzleCompletionText(int completedPuzzles, int totalPuzzles)
+    {
+        string completionMessage = GetCompletionMessage(completedPuzzles, totalPuzzles);
+        _textMeshPro.SetText(completionMessage);
+        Show();
+    }
+
+    public void HidePuzzleCompletionText()
+    {
+        Hide();
+    }
+
+
 
 }
