@@ -20,9 +20,11 @@ public class GameManager : MonoBehaviour
         Develop,
         TempGameOver,
         TestPuzzle,
+        VictoryScene,
     }
 
     public bool isGameOver = false;
+    private bool isVictoryAchieved = false;
 
     public bool isPuzzleActive = false;
 
@@ -181,6 +183,16 @@ public class GameManager : MonoBehaviour
         NotifyGameOverSubscribers();
 
         LoadScene(GameScenes.TempGameOver);
+    }
+
+    public void Victory()
+    {
+        isVictoryAchieved = true;
+
+        // En cierto sentido, ganar es terminar el juego...
+        NotifyGameOverSubscribers();
+
+        LoadScene(GameScenes.VictoryScene);
     }
 
     public void NotifyGameOverSubscribers()
