@@ -34,7 +34,7 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
 
         OnPlayerGetsClose?.Invoke(_completedPuzzles, _totalPuzzles);
 
-        if (_completedPuzzles >= _totalPuzzles) GameManager.GetInstance().Victory();
+        if (_completedPuzzles >= _totalPuzzles && _totalPuzzles > 0) GameManager.GetInstance().Victory();
     }
 
     public int CalculateCompletedPuzzles()
@@ -42,6 +42,7 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
         // Implementar lógica para preguntarle 
         // al evaluation system cuantos puzzles
         // se han completado
+        // int noOfActivePuzzles = EvaluationSystem.Instance.GetPuzzlesAmount();
         return _completedPuzzles;
     }
 
@@ -50,7 +51,9 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
         // Implementar lógica para preguntarle 
         // al evaluation system cuantos puzzles
         // se han completado
-        return _totalPuzzles;
+        int noOfActivePuzzles = EvaluationSystem.Instance.GetPuzzlesAmount();
+        Debug.Log($"PuzzleCompletionCheckZone: Se encontraron {noOfActivePuzzles} puzzles activos en escena");
+        return noOfActivePuzzles;
     }
 
 
