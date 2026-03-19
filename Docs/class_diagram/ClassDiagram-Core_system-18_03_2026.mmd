@@ -23,28 +23,29 @@ class GameScenes {
 
 class GameManager {
     <<Singleton>>
-    - GameManager instance$
+    - GameManager _instance$
     + enum GameScenes
     + bool isGameOver
+    - bool isVictoryAchieved
     + bool isPuzzleActive
-    - Action OnGameOver
-    - DataManager dataManager
     - List~IPuzzlePausable~ puzzlePausables
-    - GameManager() void
-    - CreateNewInstance() GameManager$
+    - Action OnGameOver
+
     + Awake() void
+    - GameManager()
+    - CreateNewInstance() GameManager$
     + GetInstance() GameManager$
-    + LoadScene(scene: GameScenes) void
-    + NotifyGameOverSubscribers() void
-    + GameOver(reason: string) void
-    + OnVictory() void
-    + SubscribeToGameOver(subscriber: IGameOverSubscriber) void
-    + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void
     + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
     + UnsubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
     + PuzzlePauseAll() void
     + PuzzleResumeAll() void
     + SwitchIsPuzzleActive() void
+    + SubscribeToGameOver(subscriber: IGameOverSubscriber) void
+    + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void
+    + GameOver(reason: string) void
+    + Victory() void
+        + NotifyGameOverSubscribers() void
+        + LoadScene(scene: GameScenes) void
 }
 
 class MovePlayer {
@@ -91,12 +92,14 @@ class PuzzleHalo {
     + Vector3 haloBaseScale
     + float minimumTransparency
     + bool isPlayerClose
-    + Start() void
-    + Update() void
+    - GameManager _gameManager
+
+    - Start() void
+    - Update() void
     + Pulse(referenceTime: float) void
     + Glow(referenceTime: float) void
-    + OnTriggerEnter2D(other: Collider2D) void
-    + OnTriggerExit2D(other: Collider2D) void
+    - OnTriggerEnter2D(other: Collider2D) void
+    - OnTriggerExit2D(other: Collider2D) void
     + PuzzlePauseMe() void
     + PuzzleResumeMe() void
     + OnDestroy() void
@@ -105,7 +108,7 @@ class PuzzleHalo {
 class CountdownBarManager {
     - Image countdownBar
     - bool isPaused
-    + Action~int~ OnTimeChanged$
+    + Action~int~ OnTimeChanged
     - int previousTimeRemaining
     - float timeRemaining
     - float maxTime
@@ -123,13 +126,51 @@ class CountdownBarManager {
 }
 
 class CountdownTextManager {
-    - TextMeshProUGUI showText
+    - TextMeshProUGUI _showText
+    - CountdownBarManager _countdownBarManager
     - int showMinutes
     - int showSeconds
+
     + OnEnable() void
     + OnDisable() void
     + UpdateTextInMinutes(seconds: int) void
 }
+
+class PuzzleCompletionCheckZone {
+    - string playerTag
+    - int _completedPuzzles
+    - int _totalPuzzles
+    + Action~int,int~ OnPlayerGetsClose
+    + Action OnPlayerLeaves
+
+    + Start() void
+    + OnTriggerEnter2D(other: Collider2D) void
+    + CalculateCompletedPuzzles() int
+    + CalculateTotalPuzzles() int
+    + OnTriggerExit2D(other: Collider2D) void
+}
+
+class PuzzleCompletionText {
+    - TextMeshPro _textMeshPro
+    - PuzzleCompletionCheckZone _puzzleCompletionCheckZone
+    - float _duration
+    - float _yOffset
+    - Coroutine _activeAnimation
+    - Vector3 _initialPosition
+
+    + Start() void
+    + OnDestroy() void
+    + OnDisable() void
+    - AnimateText(startAlpha: float, endAlpha: float, startPos: Vector3, endPos: Vector3, disableAtEnd: bool) IEnumerator
+    - StopCurrentAnimation() void
+    + Show() void
+    + Hide() void
+    + GetCompletionMessage(completedPuzzles: int, totalPuzzles: int) string
+    + ShowPuzzleCompletionText(completedPuzzles: int, totalPuzzles: int) void
+    + HidePuzzleCompletionText() void
+}
+
+
 
 class IGameOverSubscriber {
     + OnGameOver() void
@@ -368,9 +409,14 @@ PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
 GameScenes --* GameManager
 
 GameManager <.. PlayerHealthLogic : notifica GameOver por vida
+GameManager <.. PuzzleCompletionCheckZone : notifica Victory (Todos los puzzles fueron completados)
+PuzzleHalo -- GameManager : se suscribe a la lista de PuzzlePausables
+GameManager -- CountdownBarManager : notifica time up
 
-GameManager <.. CountdownBarManager : notifica time up
-CountdownBarManager <.. CountdownTextManager : se suscribe a OnTimeChanged
+
+CountdownBarManager -- CountdownTextManager : se suscribe a OnTimeChanged
+
+PuzzleCompletionCheckZone -- PuzzleCompletionText : se suscribe a los eventos OnPlayerGetsClose/OnPlayerLeaves
 
 MovePlayer ..|> IGameOverSubscriber
 
@@ -387,7 +433,7 @@ ITappable <|.. PuzzleManager
 PuzzleManager *-- FeedbackText
 PuzzleManager *-- PerformanceResult
 PuzzleManager *-- PuzzleHalo
-PuzzleManager o-- PlayerHealthLogic
+PuzzleManager -- PlayerHealthLogic
 PuzzleManager *-- PlayerDamageDealer
 PuzzleManager <.. EvaluationSystem
 PuzzleTutorial -- AbstractPuzzleGameplay
