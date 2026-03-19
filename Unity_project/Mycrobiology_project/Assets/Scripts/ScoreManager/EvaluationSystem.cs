@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 public class EvaluationSystem : MonoBehaviour
 {
-    public static EvaluationSystem Instance;
+    public static EvaluationSystem Instance
+    {
+        get;
+        private set;
+    }
+
     string playerID = "player";
     private List<PuzzleResultData> results = new List<PuzzleResultData>();
     private Dictionary<string, int> puzzleFinalScores = new Dictionary<string, int>();
