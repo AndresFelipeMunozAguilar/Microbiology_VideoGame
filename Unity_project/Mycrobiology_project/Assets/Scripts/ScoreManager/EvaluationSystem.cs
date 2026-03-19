@@ -60,11 +60,16 @@ public class EvaluationSystem : MonoBehaviour
 
     public int GetPuzzlesAmount()
     {
-
-        puzzlesAmount = Object.FindObjectsByType<PuzzleManager>(FindObjectsSortMode.None).Length;
-
+        PuzzleManager[] puzzles = Object.FindObjectsByType<PuzzleManager>(FindObjectsSortMode.None);
+        puzzlesAmount = puzzles.Length;
         return puzzlesAmount;
     }
+
+    public int GetPuzzlesComplete()
+    {
+        return results.Count;
+    }
+
     public int GetFinalScore() => (totalScore / GetPuzzlesAmount());
     public string GetTotalPerformance() => totalPerformance;
 

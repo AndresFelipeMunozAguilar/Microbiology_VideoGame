@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c02da416132fc4685e46eeeffb820b, type: 3}
+  m_Name: Element 8
+  m_EditorClassIdentifier: Assembly-CSharp::Element
+  image: {fileID: 3804594851585270645, guid: 9074be3346d7c604ab942af75581fd0d, type: 3}
+  timeWarm: 5
+  isMechero: 0
+  "isBa\xF1oMaria": 1
