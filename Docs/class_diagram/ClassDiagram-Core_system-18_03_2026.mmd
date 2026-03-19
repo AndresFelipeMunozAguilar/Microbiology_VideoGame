@@ -11,6 +11,40 @@ class IPuzzlePausable {
     + PuzzleResumeMe() void
 }
 
+class PuzzleCompletionCheckZone {
+    - string playerTag
+    - int _completedPuzzles
+    - int _totalPuzzles
+    + Action~int,int~ OnPlayerGetsClose
+    + Action OnPlayerLeaves
+
+    + Start() void
+    + OnTriggerEnter2D(other: Collider2D) void
+    + CalculateCompletedPuzzles() int
+    + CalculateTotalPuzzles() int
+    + OnTriggerExit2D(other: Collider2D) void
+}
+
+class PuzzleCompletionText {
+    - TextMeshPro _textMeshPro
+    - PuzzleCompletionCheckZone _puzzleCompletionCheckZone
+    - float _duration
+    - float _yOffset
+    - Coroutine _activeAnimation
+    - Vector3 _initialPosition
+
+    + Start() void
+    + OnDestroy() void
+    + OnDisable() void
+    - AnimateText(startAlpha: float, endAlpha: float, startPos: Vector3, endPos: Vector3, disableAtEnd: bool) IEnumerator
+    - StopCurrentAnimation() void
+    + Show() void
+    + Hide() void
+    + GetCompletionMessage(completedPuzzles: int, totalPuzzles: int) string
+    + ShowPuzzleCompletionText(completedPuzzles: int, totalPuzzles: int) void
+    + HidePuzzleCompletionText() void
+}
+
 class GameScenes {
     <<enumeration>> 
     DevAndres
@@ -68,22 +102,6 @@ class MovePlayer {
     + ActivateScript() void
 }
 
-class PlayerHealthLogic {
-    - int maxLives
-    - int currentLives
-    - bool isDead
-    + Action~int~ OnHealthChanged$
-    - GameManager _gameManager
-
-    + Awake() void
-    + OnEnable() void
-    + OnDisable() void
-    + TakeDamage(damageAmount: int) void
-    + ReduceLivesNBound(damageAmount: int) int
-    + PlayerDead() void
-    + OnGameOver() void
-}
-
 
 class PuzzleHalo {
     + float pulseSpeed
@@ -103,6 +121,29 @@ class PuzzleHalo {
     + PuzzlePauseMe() void
     + PuzzleResumeMe() void
     + OnDestroy() void
+}
+
+
+class IGameOverSubscriber {
+    + OnGameOver() void
+}
+
+
+
+class PlayerHealthLogic {
+    - int maxLives
+    - int currentLives
+    - bool isDead
+    + Action~int~ OnHealthChanged$
+    - GameManager _gameManager
+
+    + Awake() void
+    + OnEnable() void
+    + OnDisable() void
+    + TakeDamage(damageAmount: int) void
+    + ReduceLivesNBound(damageAmount: int) int
+    + PlayerDead() void
+    + OnGameOver() void
 }
 
 class CountdownBarManager {
@@ -136,46 +177,6 @@ class CountdownTextManager {
     + UpdateTextInMinutes(seconds: int) void
 }
 
-class PuzzleCompletionCheckZone {
-    - string playerTag
-    - int _completedPuzzles
-    - int _totalPuzzles
-    + Action~int,int~ OnPlayerGetsClose
-    + Action OnPlayerLeaves
-
-    + Start() void
-    + OnTriggerEnter2D(other: Collider2D) void
-    + CalculateCompletedPuzzles() int
-    + CalculateTotalPuzzles() int
-    + OnTriggerExit2D(other: Collider2D) void
-}
-
-class PuzzleCompletionText {
-    - TextMeshPro _textMeshPro
-    - PuzzleCompletionCheckZone _puzzleCompletionCheckZone
-    - float _duration
-    - float _yOffset
-    - Coroutine _activeAnimation
-    - Vector3 _initialPosition
-
-    + Start() void
-    + OnDestroy() void
-    + OnDisable() void
-    - AnimateText(startAlpha: float, endAlpha: float, startPos: Vector3, endPos: Vector3, disableAtEnd: bool) IEnumerator
-    - StopCurrentAnimation() void
-    + Show() void
-    + Hide() void
-    + GetCompletionMessage(completedPuzzles: int, totalPuzzles: int) string
-    + ShowPuzzleCompletionText(completedPuzzles: int, totalPuzzles: int) void
-    + HidePuzzleCompletionText() void
-}
-
-
-
-class IGameOverSubscriber {
-    + OnGameOver() void
-}
-
 class PlayerHealthView {
     - TextMeshProUGUI healthText
     + OnEnable() void
@@ -195,6 +196,7 @@ class IPuzzleManager {
     + GetScore() int
     + GetPerformanceResult() PerformanceResult
 }
+
 
 class DamageThreshold {
     + int threshold
@@ -398,12 +400,14 @@ class AbstractPuzzleGameplay {
 }
 
 
+
 IPuzzlePausable <|.. PuzzleHalo
 IPuzzlePausable <|.. PuzzleManager
 IPuzzlePausable <|.. MovePlayer
 
-IDamageable <|.. PlayerHealthLogic
+PlayerHealthLogic ..|> IDamageable
 PlayerHealthLogic ..|> IGameOverSubscriber
+
 PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
 
 GameScenes --* GameManager
@@ -416,11 +420,14 @@ GameManager -- CountdownBarManager : notifica time up
 
 CountdownBarManager -- CountdownTextManager : se suscribe a OnTimeChanged
 
+
 PuzzleCompletionCheckZone -- PuzzleCompletionText : se suscribe a los eventos OnPlayerGetsClose/OnPlayerLeaves
+EvaluationSystem <.. PuzzleCompletionCheckZone
+PuzzleCompletionText ..|> IGameOverSubscriber
+PuzzleCompletionCheckZone ..|> IGameOverSubscriber
+
 
 MovePlayer ..|> IGameOverSubscriber
-
-
 
 DamageThreshold --* PuzzleDamageTable
 PuzzleDamageTable --o PlayerDamageDealer
