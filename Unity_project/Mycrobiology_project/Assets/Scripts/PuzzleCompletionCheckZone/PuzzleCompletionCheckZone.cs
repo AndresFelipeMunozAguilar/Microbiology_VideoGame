@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PuzzleCompletionCheckZone : MonoBehaviour
+public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber
 {
 
     [SerializeField] private string playerTag = "Player";
@@ -13,9 +13,14 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
     public Action<int, int> OnPlayerGetsClose;
     public Action OnPlayerLeaves;
 
-    public void Start()
+    public void OnEnable()
     {
-        // Preguntar cuantos puzzles totales hay.
+        GameManager.GetInstance().SubscribeToGameOver(this);
+    }
+
+    public void OnDisable()
+    {
+        GameManager.GetInstance().UnsubscribeToGameOver(this);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -42,8 +47,9 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
         // Implementar lógica para preguntarle 
         // al evaluation system cuantos puzzles
         // se han completado
-        // int noOfActivePuzzles = EvaluationSystem.Instance.GetPuzzlesAmount();
-        return _completedPuzzles;
+        int noOfCompletedPuzzles = EvaluationSystem.Instance.GetPuzzlesComplete();
+        Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Se encontraron {noOfCompletedPuzzles} puzzles completados en escena");
+        return noOfCompletedPuzzles;
     }
 
     public int CalculateTotalPuzzles()
@@ -52,7 +58,7 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
         // al evaluation system cuantos puzzles
         // se han completado
         int noOfActivePuzzles = EvaluationSystem.Instance.GetPuzzlesAmount();
-        Debug.Log($"PuzzleCompletionCheckZone: Se encontraron {noOfActivePuzzles} puzzles activos en escena");
+        Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Se encontraron {noOfActivePuzzles} puzzles activos en escena");
         return noOfActivePuzzles;
     }
 
@@ -65,5 +71,11 @@ public class PuzzleCompletionCheckZone : MonoBehaviour
         {
             OnPlayerLeaves?.Invoke();
         }
+    }
+
+    public void OnGameOver()
+    {
+        Debug.Log("PuzzleCompletionCheckZone: Fui pausado OnGameOver");
+        this.enabled = false;
     }
 }

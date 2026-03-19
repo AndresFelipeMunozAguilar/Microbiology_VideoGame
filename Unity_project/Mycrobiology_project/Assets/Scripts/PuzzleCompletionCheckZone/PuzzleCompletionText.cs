@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class PuzzleCompletionText : MonoBehaviour
+public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
 {
     [Header("Objetos Asociados")]
     // Se usa TextMeshPro porque el texto no aparece en la UI
@@ -40,9 +40,14 @@ public class PuzzleCompletionText : MonoBehaviour
         _puzzleCompletionCheckZone.OnPlayerLeaves -= HidePuzzleCompletionText;
     }
 
+    public void OnEnable()
+    {
+        GameManager.GetInstance().SubscribeToGameOver(this);
+    }
     public void OnDisable()
     {
         StopCurrentAnimation();
+        GameManager.GetInstance().UnsubscribeToGameOver(this);
     }
 
     // =======================[Lógica de la corrutina]=======================
@@ -110,6 +115,9 @@ public class PuzzleCompletionText : MonoBehaviour
         Hide();
     }
 
-
-
+    public void OnGameOver()
+    {
+        Debug.Log("PuzzleCompletionText: Fui pausado OnGameOver");
+        this.enabled = false;
+    }
 }
