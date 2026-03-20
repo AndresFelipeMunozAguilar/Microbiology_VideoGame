@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleCompletionText
   _textMeshPro: {fileID: 544842692129539661}
   _puzzleCompletionCheckZone: {fileID: 71556324343422804}
+  _gameManager: {fileID: 0}
   _duration: 0.7
   _yOffset: 3.5
 --- !u!1 &3818746281504551563
@@ -477,3 +478,5 @@ MonoBehaviour:
   playerTag: Player
   _completedPuzzles: 0
   _totalPuzzles: 3
+  _collider: {fileID: 5726392661299205293}
+  _gameManager: {fileID: 0}
