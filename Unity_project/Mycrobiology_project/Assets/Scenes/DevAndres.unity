@@ -1239,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7096213716368816935, guid: 883ba2f7180e5bb4c87f84a5e69a3320, type: 3}
       propertyPath: maxLives
-      value: 2
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1257,10 +1257,6 @@ PrefabInstance:
     - target: {fileID: 310497863040409449, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Name
       value: PuzzleManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 310497863040409449, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7239192439233506365, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1306,10 +1302,6 @@ PrefabInstance:
       propertyPath: _playerHealthLogic
       value: 
       objectReference: {fileID: 1883528563}
-    - target: {fileID: 9111576306358749388, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
-      propertyPath: _puzzleDamageTable
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c0d369380415db4f99bcd5883bb9b53, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
