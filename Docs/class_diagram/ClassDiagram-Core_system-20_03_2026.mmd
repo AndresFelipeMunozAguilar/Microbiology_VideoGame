@@ -15,14 +15,22 @@ class PuzzleCompletionCheckZone {
     - string playerTag
     - int _completedPuzzles
     - int _totalPuzzles
+    - Collider2D _collider
+    - GameManager _gameManager
     + Action~int,int~ OnPlayerGetsClose
     + Action OnPlayerLeaves
 
+    + Awake() void
+    + OnEnable() void
     + Start() void
+    + OnDisable() void 
+    + OnDestroy() void
     + OnTriggerEnter2D(other: Collider2D) void
     + CalculateCompletedPuzzles() int
     + CalculateTotalPuzzles() int
     + OnTriggerExit2D(other: Collider2D) void
+    + PuzzlePauseMe() void
+    + PuzzleResumeMe() void
 }
 
 class PuzzleCompletionText {
@@ -32,9 +40,12 @@ class PuzzleCompletionText {
     - float _yOffset
     - Coroutine _activeAnimation
     - Vector3 _initialPosition
+    - GameManager _gameManager
 
+    + Awake() void
     + Start() void
     + OnDestroy() void
+    + OnEnable() void
     + OnDisable() void
     - AnimateText(startAlpha: float, endAlpha: float, startPos: Vector3, endPos: Vector3, disableAtEnd: bool) IEnumerator
     - StopCurrentAnimation() void
@@ -43,6 +54,7 @@ class PuzzleCompletionText {
     + GetCompletionMessage(completedPuzzles: int, totalPuzzles: int) string
     + ShowPuzzleCompletionText(completedPuzzles: int, totalPuzzles: int) void
     + HidePuzzleCompletionText() void
+    + OnGameOver() void
 }
 
 class GameScenes {
@@ -192,7 +204,7 @@ class IDamageable {
 class IPuzzleManager {
     <<interface>>
     + StartPuzzle() void
-    + CompletePuzzle() void
+    + CompletePuzzle(didPlayerWin: bool) void
     + GetScore() int
     + GetPerformanceResult() PerformanceResult
 }
@@ -404,6 +416,7 @@ class AbstractPuzzleGameplay {
 IPuzzlePausable <|.. PuzzleHalo
 IPuzzlePausable <|.. PuzzleManager
 IPuzzlePausable <|.. MovePlayer
+IPuzzlePausable <|.. PuzzleCompletionCheckZone
 
 PlayerHealthLogic ..|> IDamageable
 PlayerHealthLogic ..|> IGameOverSubscriber
