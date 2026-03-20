@@ -8,15 +8,35 @@ public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
     // Se usa TextMeshPro porque el texto no aparece en la UI
     [SerializeField] private TextMeshPro _textMeshPro;
     [SerializeField] private PuzzleCompletionCheckZone _puzzleCompletionCheckZone;
+    [SerializeField] private GameManager _gameManager;
 
 
     [Header("Configuración de Animación")]
     [SerializeField] private float _duration = 1.5f;
     [SerializeField] private float _yOffset = 20f;
+
     private Coroutine _activeAnimation;
     private Vector3 _initialPosition;
 
     // =======================[Métodos Iniciales]=======================
+
+    public void Awake()
+    {
+
+        _gameManager = GameManager.GetInstance();
+
+
+        if (_gameManager == null)
+        {
+            Debug.Log($"CountdownBarManager: GameManager instance not found: Is null ");
+        }
+        else
+        {
+            Debug.Log($"CountdownBarManager: GameManager instance found: {_gameManager.gameObject.name}");
+        }
+    }
+
+
     public void Start()
     {
         _textMeshPro = GetComponent<TextMeshPro>();
@@ -27,6 +47,8 @@ public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
             Debug.LogError("PuzzleCompletionText: PuzzleCompletionCheckZone reference is null. Please assign it in the inspector.");
             return;
         }
+
+
         _puzzleCompletionCheckZone.OnPlayerGetsClose += ShowPuzzleCompletionText;
         _puzzleCompletionCheckZone.OnPlayerLeaves += HidePuzzleCompletionText;
 
@@ -42,12 +64,12 @@ public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
 
     public void OnEnable()
     {
-        GameManager.GetInstance().SubscribeToGameOver(this);
+        _gameManager.SubscribeToGameOver(this);
     }
     public void OnDisable()
     {
         StopCurrentAnimation();
-        GameManager.GetInstance().UnsubscribeToGameOver(this);
+        _gameManager.UnsubscribeToGameOver(this);
     }
 
     // =======================[Lógica de la corrutina]=======================

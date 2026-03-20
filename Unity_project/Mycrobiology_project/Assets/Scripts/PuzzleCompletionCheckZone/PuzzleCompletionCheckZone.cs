@@ -1,26 +1,53 @@
 using System;
 using UnityEngine;
 
-public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber
+public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPuzzlePausable
 {
 
+    [Header("Configuración de Detección")]
+    [Tooltip("Tag que debe tener el objeto del jugador para ser reconocido.")]
     [SerializeField] private string playerTag = "Player";
+
+    [Header("Estado de los Puzzles")]
+    [Tooltip("Cantidad actual de puzzles resueltos.")]
     [SerializeField] private int _completedPuzzles;
+    [Tooltip("Cantidad total de puzzles en el nivel.")]
     [SerializeField] private int _totalPuzzles;
 
+    [Header("Referencias de Componentes")]
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private GameManager _gameManager;
 
-
+    [Header("Eventos de Interacción")]
+    // Nota: Los Action no se muestran en el Inspector por defecto, 
+    // pero el Header ayuda a separar el código visualmente.
     public Action<int, int> OnPlayerGetsClose;
     public Action OnPlayerLeaves;
 
+
+    public void Awake()
+    {
+        _gameManager = GameManager.GetInstance();
+    }
+
     public void OnEnable()
     {
-        GameManager.GetInstance().SubscribeToGameOver(this);
+        _gameManager.SubscribeToGameOver(this);
+    }
+
+    public void Start()
+    {
+        _gameManager.SubscribePuzzlePausable(this);
     }
 
     public void OnDisable()
     {
-        GameManager.GetInstance().UnsubscribeToGameOver(this);
+        _gameManager.UnsubscribeToGameOver(this);
+    }
+
+    public void OnDestroy()
+    {
+        _gameManager.UnsubscribePuzzlePausable(this);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -75,7 +102,21 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber
 
     public void OnGameOver()
     {
-        Debug.Log("PuzzleCompletionCheckZone: Fui pausado OnGameOver");
+        Debug.Log("<color=cyan>PuzzleCompletionCheckZone:</color> Fui pausado OnGameOver");
         this.enabled = false;
+    }
+
+    public void PuzzlePauseMe()
+    {
+        Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Yo y el collider fuimos PuzzlePausado");
+        _collider.enabled = false;
+        this.enabled = false;
+    }
+
+    public void PuzzleResumeMe()
+    {
+        Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Yo y el collider fuimos PuzzleResumidos");
+        _collider.enabled = true;
+        this.enabled = true;
     }
 }
