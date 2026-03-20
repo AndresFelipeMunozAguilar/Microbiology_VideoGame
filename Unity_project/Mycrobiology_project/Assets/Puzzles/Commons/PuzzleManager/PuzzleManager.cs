@@ -82,18 +82,14 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         }
     }
 
-    public void CompletePuzzle()
+    public void CompletePuzzle(bool didPlayerWin)
     {
+
+        isVictoryAchieved = didPlayerWin;
+
         Debug.Log("Puzzle completed!");
 
-        if (isVictoryAchieved)
-        {
-            ExecuteVictoryLogic();
-        }
-        else
-        {
-            ExecuteDefeatLogic();
-        }
+        if (isVictoryAchieved) ExecuteVictoryLogic(); else ExecuteDefeatLogic();
 
 
         _gameManager.SwitchIsPuzzleActive();
