@@ -607,7 +607,7 @@ TextureImporter:
         x: 83
         y: 97
         width: 10
-        height: 9
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1722,6 +1722,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: LabIcons_64
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 103
+        width: 10
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11698947a69ffc04397ea9ca1353402c
+      internalID: -283575607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1799,6 +1821,7 @@ TextureImporter:
       LabIcons_61: 8776516769890082336
       LabIcons_62: -8460165047635377367
       LabIcons_63: 4512137709053792113
+      LabIcons_64: -283575607
       LabIcons_7: -544057420934836288
       LabIcons_8: -3644579479704729476
       LabIcons_9: -3731450463652663398

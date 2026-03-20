@@ -11,11 +11,15 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
     Vector2 OriginPosition;
     [SerializeField] Image WarmBar;
     [SerializeField] float maxTime = 3f;
+    DropZone dropzone;
     public void CreateElement(Element assigned)
     {
         element= assigned;
         GetComponent<SpriteRenderer>().sprite = element.image;    
-        OriginPosition = Vector2.zero;    
+        Collider2D[] hits = Physics2D.OverlapPointAll(transform.position);
+
+        GameObject blank = getPlace(transform.position);
+        if(blank)Debug.Log("<color=red></color>");
     }
     void FixedUpdate()
     {
@@ -46,35 +50,35 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
     {
         onDrag = false;
 
-       WarmManager warm = GetWarmManager(eventData);
-        if(warm){
-
-            warm.StartWarming(this);
+        GameObject dropPlace = getPlace(eventData:eventData);
+        transform.position=dropzone.getPosition(); //si genera error es porque no esta asignado al iniciar un espacio
+        dropPlace = getPlace(transform.position);
+        if(dropPlace && dropPlace.TryGetComponent<WarmManager>(out WarmManager warm)){
             onWarm=true;
         }
-        else
-        {
-            transform.localPosition = Vector2.zero;
-        }
-
         GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
-    private WarmManager GetWarmManager(PointerEventData eventData)
+    private GameObject getPlace(Vector2 pos=default,PointerEventData eventData=null)
     {
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        Vector2 worldPos = eventData!=null ? Camera.main.ScreenToWorldPoint(eventData.position):pos;
 
-        Collider2D hit = Physics2D.OverlapPoint(worldPos);
-        if (hit != null && hit.GetComponent<WarmManager>() != null)
+        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
+
+        foreach (var hit in hits)
         {
-            WarmManager warm = hit.GetComponent<WarmManager>();
-            return warm;
-        }
-        else
-        {
-            return null;
+            if (hit.TryGetComponent<DropZone>(out DropZone drop))
+            {
+                if(!drop.IsOccupied()){
+                    if(dropzone)dropzone.setOccupied(false);
+                    dropzone=drop;
+                    dropzone.setOccupied(true);
+                }
+                return hit.gameObject;
+            }
         }
 
+        return null;
     }
     public void PlaceWarm(Vector2 newPos)
     { 
