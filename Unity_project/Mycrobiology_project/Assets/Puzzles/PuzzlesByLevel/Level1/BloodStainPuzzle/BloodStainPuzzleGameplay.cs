@@ -75,20 +75,25 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
     public override void StartGameplay()
     {
-        throw new System.NotImplementedException();
+        Vector3 inFrontOfCamera = Camera.main.transform.position;
+        inFrontOfCamera.z = 0f;
+
+        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
+
+        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
     }
 
     public override void Victory()
     {
         _visuals.UpdateVisuals(_puzzleSequence.FinalCleanSprite);
-        Debug.Log("<color=gold>¡Puzzle Completado!</color>");
+        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> ¡Puzzle Completado!");
         OnPuzzleWin?.Invoke();
     }
 
     public override void Defeat()
     {
         _visuals.DisableStain();
-        Debug.Log("<color=red>Puzzle Fallido por exceso de errores.</color>");
+        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Puzzle Fallido por exceso de errores");
         OnPuzzleLost?.Invoke();
     }
 }

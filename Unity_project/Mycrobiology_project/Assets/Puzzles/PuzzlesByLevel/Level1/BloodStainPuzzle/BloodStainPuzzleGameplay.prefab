@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BloodStainPuzzleGameplay
   dataManager: {fileID: 0}
   background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
-  isFirstTimePlaying: 0
+  isFirstTimePlaying: 1
   tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
   puzzleEvaluation: {fileID: -720969880984847073}
   _puzzleSequence: {fileID: 11400000, guid: bf0d52ead216e594babb51b49aad4309, type: 2}
