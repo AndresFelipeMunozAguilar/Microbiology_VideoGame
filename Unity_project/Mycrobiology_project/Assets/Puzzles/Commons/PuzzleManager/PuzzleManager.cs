@@ -89,6 +89,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         if (isVictoryAchieved) ExecuteVictoryLogic(); else ExecuteDefeatLogic();
 
+        Destroy(halo.gameObject);
 
         _gameManager.SwitchIsPuzzleActive();
         _gameManager.PuzzleResumeAll();
@@ -103,7 +104,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void ExecuteDefeatLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Lo siento, perdiste el puzzle.");
-
 
         _playerDamageDealer.CalculateDamage(GetScore());
         _playerDamageDealer.DealDamage(_playerHealthLogic);
@@ -132,6 +132,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void PuzzleResumeMe()
     {
         Debug.Log("I am PuzzleMANAGER and i have been RESUMED without my collider2d.");
+        this.GetComponent<Collider2D>().enabled = true;
     }
 
 
