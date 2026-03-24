@@ -509,9 +509,10 @@ GameObject:
   - component: {fileID: 654614001}
   - component: {fileID: 654614000}
   - component: {fileID: 654613999}
+  - component: {fileID: 654614002}
   m_Layer: 12
-  m_Name: AbsorbentPaper
-  m_TagString: Untagged
+  m_Name: Hypochlorite
+  m_TagString: BloodStainPuzzleItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -636,6 +637,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654614002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654613998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85089fe65ec10554d9ed202b2457ee44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
+  _itemId: 
+  _stepInformation: {fileID: 11400000, guid: c766f66dcd37f92418f82c5f8504f2c5, type: 2}
 --- !u!224 &752325772 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4083364929215346731, guid: 4627233276fc36e458fc7bbce133d70a, type: 3}
@@ -652,9 +667,10 @@ GameObject:
   - component: {fileID: 896798503}
   - component: {fileID: 896798502}
   - component: {fileID: 896798501}
+  - component: {fileID: 896798504}
   m_Layer: 12
   m_Name: BiowasteBag
-  m_TagString: Untagged
+  m_TagString: BloodStainPuzzleItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -779,6 +795,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &896798504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896798500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85089fe65ec10554d9ed202b2457ee44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
+  _itemId: 
+  _stepInformation: {fileID: 11400000, guid: 463b89e78979ea64e9c265d2dd59e46c, type: 2}
 --- !u!1 &937003795
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208037076}
   - component: {fileID: 1208037075}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,9 +1010,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 445897211
+  m_SortingLayer: 5
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3506688913314129133, guid: 609ad557154ad804e892573a133f00eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1020,6 +1050,7 @@ GameObject:
   - component: {fileID: 1384623318}
   - component: {fileID: 1384623317}
   - component: {fileID: 1384623316}
+  - component: {fileID: 1384623319}
   m_Layer: 12
   m_Name: BloodStain
   m_TagString: Untagged
@@ -1141,12 +1172,28 @@ Transform:
   m_GameObject: {fileID: 1384623315}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.749999, y: -2.5, z: 0}
+  m_LocalPosition: {x: -9.41, y: -2.5, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1384623319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384623315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578f337e521df0242906b559bb8967be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropZone
+  _draggableItemTag: BloodStainPuzzleItem
+  OnDraggableItemDropped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1385636214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,9 +1205,10 @@ GameObject:
   - component: {fileID: 1385636217}
   - component: {fileID: 1385636216}
   - component: {fileID: 1385636215}
+  - component: {fileID: 1385636218}
   m_Layer: 12
   m_Name: AbsorbentPaper
-  m_TagString: Untagged
+  m_TagString: BloodStainPuzzleItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1285,6 +1333,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1385636218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385636214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85089fe65ec10554d9ed202b2457ee44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
+  _itemId: 
+  _stepInformation: {fileID: 11400000, guid: 475266f43e48bc74e8827d267f1eb1fc, type: 2}
 --- !u!1 &1444958798
 GameObject:
   m_ObjectHideFlags: 0
