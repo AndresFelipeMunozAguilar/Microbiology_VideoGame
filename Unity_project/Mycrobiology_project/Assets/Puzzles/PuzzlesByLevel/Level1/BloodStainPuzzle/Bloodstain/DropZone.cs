@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 public class DropZone : MonoBehaviour
@@ -8,7 +8,7 @@ public class DropZone : MonoBehaviour
     [SerializeField] private string _draggableItemTag = "BloodStainPuzzleItem";
 
     // Evento para que el Manager escuche (Desacoplamiento)
-    public Action<string> OnDraggableItemDropped;
+    public UnityEvent<string> OnDraggableItemDropped;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
