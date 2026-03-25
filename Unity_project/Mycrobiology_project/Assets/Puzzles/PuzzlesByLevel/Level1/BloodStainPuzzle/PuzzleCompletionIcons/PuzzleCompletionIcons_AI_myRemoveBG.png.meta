@@ -119,10 +119,10 @@ TextureImporter:
       name: PuzzleCompletionIcons_AI_myRemoveBG_0
       rect:
         serializedVersion: 2
-        x: 88
-        y: 90
-        width: 578
-        height: 591
+        x: 6
+        y: 4
+        width: 288
+        height: 294
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,23 +138,23 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PuzzleCompletionIcons_AI_myRemoveBG_1
+      name: PuzzleCompletionIcons_AI_myRemoveBG_2
       rect:
         serializedVersion: 2
-        x: 739
-        y: 88
-        width: 583
-        height: 595
+        x: 329
+        y: 4
+        width: 289
+        height: 295
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7f2a64fc37712bfa0800000000000000
-      internalID: -5786536785051475209
+      spriteID: f59fe4068c7bb4841bb33ac4b9727158
+      internalID: -817955187
       vertices: []
       indices: 
       edges: []
@@ -175,6 +175,7 @@ TextureImporter:
     nameFileIdTable:
       PuzzleCompletionIcons_AI_myRemoveBG_0: -6760744269409031231
       PuzzleCompletionIcons_AI_myRemoveBG_1: -5786536785051475209
+      PuzzleCompletionIcons_AI_myRemoveBG_2: -817955187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
