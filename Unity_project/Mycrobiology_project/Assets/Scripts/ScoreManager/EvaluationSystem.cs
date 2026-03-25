@@ -70,6 +70,18 @@ public class EvaluationSystem : MonoBehaviour
         return puzzlesAmount;
     }
 
+    public List<PuzzleResultData> getPuzzles()
+    {
+        if (results != null)
+        {
+            return results;
+        }
+        else
+        {
+            return new List<PuzzleResultData>();
+        }
+    }
+
     public int GetPuzzlesComplete()
     {
         return results.Count;
