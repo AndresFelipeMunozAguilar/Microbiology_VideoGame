@@ -6,6 +6,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     [Header("Configuración de Datos")]
     [SerializeField] private PuzzleSequenceSO _puzzleSequence;
     [SerializeField] private PuzzleVisuals _visuals;
+    [SerializeField] private DropZone _dropZone;
 
     [Header("Estado del Juego (Solo Lectura)")]
     [SerializeField] private int _currentStepIndex = 0;
@@ -16,18 +17,54 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     public UnityEvent OnPuzzleLost;
     public UnityEvent<int, int> OnErrorChanged; // (errores actuales, max errores)
 
-    private void Start()
+    public void Start()
     {
         if (_puzzleSequence == null)
         {
             Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> Falta PuzzleSequenceSO en {gameObject.name}");
+            return;
         }
 
         Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Iniciado. Esperando primer paso.");
+
     }
 
-    /// Método principal que procesa la lógica de comparación.
-    /// Se suscribe al evento OnItemDropped del DropZone.
+    public override void StartGameplay()
+    {
+        Vector3 inFrontOfCamera = Camera.main.transform.position;
+        inFrontOfCamera.z = 0f;
+
+        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
+
+        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+        SpawnElements();
+
+        _visuals = GetComponentInChildren<PuzzleVisuals>();
+        if (_visuals == null)
+        {
+            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente PuzzleVisuals en los hijos de {this.gameObject.name}");
+            return;
+        }
+
+        _dropZone = GetComponentInChildren<DropZone>();
+        if (_dropZone == null)
+        {
+            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
+            return;
+        }
+        _dropZone.OnDraggableItemDropped.AddListener(ProcessItemInteraction);
+
+    }
+
+    public void OnDestroy()
+    {
+        _dropZone.OnDraggableItemDropped.RemoveListener(ProcessItemInteraction);
+    }
+
+
+
+    // Método principal que procesa la lógica de comparación.
+    // Se suscribe al evento OnItemDropped del DropZone.
     public void ProcessItemInteraction(string droppedItemId)
     {
 
@@ -71,15 +108,6 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         }
     }
 
-    public override void StartGameplay()
-    {
-        Vector3 inFrontOfCamera = Camera.main.transform.position;
-        inFrontOfCamera.z = 0f;
-
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
-
-        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-    }
 
     public override void Victory()
     {
