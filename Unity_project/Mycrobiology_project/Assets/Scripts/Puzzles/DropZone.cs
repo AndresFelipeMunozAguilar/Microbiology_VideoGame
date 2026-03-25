@@ -4,13 +4,15 @@ public class DropZone : MonoBehaviour
 {
     [SerializeField] Transform pointPosition;
     bool Occupied;
+    [SerializeField] bool isFinish;
     public bool IsOccupied()
     {
         return Occupied;
     }
-    public void setOccupied(bool newValue)
+    public bool setOccupied(bool newValue)
     {
         Occupied=newValue;
+        return isFinish;
     }
     public Vector2 getPosition()
     {

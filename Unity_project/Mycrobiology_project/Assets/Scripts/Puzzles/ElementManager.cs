@@ -10,16 +10,22 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
     [SerializeField] float Temperature;
     Vector2 OriginPosition;
     [SerializeField] Image WarmBar;
-    [SerializeField] float maxTime = 3f;
+    [SerializeField] RectTransform pointWarm;
+    [SerializeField] float maxTime = 10f;
     DropZone dropzone;
-    public void CreateElement(Element assigned)
+    PuzzleEvaluation score;
+    GamePlayElements gamePlay;
+    public void CreateElement(Element assigned,PuzzleEvaluation Evaluation,GamePlayElements gamePlayElements)
     {
+        score=Evaluation;
+        gamePlay = gamePlayElements;
         element= assigned;
         GetComponent<SpriteRenderer>().sprite = element.image;    
-        Collider2D[] hits = Physics2D.OverlapPointAll(transform.position);
-
+        float posy = Mathf.Lerp(3.6f, -3.6f, element.timeWarm / 100f);
+        Vector2 posPoint = new Vector2(pointWarm.anchoredPosition.x,posy);
+        pointWarm.anchoredPosition = posPoint;
         GameObject blank = getPlace(transform.position);
-        if(blank)Debug.Log("<color=red></color>");
+        transform.position=dropzone.getPosition();
     }
     void FixedUpdate()
     {
@@ -35,8 +41,8 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
         {
             currentTime += Time.deltaTime;
             float target = currentTime / maxTime;
-            Temperature = Mathf.Lerp(Temperature,target,Time.deltaTime);
-            WarmBar.fillAmount = Mathf.Lerp(WarmBar.fillAmount,target,Time.deltaTime);
+            Temperature = target;
+            WarmBar.fillAmount = target;
         }
     }
     public void OnPointerDown(PointerEventData eventData)
@@ -52,9 +58,26 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
 
         GameObject dropPlace = getPlace(eventData:eventData);
         transform.position=dropzone.getPosition(); //si genera error es porque no esta asignado al iniciar un espacio
+
         dropPlace = getPlace(transform.position);
-        if(dropPlace && dropPlace.TryGetComponent<WarmManager>(out WarmManager warm)){
+        if(dropPlace && dropPlace.TryGetComponent(out WarmManager warm)){
             onWarm=true;
+            if (warm.getSwitch())
+            {
+               if(element.isMechero) score.AddPoints("GoodPlace"); 
+               else score.RemovePoints("BadPlace");
+               if(element.isMechero) Debug.Log("[ELEMENT] bien puesto en el mechero");
+               else  Debug.Log("[ELEMENT] mal puesto en el mechero");
+            }
+            else
+            {
+                if(element.isBañoMaria) score.AddPoints("GoodPlace");
+               else score.RemovePoints("BadPlace");
+                if(element.isBañoMaria) Debug.Log("[ELEMENT] bien puesto en el baño maria");
+               else  Debug.Log("[ELEMENT] mal puesto en el baño maria");
+            }
+            Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
+            
         }
         GetComponent<CapsuleCollider2D>().enabled = true;
     }
@@ -67,12 +90,13 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
 
         foreach (var hit in hits)
         {
-            if (hit.TryGetComponent<DropZone>(out DropZone drop))
-            {
+            if (hit.TryGetComponent(out DropZone drop))
+            {   
                 if(!drop.IsOccupied()){
                     if(dropzone)dropzone.setOccupied(false);
                     dropzone=drop;
-                    dropzone.setOccupied(true);
+                    bool isFinish= dropzone.setOccupied(true);
+                    if(isFinish)FinishElement();
                 }
                 return hit.gameObject;
             }
@@ -80,8 +104,31 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
 
         return null;
     }
+    void FinishElement()
+    {
+        GetComponent<Animator>().Play("Fade");
+        
+    }
+    public void DestroyElement()
+    {
+        Temperature*=100;
+        if(Temperature >= element.timeWarm-10f && Temperature <= element.timeWarm + 10f)
+        {
+            score.AddPoints("FinishElement");
+            Debug.Log("[ELEMENT] bien hecho temperatura: "+Temperature+" estuvo en el rango: "+element.timeWarm);
+        }
+        else
+        {
+            score.AddPoints("FinishBadElement");
+            Debug.Log("[ELEMENT] mal hecho temperatura: "+Temperature+" no estuvo en el rango: "+element.timeWarm);
+        }
+        Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
+        dropzone.setOccupied(false);
+        gamePlay.addFinishElement();
+        Destroy(gameObject);   
+    }
     public void PlaceWarm(Vector2 newPos)
-    { 
+    {
         OriginPosition= newPos;
         transform.position = OriginPosition;
     }

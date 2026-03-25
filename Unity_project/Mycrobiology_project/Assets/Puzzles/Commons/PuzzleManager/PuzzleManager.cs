@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePausable
@@ -49,8 +50,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             _gameManager.PuzzlePauseAll();
 
             Debug.Log("<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
-
-            Instantiate(puzzleGameplayPrefab, this.transform)
+            Instantiate(puzzleGameplayPrefab,Camera.main.transform)
                 .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
 
             if (puzzelGameplayOut == null)

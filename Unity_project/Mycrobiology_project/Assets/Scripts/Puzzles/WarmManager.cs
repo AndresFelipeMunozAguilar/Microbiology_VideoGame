@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class WarmManager : MonoBehaviour
 {
-    [SerializeField] Transform warmPoint;
+    [SerializeField] bool SwitchMecheroBaño; // true-> mechero false-> baño maria
 
-    public void StartWarming(ElementManager element)
+    public bool getSwitch()
     {
-        element.PlaceWarm(warmPoint.position);
+        return SwitchMecheroBaño;
     }
 
 

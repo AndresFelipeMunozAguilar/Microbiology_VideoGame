@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c02da416132fc4685e46eeeffb820b, type: 3}
   m_Name: Element 1
   m_EditorClassIdentifier: Assembly-CSharp::Element
-  image: {fileID: 4843167154947494238, guid: 9074be3346d7c604ab942af75581fd0d, type: 3}
-  timeWarm: 9
-  isMechero: 0
-  "isBa\xF1oMaria": 1
+  image: {fileID: -1521147527226025818, guid: 5132ec0ce827a35498beb6f1994c81ab, type: 3}
+  timeWarm: 90
+  isMechero: 1
+  "isBa\xF1oMaria": 0
