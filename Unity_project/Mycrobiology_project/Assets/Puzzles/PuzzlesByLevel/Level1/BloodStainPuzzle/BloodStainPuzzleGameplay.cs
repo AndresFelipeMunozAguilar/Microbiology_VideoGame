@@ -26,10 +26,8 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Iniciado. Esperando primer paso.");
     }
 
-    /// <summary>
     /// Método principal que procesa la lógica de comparación.
     /// Se suscribe al evento OnItemDropped del DropZone.
-    /// </summary>
     public void ProcessItemInteraction(string droppedItemId)
     {
 

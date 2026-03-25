@@ -46,19 +46,21 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             _gameManager.SwitchIsPuzzleActive();
             _gameManager.PuzzlePauseAll();
 
-            Debug.Log("<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
+            Debug.Log($"<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre {this.transform.gameObject.name}");
 
             Instantiate(puzzleGameplayPrefab, this.transform)
                 .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
 
             if (puzzelGameplayOut == null)
             {
-                Debug.LogWarning("No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
+                Debug.LogWarning("<color=green>PuzzleManager:</color> No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
                 return;
             }
 
             Debug.Log("<color=green>PuzzleManager:</color> Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
             gameplay = puzzelGameplayOut;
+
+            Debug.Log($"<color=green>PuzzleManager:</color> El PuzzleGameplay fue instanciado en posicion: {gameplay.transform.position} y posicion local: {gameplay.transform.localPosition}");
 
 
             StartPuzzle();
