@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9d756defaaf1d4fbe797cb797a2f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleVisuals
-  _transparencyWhenDisabled: 100
+  _transparencyWhenDisabled: 0.4
 --- !u!114 &8868886039312673238
 MonoBehaviour:
   m_ObjectHideFlags: 0

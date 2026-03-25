@@ -7,8 +7,8 @@ public class PuzzleVisuals : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
-    [Range(0, 255)]
-    private int _transparencyWhenDisabled;
+    [Range(0, 1)]
+    private float _transparencyWhenDisabled;
 
     private void Awake()
     {
@@ -36,9 +36,13 @@ public class PuzzleVisuals : MonoBehaviour
         // Se llama cuando se pierden todas las vidas o termina el puzzle
 
         // Variable auxiliar para configurar la transparencia del sprite al perder
-        Color setTransparency = _spriteRenderer.color;
+        ChangeSpriteRendererAlpha(_transparencyWhenDisabled);
+    }
 
-        setTransparency.a = _transparencyWhenDisabled;
+    public void ChangeSpriteRendererAlpha(float transparency)
+    {
+        Color setTransparency = _spriteRenderer.color;
+        setTransparency.a = transparency;
         _spriteRenderer.color = setTransparency;
     }
 }
