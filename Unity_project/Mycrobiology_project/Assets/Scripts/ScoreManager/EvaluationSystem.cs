@@ -3,13 +3,18 @@ using System.Collections.Generic;
 
 public class EvaluationSystem : MonoBehaviour
 {
-    public static EvaluationSystem Instance;
+    public static EvaluationSystem Instance
+    {
+        get;
+        private set;
+    }
+
     string playerID = "player";
     private List<PuzzleResultData> results = new List<PuzzleResultData>();
     private Dictionary<string, int> puzzleFinalScores = new Dictionary<string, int>();
     private int totalScore = 0;
     private int FinalScore;
-    [SerializeField]private int MaxTotalScore=100;
+    [SerializeField] private int MaxTotalScore = 100;
     private string totalPerformance;
     int puzzlesAmount;
 
@@ -43,7 +48,7 @@ public class EvaluationSystem : MonoBehaviour
 
         Debug.Log($"EvaluationSystem: Calculando el performance del puzzle {puzzleID} con finalScore: {finalScore} y maxScore: {maxScore}");
         string performance = CalculatePerformance(finalScore, maxScore);
-        Debug.Log("Final Performance"+performance);
+        Debug.Log("Final Performance" + performance);
         results.Add(new PuzzleResultData
         {
             puzzleID = puzzleID,
@@ -70,7 +75,7 @@ public class EvaluationSystem : MonoBehaviour
         return results.Count;
     }
 
-    public int GetFinalScore() => (totalScore/GetPuzzlesAmount());
+    public int GetFinalScore() => (totalScore / GetPuzzlesAmount());
     public string GetTotalPerformance() => totalPerformance;
 
     public int GetPuzzleScore(string puzzleID)

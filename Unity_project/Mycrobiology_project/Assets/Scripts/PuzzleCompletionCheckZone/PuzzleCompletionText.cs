@@ -2,21 +2,41 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class PuzzleCompletionText : MonoBehaviour
+public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
 {
     [Header("Objetos Asociados")]
     // Se usa TextMeshPro porque el texto no aparece en la UI
     [SerializeField] private TextMeshPro _textMeshPro;
     [SerializeField] private PuzzleCompletionCheckZone _puzzleCompletionCheckZone;
+    [SerializeField] private GameManager _gameManager;
 
 
     [Header("Configuración de Animación")]
     [SerializeField] private float _duration = 1.5f;
     [SerializeField] private float _yOffset = 20f;
+
     private Coroutine _activeAnimation;
     private Vector3 _initialPosition;
 
     // =======================[Métodos Iniciales]=======================
+
+    public void Awake()
+    {
+
+        _gameManager = GameManager.GetInstance();
+
+
+        if (_gameManager == null)
+        {
+            Debug.Log($"CountdownBarManager: GameManager instance not found: Is null ");
+        }
+        else
+        {
+            Debug.Log($"CountdownBarManager: GameManager instance found: {_gameManager.gameObject.name}");
+        }
+    }
+
+
     public void Start()
     {
         _textMeshPro = GetComponent<TextMeshPro>();
@@ -27,6 +47,8 @@ public class PuzzleCompletionText : MonoBehaviour
             Debug.LogError("PuzzleCompletionText: PuzzleCompletionCheckZone reference is null. Please assign it in the inspector.");
             return;
         }
+
+
         _puzzleCompletionCheckZone.OnPlayerGetsClose += ShowPuzzleCompletionText;
         _puzzleCompletionCheckZone.OnPlayerLeaves += HidePuzzleCompletionText;
 
@@ -40,9 +62,14 @@ public class PuzzleCompletionText : MonoBehaviour
         _puzzleCompletionCheckZone.OnPlayerLeaves -= HidePuzzleCompletionText;
     }
 
+    public void OnEnable()
+    {
+        _gameManager.SubscribeToGameOver(this);
+    }
     public void OnDisable()
     {
         StopCurrentAnimation();
+        _gameManager.UnsubscribeToGameOver(this);
     }
 
     // =======================[Lógica de la corrutina]=======================
@@ -110,6 +137,9 @@ public class PuzzleCompletionText : MonoBehaviour
         Hide();
     }
 
-
-
+    public void OnGameOver()
+    {
+        Debug.Log("PuzzleCompletionText: Fui pausado OnGameOver");
+        this.enabled = false;
+    }
 }

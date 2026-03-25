@@ -14,7 +14,7 @@ public class BasketTriggerZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag(ballTag))
         {
-            PuzzleManager puzzleManager = GetComponentInParent<PuzzleManager>();
+            IPuzzleManager puzzleManager = GetComponentInParent<IPuzzleManager>();
 
             if (puzzleManager == null)
             {
@@ -22,8 +22,8 @@ public class BasketTriggerZone : MonoBehaviour
                 return;
             }
 
-            puzzleManager.isVictoryAchieved = isThisVictoryTrigger;
-            puzzleManager.CompletePuzzle();
+            bool didPlayerWin = isThisVictoryTrigger;
+            puzzleManager.CompletePuzzle(didPlayerWin);
 
 
         }

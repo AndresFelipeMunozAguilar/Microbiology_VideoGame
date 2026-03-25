@@ -153,8 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91dec657b7d1e949a7820892e4ed30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageDealer
-  _damageAmount: 0
-  _puzzleDamageTable: {fileID: 0}
+  _puzzleDamageTable: {fileID: 11400000, guid: 9c0d369380415db4f99bcd5883bb9b53, type: 2}
 --- !u!114 &8526291106525290407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +173,7 @@ MonoBehaviour:
   _playerHealthLogic: {fileID: 0}
   _playerDamageDealer: {fileID: 9111576306358749388}
   performanceResult: {fileID: 0}
-  gameManager: {fileID: 0}
+  _gameManager: {fileID: 0}
 --- !u!1 &7593797587746177536
 GameObject:
   m_ObjectHideFlags: 0
