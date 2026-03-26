@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public abstract class AbstractDraggableWorldObject : MonoBehaviour,
     IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] protected Vector3 _startPosition;
+
     [SerializeField] protected float _zDistanceToCamera;
     [SerializeField] protected Camera _mainCamera;
     [SerializeField] protected CanvasGroup _canvasGroup;
@@ -17,7 +17,6 @@ public abstract class AbstractDraggableWorldObject : MonoBehaviour,
     protected virtual void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        _startPosition = transform.localPosition;
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 

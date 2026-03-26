@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,9 +14,9 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     [SerializeField] private int _errorCount = 0;
 
     [Header("Eventos de Salida")]
-    public UnityEvent OnPuzzleWin;
-    public UnityEvent OnPuzzleLost;
-    public UnityEvent<int, int> OnErrorChanged; // (errores actuales, max errores)
+    public Action OnPuzzleWin;
+    public Action OnPuzzleLost;
+    public Action<int, int> OnErrorChanged; // (errores actuales, max errores)
 
     public void Start()
     {
@@ -52,13 +53,13 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
             Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
             return;
         }
-        _dropZone.OnDraggableItemDropped.AddListener(ProcessItemInteraction);
+        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
 
     }
 
     public void OnDestroy()
     {
-        _dropZone.OnDraggableItemDropped.RemoveListener(ProcessItemInteraction);
+        _dropZone.OnDraggableItemDropped -= ProcessItemInteraction;
     }
 
 
@@ -90,7 +91,12 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
         if (_currentStepIndex >= _puzzleSequence.TotalSteps)
         {
-            Victory();
+            _visuals.UpdateVisuals(_puzzleSequence.FinalCleanSprite);
+
+            Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> ¡Puzzle Completado!");
+            OnPuzzleWin?.Invoke();
+
+            NotifyPuzzleVictory(true);
         }
     }
 
@@ -104,22 +110,33 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
         if (_errorCount >= _puzzleSequence.MaxAllowedErrors)
         {
-            Defeat();
+            _visuals.DisableStain();
+
+            Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Puzzle Fallido por exceso de errores");
+            OnPuzzleLost?.Invoke();
+
+            NotifyPuzzleVictory(false);
         }
     }
 
 
     public override void Victory()
     {
-        _visuals.UpdateVisuals(_puzzleSequence.FinalCleanSprite);
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> ¡Puzzle Completado!");
-        OnPuzzleWin?.Invoke();
+        Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
+        puzzleEvaluation.AddPoints("ganar");
+        //Falta añadir la lógica de calcular la performance en el puzzle
+        puzzleEvaluation.FinishGame(true);
+        Destroy(this.gameObject);
+
+
     }
 
     public override void Defeat()
     {
-        _visuals.DisableStain();
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Puzzle Fallido por exceso de errores");
-        OnPuzzleLost?.Invoke();
+        Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
+        puzzleEvaluation.RemovePoints("perder");
+        //Falta añadir la lógica de calcular la performance en el puzzle
+        puzzleEvaluation.FinishGame(false);
+        Destroy(this.gameObject);
     }
 }
