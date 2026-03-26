@@ -5,11 +5,40 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class DropZone : MonoBehaviour
 {
+
+    [Header("Objetos Asociados")]
+    [SerializeField] BloodStainPuzzleGameplay _bloodStainGameplay;
+
+
     [Header("Configuración de Detección")]
     [SerializeField] private string _draggableItemTag = "BloodStainPuzzleItem";
 
     // Evento para que el Manager escuche (Desacoplamiento)
     public Action<string> OnDraggableItemDropped;
+
+    private void Start()
+    {
+        if (GetComponentInParent<BloodStainPuzzleGameplay>() == null)
+        {
+            Debug.LogError("BloodStainFeedbackVisuals: Parent object with BloodStainPuzzleGameplay component not found.");
+            return;
+        }
+        _bloodStainGameplay = GetComponentInParent<BloodStainPuzzleGameplay>();
+
+        _bloodStainGameplay.OnPuzzleLost += DisableComponents;
+    }
+
+
+    private void OnDestroy()
+    {
+        _bloodStainGameplay.OnPuzzleLost -= DisableComponents;
+    }
+
+    private void DisableComponents()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        enabled = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

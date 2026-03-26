@@ -94,7 +94,6 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
             _visuals.UpdateVisuals(_puzzleSequence.FinalCleanSprite);
 
             Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> ¡Puzzle Completado!");
-            OnPuzzleWin?.Invoke();
 
             NotifyPuzzleVictory(true);
         }
@@ -105,7 +104,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         _errorCount++;
         Debug.Log($"<color=red>Error detectado:</color> {_errorCount}/{_puzzleSequence.MaxAllowedErrors}");
 
-        _visuals.ShowErrorEffect();
+        Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Listeners suscritos a OnErrorChanged: {OnErrorChanged?.GetInvocationList().Length ?? 0}");
         OnErrorChanged?.Invoke(_errorCount, _puzzleSequence.MaxAllowedErrors);
 
         if (_errorCount >= _puzzleSequence.MaxAllowedErrors)
