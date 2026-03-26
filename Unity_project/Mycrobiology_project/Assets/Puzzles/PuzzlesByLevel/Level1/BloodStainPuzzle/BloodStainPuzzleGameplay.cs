@@ -6,7 +6,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 {
     [Header("Configuración de Datos")]
     [SerializeField] private PuzzleSequenceSO _puzzleSequence;
-    [SerializeField] private PuzzleVisuals _visuals;
+    [SerializeField] private BloodStainVisuals _visuals;
     [SerializeField] private DropZone _dropZone;
 
     [Header("Estado del Juego (Solo Lectura)")]
@@ -40,10 +40,10 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
         SpawnElements();
 
-        _visuals = GetComponentInChildren<PuzzleVisuals>();
+        _visuals = GetComponentInChildren<BloodStainVisuals>();
         if (_visuals == null)
         {
-            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente PuzzleVisuals en los hijos de {this.gameObject.name}");
+            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente BloodStainVisuals en los hijos de {this.gameObject.name}");
             return;
         }
 

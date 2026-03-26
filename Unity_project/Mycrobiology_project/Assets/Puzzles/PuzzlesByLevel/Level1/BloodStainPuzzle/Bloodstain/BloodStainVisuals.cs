@@ -1,8 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class PuzzleVisuals : MonoBehaviour
+public class BloodStainVisuals : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
 
