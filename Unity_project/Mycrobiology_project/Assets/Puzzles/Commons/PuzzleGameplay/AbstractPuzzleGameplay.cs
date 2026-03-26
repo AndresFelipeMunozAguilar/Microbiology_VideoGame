@@ -65,4 +65,17 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
             Debug.Log($"<color=cyan>{name}:</color> Instanciado {element.name} en {element.globalPosition}");
         }
     }
+
+    protected void NotifyPuzzleVictory(bool didPlayerWin)
+    {
+        IPuzzleManager puzzleManager = GetComponentInParent<IPuzzleManager>();
+
+        if (puzzleManager == null)
+        {
+            Debug.LogWarning("No se encontro el Componente PuzzleManager");
+            return;
+        }
+
+        puzzleManager.CompletePuzzle(didPlayerWin);
+    }
 }
