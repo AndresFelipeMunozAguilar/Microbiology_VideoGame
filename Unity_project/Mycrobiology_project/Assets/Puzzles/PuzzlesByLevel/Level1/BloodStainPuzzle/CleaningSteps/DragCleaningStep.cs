@@ -9,7 +9,7 @@ public class DragCleaningStep : AbstractDraggableWorldObject
     protected override void OnInstanceStart()
     {
 
-        if (!GetComponentInParent<AbstractPuzzleGameplay>())
+        if (GetComponentInParent<AbstractPuzzleGameplay>() == null)
         {
             Debug.LogError($"DragCleaningStep: No se pudo encontrar el componente de tipo AbstractPuzzleGameplay");
             return;
@@ -40,7 +40,7 @@ public class DragCleaningStep : AbstractDraggableWorldObject
     {
         Gizmos.color = Color.red;
 
-        if (!GetComponentInParent<AbstractPuzzleGameplay>())
+        if (GetComponentInParent<AbstractPuzzleGameplay>() == null)
         {
             Debug.LogError($"DragCleaningStep: No se pudo encontrar el componente de tipo AbstractPuzzleGameplay");
             return;
