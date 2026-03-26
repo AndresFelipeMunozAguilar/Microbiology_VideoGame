@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1559105880748298956}
   - component: {fileID: 2756313957299227070}
   - component: {fileID: 4312090306312240302}
+  - component: {fileID: -3125929839421153747}
+  - component: {fileID: 6022311376563506733}
+  - component: {fileID: -8955721478886510389}
   m_Layer: 12
   m_Name: BiowasteBag
   m_TagString: BloodStainPuzzleItem
@@ -153,3 +156,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
   _itemId: 
   _stepInformation: {fileID: 11400000, guid: 463b89e78979ea64e9c265d2dd59e46c, type: 2}
+--- !u!50 &-3125929839421153747
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551719527459512482}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
+--- !u!225 &6022311376563506733
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551719527459512482}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &-8955721478886510389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551719527459512482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbdecbc461d1834baf2b4d9c5285904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragCleaningStep
+  _zDistanceToCamera: 0
+  _mainCamera: {fileID: 0}
+  _canvasGroup: {fileID: 6022311376563506733}
+  _rigidbody: {fileID: -3125929839421153747}
+  _globalStartPosition: {x: 2.5, y: 0.13, z: 0}
+  returnSpeed: 5

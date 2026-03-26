@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6827791220126581699}
   - component: {fileID: 287474169638659002}
   - component: {fileID: 3914510060530474288}
+  - component: {fileID: 7454226597654820000}
+  - component: {fileID: 3315422736155607559}
+  - component: {fileID: 6873280998921901027}
   m_Layer: 12
   m_Name: AbsorbentPaper
   m_TagString: BloodStainPuzzleItem
@@ -153,3 +156,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
   _itemId: 
   _stepInformation: {fileID: 11400000, guid: 475266f43e48bc74e8827d267f1eb1fc, type: 2}
+--- !u!50 &7454226597654820000
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3922145393928646992}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
+--- !u!225 &3315422736155607559
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3922145393928646992}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &6873280998921901027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3922145393928646992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbdecbc461d1834baf2b4d9c5285904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragCleaningStep
+  _zDistanceToCamera: 0
+  _mainCamera: {fileID: 0}
+  _canvasGroup: {fileID: 3315422736155607559}
+  _rigidbody: {fileID: 7454226597654820000}
+  _globalStartPosition: {x: 5, y: -0.12, z: 0}
+  returnSpeed: 5
