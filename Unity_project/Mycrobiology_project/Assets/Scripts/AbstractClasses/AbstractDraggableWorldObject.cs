@@ -26,6 +26,8 @@ public abstract class AbstractDraggableWorldObject : MonoBehaviour,
 
         // Se guarda la distancia Z entre el objeto y la cámara para que no salte al arrastrar
         _zDistanceToCamera = Mathf.Abs(_mainCamera.transform.position.z - transform.position.z);
+
+        OnInstanceStart();
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
@@ -77,7 +79,9 @@ public abstract class AbstractDraggableWorldObject : MonoBehaviour,
         OnDragEnded(); // Hook para subclases
     }
 
+
     // "Hooks" o Métodos Plantilla: Las hijas deciden si usarlos o no
+    protected virtual void OnInstanceStart() { }
     protected virtual void OnDragStarted() { }
     protected virtual void OnDuringDrag() { }
     protected virtual void OnDragEnded() { }
