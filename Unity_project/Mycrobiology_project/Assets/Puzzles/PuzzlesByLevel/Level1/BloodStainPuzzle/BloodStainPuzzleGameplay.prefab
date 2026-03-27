@@ -72,18 +72,11 @@ MonoBehaviour:
   isFirstTimePlaying: 1
   tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
   _puzzleSequence: {fileID: 11400000, guid: bf0d52ead216e594babb51b49aad4309, type: 2}
-  _visuals: {fileID: 69645624522728502, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
+  _visuals: {fileID: 0}
+  _dropZone: {fileID: 0}
   _currentStepIndex: 0
   _errorCount: 0
-  OnPuzzleWin:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPuzzleLost:
-    m_PersistentCalls:
-      m_Calls: []
-  OnErrorChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  succesKeyForThePuzzleEvaluationDictionary: acierto
 --- !u!114 &-720969880984847073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,14 +91,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinigameController
   puzzleID: BloodStain
   maxScore: 100
-  minScore: -50
-  winScoreThreshold: 100
-  loseScoreThreshold: -30
+  minScore: -100
+  winScoreThreshold: 999
+  loseScoreThreshold: -999
   values:
-  - key: ganar
-    value: 70
-  - key: perder
-    value: 65
-  - key: si
-    value: 65
+  - key: acierto
+    value: 34
+  - key: error
+    value: 34
   ScreenScore: {fileID: 8460548930382919465, guid: 3346638223903114dadcb4cebb1cc3b9, type: 3}

@@ -18,6 +18,13 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     public Action OnPuzzleLost;
     public Action<int, int> OnErrorChanged; // (errores actuales, max errores)
 
+    [Header("Calificación del Desempeño")]
+    // Este atributo debe coincidir con el valor de la 
+    // DamageTable asociada para cuando se arrastra 
+    // el item en el orden correcto
+    [SerializeField] private string _puzzleEvaluationSuccesKey = "acierto";
+    [SerializeField] private string _puzzleEvaluationErrorKey = "error";
+
     public void Start()
     {
         if (_puzzleSequence == null)
@@ -30,16 +37,8 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
     }
 
-    public override void StartGameplay()
+    private void GetAssociatedComponents()
     {
-        Vector3 inFrontOfCamera = Camera.main.transform.position;
-        inFrontOfCamera.z = 0f;
-
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
-
-        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-        SpawnElements();
-
         _visuals = GetComponentInChildren<BloodStainVisuals>();
         if (_visuals == null)
         {
@@ -53,8 +52,21 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
             Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
             return;
         }
-        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
 
+    }
+
+    public override void StartGameplay()
+    {
+        Vector3 inFrontOfCamera = Camera.main.transform.position;
+        inFrontOfCamera.z = 0f;
+
+        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
+
+        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+        SpawnElements();
+
+        GetAssociatedComponents();
+        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
     }
 
     public void OnDestroy()
@@ -86,6 +98,8 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         _currentStepIndex++;
         Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Paso Correcto: {_currentStepIndex}/{_puzzleSequence.TotalSteps}");
 
+        puzzleEvaluation.AddPoints(_puzzleEvaluationSuccesKey);
+
         // Notificar a los visuales para cambiar el sprite de la mancha
         _visuals.UpdateVisuals(step.StepResultSprite);
 
@@ -103,6 +117,8 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     {
         _errorCount++;
         Debug.Log($"<color=red>Error detectado:</color> {_errorCount}/{_puzzleSequence.MaxAllowedErrors}");
+
+        puzzleEvaluation.RemovePoints(_puzzleEvaluationErrorKey);
 
         Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Listeners suscritos a OnErrorChanged: {OnErrorChanged?.GetInvocationList().Length ?? 0}");
         OnErrorChanged?.Invoke(_errorCount, _puzzleSequence.MaxAllowedErrors);
@@ -122,20 +138,18 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     public override void Victory()
     {
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
-        puzzleEvaluation.AddPoints("ganar");
-        //Falta añadir la lógica de calcular la performance en el puzzle
+
         puzzleEvaluation.FinishGame(true);
+
         Destroy(this.gameObject);
-
-
     }
 
     public override void Defeat()
     {
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
-        puzzleEvaluation.RemovePoints("perder");
-        //Falta añadir la lógica de calcular la performance en el puzzle
+
         puzzleEvaluation.FinishGame(false);
+
         Destroy(this.gameObject);
     }
 }
