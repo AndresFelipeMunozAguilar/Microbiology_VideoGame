@@ -91,6 +91,9 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         if (isVictoryAchieved) ExecuteVictoryLogic(); else ExecuteDefeatLogic();
 
+        _playerDamageDealer.CalculateDamage(GetScore());
+        if (_playerDamageDealer.CanApplyDamage()) _playerDamageDealer.DealDamage(_playerHealthLogic);
+
         Destroy(halo.gameObject);
 
         _gameManager.SwitchIsPuzzleActive();
@@ -106,9 +109,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void ExecuteDefeatLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Lo siento, perdiste el puzzle.");
-
-        _playerDamageDealer.CalculateDamage(GetScore());
-        _playerDamageDealer.DealDamage(_playerHealthLogic);
 
         gameplay.Defeat();
     }
