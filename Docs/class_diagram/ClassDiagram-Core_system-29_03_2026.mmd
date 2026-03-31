@@ -114,6 +114,25 @@ class MovePlayer {
     + ActivateScript() void
 }
 
+class CountdownBarManager {
+    - Image countdownBar
+    - bool isPaused
+    + Action~int~ OnTimeChanged
+    - int previousTimeRemaining
+    - float timeRemaining
+    - float maxTime
+    - GameManager _gameManager
+
+    + Awake() void
+    + OnEnable() void
+    + OnDisable() void
+    + Update() void
+    + StartCountdown() void
+    + SetPaused(paused: bool) void
+    + ResetCountdown() void
+    + TimeIsUp() void
+    + OnGameOver() void
+}
 
 class PuzzleHalo {
     + float pulseSpeed
@@ -135,12 +154,9 @@ class PuzzleHalo {
     + OnDestroy() void
 }
 
-
 class IGameOverSubscriber {
     + OnGameOver() void
 }
-
-
 
 class PlayerHealthLogic {
     - int maxLives
@@ -155,26 +171,6 @@ class PlayerHealthLogic {
     + TakeDamage(damageAmount: int) void
     + ReduceLivesNBound(damageAmount: int) int
     + PlayerDead() void
-    + OnGameOver() void
-}
-
-class CountdownBarManager {
-    - Image countdownBar
-    - bool isPaused
-    + Action~int~ OnTimeChanged
-    - int previousTimeRemaining
-    - float timeRemaining
-    - float maxTime
-    - GameManager _gameManager
-
-    + Awake() void
-    + OnEnable() void
-    + OnDisable() void
-    + Update() void
-    + StartCountdown() void
-    + SetPaused(paused: bool) void
-    + ResetCountdown() void
-    + TimeIsUp() void
     + OnGameOver() void
 }
 
@@ -220,36 +216,60 @@ class PuzzleDamageTable {
     + List<DamageThreshold> damageThresholdPairs
 }
 
+%% Abstract draggable
+class AbstractDraggableWorldObject{
+    <<abstract>> 
+    # float _zDistanceToCamera
+    # Camera _mainCamera
+    # CanvasGroup _canvasGroup
+    # Rigidbody2D _rigidbody
+
+    # Awake() void
+    + Start() void
+    + OnPointerDown(eventData: PointerEventData) void
+    + OnBeginDrag(eventData: PointerEventData) void
+    + OnDrag(eventData: PointerEventData) void
+    + OnEndDrag(eventData: PointerEventData) void
+    # OnInstanceStart() void
+    # OnDragStarted() void
+    # OnDuringDrag() void
+    # OnDragEnded() void
+}
+
 class PuzzleManager {
     - int score
     - FeedbackText feedbackText
     - PuzzleHalo halo
+    + bool isVictoryAchieved
+    + AbstractPuzzleGameplay gameplay
     - GameObject puzzleGameplayPrefab
-    - AbstractPuzzleGameplay gameplay
     - PlayerHealthLogic _playerHealthLogic
     - PlayerDamageDealer _playerDamageDealer
     - PerformanceResult performanceResult
     - GameManager _gameManager
-    + bool isVictoryAchieved
-    + OnTap() void
+
     + Start() void
-    + OnDestroy() void
+    + OnTap() void
+    + StartPuzzle() void
+    + CompletePuzzle(didPlayerWin: bool) void
     + ExecuteVictoryLogic() void
     + ExecuteDefeatLogic() void
+    + GetScore() int
     + ShowFeedback(qualitativeResult: string) void
+    + GetPerformanceResult() PerformanceResult
     + PuzzlePauseMe() void
     + PuzzleResumeMe() void
-    + StartPuzzle() void
-    + CompletePuzzle() void
-    + GetScore() int
-    + GetPerformanceResult() PerformanceResult
+    + OnDestroy() void
 }
+
 
 class PlayerDamageDealer {
     - int _damageAmount
+    - bool _canApplyDamage
     - PuzzleDamageTable _puzzleDamageTable
 
     + CalculateDamage(gameplayScore: int) void
+    + CanApplyDamage() bool
     + DealDamage(target: IDamageable) void
 }
 
@@ -289,10 +309,23 @@ class PerformanceResult {
 }
 
 class PuzzleTutorial {
+    - AbstractPuzzleGameplay puzzleGameplay
+    - String puzzleName
+    - SpriteRenderer spriteRenderer
     - string title
     - Image gifTutorial
     - string tutorialDescription
-    + close() void
+
+    - Start() void
+    + StartPuzzleGameplay() void
+    + Destroy() void
+}
+
+class SpawnableElement {
+    + string name
+    + GameObject prefab
+    + Vector3 globalPosition
+    + Quaternion localRotation
 }
 
 class FeedbackText {
@@ -399,9 +432,11 @@ class AbstractPuzzleGameplay {
     <<abstract>>
     # DataManager dataManager
     # PuzzleEvaluation puzzleEvaluation
+    # List~SpawnableElement~ elementsToSpawn
     # GameObject background
     # bool isFirstTimePlaying
     # GameObject tutorialPrefab
+
     + StartGameplay() void*
     + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
     + Victory() void*
@@ -409,8 +444,29 @@ class AbstractPuzzleGameplay {
     + ShowTutorial() void
     + IsFirstTime() bool
     + GetPuzzleEvaluation() PuzzleEvaluation
+    # SpawnElements() void
+    # NotifyPuzzleVictory(didPlayerWin: bool) void
 }
 
+class AbstractPuzzleGameplay {
+    <<abstract>>
+    # DataManager dataManager
+    # PuzzleEvaluation puzzleEvaluation
+    # List~SpawnableElement~ elementsToSpawn
+    # GameObject background
+    # bool isFirstTimePlaying
+    # GameObject tutorialPrefab
+
+    + StartGameplay() void*
+    + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
+    + Victory() void*
+    + Defeat() void*
+    + ShowTutorial() void
+    + IsFirstTime() bool
+    + GetPuzzleEvaluation() PuzzleEvaluation
+    # SpawnElements() void
+    # NotifyPuzzleVictory(didPlayerWin: bool) void
+}
 
 
 IPuzzlePausable <|.. PuzzleHalo
@@ -427,27 +483,27 @@ GameScenes --* GameManager
 
 GameManager <.. PlayerHealthLogic : notifica GameOver por vida
 GameManager <.. PuzzleCompletionCheckZone : notifica Victory (Todos los puzzles fueron completados)
-PuzzleHalo -- GameManager : se suscribe a la lista de PuzzlePausables
 GameManager -- CountdownBarManager : notifica time up
 
 
-CountdownBarManager -- CountdownTextManager : se suscribe a OnTimeChanged
+CountdownTextManager -- CountdownBarManager : se suscribe a OnTimeChanged
 
 
 PuzzleCompletionCheckZone -- PuzzleCompletionText : se suscribe a los eventos OnPlayerGetsClose/OnPlayerLeaves
 EvaluationSystem <.. PuzzleCompletionCheckZone
 PuzzleCompletionText ..|> IGameOverSubscriber
 PuzzleCompletionCheckZone ..|> IGameOverSubscriber
-
-
+CountdownBarManager ..|> IGameOverSubscriber
 MovePlayer ..|> IGameOverSubscriber
 
-DamageThreshold --* PuzzleDamageTable
-PuzzleDamageTable --o PlayerDamageDealer
+PuzzleDamageTable *-- DamageThreshold
+PlayerDamageDealer o-- PuzzleDamageTable
 
 
-IGameOverSubscriber --o GameManager: subscribes
+GameManager o-- IGameOverSubscriber : subscribes
 IPuzzleManager <|.. PuzzleManager
+AbstractPuzzleGameplay ..> IPuzzleManager : Notifica que se completó el puzzle
+
 ITappable <|.. PuzzleManager
 
 PuzzleManager *-- FeedbackText
@@ -456,7 +512,7 @@ PuzzleManager *-- PuzzleHalo
 PuzzleManager -- PlayerHealthLogic
 PuzzleManager *-- PlayerDamageDealer
 PuzzleManager <.. EvaluationSystem
-PuzzleTutorial -- AbstractPuzzleGameplay
+AbstractPuzzleGameplay -- PuzzleTutorial 
 PuzzleManager *-- AbstractPuzzleGameplay
 
 
@@ -469,15 +525,17 @@ EvaluationData o-- PuzzleResultData
 
 EvaluationSystem o-- PuzzleResultData
 EvaluationSystem -- DataManager
+PuzzleManager <.. EvaluationSystem : Cuenta el total de PuzzleManagers
 PuzzleEvaluation -- EvaluationSystem
 PuzzleEvaluation -- ScoreScreen
 PuzzleEvaluation o-- ActionKey
 
 AbstractPuzzleGameplay o-- PuzzleEvaluation
+AbstractPuzzleGameplay *-- SpawnableElement
 
-IPuzzlePausable --o GameManager: Subscribes
+IPuzzlePausable --o GameManager: Se subscribe a la lista de PuzzlePausables
 PuzzleManager -- GameManager : reporta resultado
 
 InputHandler -- Raycaster
-InputHandler -- ControlsManager
+ControlsManager -- InputHandler
 Raycaster -- ITappable

@@ -49,6 +49,9 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
 
     public void InstantiateObjects(Transform parent)
     {
+        Debug.Log($"PuzzleGameplay: Al instanciar los objetos, el padre es: {parent.gameObject.name} y su posicion es: {parent.position}");
+        Debug.Log($"PuzzleGameplay: Instanciando pelota de basket en la posiciones: {ballSpawnPlace}");
+
         Instantiate(ballPrefab, ballSpawnPlace, Quaternion.identity, parent);
 
         Instantiate(victoryBasketPrefab, vicBasketSpawnPlace, Quaternion.identity, parent)

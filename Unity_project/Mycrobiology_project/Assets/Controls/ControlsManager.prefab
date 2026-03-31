@@ -138,8 +138,16 @@ MonoBehaviour:
     m_ActionName: 'Player/Click[/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5df044d2-f22a-4bda-9372-0c571dd138a5
-    m_ActionName: 'Player/PointerPosition[/Mouse/position,/Touchscreen/primaryTouch/position]'
+    m_ActionId: 0ecd03d7-bf3d-4373-a511-f9f31c163272
+    m_ActionName: 'Player/PointerPosition[/Mouse/position,/Device Simulator Touchscreen/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 58a0374e-cbe4-49dc-ad5c-d15aa3f65d25
+    m_ActionName: 'Player/Drag[/Mouse/leftButton,/Device Simulator Touchscreen/press]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 93fe9350-6b35-431d-bb69-eebe526239cb
+    m_ActionName: New action map/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -158,3 +166,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   raycaster: {fileID: 6380444699627588160}
+  _interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 73c382ba-664c-48a8-882d-d93977d89741
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _pointerPositionAction:
+    m_Name: Pointer Position
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4fd25856-b461-467e-8bac-cf67d1fe4d04
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

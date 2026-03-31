@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 
-public class TutorialTestPuzzle : MonoBehaviour
+public class PuzzleTutorial : MonoBehaviour
 {
     [SerializeField]
     private AbstractPuzzleGameplay puzzleGameplay;
 
+    [SerializeField]
     private String puzzleName = "PuzzleManager";
 
     private void Start()
