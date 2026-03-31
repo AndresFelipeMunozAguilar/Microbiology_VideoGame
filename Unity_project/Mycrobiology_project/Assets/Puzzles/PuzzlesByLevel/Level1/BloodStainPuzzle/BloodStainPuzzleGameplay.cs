@@ -63,7 +63,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
 
         SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-        SpawnElements();
+        SpawnElementsRelativeTo(Camera.main.transform);
 
         GetAssociatedComponents();
         _dropZone.OnDraggableItemDropped += ProcessItemInteraction;

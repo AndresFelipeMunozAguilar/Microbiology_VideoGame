@@ -52,17 +52,36 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     }
 
     // Instancia todos los elementos definidos como hijos de este objeto.
-    protected void SpawnElements()
+    protected void SpawnElementsRelativeTo(Transform reference)
     {
         if (elementsToSpawn == null || elementsToSpawn.Count == 0) return;
+        if (reference == null)
+        {
+            Debug.LogError($"<color=red>{name}:</color> No se puede spawnear, el objeto de referencia es nulo.");
+            return;
+        }
 
         foreach (SpawnableElement element in elementsToSpawn)
         {
             if (element.prefab == null) continue;
 
-            GameObject instance = Instantiate(element.prefab, element.globalPosition, element.localRotation, transform);
+            // 1. Tomamos la posición 'Global' definida en el Scriptable/Lista como un OFFSET.
+            // 2. Calculamos el punto de destino en el mundo: Centro del Referente + Desplazamiento deseado.
+            Vector3 targetWorldPosition = reference.position + element.globalPosition;
 
-            Debug.Log($"<color=cyan>{name}:</color> Instanciado {element.name} en {element.globalPosition}");
+            // Aseguramos que la Z sea consistente para 2D (usualmente la del Puzzle o 0)
+            targetWorldPosition.z = transform.position.z;
+
+            // 3. Convertimos esa posición de mundo al espacio local de este AbstractPuzzleGameplay.
+            // Esto permite que el objeto sea hijo de 'transform' pero esté visualmente sobre el referente.
+            Vector3 finalLocalPos = transform.InverseTransformPoint(targetWorldPosition);
+
+            // Instanciación limpia
+            GameObject instance = Instantiate(element.prefab, transform);
+            instance.transform.localPosition = finalLocalPos;
+            instance.transform.localRotation = element.localRotation;
+
+            Debug.Log($"<color=cyan>{name}:</color> {element.name} instanciado a {element.globalPosition} de {reference.name}");
         }
     }
 
