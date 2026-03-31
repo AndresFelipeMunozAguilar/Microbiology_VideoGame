@@ -14,9 +14,24 @@ public class DragCleaningStep : AbstractDraggableWorldObject
             Debug.LogError($"DragCleaningStep: No se pudo encontrar el componente de tipo AbstractPuzzleGameplay");
             return;
         }
+
+
+        // 1. Obtener el centro de la cámara en coordenadas del mundo
+        Camera mainCamera = Camera.main;
+        if (mainCamera == null) return;
+
+        // 1. Obtener el centro de la cámara en coordenadas del mundo
+        Vector3 cameraWorldPos = mainCamera.transform.position;
+        cameraWorldPos.z = _globalStartPosition.z;
+
+        // 2. Calcular la posición global de destino (Centro + Desplazamiento)
+        Vector3 targetWorldPos = cameraWorldPos + _globalStartPosition;
+
+        // Restamos el origen de la cámara para obtener el vector relativo.
         _localStartPosition = GetComponentInParent<AbstractPuzzleGameplay>()
-                                .transform
-                                .InverseTransformPoint(_globalStartPosition);
+                            .transform
+                            .InverseTransformPoint(targetWorldPos);
+
 
     }
 

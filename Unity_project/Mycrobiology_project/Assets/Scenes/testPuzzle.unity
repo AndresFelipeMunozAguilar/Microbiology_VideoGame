@@ -2151,7 +2151,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 25
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 5195406606925181487, guid: 10ef2be2e7315f14e9a315ab0750a986, type: 3}
   m_Color: {r: 0.9245283, g: 0.5247676, b: 0.09158063, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2173,9 +2173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c18619c57f1874fa7c7bb28f4e89cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHalo
-  pulseSpeed: 8
-  maxScale: 7.5
-  haloSr: {fileID: 0}
+  pulseSpeed: 8.5
+  maxScale: 1.5
+  haloSr: {fileID: 5576229725552321619}
   haloBaseScale: {x: 0, y: 0, z: 0}
   minimumTransparency: 0.5
   isPlayerClose: 0
