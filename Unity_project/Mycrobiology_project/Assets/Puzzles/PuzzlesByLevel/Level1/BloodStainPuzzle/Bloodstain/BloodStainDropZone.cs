@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
-public class DropZone : MonoBehaviour
+public class BloodStainDropZone : MonoBehaviour
 {
 
     [Header("Objetos Asociados")]
@@ -49,11 +49,11 @@ public class DropZone : MonoBehaviour
 
         if (draggableItem == null)
         {
-            Debug.LogWarning($"DropZone: El objeto con tag: {other.tag} no tiene componente ItemIdentifier.");
+            Debug.LogWarning($"BloodStainDropZone: El objeto con tag: {other.tag} no tiene componente ItemIdentifier.");
             return;
         }
 
-        Debug.Log($"DropZone: Se detectó el ítem {draggableItem.ItemId}");
+        Debug.Log($"BloodStainDropZone: Se detectó el ítem {draggableItem.ItemId}");
         OnDraggableItemDropped?.Invoke(draggableItem.ItemId);
 
     }

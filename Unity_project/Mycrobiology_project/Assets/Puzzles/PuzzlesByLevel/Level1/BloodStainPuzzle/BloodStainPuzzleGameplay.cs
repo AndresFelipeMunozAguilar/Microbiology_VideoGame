@@ -7,7 +7,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     [Header("Configuración de Datos")]
     [SerializeField] private PuzzleSequenceSO _puzzleSequence;
     [SerializeField] private BloodStainVisuals _visuals;
-    [SerializeField] private DropZone _dropZone;
+    [SerializeField] private BloodStainDropZone _dropZone;
 
     [Header("Estado del Juego (Solo Lectura)")]
     [SerializeField] private int _currentStepIndex = 0;
@@ -46,7 +46,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
             return;
         }
 
-        _dropZone = GetComponentInChildren<DropZone>();
+        _dropZone = GetComponentInChildren<BloodStainDropZone>();
         if (_dropZone == null)
         {
             Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
