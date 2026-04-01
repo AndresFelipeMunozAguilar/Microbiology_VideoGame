@@ -931,6 +931,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7556363260367815807, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666404888220208161, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666404888220208161, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8024911223614320911, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
       propertyPath: m_Name
       value: ScoreScreen 1
