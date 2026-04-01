@@ -8,7 +8,7 @@ public class DamageThreshold
     public int damage;
 }
 
-[CreateAssetMenu(fileName = "DamageTable", menuName = "ScrptableObjects/Puzzles/DamageTable")]
+[CreateAssetMenu(fileName = "DamageTable", menuName = "ScriptableObject/Puzzles/DamageTable")]
 public class PuzzleDamageTable : ScriptableObject
 {
     public List<DamageThreshold> damageThresholdPairs = new List<DamageThreshold>();

@@ -732,10 +732,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Puzzle1
   dataManager: {fileID: 0}
+  puzzleEvaluation: {fileID: 0}
+  elementsToSpawn:
+  - name: iauhfoqiuweh
+    prefab: {fileID: 0}
+    globalPosition: {x: -11.46, y: 6.16, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 0}
   background: {fileID: 5948709194165319788, guid: 9004f21d0f608b54bb0db8772358985a, type: 3}
   isFirstTimePlaying: 0
   tutorialPrefab: {fileID: 2821759218156073007, guid: 8cc7e8770d9e951438d210f24c8a3494, type: 3}
-  puzzleEvaluation: {fileID: 0}
 --- !u!114 &6702344422512078460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,10 +783,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePlayElements
   dataManager: {fileID: 0}
+  puzzleEvaluation: {fileID: 0}
+  elementsToSpawn: []
   background: {fileID: 0}
   isFirstTimePlaying: 1
   tutorialPrefab: {fileID: 0}
-  puzzleEvaluation: {fileID: 0}
   elements:
   - {fileID: 11400000, guid: b1c0d26692666134fbcbb95afbd71beb, type: 2}
   - {fileID: 11400000, guid: a6fc3a2be9c17464699f402ffe1ac531, type: 2}

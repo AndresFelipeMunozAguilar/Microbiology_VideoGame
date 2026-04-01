@@ -260,7 +260,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5255623119457161118}
-        m_TargetAssemblyTypeName: TutorialTestPuzzle, Assembly-CSharp
+        m_TargetAssemblyTypeName: PuzzleTutorial, Assembly-CSharp
         m_MethodName: StartPuzzleGameplay
         m_Mode: 1
         m_Arguments:
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialTestPuzzle
   puzzleGameplay: {fileID: 0}
+  puzzleName: BloodStainPuzzleManager
 --- !u!1 &6813883315094108872
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ GameObject:
   - component: {fileID: 2350579281199719110}
   - component: {fileID: 2769760597171512087}
   m_Layer: 5
-  m_Name: Tutorial
+  m_Name: BloodStainTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a6b11533cfa87f7459c79a9aa904c61e, type: 3}
+  m_Texture: {fileID: 2800000, guid: ee9ab3e3c0326e64abaa627c3cbc79ed, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

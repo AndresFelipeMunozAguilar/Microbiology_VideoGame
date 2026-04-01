@@ -47,18 +47,21 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
             _gameManager.SwitchIsPuzzleActive();
             _gameManager.PuzzlePauseAll();
 
-            Debug.Log("<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre puzzlegameplay");
-            Instantiate(puzzleGameplayPrefab,Camera.main.transform)
+            Debug.Log($"<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre {this.transform.gameObject.name}");
+
+            Instantiate(puzzleGameplayPrefab, this.transform)
                 .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
 
             if (puzzelGameplayOut == null)
             {
-                Debug.LogWarning("No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
+                Debug.LogWarning("<color=green>PuzzleManager:</color> No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
                 return;
             }
 
             Debug.Log("<color=green>PuzzleManager:</color> Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
             gameplay = puzzelGameplayOut;
+
+            Debug.Log($"<color=green>PuzzleManager:</color> El PuzzleGameplay fue instanciado en posicion: {gameplay.transform.position} y posicion local: {gameplay.transform.localPosition}");
 
 
             StartPuzzle();
@@ -89,6 +92,10 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         if (isVictoryAchieved) ExecuteVictoryLogic(); else ExecuteDefeatLogic();
 
+        _playerDamageDealer.CalculateDamage(GetScore());
+        if (_playerDamageDealer.CanApplyDamage()) _playerDamageDealer.DealDamage(_playerHealthLogic);
+
+        Destroy(halo.gameObject);
 
         _gameManager.SwitchIsPuzzleActive();
         _gameManager.PuzzleResumeAll();
@@ -103,10 +110,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void ExecuteDefeatLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Lo siento, perdiste el puzzle.");
-
-
-        _playerDamageDealer.CalculateDamage(GetScore());
-        _playerDamageDealer.DealDamage(_playerHealthLogic);
 
         gameplay.Defeat();
     }
@@ -132,6 +135,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void PuzzleResumeMe()
     {
         Debug.Log("I am PuzzleMANAGER and i have been RESUMED without my collider2d.");
+        this.GetComponent<Collider2D>().enabled = true;
     }
 
 

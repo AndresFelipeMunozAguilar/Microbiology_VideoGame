@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHalo
   pulseSpeed: 8
   maxScale: 1.3
-  haloSr: {fileID: 0}
+  haloSr: {fileID: 1336469992464161907}
   haloBaseScale: {x: 0, y: 0, z: 0}
   minimumTransparency: 0.5
   isPlayerClose: 0

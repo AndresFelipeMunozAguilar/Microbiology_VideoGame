@@ -47,8 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleGameplay
   dataManager: {fileID: 0}
   background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
-  isFirstTimePlaying: 1
-  tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
+  isFirstTimePlaying: 0
+  tutorialPrefab: {fileID: 6813883315094108872, guid: 8b69404d967b677498fd7ac606a818de, type: 3}
+  puzzleEvaluation: {fileID: 0}
   ballPrefab: {fileID: 2029610987954448589, guid: ecc76fba3c7f6684ab4ec2ba80b13851, type: 3}
   ballSpawnPlace: {x: 0, y: 0.5, z: 0}
   floorPrefab: {fileID: 8632702558573709591, guid: f956128a6821a2a42a1951c5a20394b0, type: 3}

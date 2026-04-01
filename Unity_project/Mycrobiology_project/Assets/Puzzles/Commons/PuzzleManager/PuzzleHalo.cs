@@ -92,13 +92,16 @@ public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
     public void PuzzlePauseMe()
     {
         Debug.Log("I am PUZZLE HALO and i have been PAUSED.");
-        Destroy(this.gameObject);
+        haloSr.enabled = false;
+        this.enabled = false;
     }
 
     // Lógica que reanuda el puzzle
     public void PuzzleResumeMe()
     {
         Debug.Log("I am PUZZLE HALO and i have been RESUMED.");
+        haloSr.enabled = true;
+        this.enabled = true;
     }
 
     public void OnDestroy()
