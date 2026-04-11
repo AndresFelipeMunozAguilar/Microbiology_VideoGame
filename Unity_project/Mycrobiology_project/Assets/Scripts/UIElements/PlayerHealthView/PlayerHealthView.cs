@@ -1,27 +1,57 @@
-using TMPro;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI healthText;
-    public void OnEnable()
+    [SerializeField] private Image healthFillImage;
+    [SerializeField] private int maxLives = 100;
+    [SerializeField] private float fillSpeed = 2f;
+
+    private Coroutine fillCoroutine;
+
+    private void OnEnable()
     {
-        PlayerHealthLogic.OnHealthChanged += UpdateHealthText;
+        PlayerHealthLogic.OnHealthChanged += UpdateHealthBar;
 
-        TryGetComponent<TextMeshProUGUI>(out healthText);
+        if (healthFillImage == null)
+            TryGetComponent(out healthFillImage);
 
-        if (healthText == null) Debug.LogError($"PlayerHealthView: No se encontró el componente TextMeshProUGUI en el GameObject: {this.gameObject.name}");
+        if (healthFillImage == null)
+            Debug.LogError($"PlayerHealthView: No se encontró el componente Image en {gameObject.name}");
     }
 
-    public void UpdateHealthText(int currentLives)
+    private void OnDisable()
     {
-        Debug.Log($"PlayerHealthView: Updating health text. Current lives: {currentLives}");
-        healthText.SetText(currentLives.ToString());
+        PlayerHealthLogic.OnHealthChanged -= UpdateHealthBar;
     }
 
-    public void OnDisable()
+    public void UpdateHealthBar(int currentLives)
     {
-        PlayerHealthLogic.OnHealthChanged -= UpdateHealthText;
+        if (healthFillImage == null) return;
+
+        float targetFill = Mathf.Clamp01((float)currentLives / maxLives);
+
+        if (fillCoroutine != null)
+            StopCoroutine(fillCoroutine);
+
+        fillCoroutine = StartCoroutine(AnimateFill(targetFill));
     }
 
+    private IEnumerator AnimateFill(float targetFill)
+    {
+        while (!Mathf.Approximately(healthFillImage.fillAmount, targetFill))
+        {
+            healthFillImage.fillAmount = Mathf.MoveTowards(
+                healthFillImage.fillAmount,
+                targetFill,
+                fillSpeed * Time.deltaTime
+            );
+
+            yield return null;
+        }
+
+        healthFillImage.fillAmount = targetFill;
+        fillCoroutine = null;
+    }
 }

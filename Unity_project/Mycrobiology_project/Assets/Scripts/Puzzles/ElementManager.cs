@@ -12,6 +12,10 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
     [SerializeField] Image WarmBar;
     [SerializeField] RectTransform pointWarm;
     [SerializeField] float maxTime = 10f;
+
+    [Header("Player Damage and Health Logic")]
+    [SerializeField]
+    private PlayerHealthLogic _playerHealthLogic;
     DropZone dropzone;
     PuzzleEvaluation score;
     GamePlayElements gamePlay;
@@ -120,6 +124,9 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
         else
         {
             score.AddPoints("FinishBadElement");
+            _playerHealthLogic=FindAnyObjectByType<PlayerHealthLogic>();
+            GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+            GetComponentInParent<PlayerDamageDealer>().DealDamage(_playerHealthLogic);
             Debug.Log("[ELEMENT] mal hecho temperatura: "+Temperature+" no estuvo en el rango: "+element.timeWarm);
         }
         Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());

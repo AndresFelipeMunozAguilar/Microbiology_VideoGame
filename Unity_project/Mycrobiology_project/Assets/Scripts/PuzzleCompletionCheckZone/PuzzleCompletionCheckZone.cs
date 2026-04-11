@@ -17,7 +17,8 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPu
     [Header("Referencias de Componentes")]
     [SerializeField] private Collider2D _collider;
     [SerializeField] private GameManager _gameManager;
-
+    [SerializeField] SpriteRenderer door;
+    [SerializeField] Sprite openDoor;
     [Header("Eventos de Interacción")]
     // Nota: Los Action no se muestran en el Inspector por defecto, 
     // pero el Header ayuda a separar el código visualmente.
@@ -66,7 +67,10 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPu
 
         OnPlayerGetsClose?.Invoke(_completedPuzzles, _totalPuzzles);
 
-        if (_completedPuzzles >= _totalPuzzles && _totalPuzzles > 0) GameManager.GetInstance().Victory();
+        if (_completedPuzzles >= _totalPuzzles && _totalPuzzles > 0){
+             GameManager.GetInstance().Victory();
+             door.sprite=openDoor;
+        }
     }
 
     public int CalculateCompletedPuzzles()

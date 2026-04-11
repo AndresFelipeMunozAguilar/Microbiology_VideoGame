@@ -1,112 +1,106 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PuzzleHalo : MonoBehaviour, IPuzzlePausable
 {
+    [Header("Pulse")]
+    [SerializeField] private float pulseSpeed = 2f;
 
-    // Que tan rápido pulsa el glow
-    public float pulseSpeed = 2f;
-    // Que tan grande se puede hacer el glow
-    public float maxScale = 1.4f;
+    // Multiplicador mínimo y máximo respecto a la escala inicial
+    [SerializeField] private float minScaleMultiplier = 1f;
+    [SerializeField] private float maxScaleMultiplier = 1.4f;
 
-    public SpriteRenderer haloSr;
-    public Vector3 haloBaseScale;
+    [Header("Glow")]
+    [SerializeField] private float minimumTransparency = 0.25f;
+    [SerializeField] private float maximumTransparency = 1f;
 
-    // Punto más bajo de la transparencia del glow
-    public float minimumTransparency = 0.25f;
+    [Header("References")]
+    [SerializeField] private SpriteRenderer haloSr;
 
+    private Vector3 haloBaseScale;
     public bool isPlayerClose = false;
-
     private GameManager _gameManager;
 
-    void Start()
+    private void Start()
     {
-        haloSr = GetComponent<SpriteRenderer>();
-        haloBaseScale = Vector3.one;
-        transform.localScale = haloBaseScale;
+        if (haloSr == null)
+            haloSr = GetComponent<SpriteRenderer>();
+
+        // Tomar la escala real con la que inicia el objeto
+        haloBaseScale = transform.localScale;
+
         _gameManager = GameManager.GetInstance();
         _gameManager.SubscribePuzzlePausable(this);
-    }
 
-    void Update()
-    {
-        if (isPlayerClose)
-        {
-            // Generar valores entre 0 y 1,
-            // basado en el tiempo de inicio del frame actual
-            float drawTime = (Mathf.Sin(Time.time * pulseSpeed) + 1f) * 0.5f;
-
-            Pulse(drawTime);
-            Glow(drawTime);
-        }
-    }
-
-    // Función que transforma la escala del halo pulsantemente
-    public void Pulse(float referenceTime)
-    {
-
-        float stretchFactor = Mathf.Lerp(1f, maxScale, referenceTime);
-        haloSr.transform.localScale = haloBaseScale * stretchFactor;
-
-    }
-
-    // Función que determina la transparencia del halo
-    // como si brillara
-    public void Glow(float referenceTime)
-    {
+        // Estado inicial visual
+        transform.localScale = haloBaseScale;
 
         Color haloColor = haloSr.color;
-        haloColor.a = Mathf.Lerp(minimumTransparency, haloSr.color.a, referenceTime);
+        haloColor.a = minimumTransparency;
         haloSr.color = haloColor;
-
     }
 
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-        // Si el jugador entra a la colisión, por tanto
-        // el jugador está cerca
-        if (other.gameObject.CompareTag("Player"))
+        if (!isPlayerClose) return;
+
+        float drawTime = (Mathf.Sin(Time.time * pulseSpeed) + 1f) * 0.5f;
+
+        Pulse(drawTime);
+        Glow(drawTime);
+    }
+
+    private void Pulse(float referenceTime)
+    {
+        float scaleMultiplier = Mathf.Lerp(minScaleMultiplier, maxScaleMultiplier, referenceTime);
+        transform.localScale = haloBaseScale * scaleMultiplier;
+    }
+
+    private void Glow(float referenceTime)
+    {
+        Color haloColor = haloSr.color;
+        haloColor.a = Mathf.Lerp(minimumTransparency, maximumTransparency, referenceTime);
+        haloSr.color = haloColor;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
             isPlayerClose = true;
         }
-
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        // Si el jugador sale de la colisión, por tanto
-        // se restauran los valores base del halo
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isPlayerClose = false;
 
-            transform.localScale = Vector3.one;
+            transform.localScale = haloBaseScale;
+
             Color haloColor = haloSr.color;
             haloColor.a = minimumTransparency;
             haloSr.color = haloColor;
         }
     }
 
-    // Lógica que pausa el puzzle
     public void PuzzlePauseMe()
     {
         Debug.Log("I am PUZZLE HALO and i have been PAUSED.");
         haloSr.enabled = false;
-        this.enabled = false;
+        enabled = false;
     }
 
-    // Lógica que reanuda el puzzle
     public void PuzzleResumeMe()
     {
         Debug.Log("I am PUZZLE HALO and i have been RESUMED.");
         haloSr.enabled = true;
-        this.enabled = true;
+        enabled = true;
     }
 
-    public void OnDestroy()
+    private void OnDestroy()
     {
-        _gameManager.UnsubscribePuzzlePausable(this);
+        if (_gameManager != null)
+            _gameManager.UnsubscribePuzzlePausable(this);
     }
-
 }

@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -253, y: 11.299995}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 3.6157, y: 6.2}
+  m_SizeDelta: {x: 216.8886, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343936527
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Epic LaboratorY
+  m_text: ' Research Lab Under the Microscope'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -185,8 +185,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278230015
-  m_fontColor: {r: 1, g: 0.6060061, b: 0, a: 1}
+    rgba: 4292422400
+  m_fontColor: {r: 0, g: 0.16775993, b: 0.8490566, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 247.80573, y: 0, z: -255.64719, w: -10.339607}
+  m_margin: {x: -3.0486794, y: 0, z: 9.728645, w: -10.339607}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: testPuzzle
+          m_StringArgument: GameDemo
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &709567183
