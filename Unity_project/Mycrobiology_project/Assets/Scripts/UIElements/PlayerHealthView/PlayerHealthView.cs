@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerHealthView : MonoBehaviour
 {
     [SerializeField] private Image healthFillImage;
-    [SerializeField] private int maxLives = 100;
+    [SerializeField] private int maxLives;
     [SerializeField] private float fillSpeed = 2f;
 
     private Coroutine fillCoroutine;

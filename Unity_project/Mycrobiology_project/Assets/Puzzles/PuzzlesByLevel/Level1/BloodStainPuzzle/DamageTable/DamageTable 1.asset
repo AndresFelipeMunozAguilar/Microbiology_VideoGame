@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageTable
   damageThresholdPairs:
   - threshold: 33
-    damage: 20
+    damage: 2
   - threshold: 67
     damage: 15
   - threshold: 99

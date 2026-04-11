@@ -12,16 +12,6 @@ public class GameManager : MonoBehaviour
     // los nombres y orden de las escenas en 
     // Build Settings, o el sistema de cambio 
     // de escenas no funcionará.
-    public enum GameScenes
-    {
-        DevAndres,
-        TestMenu,
-        DevBrandon,
-        Develop,
-        TempGameOver,
-        TestPuzzle,
-        VictoryScene,
-    }
 
     public bool isGameOver = false;
     private bool isVictoryAchieved = false;
@@ -182,7 +172,7 @@ public class GameManager : MonoBehaviour
         // Se dispara la logica de muerte para 
         NotifyGameOverSubscribers();
 
-        LoadScene(GameScenes.TempGameOver);
+        LoadScene(GameScenes.FinalScore);
     }
 
     public void Victory()
@@ -192,7 +182,7 @@ public class GameManager : MonoBehaviour
         // En cierto sentido, ganar es terminar el juego...
         NotifyGameOverSubscribers();
 
-        LoadScene(GameScenes.VictoryScene);
+        LoadScene(GameScenes.FinalScore);
     }
 
     public void NotifyGameOverSubscribers()
@@ -202,7 +192,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(GameScenes scene)
     {
-        SceneManager.LoadScene((int)scene);
+        SceneManager.LoadScene(scene.ToString());
     }
 
 }

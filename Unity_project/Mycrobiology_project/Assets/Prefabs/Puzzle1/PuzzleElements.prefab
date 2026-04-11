@@ -687,7 +687,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4455216622428079309}
-  - component: {fileID: 176048262415241749}
   - component: {fileID: 6702344422512078460}
   - component: {fileID: 7730453003418952714}
   m_Layer: 0
@@ -719,28 +718,6 @@ Transform:
   - {fileID: 278185219376139279}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &176048262415241749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7045401335932608171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017f518e7dbf35645a79c40b99af3183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Puzzle1
-  dataManager: {fileID: 0}
-  puzzleEvaluation: {fileID: 0}
-  elementsToSpawn:
-  - name: iauhfoqiuweh
-    prefab: {fileID: 0}
-    globalPosition: {x: -11.46, y: 6.16, z: 0}
-    localRotation: {x: 0, y: 0, z: 0, w: 0}
-  background: {fileID: 5948709194165319788, guid: 9004f21d0f608b54bb0db8772358985a, type: 3}
-  isFirstTimePlaying: 0
-  tutorialPrefab: {fileID: 2821759218156073007, guid: 8cc7e8770d9e951438d210f24c8a3494, type: 3}
 --- !u!114 &6702344422512078460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,11 +760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePlayElements
   dataManager: {fileID: 0}
-  puzzleEvaluation: {fileID: 0}
+  puzzleEvaluation: {fileID: 6702344422512078460}
   elementsToSpawn: []
   background: {fileID: 0}
   isFirstTimePlaying: 1
-  tutorialPrefab: {fileID: 0}
+  tutorialPrefab: {fileID: 6813883315094108872, guid: c22acb000141d714697919263f108723, type: 3}
   elements:
   - {fileID: 11400000, guid: b1c0d26692666134fbcbb95afbd71beb, type: 2}
   - {fileID: 11400000, guid: a6fc3a2be9c17464699f402ffe1ac531, type: 2}

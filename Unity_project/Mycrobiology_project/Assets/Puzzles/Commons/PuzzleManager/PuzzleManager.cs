@@ -1,4 +1,3 @@
-using Unity.Mathematics;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePausable
@@ -32,7 +31,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     [SerializeField]
     private GameManager _gameManager;
 
-
+    private bool puzzleAlreadyCompleted = false;
     public void Start()
     {
         _gameManager = GameManager.GetInstance();
@@ -84,7 +83,9 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     }
 
     public void CompletePuzzle(bool didPlayerWin)
-    {
+    {   
+        if (puzzleAlreadyCompleted) return;
+        puzzleAlreadyCompleted = true;
 
         isVictoryAchieved = didPlayerWin;
 
