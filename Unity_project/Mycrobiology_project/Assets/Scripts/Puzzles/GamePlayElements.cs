@@ -9,7 +9,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
     int elementsFinished=0;
     PuzzleEvaluation score;
     private void Start() {
-        StartGameplay();
+        transform.GetChild(0).gameObject.SetActive(false);
     }
     void SelectElements()
     {
@@ -47,6 +47,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
 
     public override void StartGameplay()
     {
+        transform.GetChild(0).gameObject.SetActive(true);
         score=GetComponent<PuzzleEvaluation>();
         SelectElements();
     }

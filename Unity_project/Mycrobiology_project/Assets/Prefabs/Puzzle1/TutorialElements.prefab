@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialTestPuzzle
   puzzleGameplay: {fileID: 0}
-  puzzleName: BloodStainPuzzleManager
+  puzzleName: PuzzleManagerElements
 --- !u!1 &6813883315094108872
 GameObject:
   m_ObjectHideFlags: 0
