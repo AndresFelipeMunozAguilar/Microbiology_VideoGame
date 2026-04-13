@@ -11,9 +11,6 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [SerializeField] protected PuzzleEvaluation puzzleEvaluation;
 
     [Header("Contenido Y Escena")]
-    [Tooltip("Lista de elementos dinámicos que se instanciarán al iniciar.")]
-    [SerializeField] protected List<SpawnableElement> elementsToSpawn;
-
     [Tooltip("Objeto visual que servirá como fondo del puzzle.")]
     [SerializeField] protected GameObject background;
 
@@ -49,40 +46,6 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     public PuzzleEvaluation GetPuzzleEvaluation()
     {
         return puzzleEvaluation;
-    }
-
-    // Instancia todos los elementos definidos como hijos de este objeto.
-    protected void SpawnElementsRelativeTo(Transform reference)
-    {
-        if (elementsToSpawn == null || elementsToSpawn.Count == 0) return;
-        if (reference == null)
-        {
-            Debug.LogError($"<color=red>{name}:</color> No se puede spawnear, el objeto de referencia es nulo.");
-            return;
-        }
-
-        foreach (SpawnableElement element in elementsToSpawn)
-        {
-            if (element.prefab == null) continue;
-
-            // 1. Tomamos la posición 'Global' definida en el Scriptable/Lista como un OFFSET.
-            // 2. Calculamos el punto de destino en el mundo: Centro del Referente + Desplazamiento deseado.
-            Vector3 targetWorldPosition = reference.position + element.globalPosition;
-
-            // Aseguramos que la Z sea consistente para 2D (usualmente la del Puzzle o 0)
-            targetWorldPosition.z = transform.position.z;
-
-            // 3. Convertimos esa posición de mundo al espacio local de este AbstractPuzzleGameplay.
-            // Esto permite que el objeto sea hijo de 'transform' pero esté visualmente sobre el referente.
-            Vector3 finalLocalPos = transform.InverseTransformPoint(targetWorldPosition);
-
-            // Instanciación limpia
-            GameObject instance = Instantiate(element.prefab, transform);
-            instance.transform.localPosition = finalLocalPos;
-            instance.transform.localRotation = element.localRotation;
-
-            Debug.Log($"<color=cyan>{name}:</color> {element.name} instanciado a {element.globalPosition} de {reference.name}");
-        }
     }
 
     protected void NotifyPuzzleVictory(bool didPlayerWin)
