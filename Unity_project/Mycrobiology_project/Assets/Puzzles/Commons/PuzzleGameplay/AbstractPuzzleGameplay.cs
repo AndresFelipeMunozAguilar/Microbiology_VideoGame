@@ -9,7 +9,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [SerializeField] protected DataManager dataManager;
 
     [Tooltip("Sistema encargado de registrar y calificar el desempeño del jugador.")]
-    [SerializeField] protected PuzzleEvaluation puzzleEvaluation;
+    [SerializeField] public PuzzleEvaluation puzzleEvaluation;
 
     [Header("Contenido Y Escena")]
     [Tooltip("Lista de elementos dinámicos que se instanciarán al iniciar.")]

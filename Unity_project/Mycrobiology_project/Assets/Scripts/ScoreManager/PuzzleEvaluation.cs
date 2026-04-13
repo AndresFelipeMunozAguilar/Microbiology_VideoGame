@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class PuzzleEvaluation : MonoBehaviour
 
     public List<AcationKey> values;
     [SerializeField] GameObject ScreenScore;
+    String PerformanceFinal;
 
     private Dictionary<string, int> runtimeDict;
 
@@ -25,7 +27,10 @@ public class PuzzleEvaluation : MonoBehaviour
         foreach (var pair in values)
             runtimeDict[pair.key] = pair.value;
     }
-
+    public string getPerformance()
+    {
+        return PerformanceFinal;
+    }
     public int GetValue(string key)
     {
         return runtimeDict.TryGetValue(key, out int v) ? v : 0;
@@ -105,13 +110,13 @@ public class PuzzleEvaluation : MonoBehaviour
             best = currentScore;
         }
         int bestScore = (int)best;
-        string evaluation = EvaluationSystem.Instance.RegisterPuzzleResult(puzzleID, currentScore, maxScore, bestScore);
-        Debug.Log($"MiniGame {puzzleID} terminó con {currentScore} → {evaluation}");
-        ShowResults(currentScore, maxScore, evaluation, bestScore);
+        PerformanceFinal = EvaluationSystem.Instance.RegisterPuzzleResult(puzzleID, currentScore, maxScore, bestScore);
+        Debug.Log($"MiniGame {puzzleID} terminó con {currentScore} → {PerformanceFinal}");
+        ShowResults(currentScore, maxScore, bestScore);
     }
-    public void ShowResults(int Score, int MaxScore, string Performance, int bestScore)
+    public void ShowResults(int Score, int MaxScore,int bestScore)
     {
         GameObject scoreScreen = Instantiate(ScreenScore);
-        scoreScreen.GetComponent<ScoreScreen>().SendData(Score, MaxScore, Performance, bestScore);
+        scoreScreen.GetComponent<ScoreScreen>().SendData(Score, MaxScore, PerformanceFinal, bestScore);
     }
 }

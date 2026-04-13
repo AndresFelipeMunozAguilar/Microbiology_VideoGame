@@ -29,9 +29,8 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     {
         PlayerHealthLogic _playerHealthLogic=FindAnyObjectByType<PlayerHealthLogic>();
         GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
-        NotifyPuzzleVictory(true);
         bool Finish = score.GetCurrentScore()<=60 ? false:true;
-        score.FinishGame(Finish);
+        NotifyPuzzleVictory(Finish);
         Destroy(gameObject);
     }
 

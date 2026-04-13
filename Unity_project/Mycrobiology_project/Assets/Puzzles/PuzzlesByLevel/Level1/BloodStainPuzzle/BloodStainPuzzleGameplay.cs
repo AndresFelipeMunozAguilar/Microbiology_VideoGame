@@ -138,18 +138,12 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     public override void Victory()
     {
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
-
-        puzzleEvaluation.FinishGame(true);
-
         Destroy(this.gameObject);
     }
 
     public override void Defeat()
     {
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
-
-        puzzleEvaluation.FinishGame(false);
-
         Destroy(this.gameObject);
     }
 }

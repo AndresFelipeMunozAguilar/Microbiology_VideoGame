@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePausable
@@ -9,7 +10,6 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     private PuzzleHalo halo;
 
     public bool isVictoryAchieved = false;
-
 
     [Header("PuzzleGameplay")]
     public AbstractPuzzleGameplay gameplay;
@@ -31,11 +31,13 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     [SerializeField]
     private GameManager _gameManager;
 
+    [SerializeField] TextMeshProUGUI PerformanceResultTx;
     private bool puzzleAlreadyCompleted = false;
     public void Start()
     {
         _gameManager = GameManager.GetInstance();
         _gameManager.SubscribePuzzlePausable(this);
+        PerformanceResultTx.text="";
     }
 
 
@@ -85,6 +87,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void CompletePuzzle(bool didPlayerWin)
     {   
         if (puzzleAlreadyCompleted) return;
+        gameplay.puzzleEvaluation.FinishGame(didPlayerWin);
+        PerformanceResultTx.text=gameplay.puzzleEvaluation.getPerformance();
         puzzleAlreadyCompleted = true;
 
         isVictoryAchieved = didPlayerWin;

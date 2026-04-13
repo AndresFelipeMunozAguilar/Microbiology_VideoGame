@@ -100,15 +100,15 @@ public class EvaluationSystem : MonoBehaviour
         float percentage = (float)score / maxScore * 100f;
 
         if (percentage >= 90f)
-            return "Desempeño Óptimo";
+            return "Rendimiento Sobresaliente";
         else if (percentage >= 75f)
-            return "Desempeño Competente";
+            return "Rendimiento Satisfactorio";
         else if (percentage >= 60f)
-            return "Desempeño Básico";
+            return "Rendimiento Aceptable";
         else if (percentage >= 40f)
-            return "Desempeño en Desarrollo";
+            return "Rendimiento en Progreso";
         else
-            return "Desempeño Crítico";
+            return "Rendimiento Deficiente";
     }
     public void SaveAllResults(string playerID)
     {

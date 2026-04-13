@@ -54,15 +54,13 @@ public class GamePlayElements : AbstractPuzzleGameplay
 
     public override void Victory()
     {
-        NotifyPuzzleVictory(true);
-        score.FinishGame(true);
+        NotifyPuzzleVictory(true);  
         Destroy(this.gameObject);
     }
 
     public override void Defeat()
     {
         NotifyPuzzleVictory(false);
-        score.FinishGame(false);
         Destroy(this.gameObject);
     }
 }

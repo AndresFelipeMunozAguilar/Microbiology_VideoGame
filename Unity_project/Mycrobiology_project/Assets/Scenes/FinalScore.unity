@@ -393,25 +393,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2208997433709835210, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 610.2289
+    - target: {fileID: 1454085302508066217, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
+      propertyPath: m_fontSize
+      value: 65
       objectReference: {fileID: 0}
-    - target: {fileID: 2208997433709835210, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -68.10144
-      objectReference: {fileID: 0}
-    - target: {fileID: 3466923409343028922, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3511006551420612109, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3511006551420612109, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.0000076294
+    - target: {fileID: 1454085302508066217, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 5149223281178687071, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
       propertyPath: m_Pivot.x
@@ -499,7 +487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7556363260367815807, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 305.11447
+      value: 305.1144
       objectReference: {fileID: 0}
     - target: {fileID: 7666404888220208161, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
       propertyPath: m_AnchorMax.x
@@ -509,17 +497,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7666404888220208161, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8024911223614320911, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
       propertyPath: m_Name
       value: ScoreScreen
       objectReference: {fileID: 0}
     - target: {fileID: 8712562575195729122, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
-      propertyPath: m_Spacing
-      value: 100
+      propertyPath: m_Padding.m_Bottom
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
