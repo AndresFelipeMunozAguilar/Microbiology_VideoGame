@@ -8,7 +8,9 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     [SerializeField] GameObject BlankObject;
     PuzzleEvaluation score;
     int Amount_Complete;
-
+    private void Start() {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
     public override void Defeat()
     {
         throw new System.NotImplementedException();
@@ -16,6 +18,7 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
 
     public override void StartGameplay()
     {
+        Debug.Log("[Containers] empezamos gameplay");
         transform.GetChild(0).gameObject.SetActive(true);
         score=GetComponent<PuzzleEvaluation>();
         SpawnObjects();
@@ -25,7 +28,6 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     {
         PlayerHealthLogic _playerHealthLogic=FindAnyObjectByType<PlayerHealthLogic>();
         GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
-        GetComponentInParent<PlayerDamageDealer>().DealDamage(_playerHealthLogic);
         NotifyPuzzleVictory(true);
         bool Finish = score.GetCurrentScore()<=60 ? false:true;
         score.FinishGame(Finish);
@@ -38,7 +40,7 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
         for(int i = 0; i < positions.Count; i++) {
             int pos = Random.Range(0,SelectDiposals.Count);
             GameObject newElement = Instantiate(BlankObject,positions[i]);
-            newElement.GetComponent<ObjectManager>().CreateDiposal(SelectDiposals[pos],score,this,(100/positions.Count));
+            newElement.GetComponent<ObjectManager>().CreateDiposal(SelectDiposals[pos],score,this,Mathf.RoundToInt((100/positions.Count)));
             SelectDiposals.RemoveAt(pos);
         }
     }

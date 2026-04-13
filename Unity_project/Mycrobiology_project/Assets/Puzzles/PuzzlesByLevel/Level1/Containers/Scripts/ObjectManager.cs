@@ -37,7 +37,8 @@ public class ObjectManager : AbstractDraggableWorldObject
         gamePlay = gamePlayContainer;
         Diposal = assigned;
         Points=value;
-        Decrese= (int)value/3;
+        Decrese= Mathf.RoundToInt(value/3);
+        Debug.Log("[Containers] decrease: "+ Decrese);
         spriteRenderer.sprite = Diposal.image;
         originPos = transform.position;
         originalParent = transform.parent;
@@ -93,6 +94,7 @@ public class ObjectManager : AbstractDraggableWorldObject
     void BadDrop(Transform wrongContainer)
     {
         Points-=Decrese;
+        if(Points<=0)Points=1;
         if (isAnimating) return;
         StartCoroutine(WrongDropRoutine(wrongContainer));
     }

@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afdb8683e9fbf4419946a6450528d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialTestPuzzle
-  puzzleGameplay: {fileID: 0}
-  puzzleName: PuzzleManagerElements
+  puzzleGameplay: {fileID: 2498222950930519058, guid: c420204a7ad037a4b8ac2cdc98f3c033, type: 3}
+  puzzleName: PuzzleManagerContainers
 --- !u!1 &6813883315094108872
 GameObject:
   m_ObjectHideFlags: 0

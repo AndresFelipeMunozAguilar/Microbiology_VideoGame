@@ -36,7 +36,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     public void ShowTutorial()
     {
-        // Debug.Log("Showing Puzzle Tutorial");
+        Debug.Log("Showing Puzzle Tutorial");
         Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
     }
 

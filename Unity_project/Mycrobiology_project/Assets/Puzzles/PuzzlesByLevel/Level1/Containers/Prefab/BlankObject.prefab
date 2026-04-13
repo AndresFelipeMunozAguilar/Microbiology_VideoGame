@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 725080232893269522}
   - component: {fileID: 6528794808239704485}
   - component: {fileID: 5983006837534304570}
-  - component: {fileID: -8251266261951339220}
   m_Layer: 0
   m_Name: BlankObject
   m_TagString: Untagged
@@ -126,7 +125,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -198,30 +197,3 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &-8251266261951339220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9117682451892639905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc0f21c1762b9d46937855bcf7efa8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DragFeedback
-  bounceDistance: 0.5
-  bounceOutTime: 0.08
-  bounceBackTime: 0.12
-  easeOut:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  easeBack:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4

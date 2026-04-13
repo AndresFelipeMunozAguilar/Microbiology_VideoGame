@@ -11,7 +11,7 @@ public class PuzzleTutorial : MonoBehaviour
 
     private void Start()
     {
-
+        Debug.Log("[Tutorial] creando el tutorial de "+puzzleName);
         if (transform.parent != null)
         {
             RectTransform parentRect = transform.parent.GetComponent<RectTransform>();
