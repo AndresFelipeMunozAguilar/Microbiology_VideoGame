@@ -31,6 +31,9 @@ public class PuzzleEvaluation : MonoBehaviour
     {
         return PerformanceFinal;
     }
+    public string GetColor(){
+        return  EvaluationSystem.Instance.GetColor();
+    }
     public int GetValue(string key)
     {
         return runtimeDict.TryGetValue(key, out int v) ? v : 0;

@@ -89,6 +89,8 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         if (puzzleAlreadyCompleted) return;
         gameplay.puzzleEvaluation.FinishGame(didPlayerWin);
         PerformanceResultTx.text=gameplay.puzzleEvaluation.getPerformance();
+        ColorUtility.TryParseHtmlString(gameplay.puzzleEvaluation.GetColor(), out Color c);
+        PerformanceResultTx.color = c;
         puzzleAlreadyCompleted = true;
 
         isVictoryAchieved = didPlayerWin;

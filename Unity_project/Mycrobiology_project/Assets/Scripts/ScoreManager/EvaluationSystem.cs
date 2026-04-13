@@ -15,7 +15,7 @@ public class EvaluationSystem : MonoBehaviour
     private int totalScore = 0;
     private int FinalScore;
     [SerializeField] private int MaxTotalScore = 100;
-    private string totalPerformance;
+    private string totalPerformance,ColorPerformance;
     int puzzlesAmount;
 
     private void Awake()
@@ -69,7 +69,9 @@ public class EvaluationSystem : MonoBehaviour
         puzzlesAmount = puzzles.Length;
         return puzzlesAmount;
     }
-
+    public string GetColor(){
+        return ColorPerformance;
+    }
     public List<PuzzleResultData> getPuzzles()
     {
         if (results != null)
@@ -100,15 +102,30 @@ public class EvaluationSystem : MonoBehaviour
         float percentage = (float)score / maxScore * 100f;
 
         if (percentage >= 90f)
-            return "Rendimiento Sobresaliente";
-        else if (percentage >= 75f)
-            return "Rendimiento Satisfactorio";
-        else if (percentage >= 60f)
-            return "Rendimiento Aceptable";
-        else if (percentage >= 40f)
-            return "Rendimiento en Progreso";
-        else
-            return "Rendimiento Deficiente";
+            {
+                ColorPerformance = "#2ECC71"; // Sobresaliente
+                return "Rendimiento Sobresaliente";
+            }
+            else if (percentage >= 75f)
+            {
+                ColorPerformance = "#7ED957"; // Satisfactorio
+                return "Rendimiento Satisfactorio";
+            }
+            else if (percentage >= 60f)
+            {
+                ColorPerformance = "#F1C40F"; // Aceptable
+                return "Rendimiento Aceptable";
+            }
+            else if (percentage >= 40f)
+            {
+                ColorPerformance = "#E67E22"; // En Progreso
+                return "Rendimiento en Progreso";
+            }
+            else
+            {
+                ColorPerformance = "#E74C3C"; // Deficiente
+                return "Rendimiento Deficiente";
+            }
     }
     public void SaveAllResults(string playerID)
     {
