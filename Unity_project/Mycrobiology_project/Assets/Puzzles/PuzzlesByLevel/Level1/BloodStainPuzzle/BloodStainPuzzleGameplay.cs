@@ -37,6 +37,40 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
     }
 
+
+    public override void StartGameplay()
+    {
+        Vector3 inFrontOfCamera = Camera.main.transform.position;
+        inFrontOfCamera.z = 0f;
+
+        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Vamos a instanciar el fondo y los objetos");
+
+        SetGlobalPositionTo(Camera.main.transform.position);
+        ActivateSonObjects();
+
+        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+
+        GetAssociatedComponents();
+        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
+    }
+
+    private void SetGlobalPositionTo(Vector3 worldPosition)
+    {
+        Vector3 targetWorldPosition = worldPosition;
+
+        targetWorldPosition.z = transform.position.z;
+
+        transform.position = targetWorldPosition;
+    }
+
+    private void ActivateSonObjects()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
+
     private void GetAssociatedComponents()
     {
         _visuals = GetComponentInChildren<BloodStainVisuals>();
@@ -53,20 +87,6 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
             return;
         }
 
-    }
-
-    public override void StartGameplay()
-    {
-        Vector3 inFrontOfCamera = Camera.main.transform.position;
-        inFrontOfCamera.z = 0f;
-
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
-
-        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-        SpawnElementsRelativeTo(Camera.main.transform);
-
-        GetAssociatedComponents();
-        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
     }
 
     public void OnDestroy()
