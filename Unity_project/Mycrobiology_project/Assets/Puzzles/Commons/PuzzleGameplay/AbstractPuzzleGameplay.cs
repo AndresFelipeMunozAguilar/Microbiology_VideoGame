@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class AbstractPuzzleGameplay : MonoBehaviour
@@ -23,6 +24,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     [Tooltip("Prefab que contiene la interfaz o guía del tutorial.")]
     [SerializeField] protected GameObject tutorialPrefab;
+    [SerializeField] protected TextMeshProUGUI Title;
     public abstract void StartGameplay();
 
     public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)

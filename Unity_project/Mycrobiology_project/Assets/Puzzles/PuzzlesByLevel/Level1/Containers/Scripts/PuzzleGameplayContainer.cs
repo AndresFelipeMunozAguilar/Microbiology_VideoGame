@@ -21,6 +21,7 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
         Debug.Log("[Containers] empezamos gameplay");
         transform.GetChild(0).gameObject.SetActive(true);
         score=GetComponent<PuzzleEvaluation>();
+        if(Title)Title.text=score.puzzleID.ToString();
         SpawnObjects();
     }
 
