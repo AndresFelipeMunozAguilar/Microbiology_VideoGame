@@ -9,6 +9,7 @@ sequenceDiagram
     participant Core as Sistema de Juego
     participant PuzzleSys as Sistema de Puzzles
     participant Persistencia as Sistema de Persistencia
+    participant BD as Base de Datos Centralizada (Cloud)
 
     Jugador ->> Core: Iniciar juego
     Core -) PuzzleSys: Pedir instanciar puzzles
@@ -67,6 +68,18 @@ sequenceDiagram
     %% Persistencia de resultados
     PuzzleSys ->> Persistencia: Registrar resultado del puzzle
     PuzzleSys ->> Persistencia: Actualizar log de desempeño
+
+    Core->>Persistencia: Solicita registrar los logros de la sesión
+    
+    Note over Persistencia: El sistema aseguró la información en el paso anterior, <br/> al guardar los datos en el almacenamiento local del dispositivo.
+
+    Persistencia->>BD: Sincroniza el progreso del estudiante con la nube
+    
+    alt Sincronización Exitosa
+        BD-->>Jugador: El progreso ahora es visible para el profesor
+    else Sin conexión
+        Persistencia-->>Jugador: El progreso se guardó en local y se solicita que se reintente subirlo
+    end
 
     %% Libro de puzzles descubiertos
     Jugador ->> Core: Pedir libro de puzzles
