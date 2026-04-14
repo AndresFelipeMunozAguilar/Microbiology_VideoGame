@@ -432,27 +432,6 @@ class AbstractPuzzleGameplay {
     <<abstract>>
     # DataManager dataManager
     # PuzzleEvaluation puzzleEvaluation
-    # List~SpawnableElement~ elementsToSpawn
-    # GameObject background
-    # bool isFirstTimePlaying
-    # GameObject tutorialPrefab
-
-    + StartGameplay() void*
-    + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
-    + Victory() void*
-    + Defeat() void*
-    + ShowTutorial() void
-    + IsFirstTime() bool
-    + GetPuzzleEvaluation() PuzzleEvaluation
-    # SpawnElements() void
-    # NotifyPuzzleVictory(didPlayerWin: bool) void
-}
-
-class AbstractPuzzleGameplay {
-    <<abstract>>
-    # DataManager dataManager
-    # PuzzleEvaluation puzzleEvaluation
-    # List~SpawnableElement~ elementsToSpawn
     # GameObject background
     # bool isFirstTimePlaying
     # GameObject tutorialPrefab
