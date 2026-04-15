@@ -19,6 +19,7 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
     DropZone dropzone;
     PuzzleEvaluation score;
     GamePlayElements gamePlay;
+    Animator anim;
     public void CreateElement(Element assigned,PuzzleEvaluation Evaluation,GamePlayElements gamePlayElements)
     {
         score=Evaluation;
@@ -30,6 +31,7 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
         pointWarm.anchoredPosition = posPoint;
         GameObject blank = getPlace(transform.position);
         transform.position=dropzone.getPosition();
+        anim = GetComponent<Animator>();
     }
     void FixedUpdate()
     {
@@ -61,6 +63,11 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
         onDrag = false;
 
         GameObject dropPlace = getPlace(eventData:eventData);
+        if(dropPlace && dropPlace.TryGetComponent(out TubeManager tube))
+        {
+            anim.Play("DropOut");
+            tube.Filling(element);
+        }
         transform.position=dropzone.getPosition(); //si genera error es porque no esta asignado al iniciar un espacio
 
         dropPlace = getPlace(transform.position);
@@ -83,6 +90,7 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
             Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
             
         }
+
         GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
@@ -110,7 +118,7 @@ public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandle
     }
     void FinishElement()
     {
-        GetComponent<Animator>().Play("Fade");
+        anim.Play("Fade");
         
     }
     public void DestroyElement()
