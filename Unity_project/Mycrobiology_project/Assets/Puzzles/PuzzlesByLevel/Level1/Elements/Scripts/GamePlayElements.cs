@@ -10,6 +10,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
     PuzzleEvaluation score;
     private void Start() {
         transform.GetChild(0).gameObject.SetActive(false);
+       
     }
     void SelectElements()
     {
@@ -49,6 +50,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
     {
         transform.GetChild(0).gameObject.SetActive(true);
         score=GetComponent<PuzzleEvaluation>();
+        if(Title)Title.text=score.puzzleID.ToString();
         SelectElements();
     }
 

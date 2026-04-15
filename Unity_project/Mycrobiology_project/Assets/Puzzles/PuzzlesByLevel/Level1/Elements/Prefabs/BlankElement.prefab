@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7617249646354580736}
   - component: {fileID: -1783702331821624809}
   - component: {fileID: -3880776311279496264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlankElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   WarmBar: {fileID: 134583246140885634}
   pointWarm: {fileID: 61948377095292463}
   maxTime: 3
+  _playerHealthLogic: {fileID: 0}
 --- !u!212 &-7617249646354580736
 SpriteRenderer:
   serializedVersion: 2
