@@ -22,6 +22,23 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [SerializeField] protected GameObject tutorialPrefab;
     public abstract void StartGameplay();
 
+    protected void SetGlobalPositionTo(Vector3 worldPosition)
+    {
+        Vector3 targetWorldPosition = worldPosition;
+
+        targetWorldPosition.z = transform.position.z;
+
+        transform.position = targetWorldPosition;
+    }
+
+    protected void ActivateSonObjects()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
+
     public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
     {
         Instantiate(background, position, rotation, parent);
