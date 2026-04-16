@@ -45,35 +45,19 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
         Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Vamos a instanciar el fondo y los objetos");
 
-        SetGlobalPositionTo(Camera.main.transform.position);
-        ActivateSonObjects();
+        SetGlobalPositionTo(inFrontOfCamera);
 
         SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+        ActivateSonObjects();
 
         GetAssociatedComponents();
         _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
     }
 
-    private void SetGlobalPositionTo(Vector3 worldPosition)
-    {
-        Vector3 targetWorldPosition = worldPosition;
-
-        targetWorldPosition.z = transform.position.z;
-
-        transform.position = targetWorldPosition;
-    }
-
-    private void ActivateSonObjects()
-    {
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(true);
-        }
-    }
-
     private void GetAssociatedComponents()
     {
         _visuals = GetComponentInChildren<BloodStainVisuals>();
+
         if (_visuals == null)
         {
             Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente BloodStainVisuals en los hijos de {this.gameObject.name}");
