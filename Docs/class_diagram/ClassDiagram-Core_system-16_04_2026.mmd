@@ -430,13 +430,14 @@ class AbstractPuzzleGameplay {
     # GameObject tutorialPrefab
 
     + StartGameplay() void*
+    # SetGlobalPositionTo(worldPosition: Vector3) void
+    # ActivateSonObjects() void
     + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
     + Victory() void*
     + Defeat() void*
     + ShowTutorial() void
     + IsFirstTime() bool
     + GetPuzzleEvaluation() PuzzleEvaluation
-    # SpawnElements() void
     # NotifyPuzzleVictory(didPlayerWin: bool) void
 }
 
