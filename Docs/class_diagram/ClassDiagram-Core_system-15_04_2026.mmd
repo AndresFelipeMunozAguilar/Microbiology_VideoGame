@@ -321,13 +321,6 @@ class PuzzleTutorial {
     + Destroy() void
 }
 
-class SpawnableElement {
-    + string name
-    + GameObject prefab
-    + Vector3 globalPosition
-    + Quaternion localRotation
-}
-
 class FeedbackText {
     - string text
     + Show(position: Vector3, text: string) void
@@ -510,7 +503,6 @@ PuzzleEvaluation -- ScoreScreen
 PuzzleEvaluation o-- ActionKey
 
 AbstractPuzzleGameplay o-- PuzzleEvaluation
-AbstractPuzzleGameplay *-- SpawnableElement
 
 IPuzzlePausable --o GameManager: Se subscribe a la lista de PuzzlePausables
 PuzzleManager -- GameManager : reporta resultado
