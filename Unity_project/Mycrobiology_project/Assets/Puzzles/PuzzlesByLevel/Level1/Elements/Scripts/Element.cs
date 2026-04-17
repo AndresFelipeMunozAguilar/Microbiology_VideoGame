@@ -4,7 +4,7 @@ using UnityEngine;
 public class Element : ScriptableObject
 {
     public Sprite image;
-    public float timeWarm;
+    public float targetTemperature;
     public bool isMechero;
     public bool isBañoMaria;
 }

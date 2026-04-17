@@ -151,7 +151,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0.173, y: -2.39, z: 0}
-  m_LocalScale: {x: 0.5204726, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.5204726, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9103830461893473362}
@@ -333,7 +333,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0.173, y: -3.0687, z: 0}
-  m_LocalScale: {x: 0.5204726, y: 0.39475322, z: 1}
+  m_LocalScale: {x: 0.5204726, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9103830461893473362}
@@ -441,7 +441,9 @@ GameObject:
   - component: {fileID: 60726209542692101}
   - component: {fileID: 674283984674404255}
   - component: {fileID: 2889766596699335843}
-  m_Layer: 0
+  - component: {fileID: 1763351562834351956}
+  - component: {fileID: 3718192661023659649}
+  m_Layer: 13
   m_Name: TuboEnsayo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,8 +459,8 @@ Transform:
   m_GameObject: {fileID: 8188355005948760926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.86341465, y: 0.72800547, z: 0.6944444}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.29510957, z: 0.28150502}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9103830461893473362}
@@ -501,6 +503,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74473041779fa8049ac610ce2549ee33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TubeManager
+  _zDistanceToCamera: 0
+  _mainCamera: {fileID: 0}
+  _canvasGroup: {fileID: 0}
+  _rigidbody: {fileID: 1763351562834351956}
+  _playerHealthLogic: {fileID: 0}
+  temperatureSpeed: 20
+  Temperature: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  ObjectMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!70 &674283984674404255
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -531,7 +546,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -552,3 +567,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DropZone
   pointPosition: {fileID: 4351287498133945207}
   isFinish: 0
+--- !u!50 &1763351562834351956
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188355005948760926}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!225 &3718192661023659649
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188355005948760926}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

@@ -5,7 +5,8 @@ public class GamePlayElements : AbstractPuzzleGameplay
 {
     [SerializeField] List<Element> elements= new List<Element>();
     [SerializeField] List<Transform> positions = new List<Transform>();
-    [SerializeField] GameObject blankElement;
+    [SerializeField] List<Transform> positionsTubes = new List<Transform>();
+    [SerializeField] GameObject blankElement,Tube;
     int elementsFinished=0;
     PuzzleEvaluation score;
     private void Start() {
@@ -14,12 +15,17 @@ public class GamePlayElements : AbstractPuzzleGameplay
     }
     void SelectElements()
     {
-        List<Element> SelectElements = elements;
+        List<Element> selectElements = new List<Element>(elements);
         for(int i = 0; i < positions.Count; i++) {
-            int pos = Random.Range(0,SelectElements.Count);
+            int pos = Random.Range(0,selectElements.Count);
             GameObject newElement = Instantiate(blankElement,positions[i]);
-            newElement.GetComponent<ElementManager>().CreateElement(SelectElements[pos],score,this);
-            SelectElements.RemoveAt(pos);
+            newElement.GetComponent<ElementManager>().CreateElement(selectElements[pos],score,this);
+            selectElements.RemoveAt(pos);
+        }
+        for(int i = 0; i < positionsTubes.Count; i++) {
+            GameObject newElement = Instantiate(Tube,positionsTubes[i]);
+            newElement.GetComponent<TubeManager>().CreateElement(score,this);
+
         }
     }
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7617249646354580736}
   - component: {fileID: -1783702331821624809}
   - component: {fileID: -3880776311279496264}
+  - component: {fileID: 5984670078834314149}
   m_Layer: 8
   m_Name: BlankElement
   m_TagString: Untagged
@@ -86,11 +87,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548f8b026bba3c7478bf07986ca1e571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElementManager
-  Temperature: 0
-  WarmBar: {fileID: 134583246140885634}
-  pointWarm: {fileID: 61948377095292463}
-  maxTime: 3
-  _playerHealthLogic: {fileID: 0}
+  _zDistanceToCamera: 0
+  _mainCamera: {fileID: 0}
+  _canvasGroup: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  ObjectMask:
+    serializedVersion: 2
+    m_Bits: 24576
 --- !u!212 &-7617249646354580736
 SpriteRenderer:
   serializedVersion: 2
@@ -199,6 +205,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &5984670078834314149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734966522989490899}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &6827382207606533682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,6 +341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7673646314968896137, guid: 62965ce3331723a4db2c589955008fdf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8793755605992727933, guid: 62965ce3331723a4db2c589955008fdf, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -428,22 +450,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62965ce3331723a4db2c589955008fdf, type: 3}
---- !u!224 &61948377095292463 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6801471492377339933, guid: 62965ce3331723a4db2c589955008fdf, type: 3}
-  m_PrefabInstance: {fileID: 6827382207606533682}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &134583246140885634 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6872943066845013168, guid: 62965ce3331723a4db2c589955008fdf, type: 3}
-  m_PrefabInstance: {fileID: 6827382207606533682}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &2539561221530623003 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9043771794896794153, guid: 62965ce3331723a4db2c589955008fdf, type: 3}

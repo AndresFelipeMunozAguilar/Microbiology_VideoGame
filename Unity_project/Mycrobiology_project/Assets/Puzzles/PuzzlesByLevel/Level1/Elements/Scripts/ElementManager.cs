@@ -2,144 +2,95 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ElementManager : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
+public class ElementManager : AbstractDraggableWorldObject
 {
     Element element;
-    bool onDrag,onWarm;
-    float currentTime;
-    [SerializeField] float Temperature;
     Vector2 OriginPosition;
-    [SerializeField] Image WarmBar;
-    [SerializeField] RectTransform pointWarm;
-    [SerializeField] float maxTime = 10f;
-
-    [Header("Player Damage and Health Logic")]
-    [SerializeField]
-    private PlayerHealthLogic _playerHealthLogic;
-    DropZone dropzone;
+    DropZone currentDropZone;
     PuzzleEvaluation score;
     GamePlayElements gamePlay;
     Animator anim;
+    private Vector3 originPos;
+    [SerializeField] private LayerMask layerMask,ObjectMask;
     public void CreateElement(Element assigned,PuzzleEvaluation Evaluation,GamePlayElements gamePlayElements)
     {
         score=Evaluation;
         gamePlay = gamePlayElements;
         element= assigned;
         GetComponent<SpriteRenderer>().sprite = element.image;    
-        float posy = Mathf.Lerp(3.6f, -3.6f, element.timeWarm / 100f);
-        Vector2 posPoint = new Vector2(pointWarm.anchoredPosition.x,posy);
-        pointWarm.anchoredPosition = posPoint;
-        GameObject blank = getPlace(transform.position);
-        transform.position=dropzone.getPosition();
+        //GameObject blank = getPlace(transform.position);
+        //if (dropzone != null)transform.position = dropzone.getPosition();
         anim = GetComponent<Animator>();
+        originPos = transform.position;
     }
-    void FixedUpdate()
+    protected override void OnDragStarted()
     {
-        if (onDrag)
-        {
-            Vector2 screenPos = ControlsManager.getControls().PointerPosition.ReadValue<Vector2>();
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-            worldPos.z = 0;
-
-            transform.position = worldPos;
-        }
-        if (onWarm)
-        {
-            currentTime += Time.deltaTime;
-            float target = currentTime / maxTime;
-            Temperature = target;
-            WarmBar.fillAmount = target;
+        if(currentDropZone){
+            currentDropZone.setOccupied(false);
         }
     }
-    public void OnPointerDown(PointerEventData eventData)
+
+    protected override void OnDragEnded()
     {
-        onDrag=true;
-        GetComponent<CapsuleCollider2D>().enabled=false;
-        onWarm=false;
+        MoveZone();
+        MoveTube();
+        MoveWarm();
+        transform.position = originPos;
+        //Vector2 worldPos = Camera.main.ScreenToWorldPoint(ControlsManager.getControls().PointerPosition.ReadValue<Vector2>());
+        //GameObject dropPlace = getPlace(worldPos);
     }
-
-    public void OnPointerUp(PointerEventData eventData)
+    void MoveZone()
     {
-        onDrag = false;
+        Collider2D hit = Physics2D.OverlapPoint(transform.position, layerMask);
 
-        GameObject dropPlace = getPlace(eventData:eventData);
-        if(dropPlace && dropPlace.TryGetComponent(out TubeManager tube))
+        if (hit != null)
         {
-            anim.Play("DropOut");
-            tube.Filling(element);
+            Debug.Log("[Containers] " + hit.transform.name);
+            originPos = transform.position;
         }
-        transform.position=dropzone.getPosition(); //si genera error es porque no esta asignado al iniciar un espacio
-
-        dropPlace = getPlace(transform.position);
-        if(dropPlace && dropPlace.TryGetComponent(out WarmManager warm)){
-            onWarm=true;
-            if (warm.getSwitch())
+    }
+    void MoveTube()
+    {
+        Collider2D hit = Physics2D.OverlapPoint(transform.position,ObjectMask);
+        if(hit != null )
+        {
+            if(hit.TryGetComponent(out TubeManager tube) && !tube.IsFill())
             {
-               if(element.isMechero) score.AddPoints("GoodPlace"); 
-               else score.RemovePoints("BadPlace");
-               if(element.isMechero) Debug.Log("[ELEMENT] bien puesto en el mechero");
-               else  Debug.Log("[ELEMENT] mal puesto en el mechero");
-            }
-            else
-            {
-                if(element.isBañoMaria) score.AddPoints("GoodPlace");
-               else score.RemovePoints("BadPlace");
-                if(element.isBañoMaria) Debug.Log("[ELEMENT] bien puesto en el baño maria");
-               else  Debug.Log("[ELEMENT] mal puesto en el baño maria");
-            }
-            Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
-            
-        }
-
-        GetComponent<CapsuleCollider2D>().enabled = true;
-    }
-
-    private GameObject getPlace(Vector2 pos=default,PointerEventData eventData=null)
-    {
-        Vector2 worldPos = eventData!=null ? Camera.main.ScreenToWorldPoint(eventData.position):pos;
-
-        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
-
-        foreach (var hit in hits)
-        {
-            if (hit.TryGetComponent(out DropZone drop))
-            {   
-                if(!drop.IsOccupied()){
-                    if(dropzone)dropzone.setOccupied(false);
-                    dropzone=drop;
-                    bool isFinish= dropzone.setOccupied(true);
-                    if(isFinish)FinishElement();
+                if(hit.TryGetComponent(out DropZone drop)){
+                    if (!drop.IsOccupied())
+                    {
+                        originPos=drop.getPosition();
+                        anim.Play("DropOut");
+                        tube.Filling(element);
+                        Debug.Log("Dropeado");
+                    }
                 }
-                return hit.gameObject;
             }
         }
-
-        return null;
     }
-    void FinishElement()
+    void MoveWarm()
     {
-        anim.Play("Fade");
-        
+        Collider2D hit = Physics2D.OverlapPoint(transform.position,ObjectMask);
+        if(hit != null )
+        {
+            if(hit.TryGetComponent(out DropZone drop)){
+                if (!drop.IsOccupied())
+                {
+                    originPos=drop.getPosition();
+                    drop.setOccupied(true);
+                    currentDropZone=drop;
+                    Debug.Log("Dropeado");
+                }
+            }
+        }
     }
+
+
     public void DestroyElement()
     {
-        Temperature*=100;
-        if(Temperature >= element.timeWarm-10f && Temperature <= element.timeWarm + 10f)
-        {
-            score.AddPoints("FinishElement");
-            Debug.Log("[ELEMENT] bien hecho temperatura: "+Temperature+" estuvo en el rango: "+element.timeWarm);
-        }
-        else
-        {
-            score.AddPoints("FinishBadElement");
-            _playerHealthLogic=FindAnyObjectByType<PlayerHealthLogic>();
-            GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
-            GetComponentInParent<PlayerDamageDealer>().DealDamage(_playerHealthLogic);
-            Debug.Log("[ELEMENT] mal hecho temperatura: "+Temperature+" no estuvo en el rango: "+element.timeWarm);
-        }
-        Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
-        dropzone.setOccupied(false);
-        gamePlay.addFinishElement();
+
+        //dropzone.setOccupied(false);
+        //gamePlay.addFinishElement();
         Destroy(gameObject);   
     }
     public void PlaceWarm(Vector2 newPos)
