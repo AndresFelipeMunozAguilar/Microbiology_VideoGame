@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TubeManager : AbstractDraggableWorldObject
 {
@@ -19,6 +21,7 @@ public class TubeManager : AbstractDraggableWorldObject
     private Vector3 originPos;
     [SerializeField] private LayerMask layerMask,ObjectMask;
     DropZone currentDropZone;
+    [SerializeField] private AnimationClip fillingClip,VanishClip;
     public void CreateElement(PuzzleEvaluation Evaluation,GamePlayElements gamePlayElements)
     {
         score=Evaluation;
@@ -36,16 +39,37 @@ public class TubeManager : AbstractDraggableWorldObject
         {
             Temperature += temperatureSpeed * Time.deltaTime;
             Temperature = Mathf.Clamp(Temperature, 0f, 100f);
-
+            CurrentWarm.setColor(GetColorTemperature(Temperature));
             CurrentWarm.newTemperature(Temperature);
         }
+    }
+    Color GetColorTemperature(float temperature)
+    {
+        if (temperature < element.minTemperature)
+            return Color.yellow;
+
+        if (temperature < element.maxTemperature)
+            return Color.green;
+
+        if (temperature < 100f)
+            return Color.red;
+
+        return Color.black;
     }
 
     public bool IsFill() => element != null;
     public void Filling(Element newElement)
     {
         anim.Play("Filling");
+        StartCoroutine(BlockMove(fillingClip.length));
         element = newElement;
+    }
+    IEnumerator BlockMove(float amountTime)
+    {
+        GetComponent<CapsuleCollider2D>().enabled=false;
+        yield return new WaitForSeconds(amountTime);
+        GetComponent<CapsuleCollider2D>().enabled=true;
+
     }
 
     protected override void OnDragStarted()
@@ -83,6 +107,7 @@ public class TubeManager : AbstractDraggableWorldObject
                             score.AddPoints("GoodPlace");
                         } 
                         else{
+                            gamePlay.CreateFeedback(transform.position,"Metodo incorrecto");
                             score.RemovePoints("BadPlace");
                         }
 
@@ -94,9 +119,14 @@ public class TubeManager : AbstractDraggableWorldObject
                             score.AddPoints("GoodPlace");
                         } 
                         else{
+                            gamePlay.CreateFeedback(transform.position,"Metodo incorrecto");
                             score.RemovePoints("BadPlace");
                         }
                     }
+                }
+                else
+                {
+                    gamePlay.CreateFeedback(transform.position,"Tubo vacío");
                 }
                 Debug.Log("[Elements] Score: "+score.GetCurrentScore());
                 if(hit.TryGetComponent(out DropZone drop) && !drop.IsOccupied()){
@@ -134,28 +164,24 @@ public class TubeManager : AbstractDraggableWorldObject
                 }
              }
         }
-    }
-   
-    public void DestroyElement()
-    {
-        if(Temperature >= element.targetTemperature-10f && Temperature <= element.targetTemperature + 10f)
-        {
-            score.AddPoints("FinishElement");
-            Debug.Log("[ELEMENT] bien hecho temperatura: "+Temperature+" estuvo en el rango: "+element.targetTemperature);
-        }
-        else
-        {
-            score.AddPoints("FinishBadElement");
-            _playerHealthLogic=FindAnyObjectByType<PlayerHealthLogic>();
-            GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
-            GetComponentInParent<PlayerDamageDealer>().DealDamage(_playerHealthLogic);
-            Debug.Log("[ELEMENT] mal hecho temperatura: "+Temperature+" no estuvo en el rango: "+element.targetTemperature);
-        }
-        Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
-    }    
+    } 
     void FinishElement()
     {
-        Destroy(gameObject,1f);
+        anim.Play("VanishTube");
+        StartCoroutine(BlockMove(VanishClip.length));
+        if (Temperature == 0)
+        {
+            gamePlay.CreateFeedback(transform.position,"No calentado");
+        }
+        else if (Temperature < element.minTemperature || Temperature > element.maxTemperature)
+        {
+            gamePlay.CreateFeedback(transform.position,"Temperatura incorrecta");
+        }
+        else if (Temperature > element.minTemperature || Temperature < element.maxTemperature)
+        {
+            gamePlay.CorrectFeedback(transform.position);
+        }
+        Destroy(gameObject,2f);
         
     }
 

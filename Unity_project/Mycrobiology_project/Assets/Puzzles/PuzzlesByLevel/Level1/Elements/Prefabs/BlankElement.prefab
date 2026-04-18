@@ -97,6 +97,7 @@ MonoBehaviour:
   ObjectMask:
     serializedVersion: 2
     m_Bits: 24576
+  DropAnimation: {fileID: 7400000, guid: b32cba0fa1a43474d9062f32d0d363be, type: 2}
 --- !u!212 &-7617249646354580736
 SpriteRenderer:
   serializedVersion: 2

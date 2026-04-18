@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class ElementManager : AbstractDraggableWorldObject
     Animator anim;
     private Vector3 originPos;
     [SerializeField] private LayerMask layerMask,ObjectMask;
+    [SerializeField] private AnimationClip DropAnimation;
     public void CreateElement(Element assigned,PuzzleEvaluation Evaluation,GamePlayElements gamePlayElements)
     {
         score=Evaluation;
@@ -32,13 +34,22 @@ public class ElementManager : AbstractDraggableWorldObject
 
     protected override void OnDragEnded()
     {
-        MoveZone();
         MoveTube();
+        MoveZone();
         MoveWarm();
+        MoveFinish();
         transform.position = originPos;
         //Vector2 worldPos = Camera.main.ScreenToWorldPoint(ControlsManager.getControls().PointerPosition.ReadValue<Vector2>());
         //GameObject dropPlace = getPlace(worldPos);
     }
+    IEnumerator BlockMove(float amountTime)
+    {
+        GetComponent<CapsuleCollider2D>().enabled=false;
+        yield return new WaitForSeconds(amountTime);
+        GetComponent<CapsuleCollider2D>().enabled=true;
+
+    }
+
     void MoveZone()
     {
         Collider2D hit = Physics2D.OverlapPoint(transform.position, layerMask);
@@ -54,13 +65,19 @@ public class ElementManager : AbstractDraggableWorldObject
         Collider2D hit = Physics2D.OverlapPoint(transform.position,ObjectMask);
         if(hit != null )
         {
-            if(hit.TryGetComponent(out TubeManager tube) && !tube.IsFill())
+            if(hit.TryGetComponent(out TubeManager tube))
             {
+                if (tube.IsFill())
+                {
+                    gamePlay.CreateFeedback(transform.position,"Tubo ocupado");
+                    return;
+                }
                 if(hit.TryGetComponent(out DropZone drop)){
                     if (!drop.IsOccupied())
                     {
                         originPos=drop.getPosition();
                         anim.Play("DropOut");
+                        StartCoroutine(BlockMove(DropAnimation.length));
                         tube.Filling(element);
                         Debug.Log("Dropeado");
                     }
@@ -73,18 +90,32 @@ public class ElementManager : AbstractDraggableWorldObject
         Collider2D hit = Physics2D.OverlapPoint(transform.position,ObjectMask);
         if(hit != null )
         {
-            if(hit.TryGetComponent(out DropZone drop)){
-                if (!drop.IsOccupied())
+            if(hit.TryGetComponent(out DropZone drop) && !hit.TryGetComponent(out TubeManager tube)){
+                if (!drop.IsOccupied()&& !drop.IsFinishZone())
                 {
                     originPos=drop.getPosition();
                     drop.setOccupied(true);
                     currentDropZone=drop;
+                    gamePlay.CreateFeedback(transform.position,"Usa un tubo");
                     Debug.Log("Dropeado");
                 }
             }
         }
     }
-
+    void MoveFinish()
+    {
+        Collider2D hit = Physics2D.OverlapPoint(transform.position,ObjectMask);
+        if(hit != null )
+        {
+            
+             if(hit.TryGetComponent(out DropZone drop)){
+                if (!drop.IsOccupied() && drop.IsFinishZone())
+                {
+                    gamePlay.CreateFeedback(transform.position,"No es el objeto");
+                }
+             }
+        }
+    }
 
     public void DestroyElement()
     {

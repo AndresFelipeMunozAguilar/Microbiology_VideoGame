@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Element 1
   m_EditorClassIdentifier: Assembly-CSharp::Element
   image: {fileID: -1521147527226025818, guid: 5132ec0ce827a35498beb6f1994c81ab, type: 3}
-  timeWarm: 90
+  minTemperature: 60
+  maxTemperature: 80
   isMechero: 1
   "isBa\xF1oMaria": 0

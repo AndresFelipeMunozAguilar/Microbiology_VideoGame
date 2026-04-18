@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GamePlayElements : AbstractPuzzleGameplay
@@ -6,7 +7,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
     [SerializeField] List<Element> elements= new List<Element>();
     [SerializeField] List<Transform> positions = new List<Transform>();
     [SerializeField] List<Transform> positionsTubes = new List<Transform>();
-    [SerializeField] GameObject blankElement,Tube;
+    [SerializeField] GameObject blankElement,Tube,FeedbackElement,CorrectElement;
     int elementsFinished=0;
     PuzzleEvaluation score;
     private void Start() {
@@ -28,7 +29,17 @@ public class GamePlayElements : AbstractPuzzleGameplay
 
         }
     }
-
+    public void CreateFeedback(Vector2 posSpawn,string message)
+    {
+        GameObject feedback = Instantiate(FeedbackElement,posSpawn,Quaternion.identity,transform);
+        feedback.GetComponentInChildren<TextMeshProUGUI>().text = message;
+        Destroy(feedback,5f);
+    }
+    public void CorrectFeedback(Vector2 posSpawn)
+    {
+        GameObject feedback = Instantiate(CorrectElement,posSpawn,Quaternion.identity,transform);
+        Destroy(feedback,5f);
+    }
     public void addFinishElement()
     {
         elementsFinished++;

@@ -7,6 +7,7 @@ public class WarmManager : MonoBehaviour
     [SerializeField] bool SwitchMecheroBaño; // true-> mechero false-> baño maria
     [SerializeField] private float fillSpeed = 2f;
     [SerializeField] Image barrTermometer;
+    [SerializeField] GameObject OnWarm;
     private float targetFill = 0f;
     void Start()
     {
@@ -19,6 +20,10 @@ public class WarmManager : MonoBehaviour
     public void newTemperature(float temperature)
     {
         // Convertir de 0–100 a 0–1
+        if (OnWarm.activeSelf)
+        {
+            
+        }
         targetFill = Mathf.Clamp01(temperature / 100f);
     }
     public void ChangeState(bool state)
@@ -34,6 +39,10 @@ public class WarmManager : MonoBehaviour
             targetFill,
             fillSpeed * Time.deltaTime
         );
+    }
+    public void setColor(Color newColor)
+    {
+        barrTermometer.color=newColor;
     }
 
 

@@ -508,14 +508,16 @@ MonoBehaviour:
   _canvasGroup: {fileID: 0}
   _rigidbody: {fileID: 1763351562834351956}
   _playerHealthLogic: {fileID: 0}
-  temperatureSpeed: 20
+  temperatureSpeed: 10
   Temperature: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 32768
   ObjectMask:
     serializedVersion: 2
     m_Bits: 16384
+  fillingClip: {fileID: 7400000, guid: db4ee53f7225b80459c87dbe1a5c9cb4, type: 2}
+  VanishClip: {fileID: 7400000, guid: 5fbe5c34109873a4cae44ac3c559190c, type: 2}
 --- !u!70 &674283984674404255
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
