@@ -70,13 +70,25 @@ public class DataManager : MonoBehaviour
     }
 
     // FUNCIÓN OBSOLETA, MALA, DEPRECATED: BORRAR SI NO SE NECESITA
-    public bool LoadTutorialFlag(string ID)
-    {
-        PuzzleResultData puzzle = GetPuzzleByID(ID);
-        Debug.Log($"<color=blue>{this.GetType().Name}:</color> Cargando bandera de tutorial para el puzzle '{ID}'. PuzzleResultData encontrado: {puzzle != null}");
+    // public bool LoadTutorialFlag(string ID)
+    // {
+    //     PuzzleResultData puzzle = GetPuzzleByID(ID);
+    //     Debug.Log($"<color=blue>{this.GetType().Name}:</color> Cargando bandera de tutorial para el puzzle '{ID}'. PuzzleResultData encontrado: {puzzle != null}");
 
-        if (puzzle != null && puzzle.tutorialFlag) return true;
-        else return false;
+    //     if (puzzle != null && puzzle.tutorialFlag) return true;
+    //     else return false;
+    // }
+
+
+    public bool HasPuzzleBeenPlayed(string puzzleID)
+    {
+        LoadEvaluation();
+
+        // Si el puzzle ya existe en los datos cargados, es porque ya se jugó
+        PuzzleResultData puzzleResultData = GetPuzzleByID(puzzleID);
+
+        Debug.Log($"<color=blue>{this.GetType().Name}:</color> Verificando si el puzzle '{puzzleID}' ha sido jugado. PuzzleResultData encontrado: {puzzleResultData != null}");
+        return puzzleResultData != null;
     }
 
 }
