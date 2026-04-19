@@ -25,7 +25,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     [SerializeField] private string _puzzleEvaluationSuccesKey = "acierto";
     [SerializeField] private string _puzzleEvaluationErrorKey = "error";
 
-    public void Start()
+    protected override void OnInstanceAwake()
     {
         if (_puzzleSequence == null)
         {

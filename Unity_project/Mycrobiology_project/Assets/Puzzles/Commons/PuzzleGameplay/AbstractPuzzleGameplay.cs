@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PuzzleEvaluation))]
 public abstract class AbstractPuzzleGameplay : MonoBehaviour
 {
     [Header("Infraestructura de datos")]
@@ -20,6 +21,23 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     [Tooltip("Prefab que contiene la interfaz o guía del tutorial.")]
     [SerializeField] protected GameObject tutorialPrefab;
+
+    protected void Awake()
+    {
+        dataManager = DataManager.Instance;
+
+        if (dataManager == null)
+        {
+            Debug.LogError($"<color=magenta>{this.GetType().Name}:</color> No se encontró una instancia de DataManager (en start) en la escena. Asegúrate de que exista un GameObject con el componente DataManager.");
+        }
+        else
+        {
+            Debug.Log($"<color=magenta>{this.GetType().Name}:</color> Instancia de DataManager encontrada en awake.");
+        }
+
+        OnInstanceAwake();
+    }
+
     public abstract void StartGameplay();
 
     protected void SetGlobalPositionTo(Vector3 worldPosition)
@@ -56,7 +74,13 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     public bool IsFirstTime()
     {
-        Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
+        Debug.Log($"<color=magenta>AbstractPuzzleGameplay:</color> Entramos en IsFirstTime. El DataManager es null?: {dataManager == null}");
+        if (dataManager == null) return false;
+
+        isFirstTimePlaying = !dataManager
+                                .HasPuzzleBeenPlayed(GetComponent<PuzzleEvaluation>().puzzleID);
+
+        Debug.Log($"<color=red>AbstractPuzzleGameplay:</color> Is the first time playing the puzzle '{GetComponent<PuzzleEvaluation>().puzzleID}'? {!isFirstTimePlaying}");
         return isFirstTimePlaying;
     }
 
@@ -77,4 +101,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
         puzzleManager.CompletePuzzle(didPlayerWin);
     }
+
+    // Hook para ser usado por las clases, de requerir usar el método Start() para inicializar campos o propiedades
+    protected virtual void OnInstanceAwake() { }
 }
