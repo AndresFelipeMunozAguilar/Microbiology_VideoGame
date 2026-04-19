@@ -5,13 +5,30 @@ using System;
 public class DataManager : MonoBehaviour
 {
     private EvaluationData CurrentData;
-    public static DataManager Instance;
-    
-    private void Start() {
-        Instance=this;   
+    public static DataManager Instance
+    {
+        get;
+        private set;
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            // DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
         CurrentData = LoadEvaluation();
     }
-    
+
     public void SaveEvaluation(EvaluationData data)
     {
         string json = JsonUtility.ToJson(data, true);
@@ -36,22 +53,30 @@ public class DataManager : MonoBehaviour
     }
     public PuzzleResultData GetPuzzleByID(string ID)
     {
-        if(CurrentData != null){
+        Debug.Log($"<color=blue>{this.GetType().Name}:</color> Buscando datos del puzzle con ID '{ID}' en CurrentData. CurrentData es null? {CurrentData == null}");
+        if (CurrentData != null)
+        {
             foreach (PuzzleResultData puzzle in CurrentData.puzzles)
             {
                 if (puzzle.puzzleID.Equals(ID))
                 {
+                    Debug.Log($"<color=blue>{this.GetType().Name}:</color> Puzzle encontrado: {puzzle.puzzleID}");
                     return puzzle;
                 }
             }
         }
+        Debug.Log($"<color=red>{this.GetType().Name}:</color> Puzzle no encontrado: {ID}");
         return null;
     }
 
+    // FUNCIÓN OBSOLETA, MALA, DEPRECATED: BORRAR SI NO SE NECESITA
     public bool LoadTutorialFlag(string ID)
     {
         PuzzleResultData puzzle = GetPuzzleByID(ID);
-        if(puzzle != null && puzzle.tutorialFlag)return true;
+        Debug.Log($"<color=blue>{this.GetType().Name}:</color> Cargando bandera de tutorial para el puzzle '{ID}'. PuzzleResultData encontrado: {puzzle != null}");
+
+        if (puzzle != null && puzzle.tutorialFlag) return true;
         else return false;
     }
+
 }
