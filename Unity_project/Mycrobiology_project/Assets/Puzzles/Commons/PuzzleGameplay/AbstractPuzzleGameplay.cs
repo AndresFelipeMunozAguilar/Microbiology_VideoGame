@@ -22,7 +22,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [Tooltip("Prefab que contiene la interfaz o guía del tutorial.")]
     [SerializeField] protected GameObject tutorialPrefab;
 
-    protected void Awake()
+    private void Awake()
     {
         dataManager = DataManager.Instance;
 
@@ -38,7 +38,20 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         OnInstanceAwake();
     }
 
-    public abstract void StartGameplay();
+    public void StartGameplay()
+    {
+        Vector3 inFrontOfCamera = Camera.main.transform.position;
+        inFrontOfCamera.z = 0f;
+
+        Debug.Log($"<color=yellow>{GetType().Name}:</color> Vamos a instanciar el fondo y los objetos");
+
+        SetGlobalPositionTo(inFrontOfCamera);
+
+        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+        ActivateSonObjects();
+
+        OnStartGameplay();
+    }
 
     protected void SetGlobalPositionTo(Vector3 worldPosition)
     {
@@ -102,6 +115,11 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         puzzleManager.CompletePuzzle(didPlayerWin);
     }
 
-    // Hook para ser usado por las clases, de requerir usar el método Start() para inicializar campos o propiedades
+    // Hook para ser usado por las clases, de 
+    // requerir usar el método Awake() para 
+    // inicializar campos o propiedades
     protected virtual void OnInstanceAwake() { }
+
+    // Hook que se ejecuta al final de StartGameplay
+    protected virtual void OnStartGameplay() { }
 }
