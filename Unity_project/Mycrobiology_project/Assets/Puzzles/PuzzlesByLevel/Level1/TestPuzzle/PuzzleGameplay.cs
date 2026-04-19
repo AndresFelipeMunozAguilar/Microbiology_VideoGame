@@ -35,7 +35,7 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
     {
         puzzleEvaluation = GetComponent<PuzzleEvaluation>();
     }
-    public override void StartGameplay()
+    protected override void OnStartGameplay()
     {
         Vector3 inFrontOfCamera = Camera.main.transform.position;
         inFrontOfCamera.z = 0f;
@@ -43,26 +43,19 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
         Debug.Log("PuzzleGameplay son: Vamos a instanciar el fondo y los objetos");
 
         SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-        InstantiateObjects(transform);
+        SetObjects(transform);
     }
 
 
-    public void InstantiateObjects(Transform parent)
+    public void SetObjects(Transform parent)
     {
         Debug.Log($"PuzzleGameplay: Al instanciar los objetos, el padre es: {parent.gameObject.name} y su posicion es: {parent.position}");
         Debug.Log($"PuzzleGameplay: Instanciando pelota de basket en la posiciones: {ballSpawnPlace}");
 
-        Instantiate(ballPrefab, ballSpawnPlace, Quaternion.identity, parent);
+        BasketTriggerZone[] basketTriggers = GetComponentsInChildren<BasketTriggerZone>();
+        basketTriggers[0].isThisVictoryTrigger = false;
+        basketTriggers[1].isThisVictoryTrigger = true;
 
-        Instantiate(victoryBasketPrefab, vicBasketSpawnPlace, Quaternion.identity, parent)
-            .GetComponentInChildren<BasketTriggerZone>()
-            .isThisVictoryTrigger = true;
-
-        Instantiate(defeatBasketPrefab, defBasketSpawnPlace, Quaternion.identity, parent)
-            .GetComponentInChildren<BasketTriggerZone>()
-            .isThisVictoryTrigger = false;
-
-        Instantiate(floorPrefab, floorSpawnPlace, Quaternion.identity, parent);
     }
 
     public override void Victory()

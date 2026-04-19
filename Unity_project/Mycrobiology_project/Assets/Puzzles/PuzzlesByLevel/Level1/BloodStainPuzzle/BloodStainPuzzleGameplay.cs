@@ -37,19 +37,8 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
     }
 
-
-    public override void StartGameplay()
+    protected override void OnStartGameplay()
     {
-        Vector3 inFrontOfCamera = Camera.main.transform.position;
-        inFrontOfCamera.z = 0f;
-
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Vamos a instanciar el fondo y los objetos");
-
-        SetGlobalPositionTo(inFrontOfCamera);
-
-        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-        ActivateSonObjects();
-
         GetAssociatedComponents();
         _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
     }
