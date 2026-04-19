@@ -12,7 +12,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
 
     [Header("PuzzleGameplay")]
-    public AbstractPuzzleGameplay gameplay;
+    public AbstractPuzzleGameplay _gameplay;
 
     [SerializeField]
     private GameObject puzzleGameplayPrefab;
@@ -41,49 +41,54 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
     public void OnTap()
     {
-        if (halo.isPlayerClose)
+        if (!halo.isPlayerClose) return;
+
+        PrepareScene();
+
+        Debug.Log($"<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre {this.transform.gameObject.name}");
+        SpawnGameplay();
+        if (_gameplay == null)
         {
-            _gameManager.SwitchIsPuzzleActive();
-            _gameManager.PuzzlePauseAll();
-
-            Debug.Log($"<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre {this.transform.gameObject.name}");
-            
-            Instantiate(puzzleGameplayPrefab, this.transform)
-                .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
-
-            if (puzzelGameplayOut == null)
-            {
-                Debug.LogWarning("<color=green>PuzzleManager:</color> No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
-                return;
-            }
-
-            Debug.Log("<color=green>PuzzleManager:</color> Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
-            gameplay = puzzelGameplayOut;
-
-            Debug.Log($"<color=green>PuzzleManager:</color> El PuzzleGameplay fue instanciado en posicion: {gameplay.transform.position} y posicion local: {gameplay.transform.localPosition}");
-
-
-            StartPuzzle();
-
-
+            Debug.LogWarning("<color=green>PuzzleManager:</color> No se encontró el componente AbstractPuzzleGameplay dentro de PuzzleGameplay");
+            return;
         }
+
+        StartPuzzle();
 
     }
 
+    private void PrepareScene()
+    {
+        _gameManager.SwitchIsPuzzleActive();
+        _gameManager.PuzzlePauseAll();
+    }
+
+    private void SpawnGameplay()
+    {
+        Instantiate(puzzleGameplayPrefab, this.transform)
+                .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
+
+
+        Debug.Log("<color=green>PuzzleManager:</color> Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
+        _gameplay = puzzelGameplayOut;
+
+        Debug.Log($"<color=green>PuzzleManager:</color> El PuzzleGameplay fue instanciado en posicion: {_gameplay.transform.position} y posicion local: {_gameplay.transform.localPosition}");
+    }
     public void StartPuzzle()
     {
-        if (gameplay.IsFirstTime())
+        Debug.Log($"<color=green>PuzzleManager:</color> Entrando en StartPuzzle. El valor de _gameplay es: {_gameplay}");
+        if (_gameplay.IsFirstTime())
         {
-            gameplay.ShowTutorial();
+            _gameplay.ShowTutorial();
         }
         else
         {
-            gameplay.StartGameplay();
+            _gameplay.StartGameplay();
         }
     }
 
     public void CompletePuzzle(bool didPlayerWin)
-    {   
+    {
         if (puzzleAlreadyCompleted) return;
         puzzleAlreadyCompleted = true;
 
@@ -105,19 +110,19 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void ExecuteVictoryLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Felicidades, ganaste el puzzle!");
-        gameplay.Victory();
+        _gameplay.Victory();
     }
 
     public void ExecuteDefeatLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Lo siento, perdiste el puzzle.");
 
-        gameplay.Defeat();
+        _gameplay.Defeat();
     }
 
     public int GetScore()
     {
-        int currentGameplayScore = gameplay.GetPuzzleEvaluation().GetCurrentScore();
+        int currentGameplayScore = _gameplay.GetPuzzleEvaluation().GetCurrentScore();
         Debug.Log($"<color=green>PuzzleManager:</color> El puntaje obtenido fue: {currentGameplayScore}");
         return currentGameplayScore;
     }
