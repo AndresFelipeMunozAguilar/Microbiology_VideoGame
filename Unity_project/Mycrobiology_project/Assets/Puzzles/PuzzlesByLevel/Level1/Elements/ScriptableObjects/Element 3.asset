@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c02da416132fc4685e46eeeffb820b, type: 3}
   m_Name: Element 3
   m_EditorClassIdentifier: Assembly-CSharp::Element
+  colorSustance: {r: 0.042586334, g: 0.8207547, b: 0.12854674, a: 0}
+  Name: Sulfato de Cobre
   image: {fileID: -3844104176841766347, guid: 5132ec0ce827a35498beb6f1994c81ab, type: 3}
   minTemperature: 60
   maxTemperature: 80

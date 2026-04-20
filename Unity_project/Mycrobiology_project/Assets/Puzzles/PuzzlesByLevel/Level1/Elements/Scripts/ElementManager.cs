@@ -20,8 +20,6 @@ public class ElementManager : AbstractDraggableWorldObject
         gamePlay = gamePlayElements;
         element= assigned;
         GetComponent<SpriteRenderer>().sprite = element.image;    
-        //GameObject blank = getPlace(transform.position);
-        //if (dropzone != null)transform.position = dropzone.getPosition();
         anim = GetComponent<Animator>();
         originPos = transform.position;
     }
@@ -38,9 +36,9 @@ public class ElementManager : AbstractDraggableWorldObject
         MoveZone();
         MoveWarm();
         MoveFinish();
+        if(currentDropZone)currentDropZone.setOccupied(true);
         transform.position = originPos;
-        //Vector2 worldPos = Camera.main.ScreenToWorldPoint(ControlsManager.getControls().PointerPosition.ReadValue<Vector2>());
-        //GameObject dropPlace = getPlace(worldPos);
+
     }
     IEnumerator BlockMove(float amountTime)
     {
@@ -56,6 +54,7 @@ public class ElementManager : AbstractDraggableWorldObject
 
         if (hit != null)
         {
+            currentDropZone=null;
             Debug.Log("[Containers] " + hit.transform.name);
             originPos = transform.position;
         }
@@ -69,6 +68,7 @@ public class ElementManager : AbstractDraggableWorldObject
             {
                 if (tube.IsFill())
                 {
+                    score.RemovePoints("Spam");
                     gamePlay.CreateFeedback(transform.position,"Tubo ocupado");
                     return;
                 }
@@ -93,6 +93,7 @@ public class ElementManager : AbstractDraggableWorldObject
             if(hit.TryGetComponent(out DropZone drop) && !hit.TryGetComponent(out TubeManager tube)){
                 if (!drop.IsOccupied()&& !drop.IsFinishZone())
                 {
+                     score.RemovePoints("Spam");
                     originPos=drop.getPosition();
                     drop.setOccupied(true);
                     currentDropZone=drop;
@@ -111,6 +112,7 @@ public class ElementManager : AbstractDraggableWorldObject
              if(hit.TryGetComponent(out DropZone drop)){
                 if (!drop.IsOccupied() && drop.IsFinishZone())
                 {
+                    score.RemovePoints("Spam");
                     gamePlay.CreateFeedback(transform.position,"No es el objeto");
                 }
              }

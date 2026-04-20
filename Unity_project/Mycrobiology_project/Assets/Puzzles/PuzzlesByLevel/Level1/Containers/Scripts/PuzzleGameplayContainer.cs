@@ -13,7 +13,10 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     }
     public override void Defeat()
     {
-        throw new System.NotImplementedException();
+        score.FinishGame(false);
+        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        NotifyPuzzleVictory(false);
+        Destroy(gameObject);
     }
 
     public override void StartGameplay()
@@ -27,9 +30,9 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
 
     public override void Victory()
     {
-        PlayerHealthLogic _playerHealthLogic=FindAnyObjectByType<PlayerHealthLogic>();
         GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         bool Finish = score.GetCurrentScore()<=60 ? false:true;
+        score.FinishGame(Finish);
         NotifyPuzzleVictory(Finish);
         Destroy(gameObject);
     }

@@ -9,9 +9,11 @@ public class WarmManager : MonoBehaviour
     [SerializeField] Image barrTermometer;
     [SerializeField] GameObject OnWarm;
     private float targetFill = 0f;
+
     void Start()
     {
         ChangeState(false);
+        OnWarm.SetActive(false);
     }
     public bool getSwitch()
     {
@@ -20,16 +22,19 @@ public class WarmManager : MonoBehaviour
     public void newTemperature(float temperature)
     {
         // Convertir de 0–100 a 0–1
-        if (OnWarm.activeSelf)
+        if (!OnWarm.activeSelf)
         {
-            
+            OnWarm.SetActive(true);
         }
         targetFill = Mathf.Clamp01(temperature / 100f);
     }
     public void ChangeState(bool state)
     {
         barrTermometer.transform.parent.gameObject.SetActive(state);
-        if(!state)newTemperature(0);
+        if(!state){
+            newTemperature(0);
+            OnWarm.SetActive(false);
+        }
     }
     private void Update()
     {

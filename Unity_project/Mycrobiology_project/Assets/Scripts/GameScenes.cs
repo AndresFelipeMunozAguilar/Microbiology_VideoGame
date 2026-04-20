@@ -9,4 +9,5 @@
         TempGameOver,
         TestPuzzle,
         VictoryScene,
+        Credits,
     }

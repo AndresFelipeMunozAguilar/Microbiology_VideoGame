@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1682758583
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 50
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5195406606925181487, guid: 10ef2be2e7315f14e9a315ab0750a986, type: 3}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91dec657b7d1e949a7820892e4ed30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageDealer
-  _puzzleDamageTable: {fileID: 0}
+  _puzzleDamageTable: {fileID: 11400000, guid: 69b738520f8824944a6e16ed2ad30c12, type: 2}
 --- !u!114 &6232241060941946807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +174,7 @@ MonoBehaviour:
   _playerDamageDealer: {fileID: 5637529883713824164}
   performanceResult: {fileID: 0}
   _gameManager: {fileID: 0}
+  PerformanceResultTx: {fileID: 0}
 --- !u!1 &767499549829280883
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +255,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1682758583
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 25
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
@@ -280,10 +281,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHalo
   pulseSpeed: 8
-  maxScale: 7.5
-  haloSr: {fileID: 0}
-  haloBaseScale: {x: 0, y: 0, z: 0}
+  minScaleMultiplier: 1
+  maxScaleMultiplier: 1.4
   minimumTransparency: 0.5
+  maximumTransparency: 1
+  haloSr: {fileID: 0}
   isPlayerClose: 0
 --- !u!58 &1053227689453755992
 CircleCollider2D:

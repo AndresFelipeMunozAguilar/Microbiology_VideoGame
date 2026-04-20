@@ -10,10 +10,12 @@ public class GamePlayElements : AbstractPuzzleGameplay
     [SerializeField] GameObject blankElement,Tube,FeedbackElement,CorrectElement;
     int elementsFinished=0;
     PuzzleEvaluation score;
+    bool IsPerfect=true;  
     private void Start() {
         transform.GetChild(0).gameObject.SetActive(false);
        
     }
+    public void NoPerfect(){IsPerfect=false;}
     void SelectElements()
     {
         List<Element> selectElements = new List<Element>(elements);
@@ -46,19 +48,18 @@ public class GamePlayElements : AbstractPuzzleGameplay
         Debug.Log("[ELEMENT] cuenta:"+ elementsFinished +" : " + positions.Count);
         if(elementsFinished >= positions.Count)
         {
-           
-            if (score.GetCurrentScore()>=60)
-            {   
-                score.AddPoints("VictoryBonus");
+            GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+            bool Finish = score.GetCurrentScore()<=60 ? false:true;
+            score.FinishGame(Finish);
+            if (Finish)
+            {
+                if(IsPerfect)score.AddPoints("BonusPerfect");
                 Victory();
-                 Debug.Log("[ELEMENT] ganaste");
             }
             else
             {
                 Defeat();
-                 Debug.Log("[ELEMENT] perdiste");
             }
-            Debug.Log("[ELEMENT] Score: "+score.GetCurrentScore());
             
         }
     }
