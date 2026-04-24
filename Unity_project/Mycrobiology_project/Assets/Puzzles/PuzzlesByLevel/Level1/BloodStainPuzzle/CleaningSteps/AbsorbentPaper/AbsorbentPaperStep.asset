@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AbsorbentPaperStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
   _requiredItemId: AbsorbentPaperStep
-  _stepResultSprite: {fileID: -720069570975297686, guid: a5afa3858ea6bf64c81b5ea8c2967711, type: 3}
+  _stepResultSprite: {fileID: -7882897658473935061, guid: 031ecc76baf104c4d944e7d573c50b10, type: 3}
