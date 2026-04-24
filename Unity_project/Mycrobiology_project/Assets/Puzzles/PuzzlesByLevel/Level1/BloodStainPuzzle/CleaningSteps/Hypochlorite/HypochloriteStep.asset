@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HypochloriteStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
   _requiredItemId: HypochloriteStep
-  _stepResultSprite: {fileID: 21300000, guid: ebcccf009e9b30b47a1682348643d189, type: 3}
+  _stepResultSprite: {fileID: -3319891761614018272, guid: 031ecc76baf104c4d944e7d573c50b10, type: 3}
