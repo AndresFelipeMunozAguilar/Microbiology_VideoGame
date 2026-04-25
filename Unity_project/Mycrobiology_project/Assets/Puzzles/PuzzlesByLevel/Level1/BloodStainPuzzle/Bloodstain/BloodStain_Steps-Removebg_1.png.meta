@@ -365,10 +365,10 @@ TextureImporter:
       name: BloodStain_Steps-Removebg_1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 662
-        width: 641
-        height: 371
+        x: 10
+        y: 654
+        width: 642
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,10 +387,10 @@ TextureImporter:
       name: BloodStain_Steps-Removebg_1_1
       rect:
         serializedVersion: 2
-        x: 719
-        y: 658
-        width: 620
-        height: 372
+        x: 711
+        y: 650
+        width: 642
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,10 +409,10 @@ TextureImporter:
       name: BloodStain_Steps-Removebg_1_2
       rect:
         serializedVersion: 2
-        x: 1398
+        x: 1388
         y: 654
-        width: 622
-        height: 387
+        width: 642
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -432,9 +432,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 21
-        y: 105
-        width: 640
-        height: 359
+        y: 101
+        width: 642
+        height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,9 +453,9 @@ TextureImporter:
       name: BloodStain_Steps-Removebg_1_4
       rect:
         serializedVersion: 2
-        x: 773
-        y: 85
-        width: 608
+        x: 759
+        y: 101
+        width: 642
         height: 392
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -475,10 +475,10 @@ TextureImporter:
       name: BloodStain_Steps-Removebg_1_5
       rect:
         serializedVersion: 2
-        x: 1540
-        y: 269
-        width: 444
-        height: 208
+        x: 1539
+        y: 260
+        width: 456
+        height: 215
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
