@@ -99,10 +99,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AbsorbentPaper
       objectReference: {fileID: 0}
-    - target: {fileID: 3922145393928646992, guid: 3b998fe186b85644a97e708e0f2b71df, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7083857677187231683, guid: 3b998fe186b85644a97e708e0f2b71df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6553105
@@ -267,10 +263,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClothAndSoap
       objectReference: {fileID: 0}
-    - target: {fileID: 6567607151827293433, guid: 3d0dadc2e06255b4fa3606bf21867f63, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -289,18 +281,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240119909051480772}
     m_Modifications:
-    - target: {fileID: 6185660122142869160, guid: 1b9fcda3e663d354cb17c9b9dd9e8f19, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6185660122142869160, guid: 1b9fcda3e663d354cb17c9b9dd9e8f19, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6185660122142869160, guid: 1b9fcda3e663d354cb17c9b9dd9e8f19, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.36
-      objectReference: {fileID: 0}
     - target: {fileID: 6185660122142869160, guid: 1b9fcda3e663d354cb17c9b9dd9e8f19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -345,10 +325,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table
       objectReference: {fileID: 0}
-    - target: {fileID: 8589431881829996226, guid: 1b9fcda3e663d354cb17c9b9dd9e8f19, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -370,22 +346,6 @@ PrefabInstance:
     - target: {fileID: 410601994743242044, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
       propertyPath: m_Name
       value: BloodStain
-      objectReference: {fileID: 0}
-    - target: {fileID: 410601994743242044, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1488375436826925000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1488375436826925000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1488375436826925000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 1488375436826925000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
       propertyPath: m_LocalPosition.x
@@ -489,10 +449,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hypochlorite
       objectReference: {fileID: 0}
-    - target: {fileID: 6567607151827293433, guid: d59ddf66ce2208848a0ecd0c7f89d3bf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -554,10 +510,6 @@ PrefabInstance:
     - target: {fileID: 6567607151827293433, guid: 1db8abc061cf32b4abe4e122c49d2fcf, type: 3}
       propertyPath: m_Name
       value: Waiting
-      objectReference: {fileID: 0}
-    - target: {fileID: 6567607151827293433, guid: 1db8abc061cf32b4abe4e122c49d2fcf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
