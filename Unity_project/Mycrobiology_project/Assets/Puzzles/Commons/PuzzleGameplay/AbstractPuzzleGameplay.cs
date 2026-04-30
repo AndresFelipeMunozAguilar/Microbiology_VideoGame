@@ -93,7 +93,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         isFirstTimePlaying = !dataManager
                                 .HasPuzzleBeenPlayed(GetComponent<PuzzleEvaluation>().puzzleID);
 
-        Debug.Log($"<color=red>AbstractPuzzleGameplay:</color> Is the first time playing the puzzle '{GetComponent<PuzzleEvaluation>().puzzleID}'? {!isFirstTimePlaying}");
+        Debug.Log($"<color=red>AbstractPuzzleGameplay:</color> Is the first time playing the puzzle '{GetComponent<PuzzleEvaluation>().puzzleID}'? {isFirstTimePlaying}");
         return isFirstTimePlaying;
     }
 
