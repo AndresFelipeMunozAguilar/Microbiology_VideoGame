@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class PuzzleGameplayContainer : AbstractPuzzleGameplay
 {
-    [SerializeField] List<disposal> objects= new List<disposal>();
+    [SerializeField] List<disposal> objects = new List<disposal>();
     [SerializeField] List<Transform> positions = new List<Transform>();
     [SerializeField] GameObject BlankObject;
     PuzzleEvaluation score;
     int Amount_Complete;
-    private void Start() {
+    private void Start()
+    {
         transform.GetChild(0).gameObject.SetActive(false);
     }
     public override void Defeat()
@@ -19,7 +20,7 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
         Destroy(gameObject);
     }
 
-    public override void StartGameplay()
+    protected override void OnStartGameplay()
     {
         Debug.Log("[Containers] empezamos gameplay");
         transform.GetChild(0).gameObject.SetActive(true);
@@ -40,10 +41,11 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     void SpawnObjects()
     {
         List<disposal> SelectDiposals = objects;
-        for(int i = 0; i < positions.Count; i++) {
-            int pos = Random.Range(0,SelectDiposals.Count);
-            GameObject newElement = Instantiate(BlankObject,positions[i]);
-            newElement.GetComponent<ObjectManager>().CreateDiposal(SelectDiposals[pos],score,this,Mathf.RoundToInt((100/positions.Count)));
+        for (int i = 0; i < positions.Count; i++)
+        {
+            int pos = Random.Range(0, SelectDiposals.Count);
+            GameObject newElement = Instantiate(BlankObject, positions[i]);
+            newElement.GetComponent<ObjectManager>().CreateDiposal(SelectDiposals[pos], score, this, Mathf.RoundToInt((100 / positions.Count)));
             SelectDiposals.RemoveAt(pos);
         }
     }

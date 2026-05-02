@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: a5afa3858ea6bf64c81b5ea8c2967711
+guid: bcac5bfafb1ef4b49bc8be64b32e4043
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -720069570975297686
-    second: BloodStain_Paper_AI_removeBG_0
+      213: -3376298690957981131
+    second: Hypochlorite5000PPM_NoBG_0
   - first:
-      213: -1552280061845135235
-    second: BloodStain_Paper_AI_removeBG_1
-  - first:
-      213: 824733269737094869
-    second: BloodStain_Paper_AI_removeBG_2
-  - first:
-      213: -7404654255826904033
-    second: BloodStain_Paper_AI_removeBG_3
-  - first:
-      213: 8279577541834129315
-    second: BloodStain_Paper_AI_removeBG_4
+      213: -3464448855462665011
+    second: Hypochlorite5000PPM_NoBG_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -64,7 +55,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 54, y: 27, z: 49, w: 38}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -125,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BloodStain_Paper_AI_removeBG_0
+      name: Hypochlorite5000PPM_NoBG_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 30
-        width: 573
-        height: 301
+        x: 429
+        y: 49
+        width: 532
+        height: 686
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a6f03705a8cc106f0800000000000000
-      internalID: -720069570975297686
+      spriteID: 53a45dd9a3af421d0800000000000000
+      internalID: -3376298690957981131
       vertices: []
       indices: 
       edges: []
@@ -150,8 +141,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: e4582c0258dbfa74fbbc7ff2b03ade53
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -160,9 +151,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":677.0,"y":369.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1114.0,"y":701.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BloodStain_Paper_AI_removeBG_0: -720069570975297686
+      Hypochlorite5000PPM_NoBG_0: -3376298690957981131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

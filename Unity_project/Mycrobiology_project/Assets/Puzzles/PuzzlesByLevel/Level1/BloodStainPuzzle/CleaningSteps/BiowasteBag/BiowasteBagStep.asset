@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BiowasteBagStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
   _requiredItemId: BiowasteBagStep
-  _stepResultSprite: {fileID: 3045776500893429278, guid: 6e2bcbdc42d09b441aa63466f8502ef6, type: 3}
+  _stepResultSprite: {fileID: -8272209752011965502, guid: 031ecc76baf104c4d944e7d573c50b10, type: 3}

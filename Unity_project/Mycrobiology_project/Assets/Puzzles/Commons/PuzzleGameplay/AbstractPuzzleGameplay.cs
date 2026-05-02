@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(PuzzleEvaluation))]
 public abstract class AbstractPuzzleGameplay : MonoBehaviour
 {
     [Header("Infraestructura de datos")]
@@ -12,9 +13,6 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [SerializeField] public PuzzleEvaluation puzzleEvaluation;
 
     [Header("Contenido Y Escena")]
-    [Tooltip("Lista de elementos dinámicos que se instanciarán al iniciar.")]
-    [SerializeField] protected List<SpawnableElement> elementsToSpawn;
-
     [Tooltip("Objeto visual que servirá como fondo del puzzle.")]
     [SerializeField] protected GameObject background;
 
@@ -25,7 +23,54 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [Tooltip("Prefab que contiene la interfaz o guía del tutorial.")]
     [SerializeField] protected GameObject tutorialPrefab;
     [SerializeField] protected TextMeshProUGUI Title;
-    public abstract void StartGameplay();
+
+    private void Awake()
+    {
+        dataManager = DataManager.Instance;
+
+        if (dataManager == null)
+        {
+            Debug.LogError($"<color=magenta>{this.GetType().Name}:</color> No se encontró una instancia de DataManager (en start) en la escena. Asegúrate de que exista un GameObject con el componente DataManager.");
+        }
+        else
+        {
+            Debug.Log($"<color=magenta>{this.GetType().Name}:</color> Instancia de DataManager encontrada en awake.");
+        }
+
+        OnInstanceAwake();
+    }
+
+    public void StartGameplay()
+    {
+        Vector3 inFrontOfCamera = Camera.main.transform.position;
+        inFrontOfCamera.z = 0f;
+
+        Debug.Log($"<color=yellow>{GetType().Name}:</color> Vamos a instanciar el fondo y los objetos");
+
+        SetGlobalPositionTo(inFrontOfCamera);
+
+        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+        ActivateSonObjects();
+
+        OnStartGameplay();
+    }
+
+    protected void SetGlobalPositionTo(Vector3 worldPosition)
+    {
+        Vector3 targetWorldPosition = worldPosition;
+
+        targetWorldPosition.z = transform.position.z;
+
+        transform.position = targetWorldPosition;
+    }
+
+    protected void ActivateSonObjects()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
 
     public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
     {
@@ -44,47 +89,19 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     public bool IsFirstTime()
     {
-        Debug.Log($"Is the first time playing the puzzle? {isFirstTimePlaying}");
+        Debug.Log($"<color=magenta>AbstractPuzzleGameplay:</color> Entramos en IsFirstTime. El DataManager es null?: {dataManager == null}");
+        if (dataManager == null) return false;
+
+        isFirstTimePlaying = !dataManager
+                                .HasPuzzleBeenPlayed(GetComponent<PuzzleEvaluation>().puzzleID);
+
+        Debug.Log($"<color=red>AbstractPuzzleGameplay:</color> Is the first time playing the puzzle '{GetComponent<PuzzleEvaluation>().puzzleID}'? {isFirstTimePlaying}");
         return isFirstTimePlaying;
     }
 
     public PuzzleEvaluation GetPuzzleEvaluation()
     {
         return puzzleEvaluation;
-    }
-
-    // Instancia todos los elementos definidos como hijos de este objeto.
-    protected void SpawnElementsRelativeTo(Transform reference)
-    {
-        if (elementsToSpawn == null || elementsToSpawn.Count == 0) return;
-        if (reference == null)
-        {
-            Debug.LogError($"<color=red>{name}:</color> No se puede spawnear, el objeto de referencia es nulo.");
-            return;
-        }
-
-        foreach (SpawnableElement element in elementsToSpawn)
-        {
-            if (element.prefab == null) continue;
-
-            // 1. Tomamos la posición 'Global' definida en el Scriptable/Lista como un OFFSET.
-            // 2. Calculamos el punto de destino en el mundo: Centro del Referente + Desplazamiento deseado.
-            Vector3 targetWorldPosition = reference.position + element.globalPosition;
-
-            // Aseguramos que la Z sea consistente para 2D (usualmente la del Puzzle o 0)
-            targetWorldPosition.z = transform.position.z;
-
-            // 3. Convertimos esa posición de mundo al espacio local de este AbstractPuzzleGameplay.
-            // Esto permite que el objeto sea hijo de 'transform' pero esté visualmente sobre el referente.
-            Vector3 finalLocalPos = transform.InverseTransformPoint(targetWorldPosition);
-
-            // Instanciación limpia
-            GameObject instance = Instantiate(element.prefab, transform);
-            instance.transform.localPosition = finalLocalPos;
-            instance.transform.localRotation = element.localRotation;
-
-            Debug.Log($"<color=cyan>{name}:</color> {element.name} instanciado a {element.globalPosition} de {reference.name}");
-        }
     }
 
     protected void NotifyPuzzleVictory(bool didPlayerWin)
@@ -99,4 +116,12 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
         puzzleManager.CompletePuzzle(didPlayerWin);
     }
+
+    // Hook para ser usado por las clases, de 
+    // requerir usar el método Awake() para 
+    // inicializar campos o propiedades
+    protected virtual void OnInstanceAwake() { }
+
+    // Hook que se ejecuta al final de StartGameplay
+    protected virtual void OnStartGameplay() { }
 }

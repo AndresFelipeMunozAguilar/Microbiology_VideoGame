@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5def52df68093dc459ce66e5eb46d122, type: 3}
-  m_Name: HypochloriteStep
+  m_Name: ClothAndSoapStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
-  _requiredItemId: HypochloriteStep
-  _stepResultSprite: {fileID: -3319891761614018272, guid: 031ecc76baf104c4d944e7d573c50b10, type: 3}
+  _requiredItemId: ClothAndSoapStep
+  _stepResultSprite: {fileID: 21300000, guid: ebcccf009e9b30b47a1682348643d189, type: 3}

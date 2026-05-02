@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 6733cb2b50dad2c449222b55fd39eebf
+guid: 601cb6081a702a145811dcc45645ce5e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6129923164487469166
-    second: BloodStain_AI_removebg_0
+      213: -7524371344381413197
+    second: Waiting_NoBG_0
   - first:
-      213: 4634544180158523368
-    second: BloodStain_AI_removebg_1
+      213: 6110644878870749407
+    second: Waiting_NoBG_1
   - first:
-      213: -2162498361916963924
-    second: BloodStain_AI_removebg_2
+      213: 4644711024539046800
+    second: Waiting_NoBG_2
   - first:
-      213: 22301977616435889
-    second: BloodStain_AI_removebg_3
+      213: -4087153431645423050
+    second: Waiting_NoBG_3
   - first:
-      213: -6008959080441599922
-    second: BloodStain_AI_removebg_4
+      213: 4675284466530741667
+    second: Waiting_NoBG_4
+  - first:
+      213: -554739931927215930
+    second: Waiting_NoBG_5
+  - first:
+      213: -2580127966048811581
+    second: Waiting_NoBG_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -64,7 +70,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 54, y: 24, z: 49, w: 30}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -125,23 +131,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BloodStain_AI_removebg_0
+      name: Waiting_NoBG_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 28
-        width: 573
-        height: 310
+        x: 372
+        y: 15
+        width: 810
+        height: 719
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e68c6bfe3acd11550800000000000000
-      internalID: 6129923164487469166
+      spriteID: 3b8740cc020149790800000000000000
+      internalID: -7524371344381413197
       vertices: []
       indices: 
       edges: []
@@ -150,21 +156,19 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: f8d74254acff3eb4b8cf8df75aab3879
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1114.0,"y":701.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BloodStain_AI_removebg_0: 6129923164487469166
-      BloodStain_AI_removebg_1: 4634544180158523368
-      BloodStain_AI_removebg_2: -2162498361916963924
-      BloodStain_AI_removebg_3: 22301977616435889
-      BloodStain_AI_removebg_4: -6008959080441599922
+      Waiting_NoBG_0: -7524371344381413197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

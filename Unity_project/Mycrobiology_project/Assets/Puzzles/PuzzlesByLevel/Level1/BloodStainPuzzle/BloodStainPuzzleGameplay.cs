@@ -25,7 +25,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     [SerializeField] private string _puzzleEvaluationSuccesKey = "acierto";
     [SerializeField] private string _puzzleEvaluationErrorKey = "error";
 
-    public void Start()
+    protected override void OnInstanceAwake()
     {
         if (_puzzleSequence == null)
         {
@@ -37,9 +37,16 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
     }
 
+    protected override void OnStartGameplay()
+    {
+        GetAssociatedComponents();
+        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
+    }
+
     private void GetAssociatedComponents()
     {
         _visuals = GetComponentInChildren<BloodStainVisuals>();
+
         if (_visuals == null)
         {
             Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente BloodStainVisuals en los hijos de {this.gameObject.name}");
@@ -53,20 +60,6 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
             return;
         }
 
-    }
-
-    public override void StartGameplay()
-    {
-        Vector3 inFrontOfCamera = Camera.main.transform.position;
-        inFrontOfCamera.z = 0f;
-
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color>: Vamos a instanciar el fondo y los objetos");
-
-        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
-        SpawnElementsRelativeTo(Camera.main.transform);
-
-        GetAssociatedComponents();
-        _dropZone.OnDraggableItemDropped += ProcessItemInteraction;
     }
 
     public void OnDestroy()

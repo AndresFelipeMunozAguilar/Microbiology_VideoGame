@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DragCleaningStep : AbstractDraggableWorldObject
 {
@@ -41,7 +42,7 @@ public class DragCleaningStep : AbstractDraggableWorldObject
         StartCoroutine(ReturnToStart());
     }
 
-    private System.Collections.IEnumerator ReturnToStart()
+    private IEnumerator ReturnToStart()
     {
         while (Vector3.Distance(transform.localPosition, _localStartPosition) > 0.01f)
         {

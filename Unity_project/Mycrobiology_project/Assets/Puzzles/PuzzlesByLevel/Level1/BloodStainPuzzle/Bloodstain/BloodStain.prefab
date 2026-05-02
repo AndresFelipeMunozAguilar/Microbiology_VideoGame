@@ -81,9 +81,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410601994743242044}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.72, y: -1.34, z: 0}
-  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_LocalScale: {x: 0.44, y: 0.44, z: 0.44}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 47804378178402289}
@@ -138,12 +138,12 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6129923164487469166, guid: 6733cb2b50dad2c449222b55fd39eebf, type: 3}
+  m_Sprite: {fileID: -781631631947679968, guid: 031ecc76baf104c4d944e7d573c50b10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.73, y: 3.1}
+  m_Size: {x: 6.41, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -186,8 +186,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.73, y: 3.1}
-    newSize: {x: 5.73, y: 3.1}
+    oldSize: {x: 6.42, y: 3.92}
+    newSize: {x: 6.41, y: 3.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9d756defaaf1d4fbe797cb797a2f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleVisuals
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 5634891262999767351}
   _transparencyWhenDisabled: 0.4
   _bloodStainGameplay: {fileID: 0}
   _feedbackVisuals: {fileID: 5490362002415390963}
