@@ -64,7 +64,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
         }
     }
 
-    public override void StartGameplay()
+    protected override void OnStartGameplay()
     {
         transform.GetChild(0).gameObject.SetActive(true);
         score=GetComponent<PuzzleEvaluation>();
