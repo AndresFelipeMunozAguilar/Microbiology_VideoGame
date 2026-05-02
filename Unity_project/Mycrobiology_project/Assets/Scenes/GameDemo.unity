@@ -3091,6 +3091,7 @@ GameObject:
   - component: {fileID: 2095485899}
   - component: {fileID: 2095485898}
   - component: {fileID: 2095485897}
+  - component: {fileID: 2095485901}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3183,6 +3184,19 @@ RectTransform:
   m_AnchoredPosition: {x: -0.0963, y: 0.2889}
   m_SizeDelta: {x: 2055.4255, y: 939.7691}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2095485901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095485896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2af710306ac7840b26a4c63a86640f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JoystickGuiController
+  joystick: {fileID: 1701128746}
 --- !u!114 &2108293963 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8071651675361562695, guid: 37e182e021cef8241b2bdf03cb076cfd, type: 3}
