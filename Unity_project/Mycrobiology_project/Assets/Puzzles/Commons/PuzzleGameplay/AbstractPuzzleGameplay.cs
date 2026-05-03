@@ -7,28 +7,28 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 {
     [Header("Infraestructura de datos")]
     [Tooltip("Gestor de persistencia y carga de datos.")]
-    [SerializeField] protected DataManager dataManager;
+    [SerializeField] protected DataManager _dataManager;
 
     [Tooltip("Sistema encargado de registrar y calificar el desempeño del jugador.")]
-    [SerializeField] public PuzzleEvaluation puzzleEvaluation;
+    [SerializeField] public PuzzleEvaluation _puzzleEvaluation;
 
     [Header("Contenido Y Escena")]
     [Tooltip("Objeto visual que servirá como fondo del puzzle.")]
-    [SerializeField] protected GameObject background;
+    [SerializeField] protected GameObject _background;
 
     [Header("Tutorial")]
     [Tooltip("Estado que define si el jugador verá la guía inicial.")]
-    [SerializeField] protected bool isFirstTimePlaying;
+    [SerializeField] protected bool _isFirstTimePlaying;
 
     [Tooltip("Prefab que contiene la interfaz o guía del tutorial.")]
-    [SerializeField] protected GameObject tutorialPrefab;
-    [SerializeField] protected TextMeshProUGUI Title;
+    [SerializeField] protected GameObject _tutorialPrefab;
+    [SerializeField] protected TextMeshProUGUI _title;
 
     private void Awake()
     {
-        dataManager = DataManager.Instance;
+        _dataManager = DataManager.Instance;
 
-        if (dataManager == null)
+        if (_dataManager == null)
         {
             Debug.LogError($"<color=magenta>{this.GetType().Name}:</color> No se encontró una instancia de DataManager (en start) en la escena. Asegúrate de que exista un GameObject con el componente DataManager.");
         }
@@ -74,7 +74,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
     {
-        Instantiate(background, position, rotation, parent);
+        Instantiate(_background, position, rotation, parent);
     }
 
     public abstract void Victory();
@@ -84,24 +84,24 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     public void ShowTutorial()
     {
         Debug.Log("Showing Puzzle Tutorial");
-        Instantiate(tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+        Instantiate(_tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
     }
 
     public bool IsFirstTime()
     {
-        Debug.Log($"<color=magenta>AbstractPuzzleGameplay:</color> Entramos en IsFirstTime. El DataManager es null?: {dataManager == null}");
-        if (dataManager == null) return false;
+        Debug.Log($"<color=magenta>AbstractPuzzleGameplay:</color> Entramos en IsFirstTime. El _dataManager es null?: {_dataManager == null}");
+        if (_dataManager == null) return false;
 
-        isFirstTimePlaying = !dataManager
+        _isFirstTimePlaying = !_dataManager
                                 .HasPuzzleBeenPlayed(GetComponent<PuzzleEvaluation>().puzzleID);
 
-        Debug.Log($"<color=red>AbstractPuzzleGameplay:</color> Is the first time playing the puzzle '{GetComponent<PuzzleEvaluation>().puzzleID}'? {isFirstTimePlaying}");
-        return isFirstTimePlaying;
+        Debug.Log($"<color=red>AbstractPuzzleGameplay:</color> Is the first time playing the puzzle '{GetComponent<PuzzleEvaluation>().puzzleID}'? {_isFirstTimePlaying}");
+        return _isFirstTimePlaying;
     }
 
     public PuzzleEvaluation GetPuzzleEvaluation()
     {
-        return puzzleEvaluation;
+        return _puzzleEvaluation;
     }
 
     protected void NotifyPuzzleVictory(bool didPlayerWin)
