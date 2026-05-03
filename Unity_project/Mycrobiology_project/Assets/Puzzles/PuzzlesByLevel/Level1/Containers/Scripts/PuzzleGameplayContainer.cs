@@ -24,15 +24,15 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     {
         Debug.Log("[Containers] empezamos gameplay");
         transform.GetChild(0).gameObject.SetActive(true);
-        score=GetComponent<PuzzleEvaluation>();
-        if(Title)Title.text=score.puzzleID.ToString();
+        score = GetComponent<PuzzleEvaluation>();
+        if (_title) _title.text = score.puzzleID.ToString();
         SpawnObjects();
     }
 
     public override void Victory()
     {
         GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
-        bool Finish = score.GetCurrentScore()<=60 ? false:true;
+        bool Finish = score.GetCurrentScore() <= 60 ? false : true;
         score.FinishGame(Finish);
         NotifyPuzzleVictory(Finish);
         Destroy(gameObject);

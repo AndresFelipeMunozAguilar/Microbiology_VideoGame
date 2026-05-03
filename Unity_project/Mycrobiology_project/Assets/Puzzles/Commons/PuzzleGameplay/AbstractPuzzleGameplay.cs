@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +14,9 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     [Header("Contenido Y Escena")]
     [Tooltip("Objeto visual que servirá como fondo del puzzle.")]
     [SerializeField] protected GameObject _background;
+
+    [Tooltip("Define qué tan alejado del centro de la cámara se instanciará el puzzle.")]
+    [SerializeField] protected Vector3 _spawnOffset = new Vector3(0f, 0f, 0f);
 
     [Header("Tutorial")]
     [Tooltip("Estado que define si el jugador verá la guía inicial.")]
@@ -45,11 +47,13 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         Vector3 inFrontOfCamera = Camera.main.transform.position;
         inFrontOfCamera.z = 0f;
 
+        Vector3 spawnPosition = inFrontOfCamera + _spawnOffset;
+
         Debug.Log($"<color=yellow>{GetType().Name}:</color> Vamos a instanciar el fondo y los objetos");
 
-        SetGlobalPositionTo(inFrontOfCamera);
+        SetGlobalPositionTo(spawnPosition);
 
-        SpawnBackground(inFrontOfCamera, Quaternion.identity, transform);
+        SpawnBackground(spawnPosition, Quaternion.identity, transform);
         ActivateSonObjects();
 
         OnStartGameplay();

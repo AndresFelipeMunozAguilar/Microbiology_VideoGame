@@ -37,7 +37,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     {
         _gameManager = GameManager.GetInstance();
         _gameManager.SubscribePuzzlePausable(this);
-        PerformanceResultTx.text="";
+        PerformanceResultTx.text = "";
     }
 
 
@@ -92,9 +92,9 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     public void CompletePuzzle(bool didPlayerWin)
     {
         if (puzzleAlreadyCompleted) return;
-        _gameplay.puzzleEvaluation.FinishGame(didPlayerWin);
-        PerformanceResultTx.text=_gameplay.puzzleEvaluation.getPerformance();
-        ColorUtility.TryParseHtmlString(_gameplay.puzzleEvaluation.GetColor(), out Color c);
+        _gameplay._puzzleEvaluation.FinishGame(didPlayerWin);
+        PerformanceResultTx.text = _gameplay._puzzleEvaluation.getPerformance();
+        ColorUtility.TryParseHtmlString(_gameplay._puzzleEvaluation.GetColor(), out Color c);
         PerformanceResultTx.color = c;
         puzzleAlreadyCompleted = true;
 

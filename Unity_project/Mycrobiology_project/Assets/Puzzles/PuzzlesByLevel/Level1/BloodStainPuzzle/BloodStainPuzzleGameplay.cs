@@ -91,7 +91,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         _currentStepIndex++;
         Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Paso Correcto: {_currentStepIndex}/{_puzzleSequence.TotalSteps}");
 
-        puzzleEvaluation.AddPoints(_puzzleEvaluationSuccesKey);
+        _puzzleEvaluation.AddPoints(_puzzleEvaluationSuccesKey);
 
         // Notificar a los visuales para cambiar el sprite de la mancha
         _visuals.UpdateVisuals(step.StepResultSprite);
@@ -111,7 +111,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         _errorCount++;
         Debug.Log($"<color=red>Error detectado:</color> {_errorCount}/{_puzzleSequence.MaxAllowedErrors}");
 
-        puzzleEvaluation.RemovePoints(_puzzleEvaluationErrorKey);
+        _puzzleEvaluation.RemovePoints(_puzzleEvaluationErrorKey);
 
         Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Listeners suscritos a OnErrorChanged: {OnErrorChanged?.GetInvocationList().Length ?? 0}");
         OnErrorChanged?.Invoke(_errorCount, _puzzleSequence.MaxAllowedErrors);

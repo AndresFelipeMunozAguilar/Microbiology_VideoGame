@@ -33,7 +33,7 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
 
     void Start()
     {
-        puzzleEvaluation = GetComponent<PuzzleEvaluation>();
+        _puzzleEvaluation = GetComponent<PuzzleEvaluation>();
     }
     protected override void OnStartGameplay()
     {
@@ -61,18 +61,18 @@ public class PuzzleGameplay : AbstractPuzzleGameplay
     public override void Victory()
     {
         Debug.Log("PuzzleGamelay: You won the Puzzle: Victory!");
-        puzzleEvaluation.AddPoints("ganar");
+        _puzzleEvaluation.AddPoints("ganar");
         //Falta añadir la lógica de calcular la performance en el puzzle
-        puzzleEvaluation.FinishGame(true);
+        _puzzleEvaluation.FinishGame(true);
         Destroy(this.gameObject);
     }
 
     public override void Defeat()
     {
         Debug.Log("PuzzleGamelay: You lost the Puzzle: Defeat!");
-        puzzleEvaluation.RemovePoints("perder");
+        _puzzleEvaluation.RemovePoints("perder");
         //Falta añadir la lógica de calcular la performance en el puzzle
-        puzzleEvaluation.FinishGame(false);
+        _puzzleEvaluation.FinishGame(false);
         Destroy(this.gameObject);
     }
 
