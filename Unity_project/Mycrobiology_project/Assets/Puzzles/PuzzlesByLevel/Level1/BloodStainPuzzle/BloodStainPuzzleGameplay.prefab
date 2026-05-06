@@ -29,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7838498048884248778}
   - {fileID: 5194657969771462636}
@@ -52,11 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d4906d642acfa41aac9177cc7149f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodStainPuzzleGameplay
-  dataManager: {fileID: 0}
-  puzzleEvaluation: {fileID: -720969880984847073}
-  background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
-  isFirstTimePlaying: 1
-  tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
+  _dataManager: {fileID: 0}
+  _puzzleEvaluation: {fileID: -720969880984847073}
+  _background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
+  _spawnOffset: {x: 0, y: 0, z: 0}
+  _isFirstTimePlaying: 0
+  _tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
+  _title: {fileID: 0}
   _puzzleSequence: {fileID: 11400000, guid: bf0d52ead216e594babb51b49aad4309, type: 2}
   _visuals: {fileID: 0}
   _dropZone: {fileID: 0}
