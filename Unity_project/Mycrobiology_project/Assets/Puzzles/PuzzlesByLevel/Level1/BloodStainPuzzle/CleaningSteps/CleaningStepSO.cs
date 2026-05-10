@@ -11,7 +11,6 @@ public class CleaningStepSO : ScriptableObject
     [Tooltip("El sprite que la mancha mostrará una vez que este paso se complete con éxito.")]
     [SerializeField] private Sprite _stepResultSprite;
 
-    // Propiedades públicas de solo lectura (Encapsulamiento)
     public string RequiredItemId => _requiredItemId;
     public Sprite StepResultSprite => _stepResultSprite;
 }

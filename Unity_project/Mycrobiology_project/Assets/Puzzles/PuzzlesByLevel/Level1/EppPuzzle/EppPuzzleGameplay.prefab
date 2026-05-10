@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e61fb80c6eb034488481a9093a3156f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameController
-  puzzleID: BloodStain
+  puzzleID: EPP
   maxScore: 100
   minScore: -100
   winScoreThreshold: 999
