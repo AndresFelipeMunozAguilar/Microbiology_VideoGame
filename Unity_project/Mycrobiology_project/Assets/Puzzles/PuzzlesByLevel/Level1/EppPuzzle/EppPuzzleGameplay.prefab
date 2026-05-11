@@ -53,9 +53,9 @@ MonoBehaviour:
   _background: {fileID: 1494711161820133607, guid: cb14ec7f914464b45938b9b642bd3228, type: 3}
   _spawnOffset: {x: 0, y: 0, z: 0}
   _isFirstTimePlaying: 0
-  _tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
+  _tutorialPrefab: {fileID: 6813883315094108872, guid: 6571cc4404fa5d448bec939d11e132aa, type: 3}
   _title: {fileID: 0}
-  _puzzleSequence: {fileID: 11400000, guid: bf0d52ead216e594babb51b49aad4309, type: 2}
+  _puzzleSequence: {fileID: 11400000, guid: 211528a56bb2bc4439427b0382327f0f, type: 2}
   _visuals: {fileID: 0}
   _dropZone: {fileID: 0}
   _currentStepIndex: 0
@@ -155,21 +155,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240119909051480772}
     m_Modifications:
-    - target: {fileID: 2344043807486326425, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
-      propertyPath: _stepInformation
-      value: 
-      objectReference: {fileID: 11400000, guid: 2a6088600aa146d4aa0d0afcb8307075, type: 2}
     - target: {fileID: 4064532782330698851, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
       propertyPath: m_Name
       value: DressingStep
-      objectReference: {fileID: 0}
-    - target: {fileID: 4330007559865714525, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464535197622036867, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
-      propertyPath: _globalStartPosition.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
       propertyPath: m_LocalPosition.x

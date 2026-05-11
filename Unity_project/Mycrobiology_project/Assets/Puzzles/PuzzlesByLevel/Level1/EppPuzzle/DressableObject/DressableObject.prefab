@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5295058266637409710
 Transform:
   m_ObjectHideFlags: 0
@@ -316,9 +316,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6372266592082564954}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.132118, y: -1.2690871, z: 0}
-  m_LocalScale: {x: 0.44, y: 0.44, z: 0.44}
+  m_LocalScale: {x: 3.5199997, y: 3.5199997, z: 3.5199997}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6734503457578778007}
@@ -373,7 +373,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -781631631947679968, guid: 031ecc76baf104c4d944e7d573c50b10, type: 3}
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -421,7 +421,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.42, y: 3.92}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 6.41, y: 3.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -445,8 +445,8 @@ MonoBehaviour:
   _transparencyWhenDisabled: 0.4
   _bloodStainGameplay: {fileID: 0}
   _feedbackVisuals: {fileID: 1291892921633790613}
-  _positiveFeedbackIcon: {fileID: -6760744269409031231, guid: 9b6da677587542141aea80b2b72f45a8, type: 3}
-  _negativeFeedbackIcon: {fileID: -817955187, guid: 9b6da677587542141aea80b2b72f45a8, type: 3}
+  _positiveFeedbackIcon: {fileID: -6760744269409031231, guid: c91be5ea38553c04a815fa6c7d2e262a, type: 3}
+  _negativeFeedbackIcon: {fileID: -817955187, guid: c91be5ea38553c04a815fa6c7d2e262a, type: 3}
 --- !u!114 &2794635574473941936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,8 +515,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8584807570048102903}
   - {fileID: 2188774401477377850}

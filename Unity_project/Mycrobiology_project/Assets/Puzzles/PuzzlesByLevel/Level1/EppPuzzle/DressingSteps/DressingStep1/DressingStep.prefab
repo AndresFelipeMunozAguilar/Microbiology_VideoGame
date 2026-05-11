@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8368447470060891634
 Transform:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
   _itemId: 
-  _stepInformation: {fileID: 11400000, guid: c766f66dcd37f92418f82c5f8504f2c5, type: 2}
+  _stepInformation: {fileID: 11400000, guid: 2a6088600aa146d4aa0d0afcb8307075, type: 2}
 --- !u!50 &3615393612058181184
 Rigidbody2D:
   serializedVersion: 5
@@ -211,5 +211,5 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _canvasGroup: {fileID: 3446198025273513841}
   _rigidbody: {fileID: 3615393612058181184}
-  _globalStartPosition: {x: 2, y: 0, z: 0}
+  _globalStartPosition: {x: 2, y: 1, z: 0}
   returnSpeed: 5

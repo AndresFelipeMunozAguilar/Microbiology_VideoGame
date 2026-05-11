@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8526291106525290407, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: puzzleGameplayPrefab
+      value: 
+      objectReference: {fileID: 716249032572011630, guid: f7d4822ab2453dc4d9eb6cb749eb02a0, type: 3}
     - target: {fileID: 9111576306358749388, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: _puzzleDamageTable
       value: 

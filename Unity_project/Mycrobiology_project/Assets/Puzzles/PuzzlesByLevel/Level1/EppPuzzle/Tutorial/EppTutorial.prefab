@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afdb8683e9fbf4419946a6450528d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialTestPuzzle
-  puzzleGameplay: {fileID: 0}
-  puzzleName: BloodStainPuzzleManager
+  puzzleGameplay: {fileID: 8963685537232063419, guid: f7d4822ab2453dc4d9eb6cb749eb02a0, type: 3}
+  puzzleName: EppPuzzleManager
 --- !u!1 &6813883315094108872
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ee9ab3e3c0326e64abaa627c3cbc79ed, type: 3}
+  m_Texture: {fileID: 2800000, guid: a52d4f0a6dda177428f0c79e7fd95229, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
