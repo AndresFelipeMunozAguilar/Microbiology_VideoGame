@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DressinStep2SO
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
   _requiredItemId: DressingStep2
-  _stepResultSprite: {fileID: 8840224211514637129, guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1, type: 3}
+  _stepResultSprite: {fileID: -1359171686, guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1, type: 3}
