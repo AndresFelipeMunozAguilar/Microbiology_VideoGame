@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a0b8a9fb9b592140bcff90625ece1f0, type: 3}
-  m_Name: disposal 5
+  m_Name: Tapabocas
   m_EditorClassIdentifier: Assembly-CSharp::disposal
-  image: {fileID: 7976105921831609053, guid: 87dd3ff28a324f44e8fac187a9d7306c, type: 3}
+  image: {fileID: 3847552032376763727, guid: 7d07a65812f8ffb4d95e1e58a668d062, type: 3}
   container: 1

@@ -11,8 +11,8 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     public override void Defeat()
     {
         Debug.Log("[Containers] Derrota");
-        score.FinishGame(false);
-        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        //score.FinishGame(false);
+        //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(false);
         Destroy(gameObject);
     }
@@ -31,9 +31,9 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     {
         
         Debug.Log("[Containers] Victoria");
-        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         bool Finish = score.GetCurrentScore() <= 60 ? false : true;
-        score.FinishGame(Finish);
+        //score.FinishGame(Finish);
         NotifyPuzzleVictory(Finish);
         Destroy(gameObject);
     }

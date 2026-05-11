@@ -31,6 +31,8 @@ public class DataManager : MonoBehaviour
 
     public void SaveEvaluation(EvaluationData data)
     {
+
+        CurrentData = data;
         string json = JsonUtility.ToJson(data, true);
 
         string path = Application.persistentDataPath + "/evaluation.json";
@@ -82,7 +84,7 @@ public class DataManager : MonoBehaviour
 
     public bool HasPuzzleBeenPlayed(string puzzleID)
     {
-        LoadEvaluation();
+        CurrentData = LoadEvaluation();
 
         // Si el puzzle ya existe en los datos cargados, es porque ya se jugó
         PuzzleResultData puzzleResultData = GetPuzzleByID(puzzleID);

@@ -176,12 +176,12 @@ public class gameplayDesechos : AbstractPuzzleGameplay
 
         if (damageDealer != null)
         {
-            damageDealer.CalculateDamage(score.GetCurrentScore());
+            //damageDealer.CalculateDamage(score.GetCurrentScore());
         }
 
         bool Finish = score.GetCurrentScore() > 60;
 
-        score.FinishGame(Finish);
+        //score.FinishGame(Finish);
 
         if (Finish)
         {
@@ -196,14 +196,14 @@ public class gameplayDesechos : AbstractPuzzleGameplay
 
     public override void Victory()
     {
-        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(true);
         Destroy(gameObject);
     }
 
     public override void Defeat()
     {
-        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(false);
         Destroy(gameObject);
     }

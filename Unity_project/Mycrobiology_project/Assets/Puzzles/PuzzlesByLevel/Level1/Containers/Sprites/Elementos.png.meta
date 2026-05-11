@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 1f2087ba663fb5f48a2a7209a09842a3
+guid: 7d07a65812f8ffb4d95e1e58a668d062
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1116657418913656439
-    second: manchaSangre_0
+      213: 3960882491289480792
+    second: Elementos_0
   - first:
-      213: -8227379129158780241
-    second: manchaSangre_1
+      213: 3847552032376763727
+    second: Elementos_1
   - first:
-      213: 8410687429156149721
-    second: manchaSangre_2
+      213: 120612204093959915
+    second: Elementos_2
   - first:
-      213: -8154323925961080175
-    second: manchaSangre_3
+      213: -4303752596983789874
+    second: Elementos_3
   - first:
-      213: 5116080646377431850
-    second: manchaSangre_4
+      213: -6565372444725035889
+    second: Elementos_4
   - first:
-      213: -8552343811573342371
-    second: manchaSangre_5
+      213: -4543746909031310269
+    second: Elementos_5
   - first:
-      213: -7459764114404426236
-    second: manchaSangre_6
+      213: 6823785280921827523
+    second: Elementos_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -64,12 +64,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -144,79 +144,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: manchaSangre_0
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 114
-        width: 168
-        height: 138
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 981d8d96ef5d080f0800000000000000
-      internalID: -1116657418913656439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: manchaSangre_1
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 198
-        width: 143
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: faa3706c54a72dd80800000000000000
-      internalID: -8227379129158780241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: manchaSangre_2
-      rect:
-        serializedVersion: 2
-        x: 492
-        y: 91
-        width: 188
-        height: 109
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d912b3b7a3c8b470800000000000000
-      internalID: 8410687429156149721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: manchaSangre_3
+      name: Elementos_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 28
-        width: 230
-        height: 105
+        y: 467
+        width: 357
+        height: 269
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1920f91c79506de80800000000000000
-      internalID: -8154323925961080175
+      spriteID: 85eaf52e3a1e7f630800000000000000
+      internalID: 3960882491289480792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: manchaSangre_4
+      name: Elementos_1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 115
-        width: 133
-        height: 75
+        x: 400
+        y: 483
+        width: 444
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a23e391ed38fff640800000000000000
-      internalID: 5116080646377431850
+      spriteID: f4536a03030456530800000000000000
+      internalID: 3847552032376763727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: manchaSangre_5
+      name: Elementos_2
       rect:
         serializedVersion: 2
-        x: 361
-        y: 44
-        width: 119
-        height: 81
+        x: 887
+        y: 451
+        width: 401
+        height: 317
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,20 +203,86 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5f192a9d98ff4980800000000000000
-      internalID: -8552343811573342371
+      spriteID: beee89c19208ca100800000000000000
+      internalID: 120612204093959915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: manchaSangre_6
+      name: Elementos_3
       rect:
         serializedVersion: 2
-        x: 260
+        x: 37
+        y: 39
+        width: 276
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec6cd97b0dff544c0800000000000000
+      internalID: -4303752596983789874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elementos_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 72
+        width: 111
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8cb60edb8c13e4a0800000000000000
+      internalID: -6565372444725035889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elementos_5
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 24
+        width: 252
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34cd8e1924e51f0c0800000000000000
+      internalID: -4543746909031310269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elementos_6
+      rect:
+        serializedVersion: 2
+        x: 1027
         y: 0
-        width: 69
-        height: 46
+        width: 199
+        height: 328
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,8 +291,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40eb7bcbf08997890800000000000000
-      internalID: -7459764114404426236
+      spriteID: 3c872ec1f84f2be50800000000000000
+      internalID: 6823785280921827523
       vertices: []
       indices: 
       edges: []
@@ -301,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -311,13 +311,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      manchaSangre_0: -1116657418913656439
-      manchaSangre_1: -8227379129158780241
-      manchaSangre_2: 8410687429156149721
-      manchaSangre_3: -8154323925961080175
-      manchaSangre_4: 5116080646377431850
-      manchaSangre_5: -8552343811573342371
-      manchaSangre_6: -7459764114404426236
+      Elementos_0: 3960882491289480792
+      Elementos_1: 3847552032376763727
+      Elementos_2: 120612204093959915
+      Elementos_3: -4303752596983789874
+      Elementos_4: -6565372444725035889
+      Elementos_5: -4543746909031310269
+      Elementos_6: 6823785280921827523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

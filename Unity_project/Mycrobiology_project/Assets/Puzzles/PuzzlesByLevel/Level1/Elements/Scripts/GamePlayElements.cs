@@ -46,9 +46,9 @@ public class GamePlayElements : AbstractPuzzleGameplay
         Debug.Log("[ELEMENT] cuenta:" + elementsFinished + " : " + positions.Count);
         if (elementsFinished >= positions.Count)
         {
-            GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+            //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
             bool Finish = score.GetCurrentScore() <= 60 ? false : true;
-            score.FinishGame(Finish);
+            //score.FinishGame(Finish);
             if (Finish)
             {
                 if (IsPerfect) score.AddPoints("BonusPerfect");
