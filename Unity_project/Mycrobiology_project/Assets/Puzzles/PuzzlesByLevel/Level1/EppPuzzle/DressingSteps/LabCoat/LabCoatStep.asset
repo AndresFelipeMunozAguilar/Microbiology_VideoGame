@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5def52df68093dc459ce66e5eb46d122, type: 3}
-  m_Name: DressinStep2SO
+  m_Name: LabCoatStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
-  _requiredItemId: DressingStep2
-  _stepResultSprite: {fileID: -1359171686, guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1, type: 3}
+  _requiredItemId: LabCoatStep
+  _stepResultSprite: {fileID: 8840224211514637129, guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1, type: 3}

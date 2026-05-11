@@ -11,17 +11,17 @@ GameObject:
   - component: {fileID: 8368447470060891634}
   - component: {fileID: 821842335555963339}
   - component: {fileID: 4330007559865714525}
-  - component: {fileID: 2344043807486326425}
   - component: {fileID: 3615393612058181184}
   - component: {fileID: 3446198025273513841}
   - component: {fileID: 6464535197622036867}
+  - component: {fileID: 2344043807486326425}
   m_Layer: 12
-  m_Name: DressingStep
+  m_Name: LabCoat
   m_TagString: BloodStainPuzzleItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8368447470060891634
 Transform:
   m_ObjectHideFlags: 0
@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.285806, y: -0.5532614, z: 0}
-  m_LocalScale: {x: 4.38, y: 4.38, z: 4.38}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 3.35, y: 4.38, z: 4.38}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,20 +142,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &2344043807486326425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4064532782330698851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85089fe65ec10554d9ed202b2457ee44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
-  _itemId: 
-  _stepInformation: {fileID: 11400000, guid: 2a6088600aa146d4aa0d0afcb8307075, type: 2}
 --- !u!50 &3615393612058181184
 Rigidbody2D:
   serializedVersion: 5
@@ -211,5 +197,19 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _canvasGroup: {fileID: 3446198025273513841}
   _rigidbody: {fileID: 3615393612058181184}
-  _globalStartPosition: {x: 2, y: 1, z: 0}
+  _globalStartPosition: {x: 3.285, y: 1, z: 0}
   returnSpeed: 5
+--- !u!114 &2344043807486326425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064532782330698851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85089fe65ec10554d9ed202b2457ee44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemIdentifier
+  _itemId: 
+  _stepInformation: {fileID: 11400000, guid: 2a6088600aa146d4aa0d0afcb8307075, type: 2}
