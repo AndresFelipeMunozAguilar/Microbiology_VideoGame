@@ -831,7 +831,7 @@ PrefabInstance:
     - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1225798397}
     - target: {fileID: 7113257419316145021, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: _playerHealthLogic
       value: 
@@ -1099,6 +1099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodStainPuzzleManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3301581570287790928, guid: 2c17927729492494ba5d1e86e6fb341b, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1225798397}
     - target: {fileID: 7770146008768876098, guid: 2c17927729492494ba5d1e86e6fb341b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.09

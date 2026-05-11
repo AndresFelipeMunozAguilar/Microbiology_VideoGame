@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.13, z: 0}
-  m_LocalScale: {x: 0.37, y: 0.37, z: 0.37}
+  m_LocalScale: {x: 0.5177919, y: 0.5177919, z: 0.5177919}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 445897211
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 26
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7524371344381413197, guid: 601cb6081a702a145811dcc45645ce5e, type: 3}
@@ -211,5 +211,5 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _canvasGroup: {fileID: 5521296834673237995}
   _rigidbody: {fileID: -3359481111594207526}
-  _globalStartPosition: {x: 4.125869, y: -0.6386238, z: 0}
+  _globalStartPosition: {x: 5.7736, y: -0.89366, z: 0}
   returnSpeed: 5
