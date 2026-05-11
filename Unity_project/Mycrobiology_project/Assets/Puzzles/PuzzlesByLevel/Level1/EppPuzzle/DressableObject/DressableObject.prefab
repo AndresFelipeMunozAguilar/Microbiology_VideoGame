@@ -373,7 +373,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 7144347440376099171, guid: 832f869ae7d0794478ec82fce08a3270, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -421,13 +421,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 4.61, y: 6.34}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 1.6}
+  m_Size: {x: 3.35, y: 5.85}
   m_EdgeRadius: 0
 --- !u!50 &497499277322387910
 Rigidbody2D:
@@ -469,7 +469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleVisuals
   _spriteRenderer: {fileID: 1436421082672980817}
-  _spriteSize: {x: 19.7, y: 10}
   _transparencyWhenDisabled: 0.4
   _bloodStainGameplay: {fileID: 0}
   _feedbackVisuals: {fileID: 1291892921633790613}

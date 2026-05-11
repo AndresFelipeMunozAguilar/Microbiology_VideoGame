@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1
+guid: 832f869ae7d0794478ec82fce08a3270
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8840224211514637129
-    second: carajo_sexo_heavy_0
+      213: 7144347440376099171
+    second: DressableObject_0
+  - first:
+      213: 8146589750361224536
+    second: DressableObject_1
+  - first:
+      213: -5930963807377588025
+    second: DressableObject_2
+  - first:
+      213: 4749647429541865625
+    second: DressableObject_3
+  - first:
+      213: 4921799328765430615
+    second: DressableObject_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: carajo_sexo_heavy_0
+      name: DressableObject_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 198
-        width: 130
-        height: 198
+        x: 54
+        y: 919
+        width: 461
+        height: 634
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,118 +140,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94b33263519ceaa70800000000000000
-      internalID: 8840224211514637129
+      spriteID: 361b6970522d52360800000000000000
+      internalID: 7144347440376099171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carajo_sexo_heavy_1
+      name: DressableObject_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 198
-        width: 130
-        height: 198
+        x: 622
+        y: 919
+        width: 511
+        height: 635
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f47ace5f12dd45e4485f1b15c3b85022
-      internalID: -1359171686
+      spriteID: 8557e1927308e0170800000000000000
+      internalID: 8146589750361224536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carajo_sexo_heavy_2
+      name: DressableObject_2
       rect:
         serializedVersion: 2
-        x: 260
-        y: 198
-        width: 130
-        height: 198
+        x: 1203
+        y: 919
+        width: 503
+        height: 641
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a775c6258d4c855488059665d367f552
-      internalID: 28283999
+      spriteID: 7c08f8d37dbf0bda0800000000000000
+      internalID: -5930963807377588025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carajo_sexo_heavy_3
+      name: DressableObject_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 130
-        height: 198
+        x: 42
+        y: 57
+        width: 491
+        height: 675
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1cebabef6b867d1409a9a781b49d5cf9
-      internalID: -415963608
+      spriteID: 998a0362c232ae140800000000000000
+      internalID: 4749647429541865625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carajo_sexo_heavy_4
+      name: DressableObject_4
       rect:
         serializedVersion: 2
-        x: 130
-        y: 0
-        width: 130
-        height: 198
+        x: 1193
+        y: 55
+        width: 515
+        height: 688
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b5ea133a03e7ec6429720cb78bbd675c
-      internalID: -1908275579
+      spriteID: 75bc1d6a96ebd4440800000000000000
+      internalID: 4921799328765430615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carajo_sexo_heavy_5
+      name: DressableObject_5
       rect:
         serializedVersion: 2
-        x: 260
-        y: 0
-        width: 130
-        height: 198
+        x: 606
+        y: 54
+        width: 517
+        height: 679
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edada7d947d0cc6459406255e99a8416
-      internalID: -694065779
+      spriteID: cc3b9d12853c65146b0b74f1ae36fc6c
+      internalID: 1172542576
       vertices: []
       indices: 
       edges: []
@@ -248,7 +260,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df4abc0869e742249809736e44d37ed7
+    spriteID: 088e0fcebcaee5f41b9e31d2598b0033
     internalID: 0
     vertices: []
     indices: 
@@ -256,16 +268,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":2.0},"gridSpriteSize":{"x":130.0,"y":198.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      carajo_sexo_heavy_0: 8840224211514637129
-      carajo_sexo_heavy_1: -1359171686
-      carajo_sexo_heavy_2: 28283999
-      carajo_sexo_heavy_3: -415963608
-      carajo_sexo_heavy_4: -1908275579
-      carajo_sexo_heavy_5: -694065779
+      DressableObject_0: 7144347440376099171
+      DressableObject_1: 8146589750361224536
+      DressableObject_2: -5930963807377588025
+      DressableObject_3: 4749647429541865625
+      DressableObject_4: 4921799328765430615
+      DressableObject_5: 1172542576
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
