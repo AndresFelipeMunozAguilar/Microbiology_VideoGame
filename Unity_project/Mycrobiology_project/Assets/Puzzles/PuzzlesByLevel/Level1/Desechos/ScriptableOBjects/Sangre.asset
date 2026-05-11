@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sangre
   m_EditorClassIdentifier: Assembly-CSharp::DesechoElement
   Name: 
-  image: {fileID: -1116657418913656439, guid: 1f2087ba663fb5f48a2a7209a09842a3, type: 3}
+  image: {fileID: 21300000, guid: 1f2087ba663fb5f48a2a7209a09842a3, type: 3}
   metodoCorrecto: 1
   feedbackCorrecto: 
   feedbackIncorrecto: 

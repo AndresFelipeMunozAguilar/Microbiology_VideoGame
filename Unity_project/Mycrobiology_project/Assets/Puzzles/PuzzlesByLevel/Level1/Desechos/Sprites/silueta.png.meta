@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f4703c51a7627764e9df4a6aa467b568
+guid: 748d857dcaf2f1b4c9aec4b83386b96f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7656986100739145711
-    second: autoenclaveencendido_0
+      213: -4237327079380181014
+    second: silueta_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: autoenclaveencendido_0
+      name: silueta_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 967
-        height: 856
-      alignment: 9
-      pivot: {x: 0.828914, y: 0.49402654}
+        width: 1752
+        height: 897
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1100757b5bbecb590800000000000000
-      internalID: -7656986100739145711
+      spriteID: aef966cb87df135c0800000000000000
+      internalID: -4237327079380181014
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 96a189123fc5dca4a903e727c93cc0a6
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      autoenclaveencendido_0: -7656986100739145711
+      silueta_0: -4237327079380181014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

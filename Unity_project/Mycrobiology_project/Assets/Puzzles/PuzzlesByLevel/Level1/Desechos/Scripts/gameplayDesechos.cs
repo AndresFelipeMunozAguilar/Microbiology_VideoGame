@@ -23,18 +23,7 @@ public class gameplayDesechos : AbstractPuzzleGameplay
 
     private bool IsPerfect = true;
 
-    private readonly string feedbackIncorrectoGeneral =
-        "Incorrecto. Recuerda: los residuos sólidos contaminados van al autoclave; " +
-        "los derrames, manchas y superficies contaminadas se tratan con hipoclorito; " +
-        "y los objetos reutilizables contaminados se sumergen en hipoclorito.";
-
-    private void Start()
-    {
-        if (transform.childCount > 0)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
+    private readonly string feedbackIncorrectoGeneral = "Incorrecto";
 
     protected override void OnStartGameplay()
     {
@@ -126,7 +115,6 @@ public class gameplayDesechos : AbstractPuzzleGameplay
     {
         if (FeedbackElement == null)
         {
-            Debug.LogWarning("[DESECHOS] No se asignó FeedbackElement.");
             return;
         }
 
@@ -181,6 +169,11 @@ public class gameplayDesechos : AbstractPuzzleGameplay
     {
         PlayerDamageDealer damageDealer = GetComponentInParent<PlayerDamageDealer>();
 
+        if (IsPerfect)
+        {
+            score.AddPoints("BonusPerfect");
+        }
+
         if (damageDealer != null)
         {
             damageDealer.CalculateDamage(score.GetCurrentScore());
@@ -192,10 +185,6 @@ public class gameplayDesechos : AbstractPuzzleGameplay
 
         if (Finish)
         {
-            if (IsPerfect)
-            {
-                score.AddPoints("BonusPerfect");
-            }
 
             Victory();
         }

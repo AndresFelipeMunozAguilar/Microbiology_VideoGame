@@ -11,11 +11,6 @@ public class GamePlayElements : AbstractPuzzleGameplay
     int elementsFinished = 0;
     PuzzleEvaluation score;
     bool IsPerfect = true;
-    private void Start()
-    {
-        transform.GetChild(0).gameObject.SetActive(false);
-
-    }
     public void NoPerfect() { IsPerfect = false; }
     void SelectElements()
     {

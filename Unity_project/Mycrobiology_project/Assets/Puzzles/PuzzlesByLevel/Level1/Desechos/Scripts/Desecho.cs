@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Desecho : AbstractDraggableWorldObject
@@ -6,7 +7,7 @@ public class Desecho : AbstractDraggableWorldObject
     private PuzzleEvaluation score;
     private gameplayDesechos gamePlay;
 
-    private Vector3 originPos;
+    private Vector2 originPos;
     private bool resolved = false;
     private bool draggable = true;
 
@@ -45,6 +46,7 @@ public class Desecho : AbstractDraggableWorldObject
         {
             ConvertirEnManchaFija();
         }
+
     }
 
     private void ConvertirEnManchaFija()
@@ -61,14 +63,6 @@ public class Desecho : AbstractDraggableWorldObject
             _rigidbody.angularVelocity = 0;
             _rigidbody.gravityScale = 0;
         }
-
-        /*
-         * Importante:
-         * Desactivamos este MonoBehaviour para que Unity no ejecute
-         * los eventos de drag heredados de AbstractDraggableWorldObject.
-         * El Collider2D queda activo, entonces HipocloritoRegar todavía
-         * puede detectar este objeto con Physics2D.OverlapPoint.
-         */
         enabled = false;
     }
 
@@ -76,6 +70,14 @@ public class Desecho : AbstractDraggableWorldObject
     {
         if (!draggable || resolved)
         {
+            if (desecho.metodoCorrecto == MetodoDescontaminacion.Hipoclorito)
+            {
+                gamePlay.CreateFeedback(
+                    transform.position,
+                    "No se puede mover"
+                );
+                
+            }
             return;
         }
     }
@@ -94,7 +96,40 @@ public class Desecho : AbstractDraggableWorldObject
             transform.position = originPos;
         }
     }
+    private bool EsErrorMenorEntreAutoclaveYSumergir(MetodoDescontaminacion metodoZona)
+    {
+        return
+            desecho.metodoCorrecto == MetodoDescontaminacion.Autoclave &&
+            metodoZona == MetodoDescontaminacion.Sumergirse
+            ||
+            desecho.metodoCorrecto == MetodoDescontaminacion.Sumergirse &&
+            metodoZona == MetodoDescontaminacion.Autoclave;
+    }
+    private void WrongElement(string message)
+    {
+        score.RemovePoints("WrongElement");
+        gamePlay.NoPerfect();
 
+        if (string.IsNullOrEmpty(message))
+        {
+            message = gamePlay.GetFeedbackIncorrectoGeneral();
+        }
+
+        gamePlay.CreateFeedback(transform.position, message);
+    }
+
+    private void WrongDrop(string message)
+    {
+        score.RemovePoints("WrongDrop");
+        gamePlay.NoPerfect();
+
+        if (string.IsNullOrEmpty(message))
+        {
+            message = gamePlay.GetFeedbackIncorrectoGeneral();
+        }
+
+        gamePlay.CreateFeedback(transform.position, message);
+    }
     private bool TryDropOnZone()
     {
         Collider2D hit = Physics2D.OverlapPoint(transform.position, zonasMask);
@@ -106,13 +141,14 @@ public class Desecho : AbstractDraggableWorldObject
 
         if (!hit.TryGetComponent(out ZonaDesecho zona))
         {
+            originPos = transform.position;
             return false;
         }
 
         if (desecho.metodoCorrecto == MetodoDescontaminacion.Hipoclorito)
         {
             WrongDrop(
-                "Este tipo de contaminación no se arrastra. Debes aplicar hipoclorito directamente sobre la mancha."
+                "Incorrecto"
             );
 
             return false;
@@ -120,15 +156,52 @@ public class Desecho : AbstractDraggableWorldObject
 
         if (zona.GetMetodoZona() == desecho.metodoCorrecto)
         {
-            CorrectDrop(zona.GetFeedbackPosition());
+            if (!zona.PuedeRecibir())
+            {
+                score.RemovePoints("Spam");
+                gamePlay.CreateFeedback(transform.position, zona.GetFeedbackOcupado());
+                return false;
+            }
+
+            zona.ActivarZona();
+            if (desecho.metodoCorrecto == MetodoDescontaminacion.Sumergirse)
+            {
+                transform.position=zona.GetFeedbackPosition();
+                StartCoroutine(DesvanecerYCompletarPorHipoclorito(zona.tiempoOcupado));
+            }
+            else{
+                CorrectDrop();
+            }
+            
             return true;
         }
+        if (EsErrorMenorEntreAutoclaveYSumergir(zona.GetMetodoZona()))
+        {
+            WrongDrop(GetWrongFeedback());
+        }
+        else
+        {
+            WrongElement(GetWrongFeedback());
+        }
 
-        WrongDrop(GetWrongFeedback());
         return false;
     }
 
-    public bool AplicarHipocloritoDirecto(Vector2 feedbackPosition)
+    private void CorrectDrop()
+    {
+        score.AddPoints("FinishElement");
+        Destroy(gameObject);
+    }
+    private string GetWrongFeedback()
+    {
+        if (!string.IsNullOrEmpty(desecho.feedbackIncorrecto))
+        {
+            return desecho.feedbackIncorrecto;
+        }
+
+        return gamePlay.GetFeedbackIncorrectoGeneral();
+    }
+    public bool PuedeLimpiarseConHipoclorito()
     {
         if (resolved)
         {
@@ -140,79 +213,79 @@ public class Desecho : AbstractDraggableWorldObject
             return false;
         }
 
-        if (desecho.metodoCorrecto != MetodoDescontaminacion.Hipoclorito)
-        {
-            WrongDrop(
-                "Incorrecto. El hipoclorito directo se aplica sobre derrames, manchas o superficies contaminadas."
-            );
-
-            return false;
-        }
-
-        CorrectDrop(feedbackPosition);
-        return true;
+        return desecho.metodoCorrecto == MetodoDescontaminacion.Hipoclorito;
     }
 
-    private void CorrectDrop(Vector2 feedbackPosition)
+    public void FalloPorHipocloritoIncorrecto(Vector2 feedbackPosition)
     {
         if (resolved)
         {
             return;
         }
 
-        resolved = true;
-
-        score.AddPoints("FinishElement");
-
-        string message = string.IsNullOrEmpty(desecho.feedbackCorrecto)
-            ? GetDefaultCorrectFeedback()
-            : desecho.feedbackCorrecto;
-
-        gamePlay.CreateFeedback(feedbackPosition, message);
-        gamePlay.CorrectFeedback(feedbackPosition);
-        gamePlay.addFinishElement();
-
-        Destroy(gameObject);
-    }
-
-    private void WrongDrop(string message)
-    {
-        score.RemovePoints("Spam");
+        score.RemovePoints("WrongDrop");
         gamePlay.NoPerfect();
 
-        if (string.IsNullOrEmpty(message))
-        {
-            message = gamePlay.GetFeedbackIncorrectoGeneral();
-        }
-
-        gamePlay.CreateFeedback(transform.position, message);
+        gamePlay.CreateFeedback(
+            feedbackPosition,
+            "Incorrecto"
+        );
     }
 
-    private string GetWrongFeedback()
+    public IEnumerator DesvanecerYCompletarPorHipoclorito(float duration)
     {
-        if (!string.IsNullOrEmpty(desecho.feedbackIncorrecto))
+        draggable=false;
+        if (resolved)
         {
-            return desecho.feedbackIncorrecto;
+            yield break;
         }
 
-        return gamePlay.GetFeedbackIncorrectoGeneral();
+        if (desecho == null)
+        {
+            yield break;
+        }
+
+        resolved = true;
+
+        Vector2 feedbackPosition = transform.position;
+
+        if (spriteRenderer != null)
+        {
+            Color initialColor = spriteRenderer.color;
+            Color targetColor = initialColor;
+            targetColor.a = 0f;
+
+            float timer = 0f;
+
+            while (timer < duration)
+            {
+                timer += Time.deltaTime;
+                float t = Mathf.Clamp01(timer / duration);
+
+                spriteRenderer.color = Color.Lerp(initialColor, targetColor, t);
+
+                yield return null;
+            }
+
+            spriteRenderer.color = targetColor;
+        }
+        else
+        {
+            yield return new WaitForSeconds(duration);
+        }
+
+        score.AddPoints("FinishElement");
+        if (desecho.metodoCorrecto == MetodoDescontaminacion.Hipoclorito)
+        {
+            gamePlay.CorrectFeedback(feedbackPosition);
+            Invoke("CorrectElement",1f);
+        }
     }
 
-    private string GetDefaultCorrectFeedback()
+    void CorrectElement()
     {
-        switch (desecho.metodoCorrecto)
-        {
-            case MetodoDescontaminacion.Autoclave:
-                return "Correcto. Este residuo sólido contaminado debe descontaminarse mediante autoclave.";
-
-            case MetodoDescontaminacion.Hipoclorito:
-                return "Correcto. Los derrames, manchas y superficies contaminadas deben desinfectarse aplicando hipoclorito.";
-
-            case MetodoDescontaminacion.Sumergirse:
-                return "Correcto. Este objeto reutilizable contaminado debe sumergirse en hipoclorito.";
-
-            default:
-                return "Correcto.";
-        }
+        Debug.Log("[Desechos] completado");
+        gamePlay.addFinishElement();
+        Destroy(gameObject);
     }
 }

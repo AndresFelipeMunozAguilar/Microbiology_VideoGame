@@ -8,10 +8,6 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     [SerializeField] GameObject BlankObject;
     PuzzleEvaluation score;
     int Amount_Complete;
-    private void Start()
-    {
-        transform.GetChild(0).gameObject.SetActive(false);
-    }
     public override void Defeat()
     {
         score.FinishGame(false);

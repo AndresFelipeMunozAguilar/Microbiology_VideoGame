@@ -203,8 +203,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.6961, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 4.7504, y: 2.3922, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1226630640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,8 +257,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2253358204538062889, guid: 3078187b82570ef4984ad28cd74ccd3a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -401,10 +401,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5588357090583056622, guid: 713b9073f05420f4a9c93feb57879257, type: 3}
       propertyPath: maxScale
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5588357090583056622, guid: 713b9073f05420f4a9c93feb57879257, type: 3}
-      propertyPath: pulseSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5588357090583056622, guid: 713b9073f05420f4a9c93feb57879257, type: 3}
@@ -1606,7 +1602,7 @@ GameObject:
   - component: {fileID: 1136637464}
   - component: {fileID: 1136637467}
   m_Layer: 2
-  m_Name: Halo
+  m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1624,9 +1620,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c18619c57f1874fa7c7bb28f4e89cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHalo
-  pulseSpeed: 3
+  pulseSpeed: 2
   minScaleMultiplier: 1
-  maxScaleMultiplier: 1.6
+  maxScaleMultiplier: 1.4
   minimumTransparency: 0.25
   maximumTransparency: 1
   haloSr: {fileID: 1136637465}
@@ -1680,8 +1676,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4237327079380181014, guid: 748d857dcaf2f1b4c9aec4b83386b96f, type: 3}
-  m_Color: {r: 0.9254902, g: 0.5254902, b: 0.09019608, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1700,8 +1696,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.6961, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 4.7504, y: 2.3922, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1226630640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1739,8 +1735,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 18
+  m_Offset: {x: 0.16101344, y: 0}
+  m_Radius: 0.9983746
 --- !u!1 &1225798392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,7 +1992,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.02230835, y: -0.9328265}
+  m_Offset: {x: 1.8570619, y: -0.71597576}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2006,7 +2002,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.472864, y: 3.7908812}
+  m_Size: {x: 4.7141237, y: 2.4319515}
   m_EdgeRadius: 0
 --- !u!114 &1226630639
 MonoBehaviour:
@@ -3954,10 +3950,6 @@ PrefabInstance:
       propertyPath: PerformanceResultTx
       value: 
       objectReference: {fileID: 1629787190}
-    - target: {fileID: 6192472732850097059, guid: 1af064cbe81812f48b70873cde21680b, type: 3}
-      propertyPath: pulseSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6892247984168879791, guid: 1af064cbe81812f48b70873cde21680b, type: 3}
       propertyPath: m_Size.x
       value: 6.6550627
