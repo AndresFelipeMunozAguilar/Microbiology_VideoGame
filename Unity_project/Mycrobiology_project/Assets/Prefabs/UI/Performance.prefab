@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4445179418141337271}
   - component: {fileID: 8419576723419631590}
   - component: {fileID: 8071651675361562695}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: PerformanceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 2932028017730199027}
   - component: {fileID: 8871513306134460892}
   - component: {fileID: 7919871386476553179}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Performance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,8 +197,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1258646955
-  m_SortingOrder: 0
+  m_SortingLayerID: 1682758583
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &2932028017730199027
 MonoBehaviour:

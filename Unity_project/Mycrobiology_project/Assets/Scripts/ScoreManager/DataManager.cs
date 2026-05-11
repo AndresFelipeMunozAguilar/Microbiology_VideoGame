@@ -53,6 +53,7 @@ public class DataManager : MonoBehaviour
 
         return JsonUtility.FromJson<EvaluationData>(json);
     }
+
     public PuzzleResultData GetPuzzleByID(string ID)
     {
         Debug.Log($"<color=blue>{this.GetType().Name}:</color> Buscando datos del puzzle con ID '{ID}' en CurrentData. CurrentData es null? {CurrentData == null}");

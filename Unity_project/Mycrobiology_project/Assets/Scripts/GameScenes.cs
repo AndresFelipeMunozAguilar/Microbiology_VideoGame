@@ -1,13 +1,13 @@
-    public enum GameScenes
-    {
-        DevAndres,
-        TestMenu,
-        GameDemo,
-        FinalScore,
-        DevBrandon,
-        Develop,
-        TempGameOver,
-        TestPuzzle,
-        VictoryScene,
-        Credits,
-    }
+public enum GameScenes
+{
+    TestMenu,
+    DevAndres,
+    DevBrandon,
+    Develop,
+    TempGameOver,
+    TestPuzzle,
+    VictoryScene,
+    GameDemo,
+    FinalScore,
+    Credits,
+}
