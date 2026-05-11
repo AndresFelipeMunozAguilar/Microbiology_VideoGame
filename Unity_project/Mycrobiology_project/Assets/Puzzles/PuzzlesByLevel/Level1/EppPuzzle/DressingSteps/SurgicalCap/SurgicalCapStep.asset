@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SurgicalCapStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
   _requiredItemId: SurgicalCapStep
-  _stepResultSprite: {fileID: 28283999, guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1, type: 3}
+  _stepResultSprite: {fileID: 4749647429541865625, guid: 832f869ae7d0794478ec82fce08a3270, type: 3}

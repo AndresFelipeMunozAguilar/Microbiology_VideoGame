@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FaceMaskStep
   m_EditorClassIdentifier: Assembly-CSharp::CleaningStepSO
   _requiredItemId: FaceMaskStep
-  _stepResultSprite: {fileID: -1359171686, guid: 6dfea88f9f1e93b47b5fbdd5ff0335e1, type: 3}
+  _stepResultSprite: {fileID: -5930963807377588025, guid: 832f869ae7d0794478ec82fce08a3270, type: 3}
