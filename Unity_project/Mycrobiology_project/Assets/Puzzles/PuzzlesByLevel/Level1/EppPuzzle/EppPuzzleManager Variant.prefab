@@ -12,21 +12,53 @@ PrefabInstance:
       propertyPath: m_Name
       value: EppPuzzleManager Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 583428771567183560, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
     - target: {fileID: 1336469992464161907, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
     - target: {fileID: 2130455722197755066, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Size.x
-      value: 0.8
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2130455722197755066, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Size.y
-      value: 0.8
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130455722197755066, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130455722197755066, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2130455722197755066, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.8828125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633349684743535624, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633349684743535624, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633349684743535624, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633349684743535624, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633349684743535624, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6153627273138089844, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Sprite
