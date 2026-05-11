@@ -3458,6 +3458,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: PuzzleManagerDesechos
       objectReference: {fileID: 0}
+    - target: {fileID: 6512048809852494609, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512048809852494609, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1682758583
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846132134302707237, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_Name
+      value: Desktop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038336870237009601, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038336870237009601, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038336870237009601, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1682758583
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955187864698011505, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955187864698011505, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955187864698011505, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7955187864698011505, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.18
@@ -3497,6 +3533,10 @@ PrefabInstance:
     - target: {fileID: 7955187864698011505, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955187864698011505, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

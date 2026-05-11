@@ -1060,6 +1060,7 @@ GameObject:
   - component: {fileID: 308784778519297219}
   - component: {fileID: 1547635611222065924}
   - component: {fileID: 5482953293489481501}
+  - component: {fileID: 2080370238566975826}
   m_Layer: 0
   m_Name: GameplayDesechos
   m_TagString: Untagged
@@ -1128,7 +1129,7 @@ MonoBehaviour:
   _dataManager: {fileID: 0}
   _puzzleEvaluation: {fileID: 1547635611222065924}
   _background: {fileID: 1580335622552737345, guid: c553b2a31b657334eb3762abab80f3fe, type: 3}
-  _spawnOffset: {x: 0, y: 0, z: 0}
+  _spawnOffset: {x: 0, y: -1, z: 0}
   _isFirstTimePlaying: 1
   _tutorialPrefab: {fileID: 6813883315094108872, guid: a2233075310061843b5d8d7ecb37edca, type: 3}
   _title: {fileID: 6357130297887082126}
@@ -1149,6 +1150,19 @@ MonoBehaviour:
   FeedbackElement: {fileID: 9131845601962802126, guid: b2e2b37f28445bb418158cad6072f6e1, type: 3}
   CorrectElement: {fileID: 4350979536554088468, guid: eb41fb617890b764188892c58a212072, type: 3}
   hipocloritoRegar: {fileID: 7488059933083464820}
+--- !u!114 &2080370238566975826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894511127420310026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87cecf029608564bb0c6fb72119c126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowCenter
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &8024689138077837232
 GameObject:
   m_ObjectHideFlags: 0

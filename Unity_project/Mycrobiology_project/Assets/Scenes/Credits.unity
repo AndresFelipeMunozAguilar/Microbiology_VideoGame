@@ -619,7 +619,8 @@ PrefabInstance:
       propertyPath: m_Padding.m_Bottom
       value: 150
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1713752656922993535, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7556363260367815807, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}

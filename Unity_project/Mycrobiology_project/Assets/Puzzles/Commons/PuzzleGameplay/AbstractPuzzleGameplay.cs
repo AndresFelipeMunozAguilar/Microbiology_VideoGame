@@ -51,9 +51,18 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
         Debug.Log($"<color=yellow>{GetType().Name}:</color> Vamos a instanciar el fondo y los objetos");
 
-        SetGlobalPositionTo(spawnPosition);
+        FollowCenter followCenter = GetComponent<FollowCenter>();
 
-        SpawnBackground(spawnPosition, Quaternion.identity, transform);
+        if (followCenter != null)
+        {
+            followCenter.SetOffset(_spawnOffset);
+        }
+        else
+        {
+            SetGlobalPositionTo(spawnPosition);
+        }
+
+        SpawnBackground(transform.position, Quaternion.identity, transform);
         ActivateSonObjects();
 
         OnStartGameplay();
