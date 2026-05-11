@@ -99,7 +99,7 @@ public class ZonaDesecho : MonoBehaviour
         if (spriteRenderer != null && spriteDisponible != null)
         {
             spriteRenderer.sprite = spriteDisponible;
-            gamePlay.CorrectFeedback(transform.position);
+            gamePlay.CorrectFeedback(GetFeedbackPosition());
             Invoke("CorrectElement",1f);
         }
     }

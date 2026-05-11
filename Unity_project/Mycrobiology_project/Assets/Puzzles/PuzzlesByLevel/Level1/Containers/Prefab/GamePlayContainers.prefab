@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e61fb80c6eb034488481a9093a3156f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleEvaluation
-  puzzleID: Clasifica y Desecha
+  puzzleID: Waste_Sorting_Challenge
   maxScore: 100
   minScore: -50
   winScoreThreshold: 100
@@ -973,7 +973,7 @@ MonoBehaviour:
   _dataManager: {fileID: 0}
   _puzzleEvaluation: {fileID: 0}
   _background: {fileID: 1580335622552737345, guid: c553b2a31b657334eb3762abab80f3fe, type: 3}
-  _spawnOffset: {x: 0, y: 0, z: 0}
+  _spawnOffset: {x: 0, y: -1, z: 0}
   _isFirstTimePlaying: 0
   _tutorialPrefab: {fileID: 6813883315094108872, guid: 7fd1165daf586be4da31315fd1fae1a1, type: 3}
   _title: {fileID: 8610557808363464134}
@@ -1539,7 +1539,7 @@ Transform:
   m_GameObject: {fileID: 9090778003217513529}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.13, z: 0}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 0.90000004}
   m_ConstrainProportionsScale: 1
   m_Children:

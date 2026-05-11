@@ -196,12 +196,14 @@ public class gameplayDesechos : AbstractPuzzleGameplay
 
     public override void Victory()
     {
+        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(true);
         Destroy(gameObject);
     }
 
     public override void Defeat()
     {
+        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(false);
         Destroy(gameObject);
     }
