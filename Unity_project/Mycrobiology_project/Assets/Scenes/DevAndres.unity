@@ -824,6 +824,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 681384158333276256, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_Size.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 681384158333276256, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_Size.y
+      value: 3.61
+      objectReference: {fileID: 0}
     - target: {fileID: 1201116743335521203, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_Name
       value: EppPuzzleManager
