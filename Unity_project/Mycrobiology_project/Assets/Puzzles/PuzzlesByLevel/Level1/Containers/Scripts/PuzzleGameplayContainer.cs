@@ -10,6 +10,7 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     int Amount_Complete;
     public override void Defeat()
     {
+        Debug.Log("[Containers] Derrota");
         score.FinishGame(false);
         GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(false);
@@ -21,12 +22,15 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
         Debug.Log("[Containers] empezamos gameplay");
         transform.GetChild(0).gameObject.SetActive(true);
         score = GetComponent<PuzzleEvaluation>();
+        _puzzleEvaluation = score;
         if (_title) _title.text = score.puzzleID.ToString();
         SpawnObjects();
     }
 
     public override void Victory()
     {
+        
+        Debug.Log("[Containers] Victoria");
         GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         bool Finish = score.GetCurrentScore() <= 60 ? false : true;
         score.FinishGame(Finish);

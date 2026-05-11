@@ -1770,11 +1770,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePlayElements
   _dataManager: {fileID: 0}
   _puzzleEvaluation: {fileID: 0}
-  _background: {fileID: 0}
-  _spawnOffset: {x: 0, y: 0, z: 0}
+  _background: {fileID: 1580335622552737345, guid: c553b2a31b657334eb3762abab80f3fe, type: 3}
+  _spawnOffset: {x: 0, y: -1, z: 0}
   _isFirstTimePlaying: 0
-  _tutorialPrefab: {fileID: 0}
-  _title: {fileID: 0}
+  _tutorialPrefab: {fileID: 6813883315094108872, guid: c22acb000141d714697919263f108723, type: 3}
+  _title: {fileID: 7666369302658183097}
   elements:
   - {fileID: 11400000, guid: b1c0d26692666134fbcbb95afbd71beb, type: 2}
   - {fileID: 11400000, guid: a6fc3a2be9c17464699f402ffe1ac531, type: 2}

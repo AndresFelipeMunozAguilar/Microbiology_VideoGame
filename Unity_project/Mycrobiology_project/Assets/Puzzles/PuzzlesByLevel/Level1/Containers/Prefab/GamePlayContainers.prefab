@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleGameplayContainer
   _dataManager: {fileID: 0}
-  _puzzleEvaluation: {fileID: 0}
+  _puzzleEvaluation: {fileID: 7661879216417268320}
   _background: {fileID: 1580335622552737345, guid: c553b2a31b657334eb3762abab80f3fe, type: 3}
   _spawnOffset: {x: 0, y: -1, z: 0}
   _isFirstTimePlaying: 0

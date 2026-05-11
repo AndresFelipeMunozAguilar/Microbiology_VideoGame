@@ -66,6 +66,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
     {
         transform.GetChild(0).gameObject.SetActive(true);
         score = GetComponent<PuzzleEvaluation>();
+        _puzzleEvaluation = score;
         if (_title) _title.text = score.puzzleID.ToString();
         SelectElements();
     }
