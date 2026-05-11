@@ -828,10 +828,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EppPuzzleManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1426101298296910281, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_Camera
       value: 

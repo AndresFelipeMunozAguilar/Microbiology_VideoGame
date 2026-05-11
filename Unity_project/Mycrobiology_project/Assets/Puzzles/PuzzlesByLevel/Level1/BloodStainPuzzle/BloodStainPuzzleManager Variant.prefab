@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodStainPuzzleManager Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 393735534203666645, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
+      propertyPath: maxScaleMultiplier
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 583428771567183560, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: m_Sprite
       value: 
