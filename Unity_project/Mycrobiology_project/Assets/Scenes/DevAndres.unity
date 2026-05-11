@@ -828,14 +828,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: EppPuzzleManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1426101298296910281, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1225798397}
+    - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1682758583
+      objectReference: {fileID: 0}
     - target: {fileID: 7113257419316145021, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: _playerHealthLogic
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2062265073}
     - target: {fileID: 8111794720989501671, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.25

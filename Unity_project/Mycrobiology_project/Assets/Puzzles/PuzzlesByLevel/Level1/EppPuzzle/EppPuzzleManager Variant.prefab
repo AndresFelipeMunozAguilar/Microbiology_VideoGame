@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 9111576306358749388, guid: 4b57d7c98ea94444c8727b6d3b4f41ac, type: 3}
       propertyPath: _puzzleDamageTable
       value: 
-      objectReference: {fileID: 11400000, guid: 1abd5fde59b05e34f8ec490587ebb822, type: 2}
+      objectReference: {fileID: 11400000, guid: e7127814101edff4787708c7945e6603, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

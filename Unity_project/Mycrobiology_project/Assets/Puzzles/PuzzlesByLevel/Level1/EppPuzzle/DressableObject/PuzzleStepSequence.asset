@@ -15,5 +15,8 @@ MonoBehaviour:
   _steps:
   - {fileID: 11400000, guid: 2a6088600aa146d4aa0d0afcb8307075, type: 2}
   - {fileID: 11400000, guid: 1cf7cce97858ee0459a850195f1e24c1, type: 2}
+  - {fileID: 11400000, guid: 3767a255fbd872a45afd9e5baa8f4786, type: 2}
+  - {fileID: 11400000, guid: 24321ec3b7b4cf343a1bddd0202b26a3, type: 2}
+  - {fileID: 11400000, guid: 13669a62a9f546f468f86022d9407ba8, type: 2}
   _maxAllowedErrors: 4
   _finalCleanSprite: {fileID: -6760744269409031231, guid: 9b6da677587542141aea80b2b72f45a8, type: 3}

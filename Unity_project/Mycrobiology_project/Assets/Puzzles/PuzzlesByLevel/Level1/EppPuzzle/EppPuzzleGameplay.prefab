@@ -101,6 +101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FaceMask
       objectReference: {fileID: 0}
+    - target: {fileID: 4064532782330698851, guid: ff363868e92fb91499489b7ff13064a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: ff363868e92fb91499489b7ff13064a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.78
@@ -162,6 +166,10 @@ PrefabInstance:
     - target: {fileID: 2355160180475614819, guid: 85c5cb919e8425944a93400395228e3e, type: 3}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355160180475614819, guid: 85c5cb919e8425944a93400395228e3e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2491117247734836967, guid: 85c5cb919e8425944a93400395228e3e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,9 +233,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gloves
       objectReference: {fileID: 0}
+    - target: {fileID: 4064532782330698851, guid: 43f254090a7df01408c37628f859f4da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 43f254090a7df01408c37628f859f4da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7475
+      value: -1.0625
       objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 43f254090a7df01408c37628f859f4da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -287,9 +299,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: LabCoat
       objectReference: {fileID: 0}
+    - target: {fileID: 4064532782330698851, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.285
+      value: 2.655
       objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 8608917aaf7730f489314ae0a0257d76, type: 3}
       propertyPath: m_LocalPosition.y
@@ -349,9 +365,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SafetyGoggles
       objectReference: {fileID: 0}
+    - target: {fileID: 4064532782330698851, guid: 315a695ffff998f4fbfef8fa5bb5e6b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 315a695ffff998f4fbfef8fa5bb5e6b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.3175
+      value: 6.3725
       objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 315a695ffff998f4fbfef8fa5bb5e6b2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -411,9 +431,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SurgicalCap
       objectReference: {fileID: 0}
+    - target: {fileID: 4064532782330698851, guid: 8c3d1923d3af2ce459e2a0ccfbcbddc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 8c3d1923d3af2ce459e2a0ccfbcbddc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.35
+      value: 10.09
       objectReference: {fileID: 0}
     - target: {fileID: 8368447470060891634, guid: 8c3d1923d3af2ce459e2a0ccfbcbddc1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -512,6 +536,10 @@ PrefabInstance:
     - target: {fileID: 6372266592082564954, guid: 786124ffa736bfa4fb48dc7d381cc23b, type: 3}
       propertyPath: m_Name
       value: DressableObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372266592082564954, guid: 786124ffa736bfa4fb48dc7d381cc23b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

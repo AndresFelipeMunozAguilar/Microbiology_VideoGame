@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.285806, y: -0.5532614, z: 0}
-  m_LocalScale: {x: 2.58, y: 2.58, z: 2.58}
+  m_LocalScale: {x: 1.8899999, y: 1.8899999, z: 1.8899999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 26
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: 4b2a04fdbe0ef4d8da8f90eaca817cd1, type: 3}
+  m_Sprite: {fileID: 6829406338367461404, guid: 36c500aeec7bb014a89124676aa5e75b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,13 +134,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.890625, y: 1}
+    oldSize: {x: 1.47, y: 2.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1, y: 1.1}
+  m_Size: {x: 0.95, y: 1.57}
   m_EdgeRadius: 0
 --- !u!50 &3615393612058181184
 Rigidbody2D:
@@ -197,7 +197,7 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _canvasGroup: {fileID: 3446198025273513841}
   _rigidbody: {fileID: 3615393612058181184}
-  _globalStartPosition: {x: -0.7475, y: 1, z: 0}
+  _globalStartPosition: {x: -1.0625, y: 1, z: 0}
   returnSpeed: 5
 --- !u!114 &2344043807486326425
 MonoBehaviour:
