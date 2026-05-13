@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
+public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
 {
     [Header("Configuración de Datos")]
     [SerializeField] private PuzzleSequenceSO _puzzleSequence;
@@ -29,11 +29,11 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     {
         if (_puzzleSequence == null)
         {
-            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> Falta PuzzleSequenceSO en {gameObject.name}");
+            Debug.LogError($"<color=yellow>{GetType().Name}:</color> Falta PuzzleSequenceSO en {gameObject.name}");
             return;
         }
 
-        Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Iniciado. Esperando primer paso.");
+        Debug.Log($"<color=yellow>{GetType().Name}:</color> Iniciado. Esperando primer paso.");
 
     }
 
@@ -49,14 +49,14 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
         if (_visuals == null)
         {
-            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente BloodStainVisuals en los hijos de {this.gameObject.name}");
+            Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente BloodStainVisuals en los hijos de {this.gameObject.name}");
             return;
         }
 
         _dropZone = GetComponentInChildren<BloodStainDropZone>();
         if (_dropZone == null)
         {
-            Debug.LogError($"<color=yellow>BloodStainPuzzleGameplay:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
+            Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
             return;
         }
 
@@ -89,7 +89,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
     private void HandleCorrectStep(CleaningStepSO step)
     {
         _currentStepIndex++;
-        Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Paso Correcto: {_currentStepIndex}/{_puzzleSequence.TotalSteps}");
+        Debug.Log($"<color=yellow>{GetType().Name}:</color> Paso Correcto: {_currentStepIndex}/{_puzzleSequence.TotalSteps}");
 
         _puzzleEvaluation.AddPoints(_puzzleEvaluationSuccesKey);
 
@@ -100,7 +100,7 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
         {
             _visuals.UpdateVisuals(_puzzleSequence.FinalCleanSprite);
 
-            Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> ¡Puzzle Completado!");
+            Debug.Log("<color=yellow>{GetType().Name}:</color> ¡Puzzle Completado!");
 
             NotifyPuzzleVictory(true);
         }
@@ -113,14 +113,14 @@ public class BloodStainPuzzleGameplay : AbstractPuzzleGameplay
 
         _puzzleEvaluation.RemovePoints(_puzzleEvaluationErrorKey);
 
-        Debug.Log($"<color=yellow>BloodStainPuzzleGameplay:</color> Listeners suscritos a OnErrorChanged: {OnErrorChanged?.GetInvocationList().Length ?? 0}");
+        Debug.Log($"<color=yellow>{GetType().Name}:</color> Listeners suscritos a OnErrorChanged: {OnErrorChanged?.GetInvocationList().Length ?? 0}");
         OnErrorChanged?.Invoke(_errorCount, _puzzleSequence.MaxAllowedErrors);
 
         if (_errorCount >= _puzzleSequence.MaxAllowedErrors)
         {
             _visuals.DisableStain();
 
-            Debug.Log("<color=yellow>BloodStainPuzzleGameplay:</color> Puzzle Fallido por exceso de errores");
+            Debug.Log($"<color=yellow>{GetType().Name}:</color> Puzzle Fallido por exceso de errores");
             OnPuzzleLost?.Invoke();
 
             NotifyPuzzleVictory(false);

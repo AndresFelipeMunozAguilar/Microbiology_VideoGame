@@ -7,7 +7,7 @@ public class BloodStainDropZone : MonoBehaviour
 {
 
     [Header("Objetos Asociados")]
-    [SerializeField] BloodStainPuzzleGameplay _bloodStainGameplay;
+    [SerializeField] SequentialProccessPuzzleGameplay _sequentialProccessGameplay;
 
 
     [Header("Configuración de Detección")]
@@ -18,20 +18,20 @@ public class BloodStainDropZone : MonoBehaviour
 
     private void Start()
     {
-        if (GetComponentInParent<BloodStainPuzzleGameplay>() == null)
+        if (GetComponentInParent<SequentialProccessPuzzleGameplay>() == null)
         {
-            Debug.LogError("BloodStainFeedbackVisuals: Parent object with BloodStainPuzzleGameplay component not found.");
+            Debug.LogError("BloodStainFeedbackVisuals: Parent object with SequentialProccessPuzzleGameplay component not found.");
             return;
         }
-        _bloodStainGameplay = GetComponentInParent<BloodStainPuzzleGameplay>();
+        _sequentialProccessGameplay = GetComponentInParent<SequentialProccessPuzzleGameplay>();
 
-        _bloodStainGameplay.OnPuzzleLost += DisableComponents;
+        _sequentialProccessGameplay.OnPuzzleLost += DisableComponents;
     }
 
 
     private void OnDestroy()
     {
-        _bloodStainGameplay.OnPuzzleLost -= DisableComponents;
+        _sequentialProccessGameplay.OnPuzzleLost -= DisableComponents;
     }
 
     private void DisableComponents()

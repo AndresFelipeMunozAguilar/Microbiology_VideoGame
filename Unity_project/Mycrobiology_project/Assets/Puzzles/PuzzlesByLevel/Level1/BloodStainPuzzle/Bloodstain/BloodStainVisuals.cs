@@ -10,7 +10,7 @@ public class BloodStainVisuals : MonoBehaviour
     private float _transparencyWhenDisabled;
 
 
-    [SerializeField] private BloodStainPuzzleGameplay _bloodStainGameplay;
+    [SerializeField] private SequentialProccessPuzzleGameplay _sequentialProccessGameplay;
 
     [SerializeField] private BloodStainFeedbackVisuals _feedbackVisuals;
     [SerializeField] private Sprite _positiveFeedbackIcon;
@@ -24,21 +24,21 @@ public class BloodStainVisuals : MonoBehaviour
     private void Start()
     {
 
-        if (GetComponentInParent<BloodStainPuzzleGameplay>() == null)
+        if (GetComponentInParent<SequentialProccessPuzzleGameplay>() == null)
         {
-            Debug.LogError("BloodStainFeedbackVisuals: Parent object with BloodStainPuzzleGameplay component not found.");
+            Debug.LogError("BloodStainFeedbackVisuals: Parent object with SequentialProccessPuzzleGameplay component not found.");
             return;
         }
-        _bloodStainGameplay = GetComponentInParent<BloodStainPuzzleGameplay>();
-        _bloodStainGameplay.OnErrorChanged += ShowErrorEffect;
-        _bloodStainGameplay.OnPuzzleLost += DisableComponents;
+        _sequentialProccessGameplay = GetComponentInParent<SequentialProccessPuzzleGameplay>();
+        _sequentialProccessGameplay.OnErrorChanged += ShowErrorEffect;
+        _sequentialProccessGameplay.OnPuzzleLost += DisableComponents;
     }
 
 
     private void OnDestroy()
     {
-        _bloodStainGameplay.OnErrorChanged -= ShowErrorEffect;
-        _bloodStainGameplay.OnPuzzleLost -= DisableComponents;
+        _sequentialProccessGameplay.OnErrorChanged -= ShowErrorEffect;
+        _sequentialProccessGameplay.OnPuzzleLost -= DisableComponents;
     }
 
 
