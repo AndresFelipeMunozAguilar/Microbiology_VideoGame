@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class BloodStainVisuals : MonoBehaviour
+public class ProccessFeedbackVisuals : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -12,7 +12,7 @@ public class BloodStainVisuals : MonoBehaviour
 
     [SerializeField] private SequentialProccessPuzzleGameplay _sequentialProccessGameplay;
 
-    [SerializeField] private BloodStainFeedbackVisuals _feedbackVisuals;
+    [SerializeField] private ErrorFeedbackVisuals _errorFeedbackVisuals;
     [SerializeField] private Sprite _positiveFeedbackIcon;
     [SerializeField] private Sprite _negativeFeedbackIcon;
 
@@ -50,8 +50,8 @@ public class BloodStainVisuals : MonoBehaviour
         _spriteRenderer.sprite = newSprite;
         Debug.Log("<color=green>Visuals:</color> Sprite de la mancha actualizado.");
 
-        _feedbackVisuals.SetSuccessText("¡Bien!");
-        _feedbackVisuals.Play(_positiveFeedbackIcon);
+        _errorFeedbackVisuals.SetSuccessText("¡Bien!");
+        _errorFeedbackVisuals.Play(_positiveFeedbackIcon);
     }
 
     public void ShowErrorEffect(int currentErrors, int maxErrors)
@@ -59,8 +59,8 @@ public class BloodStainVisuals : MonoBehaviour
         // Feedback visual simple para error (ej. parpadeo rojo)
         // Puedes usar una corrutina o un Tweening aquí.
         Debug.Log("<color=red>Visuals:</color> Mostrando feedback de error.");
-        _feedbackVisuals.SetErrorText(currentErrors, maxErrors);
-        _feedbackVisuals.Play(_negativeFeedbackIcon);
+        _errorFeedbackVisuals.SetErrorText(currentErrors, maxErrors);
+        _errorFeedbackVisuals.Play(_negativeFeedbackIcon);
     }
 
     public void DisableStain()
@@ -73,7 +73,7 @@ public class BloodStainVisuals : MonoBehaviour
 
     private void DisableComponents()
     {
-        _feedbackVisuals.gameObject.SetActive(false);
+        _errorFeedbackVisuals.gameObject.SetActive(false);
     }
 
     public void ChangeSpriteRendererAlpha(float transparency)
