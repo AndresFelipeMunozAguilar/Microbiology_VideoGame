@@ -74,7 +74,7 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
     public void ProcessItemInteraction(string droppedItemId)
     {
 
-        CleaningStepSO expectedStep = _puzzleSequence.Steps[_currentStepIndex];
+        ProcessStepSO expectedStep = _puzzleSequence.Steps[_currentStepIndex];
 
         if (droppedItemId == expectedStep.RequiredItemId)
         {
@@ -86,7 +86,7 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
         }
     }
 
-    private void HandleCorrectStep(CleaningStepSO step)
+    private void HandleCorrectStep(ProcessStepSO step)
     {
         _currentStepIndex++;
         Debug.Log($"<color=yellow>{GetType().Name}:</color> Paso Correcto: {_currentStepIndex}/{_puzzleSequence.TotalSteps}");

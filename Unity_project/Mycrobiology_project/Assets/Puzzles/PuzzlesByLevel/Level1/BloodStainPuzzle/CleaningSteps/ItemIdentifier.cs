@@ -5,7 +5,7 @@ public class ItemIdentifier : MonoBehaviour
     [Header("Identidad del Ítem")]
     [Tooltip("Este ID debe coincidir con el 'Required Item Id' en el ScriptableObject.")]
     [SerializeField] private string _itemId;
-    [SerializeField] private CleaningStepSO _stepInformation;
+    [SerializeField] private ProcessStepSO _stepInformation;
 
     public string ItemId => _itemId;
 

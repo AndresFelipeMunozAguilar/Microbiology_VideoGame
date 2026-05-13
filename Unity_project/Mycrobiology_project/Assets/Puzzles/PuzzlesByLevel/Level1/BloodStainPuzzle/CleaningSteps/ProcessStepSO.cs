@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CleaningStepSO", menuName = "ScriptableObject/Puzzles/Cleaning Step")]
-public class CleaningStepSO : ScriptableObject
+[CreateAssetMenu(fileName = "ProcessStepSO", menuName = "ScriptableObject/Puzzles/Process Step")]
+public class ProcessStepSO : ScriptableObject
 {
     [Header("Configuración del Paso")]
     [Tooltip("ID único del ítem que el jugador debe arrastrar (ej. 'Papel', 'Cloro').")]
