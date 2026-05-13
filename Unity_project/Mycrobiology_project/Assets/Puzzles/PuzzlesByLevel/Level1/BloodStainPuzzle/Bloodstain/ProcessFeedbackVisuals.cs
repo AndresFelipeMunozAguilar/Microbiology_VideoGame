@@ -26,7 +26,7 @@ public class ProcessFeedbackVisuals : MonoBehaviour
 
         if (GetComponentInParent<SequentialProccessPuzzleGameplay>() == null)
         {
-            Debug.LogError("BloodStainFeedbackVisuals: Parent object with SequentialProccessPuzzleGameplay component not found.");
+            Debug.LogError("ProcessFeedbackVisuals: Parent object with SequentialProccessPuzzleGameplay component not found.");
             return;
         }
         _sequentialProccessGameplay = GetComponentInParent<SequentialProccessPuzzleGameplay>();
