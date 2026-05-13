@@ -6,8 +6,8 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
 {
     [Header("Configuración de Datos")]
     [SerializeField] private PuzzleSequenceSO _puzzleSequence;
-    [SerializeField] private ProccessFeedbackVisuals _visuals;
-    [SerializeField] private BloodStainDropZone _dropZone;
+    [SerializeField] private ProcessFeedbackVisuals _visuals;
+    [SerializeField] private ProcessFeedbackDropZone _dropZone;
 
     [Header("Estado del Juego (Solo Lectura)")]
     [SerializeField] private int _currentStepIndex = 0;
@@ -45,15 +45,15 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
 
     private void GetAssociatedComponents()
     {
-        _visuals = GetComponentInChildren<ProccessFeedbackVisuals>();
+        _visuals = GetComponentInChildren<ProcessFeedbackVisuals>();
 
         if (_visuals == null)
         {
-            Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente ProccessFeedbackVisuals en los hijos de {this.gameObject.name}");
+            Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente ProcessFeedbackVisuals en los hijos de {this.gameObject.name}");
             return;
         }
 
-        _dropZone = GetComponentInChildren<BloodStainDropZone>();
+        _dropZone = GetComponentInChildren<ProcessFeedbackDropZone>();
         if (_dropZone == null)
         {
             Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente DropZone en los hijos de {this.gameObject.name}");
@@ -100,7 +100,7 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
         {
             _visuals.UpdateVisuals(_puzzleSequence.FinalCleanSprite);
 
-            Debug.Log("<color=yellow>{GetType().Name}:</color> ¡Puzzle Completado!");
+            Debug.Log($"<color=yellow>{GetType().Name}:</color> ¡Puzzle Completado!");
 
             NotifyPuzzleVictory(true);
         }

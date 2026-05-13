@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
-public class BloodStainDropZone : MonoBehaviour
+public class ProcessFeedbackDropZone : MonoBehaviour
 {
 
     [Header("Objetos Asociados")]
@@ -20,7 +20,7 @@ public class BloodStainDropZone : MonoBehaviour
     {
         if (GetComponentInParent<SequentialProccessPuzzleGameplay>() == null)
         {
-            Debug.LogError("BloodStainFeedbackVisuals: Parent object with SequentialProccessPuzzleGameplay component not found.");
+            Debug.LogError($"{GetType().Name}: Parent object with SequentialProccessPuzzleGameplay component not found.");
             return;
         }
         _sequentialProccessGameplay = GetComponentInParent<SequentialProccessPuzzleGameplay>();
@@ -49,11 +49,11 @@ public class BloodStainDropZone : MonoBehaviour
 
         if (draggableItem == null)
         {
-            Debug.LogWarning($"BloodStainDropZone: El objeto con tag: {other.tag} no tiene componente ItemIdentifier.");
+            Debug.LogWarning($"{GetType().Name}: El objeto con tag: {other.tag} no tiene componente ItemIdentifier.");
             return;
         }
 
-        Debug.Log($"BloodStainDropZone: Se detectó el ítem {draggableItem.ItemId}");
+        Debug.Log($"{GetType().Name}: Se detectó el ítem {draggableItem.ItemId}");
         OnDraggableItemDropped?.Invoke(draggableItem.ItemId);
 
     }
