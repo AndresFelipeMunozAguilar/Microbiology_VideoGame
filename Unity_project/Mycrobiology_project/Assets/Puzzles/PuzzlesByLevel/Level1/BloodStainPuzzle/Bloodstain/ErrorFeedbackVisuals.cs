@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro; // Asumiendo que usas TextMeshPro
 
-public class BloodStainFeedbackVisuals : MonoBehaviour
+public class ErrorFeedbackVisuals : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private SpriteRenderer _iconSpriteRenderer;
