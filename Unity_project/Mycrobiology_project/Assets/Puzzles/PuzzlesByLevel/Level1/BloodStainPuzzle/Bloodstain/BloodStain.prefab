@@ -72,7 +72,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1488375436826925000
 Transform:
   m_ObjectHideFlags: 0
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleVisuals
   _spriteRenderer: {fileID: 5634891262999767351}
   _transparencyWhenDisabled: 0.4
-  _bloodStainGameplay: {fileID: 0}
-  _feedbackVisuals: {fileID: 5490362002415390963}
+  _sequentialProccessGameplay: {fileID: 0}
+  _errorFeedbackVisuals: {fileID: 5490362002415390963}
   _positiveFeedbackIcon: {fileID: -6760744269409031231, guid: 9b6da677587542141aea80b2b72f45a8, type: 3}
   _negativeFeedbackIcon: {fileID: -817955187, guid: 9b6da677587542141aea80b2b72f45a8, type: 3}
 --- !u!114 &8868886039312673238
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578f337e521df0242906b559bb8967be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropZone
-  _bloodStainGameplay: {fileID: 0}
+  _sequentialProccessGameplay: {fileID: 0}
   _draggableItemTag: BloodStainPuzzleItem
 --- !u!50 &-2649402913276310624
 Rigidbody2D:

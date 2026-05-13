@@ -60,8 +60,8 @@ MonoBehaviour:
   _tutorialPrefab: {fileID: 6813883315094108872, guid: 2caf7926f3ff5bf47b90cfc7f5b2f293, type: 3}
   _title: {fileID: 0}
   _puzzleSequence: {fileID: 11400000, guid: bf0d52ead216e594babb51b49aad4309, type: 2}
-  _visuals: {fileID: 0}
-  _dropZone: {fileID: 0}
+  _visuals: {fileID: 6649435278304545810}
+  _dropZone: {fileID: 2856540732435087858}
   _currentStepIndex: 0
   _errorCount: 0
   _puzzleEvaluationSuccesKey: acierto
@@ -365,10 +365,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodStain
       objectReference: {fileID: 0}
-    - target: {fileID: 410601994743242044, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1488375436826925000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.581
@@ -414,11 +410,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
+--- !u!114 &2856540732435087858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8868886039312673238, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
+  m_PrefabInstance: {fileID: 6679089435828381732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578f337e521df0242906b559bb8967be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropZone
 --- !u!4 &5194657969771462636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488375436826925000, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
   m_PrefabInstance: {fileID: 6679089435828381732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6649435278304545810 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 69645624522728502, guid: fb971ca2d45e96d44a7fa02a70a76950, type: 3}
+  m_PrefabInstance: {fileID: 6679089435828381732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9d756defaaf1d4fbe797cb797a2f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleVisuals
 --- !u!1001 &7259698867168837332
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -60,8 +60,8 @@ MonoBehaviour:
   _tutorialPrefab: {fileID: 6813883315094108872, guid: 6571cc4404fa5d448bec939d11e132aa, type: 3}
   _title: {fileID: 0}
   _puzzleSequence: {fileID: 11400000, guid: 211528a56bb2bc4439427b0382327f0f, type: 2}
-  _visuals: {fileID: 0}
-  _dropZone: {fileID: 0}
+  _visuals: {fileID: 2776054278879633358}
+  _dropZone: {fileID: 6729912924776927790}
   _currentStepIndex: 0
   _errorCount: 0
   _puzzleEvaluationSuccesKey: acierto
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e61fb80c6eb034488481a9093a3156f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameController
-  puzzleID: EPP
+  puzzleID: EppDressUp
   maxScore: 100
   minScore: -100
   winScoreThreshold: 999
@@ -571,8 +571,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786124ffa736bfa4fb48dc7d381cc23b, type: 3}
+--- !u!114 &2776054278879633358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6713592371235335760, guid: 786124ffa736bfa4fb48dc7d381cc23b, type: 3}
+  m_PrefabInstance: {fileID: 8912058623506772382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9d756defaaf1d4fbe797cb797a2f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleVisuals
 --- !u!4 &3663165279941749808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5295058266637409710, guid: 786124ffa736bfa4fb48dc7d381cc23b, type: 3}
   m_PrefabInstance: {fileID: 8912058623506772382}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6729912924776927790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2794635574473941936, guid: 786124ffa736bfa4fb48dc7d381cc23b, type: 3}
+  m_PrefabInstance: {fileID: 8912058623506772382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578f337e521df0242906b559bb8967be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropZone
