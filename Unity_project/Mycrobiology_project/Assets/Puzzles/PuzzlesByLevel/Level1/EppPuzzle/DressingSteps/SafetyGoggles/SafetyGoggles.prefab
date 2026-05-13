@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2344043807486326425}
   m_Layer: 12
   m_Name: SafetyGoggles
-  m_TagString: BloodStainPuzzleItem
+  m_TagString: EppPuzzleItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
