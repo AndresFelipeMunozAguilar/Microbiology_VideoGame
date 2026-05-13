@@ -6,7 +6,7 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
 {
     [Header("Configuración de Datos")]
     [SerializeField] private PuzzleSequenceSO _puzzleSequence;
-    [SerializeField] private BloodStainVisuals _visuals;
+    [SerializeField] private ProccessFeedbackVisuals _visuals;
     [SerializeField] private BloodStainDropZone _dropZone;
 
     [Header("Estado del Juego (Solo Lectura)")]
@@ -45,11 +45,11 @@ public class SequentialProccessPuzzleGameplay : AbstractPuzzleGameplay
 
     private void GetAssociatedComponents()
     {
-        _visuals = GetComponentInChildren<BloodStainVisuals>();
+        _visuals = GetComponentInChildren<ProccessFeedbackVisuals>();
 
         if (_visuals == null)
         {
-            Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente BloodStainVisuals en los hijos de {this.gameObject.name}");
+            Debug.LogError($"<color=yellow>{GetType().Name}:</color> No se encontró el componente ProccessFeedbackVisuals en los hijos de {this.gameObject.name}");
             return;
         }
 
