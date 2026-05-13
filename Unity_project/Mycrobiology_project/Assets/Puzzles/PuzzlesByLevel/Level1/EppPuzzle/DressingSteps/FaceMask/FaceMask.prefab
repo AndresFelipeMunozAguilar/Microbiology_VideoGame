@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.285806, y: -0.5532614, z: 0}
-  m_LocalScale: {x: 1.7900001, y: 1.7900001, z: 1.7900001}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _canvasGroup: {fileID: 3446198025273513841}
   _rigidbody: {fileID: 3615393612058181184}
-  _globalStartPosition: {x: -4.78, y: 1, z: 0}
+  _globalStartPosition: {x: -1.54, y: 1.45, z: 0}
   returnSpeed: 5
 --- !u!114 &2344043807486326425
 MonoBehaviour:
