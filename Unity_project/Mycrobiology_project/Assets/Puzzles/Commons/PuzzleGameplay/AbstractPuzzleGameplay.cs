@@ -30,14 +30,8 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
     {
         _dataManager = DataManager.Instance;
 
-        if (_dataManager == null)
-        {
-            Debug.LogError($"<color=magenta>{this.GetType().Name}:</color> No se encontró una instancia de DataManager (en start) en la escena. Asegúrate de que exista un GameObject con el componente DataManager.");
-        }
-        else
-        {
-            Debug.Log($"<color=magenta>{this.GetType().Name}:</color> Instancia de DataManager encontrada en awake.");
-        }
+        Debug.Log($"<color=magenta>{this.GetType().Name}:</color> La instancia de DataManager (en start) fue encontrada?: {(_dataManager != null)}");
+
 
         OnInstanceAwake();
     }
