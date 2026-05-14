@@ -59,18 +59,29 @@ class PuzzleCompletionText {
 
 class GameScenes {
     <<enumeration>> 
-    DevAndres
     TestMenu
+    DevAndres
     DevBrandon
     Develop
-    TempGameOver
     TestPuzzle
+    GameDemo
+    FinalScore
+    Credits
+}
+
+class JoystickGuiController {
+    - GameObject joystick
+    - GameManager gameManager
+
+    + Start() void
+    - OnDestroy() void
+    + PuzzlePauseMe() void
+    + PuzzleResumeMe() void
 }
 
 class GameManager {
     <<Singleton>>
     - GameManager _instance$
-    + enum GameScenes
     + bool isGameOver
     - bool isVictoryAchieved
     + bool isPuzzleActive
@@ -78,7 +89,7 @@ class GameManager {
     - Action OnGameOver
 
     + Awake() void
-    - GameManager()
+    - GameManager() 
     - CreateNewInstance() GameManager$
     + GetInstance() GameManager$
     + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
@@ -90,8 +101,8 @@ class GameManager {
     + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void
     + GameOver(reason: string) void
     + Victory() void
-        + NotifyGameOverSubscribers() void
-        + LoadScene(scene: GameScenes) void
+    + NotifyGameOverSubscribers() void
+    + LoadScene(scene: GameScenes) void
 }
 
 class MovePlayer {
@@ -213,7 +224,7 @@ class DamageThreshold {
 
 class PuzzleDamageTable {
     <<ScriptableObject>>
-    + List<DamageThreshold> damageThresholdPairs
+    + List~DamageThreshold~ damageThresholdPairs
 }
 
 %% Abstract draggable
@@ -237,25 +248,26 @@ class AbstractDraggableWorldObject{
 }
 
 class PuzzleManager {
-    - int score
-    - FeedbackText feedbackText
     - PuzzleHalo halo
     + bool isVictoryAchieved
-    + AbstractPuzzleGameplay gameplay
+    + AbstractPuzzleGameplay _gameplay
     - GameObject puzzleGameplayPrefab
     - PlayerHealthLogic _playerHealthLogic
     - PlayerDamageDealer _playerDamageDealer
     - PerformanceResult performanceResult
     - GameManager _gameManager
+    - TextMeshProUGUI PerformanceResultTx
+    - bool puzzleAlreadyCompleted
 
     + Start() void
     + OnTap() void
+    - PrepareScene() void
+    - SpawnGameplay() void
     + StartPuzzle() void
     + CompletePuzzle(didPlayerWin: bool) void
     + ExecuteVictoryLogic() void
     + ExecuteDefeatLogic() void
     + GetScore() int
-    + ShowFeedback(qualitativeResult: string) void
     + GetPerformanceResult() PerformanceResult
     + PuzzlePauseMe() void
     + PuzzleResumeMe() void
@@ -423,13 +435,16 @@ class EasterEgg {
 
 class AbstractPuzzleGameplay {
     <<abstract>>
-    # DataManager dataManager
-    # PuzzleEvaluation puzzleEvaluation
-    # GameObject background
-    # bool isFirstTimePlaying
-    # GameObject tutorialPrefab
+    # DataManager _dataManager
+    + PuzzleEvaluation _puzzleEvaluation
+    # GameObject _background
+    # Vector3 _spawnOffset
+    # bool _isFirstTimePlaying
+    # GameObject _tutorialPrefab
+    # TextMeshProUGUI _title
 
-    + StartGameplay() void*
+    - Awake() void
+    + StartGameplay() void
     # SetGlobalPositionTo(worldPosition: Vector3) void
     # ActivateSonObjects() void
     + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
@@ -439,6 +454,8 @@ class AbstractPuzzleGameplay {
     + IsFirstTime() bool
     + GetPuzzleEvaluation() PuzzleEvaluation
     # NotifyPuzzleVictory(didPlayerWin: bool) void
+    # OnInstanceAwake() void
+    # OnStartGameplay() void
 }
 
 
@@ -446,6 +463,7 @@ IPuzzlePausable <|.. PuzzleHalo
 IPuzzlePausable <|.. PuzzleManager
 IPuzzlePausable <|.. MovePlayer
 IPuzzlePausable <|.. PuzzleCompletionCheckZone
+JoystickGuiController ..|> IPuzzlePausable
 
 PlayerHealthLogic ..|> IDamageable
 PlayerHealthLogic ..|> IGameOverSubscriber
