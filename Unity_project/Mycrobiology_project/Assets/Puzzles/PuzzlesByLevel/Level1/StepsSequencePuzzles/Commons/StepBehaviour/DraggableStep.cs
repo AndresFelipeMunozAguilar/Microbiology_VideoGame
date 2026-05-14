@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DragCleaningStep : AbstractDraggableWorldObject
+public class DraggableStep : AbstractDraggableWorldObject
 {
     [SerializeField] private Vector3 _globalStartPosition;
     private Vector3 _localStartPosition;
@@ -17,18 +17,14 @@ public class DragCleaningStep : AbstractDraggableWorldObject
         }
 
 
-        // 1. Obtener el centro de la cámara en coordenadas del mundo
         Camera mainCamera = Camera.main;
         if (mainCamera == null) return;
 
-        // 1. Obtener el centro de la cámara en coordenadas del mundo
         Vector3 cameraWorldPos = mainCamera.transform.position;
         cameraWorldPos.z = _globalStartPosition.z;
 
-        // 2. Calcular la posición global de destino (Centro + Desplazamiento)
         Vector3 targetWorldPos = cameraWorldPos + _globalStartPosition;
 
-        // Restamos el origen de la cámara para obtener el vector relativo.
         _localStartPosition = GetComponentInParent<AbstractPuzzleGameplay>()
                             .transform
                             .InverseTransformPoint(targetWorldPos);
