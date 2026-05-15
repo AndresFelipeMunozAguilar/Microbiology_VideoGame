@@ -27,6 +27,7 @@ public class UserRegister : MonoBehaviour
 
     [Header("UI")]
     public GameObject registerWindow,loginWindow;
+    public Button btPlay;
 
     public void RegisterWindowState(bool state)
     {
@@ -64,6 +65,7 @@ public class UserRegister : MonoBehaviour
                 StateGeneral.text="Error de conexion:" + task.Result;
             }
         });
+        btPlay.interactable=false;
         LoginWindowState(false);
         RegisterWindowState(false);
     }
@@ -180,6 +182,7 @@ public class UserRegister : MonoBehaviour
                 {
                     StateLogin.text = "Login exitoso";
                     Name.text= "Bienvenido " +snapshot.GetValue<string>("nombre");
+                    btPlay.interactable=true;
                     PlayerID = codigo;
                     inputCodigoL.text="";
                     inputPasswordL.text="";
