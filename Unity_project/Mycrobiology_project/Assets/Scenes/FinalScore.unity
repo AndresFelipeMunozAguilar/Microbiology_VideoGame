@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 4389586791670470777, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
+      propertyPath: 'scenes.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5149223281178687071, guid: 4c8599919f7c70c419aa3c9439a92545, type: 3}
       propertyPath: m_Pivot.x
       value: 0

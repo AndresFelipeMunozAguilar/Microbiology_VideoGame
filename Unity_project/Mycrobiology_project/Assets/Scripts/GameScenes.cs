@@ -10,4 +10,5 @@ public enum GameScenes
     GameDemo,
     FinalScore,
     Credits,
+    GameDemo_B,
 }

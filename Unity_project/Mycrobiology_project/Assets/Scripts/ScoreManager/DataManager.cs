@@ -29,6 +29,7 @@ public class DataManager : MonoBehaviour
         CurrentData = LoadEvaluation();
     }
 
+    [Obsolete]
     public void SaveEvaluation(EvaluationData data)
     {
 
@@ -38,7 +39,7 @@ public class DataManager : MonoBehaviour
         string path = Application.persistentDataPath + "/evaluation.json";
 
         File.WriteAllText(path, json);
-
+        FindObjectOfType<FirebaseResultsUploader>().UploadEvaluationFromFile();
         Debug.Log("Datos guardados en: " + path);
     }
 
