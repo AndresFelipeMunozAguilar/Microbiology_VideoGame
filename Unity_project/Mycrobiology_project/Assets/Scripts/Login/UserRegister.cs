@@ -23,6 +23,7 @@ public class UserRegister : MonoBehaviour
     public static UserRegister Instance;
     private FirebaseFirestore db;
     private bool firebaseReady = false;
+    private string PlayerID;
 
     [Header("UI")]
     public GameObject registerWindow,loginWindow;
@@ -67,7 +68,9 @@ public class UserRegister : MonoBehaviour
         RegisterWindowState(false);
     }
 
-
+    public string getPlayerId(){
+        return PlayerID;
+    }
     public void Registrar()
     {
         if (!firebaseReady)
@@ -177,9 +180,9 @@ public class UserRegister : MonoBehaviour
                 {
                     StateLogin.text = "Login exitoso";
                     Name.text= "Bienvenido " +snapshot.GetValue<string>("nombre");
+                    PlayerID = codigo;
                     inputCodigoL.text="";
                     inputPasswordL.text="";
-                    PlayerPrefs.SetString("playerID", codigo);
                     LoginWindowState(false);
 
                 }

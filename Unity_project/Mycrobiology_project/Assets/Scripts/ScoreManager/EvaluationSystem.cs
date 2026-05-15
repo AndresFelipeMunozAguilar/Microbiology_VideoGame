@@ -29,6 +29,7 @@ public class EvaluationSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        playerID = UserRegister.Instance.getPlayerId();
     }
 
     public string RegisterPuzzleResult(string puzzleID, int finalScore, int maxScore, int bestScore)
@@ -141,6 +142,7 @@ public class EvaluationSystem : MonoBehaviour
                 return "Rendimiento Deficiente";
             }
     }
+
     public void SaveAllResults(string playerID)
     {
         EvaluationData data = new EvaluationData
