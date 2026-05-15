@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     // lo tiene el GameManager prefab (Establece 
     // la verdad sobre que compone a un GameManager) 
     // y, en cambio aquí instanciamos un nuevo 
-    // GameManager confiando en que tú desarrollador
+    // GameManager confiando en que tú, desarrollador,
     // te basarás en este prefab. 
     private static GameManager CreateNewInstance()
     {

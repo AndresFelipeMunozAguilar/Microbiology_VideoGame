@@ -8,30 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestMenu.unity
     guid: 12f81766ec52e594295770db8e7d6e62
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DevAndres.unity
     guid: fadb2ffccc8a5fa42ba3776a40a70af3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DevBrandon.unity
     guid: ce7506bb10a6e0649b0358cc1c09ad1a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Develop.unity
     guid: 5b5d8e8e91ea0c449ae758ad948516ce
-  - enabled: 0
-    path: Assets/Scenes/TempGameOver.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/testPuzzle.unity
     guid: c12eeede2ad0b6d4b80f23fe21f9917a
-  - enabled: 0
-    path: Assets/Scenes/VictoryScene.unity
-    guid: 42e4ab7402e679141a100e631bc0fd1c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameDemo.unity
     guid: 03426d6074a07d946a332124bef8d6dd
-  - enabled: 1
-    path: Assets/Scenes/GameDemo_B.unity
-    guid: c199c5d04fb49934aa7aa8aee7b153b8
   - enabled: 1
     path: Assets/Scenes/FinalScore.unity
     guid: 9de3fc27770a6f74c808f27dfd7b6b38
