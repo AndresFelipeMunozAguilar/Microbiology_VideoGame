@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c94928ffee94b14e9e73cdc7573ec4b, type: 3}
   m_Name: TutorialsDatabase
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDatabaseSO
-  _allTutorials: []
+  _allTutorials:
+  - {fileID: 11400000, guid: c9b20fa47fdfe664e878475aa3f07696, type: 2}
+  - {fileID: 11400000, guid: 16c99850c00dfae4998a83fb3f64bc7e, type: 2}
