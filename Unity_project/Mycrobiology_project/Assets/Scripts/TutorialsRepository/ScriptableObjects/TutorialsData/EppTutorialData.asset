@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1d6c771f4710f4a83f1c3298778d8c, type: 3}
+  m_Name: EppTutorialData
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
+  _puzzleID: EppDressUp
+  _tutorialTitle: EppDressUp
+  _thumbnailSprite: {fileID: 3244697289823877012, guid: a52d4f0a6dda177428f0c79e7fd95229, type: 3}
+  _fullTutorialSprite: {fileID: 3244697289823877012, guid: a52d4f0a6dda177428f0c79e7fd95229, type: 3}

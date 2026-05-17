@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1d6c771f4710f4a83f1c3298778d8c, type: 3}
+  m_Name: BloodstainTutorialData
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
+  _puzzleID: BloodStain
+  _tutorialTitle: Bloodstain Puzzle
+  _thumbnailSprite: {fileID: -6658162155472894093, guid: ee9ab3e3c0326e64abaa627c3cbc79ed, type: 3}
+  _fullTutorialSprite: {fileID: -6658162155472894093, guid: ee9ab3e3c0326e64abaa627c3cbc79ed, type: 3}

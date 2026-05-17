@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialDataSO : ScriptableObject
 {
     [Header("Identificadores Únicos")]
-    [Tooltip("Debe coincidir exactamente con el ID registrado en el JSON.")]
+    [Tooltip("Debe coincidir exactamente con el ID registrado en el JSON")]
     [SerializeField] private string _puzzleID;
 
     [Header("Contenido de la Galería")]
@@ -13,7 +13,7 @@ public class TutorialDataSO : ScriptableObject
     [SerializeField] private Sprite _thumbnailSprite;
 
     [Header("Contenido del Visor Expandido")]
-    [Tooltip("Imagen estática en alta resolución que se mostrará al maximizar.")]
+    [Tooltip("Imagen estática en alta resolución que se mostrará al maximizar")]
     [SerializeField] private Sprite _fullTutorialSprite;
 
     public string PuzzleID => _puzzleID;

@@ -5,12 +5,12 @@ using System.Collections.Generic;
     menuName = "ScriptableObject/Tutorials Repository/Tutorial Database")]
 public class TutorialDatabaseSO : ScriptableObject
 {
-    [SerializeField] private List<TutorialDataSO> allTutorials = new List<TutorialDataSO>();
+    [SerializeField] private List<TutorialDataSO> _allTutorials = new List<TutorialDataSO>();
 
-    public List<TutorialDataSO> AllTutorials => allTutorials;
+    public List<TutorialDataSO> AllTutorials => _allTutorials;
 
     public TutorialDataSO FindTutorialByID(string id)
     {
-        return allTutorials.Find(tutorial => tutorial.PuzzleID == id);
+        return _allTutorials.Find(tutorial => tutorial.PuzzleID == id);
     }
 }
