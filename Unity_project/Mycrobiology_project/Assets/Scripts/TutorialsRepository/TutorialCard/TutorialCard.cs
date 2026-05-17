@@ -46,17 +46,17 @@ public class TutorialCard : MonoBehaviour, IPointerClickHandler
     private void RenderUncoveredCard()
     {
         _thumbnailImage.sprite = _tutorialData.ThumbnailSprite;
-        _thumbnailImage.color = Color.white; // Color normal
+        // Color normal para que la imagen se vea claramente
+        _thumbnailImage.color = Color.white;
         _titleText.text = _tutorialData.TutorialTitle;
-        _overlayLockImage.gameObject.SetActive(false); // Oculta la capa negra
+        _overlayLockImage.gameObject.SetActive(false);
     }
 
     private void RenderCoveredCard()
     {
         _thumbnailImage.sprite = _tutorialData.ThumbnailSprite;
-        _thumbnailImage.color = Color.black; // Opcional: silueta negra de fondo
         _titleText.text = "???";
-        _overlayLockImage.gameObject.SetActive(true); // Muestra la capa negra
+        _overlayLockImage.gameObject.SetActive(true);
     }
 
 
@@ -64,7 +64,7 @@ public class TutorialCard : MonoBehaviour, IPointerClickHandler
     {
         if (!_isUnlocked)
         {
-            // Opcional: Aquí puedes disparar un evento acústico de "Bloqueado"
+            // Opcional: Aquí se podría disparar un evento acústico de "Bloqueado"
             return;
         }
 
