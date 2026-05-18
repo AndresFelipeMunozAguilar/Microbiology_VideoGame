@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c94928ffee94b14e9e73cdc7573ec4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bc75be4ab2d09549af7433eccec887a, type: 3}
   m_Name: TutorialsDatabase
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDatabaseSO
   _allTutorials:
-  - {fileID: 11400000, guid: c9b20fa47fdfe664e878475aa3f07696, type: 2}
-  - {fileID: 11400000, guid: 16c99850c00dfae4998a83fb3f64bc7e, type: 2}
+  - {fileID: 11400000, guid: 223d4d414cf525c4b85d9679dbc0dc0a, type: 2}
+  - {fileID: 11400000, guid: 69885c23cd766494dbbc56157135121d, type: 2}
