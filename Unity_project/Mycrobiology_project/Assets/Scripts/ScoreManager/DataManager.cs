@@ -85,6 +85,8 @@ public class DataManager : MonoBehaviour
     {
         LoadEvaluation();
 
+        Debug.Log($"<color=blue>{this.GetType().Name}:</color> La ruta de Application.persistentDataPath es: {Application.persistentDataPath}");
+
         // Si el puzzle ya existe en los datos cargados, es porque ya se jugó
         PuzzleResultData puzzleResultData = GetPuzzleByID(puzzleID);
 
