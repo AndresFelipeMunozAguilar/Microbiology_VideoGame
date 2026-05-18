@@ -11,7 +11,6 @@ public class TutorialCard : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image _overlayLockImage;
     [SerializeField] private TextMeshProUGUI _titleText;
 
-    // Dependencia de datos (Read-Only en runtime)
     private TutorialDataSO _tutorialData;
     private bool _isUnlocked;
 
@@ -48,14 +47,14 @@ public class TutorialCard : MonoBehaviour, IPointerClickHandler
         _thumbnailImage.sprite = _tutorialData.ThumbnailSprite;
         // Color normal para que la imagen se vea claramente
         _thumbnailImage.color = Color.white;
-        _titleText.text = _tutorialData.TutorialTitle;
+        _titleText.SetText(_tutorialData.TutorialTitle);
         _overlayLockImage.gameObject.SetActive(false);
     }
 
     private void RenderCoveredCard()
     {
         _thumbnailImage.sprite = _tutorialData.ThumbnailSprite;
-        _titleText.text = "???";
+        _titleText.SetText("???");
         _overlayLockImage.gameObject.SetActive(true);
     }
 
