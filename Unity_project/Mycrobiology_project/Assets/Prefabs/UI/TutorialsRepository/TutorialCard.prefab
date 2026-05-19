@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.218, y: -38.766}
-  m_SizeDelta: {x: 404.01, y: 372.334}
+  m_AnchoredPosition: {x: 0.0028, y: -72.911026}
+  m_SizeDelta: {x: 759.0031, y: 697.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8960118234618113870
 CanvasRenderer:
@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -557, y: 85}
-  m_SizeDelta: {x: 430, y: 485}
+  m_AnchoredPosition: {x: -654, y: -4}
+  m_SizeDelta: {x: 804.631, y: 907.549}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5344194638189489425
 CanvasRenderer:
@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 8886651812539597598}
   - component: {fileID: 2370207506638383891}
   - component: {fileID: 4271088483682290141}
+  - component: {fileID: 8842211190457092770}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -273,10 +274,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5184882277518014967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 183.4}
-  m_SizeDelta: {x: 337.303, y: 61.875}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 349.4838}
+  m_SizeDelta: {x: -45.622, y: 131.7238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2370207506638383891
 CanvasRenderer:
@@ -306,7 +307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DEFAULT TEXT
+  m_text: Bloodstain Puzzle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3406f8ab5ecac6d479d699f2e5737ce1, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 3406f8ab5ecac6d479d699f2e5737ce1, type: 2}
@@ -333,12 +334,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 75
+  m_fontSizeBase: 80.3
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 12
+  m_fontSizeMax: 75
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -378,3 +379,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8842211190457092770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080046994745247884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7623bba2238a0348a98a5925a543936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TitleSizeController
+  _fixedHeight: 120
+  _horizontalPadding: 25
+  _minFontSize: 15
+  _maxFontSize: 75
