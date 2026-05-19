@@ -250,11 +250,11 @@ RectTransform:
   - {fileID: 949754629}
   m_Father: {fileID: 1939693026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 6.5842896, y: -0.0007324219}
-  m_SizeDelta: {x: 1618.954, y: 0}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1618.9541, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &544689401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,15 +268,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 35
-    m_Right: 35
-    m_Top: 35
-    m_Bottom: 35
+    m_Left: 15
+    m_Right: 15
+    m_Top: 15
+    m_Bottom: 15
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 1111, y: 1111}
+  m_CellSize: {x: 744.477, y: 744.477}
+  m_Spacing: {x: 100, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!114 &544689402
