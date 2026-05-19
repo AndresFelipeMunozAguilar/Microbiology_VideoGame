@@ -1362,6 +1362,7 @@ GameObject:
   - component: {fileID: 1939693029}
   - component: {fileID: 1939693028}
   - component: {fileID: 1939693027}
+  - component: {fileID: 1939693030}
   m_Layer: 5
   m_Name: ScrollArea
   m_TagString: Untagged
@@ -1409,7 +1410,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 30
-  m_Viewport: {fileID: 0}
+  m_Viewport: {fileID: 1939693026}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
   m_HorizontalScrollbarVisibility: 0
@@ -1457,6 +1458,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939693025}
   m_CullTransparentMesh: 1
+--- !u!114 &1939693030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939693025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &2093457614
 GameObject:
   m_ObjectHideFlags: 0
