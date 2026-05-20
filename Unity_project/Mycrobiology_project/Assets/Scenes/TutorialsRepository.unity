@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1134,8 +1134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialsRepositoryManager
   _tutorialDatabase: {fileID: 11400000, guid: a154f3a927edb214480935fab26bb71b, type: 2}
   _gridContainer: {fileID: 544689400}
-  _cardPrefab: {fileID: 3225421518492315582, guid: b04365ad8bd687349beddde1125e9e8a, type: 3}
-  _popupViewer: {fileID: 0}
+  _cardPrefab: {fileID: 619559685123069479, guid: b04365ad8bd687349beddde1125e9e8a, type: 3}
+  _popupViewer: {fileID: 1847374994}
 --- !u!4 &736897868
 Transform:
   m_ObjectHideFlags: 0
