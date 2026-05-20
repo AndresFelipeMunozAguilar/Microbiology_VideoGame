@@ -11,7 +11,8 @@ public class TutorialsRepositoryManager : MonoBehaviour
     [Tooltip("El GameObject que tiene el componente Grid/Vertical Layout Group.")]
     [SerializeField] private Transform _gridContainer;
     [SerializeField] private TutorialCard _cardPrefab;
-
+    [Header("Referencia al Visor Expandido")]
+    [SerializeField] private TutorialPopupView _popupViewer;
 
     private void Start()
     {
@@ -33,21 +34,12 @@ public class TutorialsRepositoryManager : MonoBehaviour
         {
             TutorialDataSO tutorialData = allTutorials[i];
 
-            // Usamos la función del DataManager pasándole el ID único del puzzle.
-            // Nota: Se asume que DataManager.Instance ya expone este método booleano.
             bool isUnlocked = false;
 
             if (DataManager.Instance != null)
             {
                 isUnlocked = DataManager.Instance.HasPuzzleBeenPlayed(tutorialData.PuzzleID);
             }
-#if UNITY_EDITOR
-            else
-            {
-                // Salvaguarda para poder probar la UI en el editor sin cargar todo el juego
-                isUnlocked = true;
-            }
-#endif
 
             TutorialCard newCard = Instantiate(_cardPrefab, _gridContainer);
 
@@ -62,12 +54,17 @@ public class TutorialsRepositoryManager : MonoBehaviour
     // Delegado que se ejecuta cuando una tarjeta desbloqueada es presionada.
     private void OnTutorialCardClicked(TutorialDataSO clickedTutorialData)
     {
+        if (_popupViewer == null) return;
+
+        // Le ordenamos al visor central que se muestre y se cargue con estos datos especificos
+        _popupViewer.OpenWindow(clickedTutorialData);
     }
 
     private void ValidateDependencies()
     {
-        if (_tutorialDatabase == null) throw new NullReferenceException($"Falta asignar el {nameof(_tutorialDatabase)} en el GalleryManager.");
-        if (_gridContainer == null) throw new NullReferenceException($"Falta asignar el {nameof(_gridContainer)} en el GalleryManager.");
-        if (_cardPrefab == null) throw new NullReferenceException($"Falta asignar el {nameof(_cardPrefab)} en el GalleryManager.");
+        if (_tutorialDatabase == null) Debug.LogError($"Falta asignar el {nameof(_tutorialDatabase)} en el GalleryManager.");
+        if (_gridContainer == null) Debug.LogError($"Falta asignar el {nameof(_gridContainer)} en el GalleryManager.");
+        if (_cardPrefab == null) Debug.LogError($"Falta asignar el {nameof(_cardPrefab)} en el GalleryManager.");
+        if (_popupViewer == null) Debug.LogError($"Falta asignar el {nameof(_popupViewer)} en el GalleryManager.");
     }
 }
