@@ -140,7 +140,6 @@ Assets/
    PuzzleSequenceSO.cs
  Scripts/
   AbstractClasses/AbstractDraggableWorldObject.cs
-  AudioManager.cs
   FollowCenter.cs
   GameManager/GameManager.cs
   GameScenes.cs
@@ -171,6 +170,9 @@ Assets/
    PuzzleEvaluation.cs
    ScoreScreen.cs
    ShowScoreFinal.cs
+  Sounds/
+   AudioManager.cs
+   ButtonSound.cs
   UIElements/Countdown/
    CountdownBarManager.cs
    CountdownTextManager.cs

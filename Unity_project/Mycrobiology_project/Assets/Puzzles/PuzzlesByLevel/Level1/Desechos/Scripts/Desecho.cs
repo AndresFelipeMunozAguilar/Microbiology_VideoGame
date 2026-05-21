@@ -18,6 +18,7 @@ public class Desecho : AbstractDraggableWorldObject
     public DesechoElement ElementData => desecho;
     public bool IsResolved => resolved;
 
+
     public void CreateElement(
         DesechoElement assigned,
         PuzzleEvaluation evaluation,
@@ -29,6 +30,7 @@ public class Desecho : AbstractDraggableWorldObject
         gamePlay = gameplay;
 
         originPos = transform.position;
+
 
         if (spriteRenderer == null)
         {
