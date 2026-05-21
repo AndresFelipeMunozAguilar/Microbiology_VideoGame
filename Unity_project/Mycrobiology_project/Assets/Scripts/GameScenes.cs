@@ -9,4 +9,5 @@ public enum GameScenes
     FinalScore,
     Credits,
     GameDemo_B,
+    TutorialsRepository,
 }
