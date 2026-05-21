@@ -70,4 +70,5 @@ public class TutorialCard : MonoBehaviour, IPointerClickHandler
         // Si está desbloqueado, notifica al listener (Visor Central) enviando sus datos
         _onCardSelectedCallback?.Invoke(_tutorialData);
     }
+
 }
