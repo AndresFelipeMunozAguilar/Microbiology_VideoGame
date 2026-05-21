@@ -41,10 +41,6 @@ public class DataManager : MonoBehaviour
         Debug.Log("Datos guardados en: " + path);
     }
 
-    public void SendResultsFirebase()
-    {
-        FindObjectOfType<FirebaseResultsUploader>().UploadEvaluationFromFile();
-    }
 
     private EvaluationData LoadEvaluation()
     {

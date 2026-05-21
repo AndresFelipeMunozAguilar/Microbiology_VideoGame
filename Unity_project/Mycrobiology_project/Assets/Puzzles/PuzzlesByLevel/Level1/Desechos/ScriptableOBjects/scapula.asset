@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DesechoElement
   Name: espatula
   image: {fileID: -1457190629483209389, guid: 639b6337f81ba0a49a2276803a2337f0, type: 3}
-  metodoCorrecto: 2
+  metodoCorrecto: 0
   feedbackCorrecto: 
   feedbackIncorrecto: 

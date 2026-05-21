@@ -16,7 +16,7 @@ public class Pc_Mobile_Changes : MonoBehaviour
 
     void Start()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer && !Application.isMobilePlatform)
+        if (!Application.isMobilePlatform)
         {
             Debug.Log("PC WEB");
 
@@ -30,7 +30,7 @@ public class Pc_Mobile_Changes : MonoBehaviour
                 objeto3.anchoredPosition = posicionPcObjeto3;
         }
 
-        if (Application.platform == RuntimePlatform.WebGLPlayer && Application.isMobilePlatform)
+        if (Application.isMobilePlatform)
         {
             Debug.Log("CELULAR WEB");
 

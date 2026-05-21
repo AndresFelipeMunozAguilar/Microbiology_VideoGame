@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DesechoElement
   Name: Petri
   image: {fileID: -7675924537258505239, guid: 3f6a0249e672afb459ccf66bae83fd8f, type: 3}
-  metodoCorrecto: 0
+  metodoCorrecto: 2
   feedbackCorrecto: 
   feedbackIncorrecto: 

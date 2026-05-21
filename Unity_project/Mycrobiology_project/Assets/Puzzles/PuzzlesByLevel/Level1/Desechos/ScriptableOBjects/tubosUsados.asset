@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DesechoElement
   Name: tubosusados
   image: {fileID: 7499151179499670040, guid: 56376afcf5243a24c9f3e4e0b5dfaba4, type: 3}
-  metodoCorrecto: 0
+  metodoCorrecto: 2
   feedbackCorrecto: 
   feedbackIncorrecto: 

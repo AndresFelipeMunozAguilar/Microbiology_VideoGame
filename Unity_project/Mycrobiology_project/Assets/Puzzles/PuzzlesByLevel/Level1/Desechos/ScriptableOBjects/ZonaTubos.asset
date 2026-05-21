@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DesechoElement
   Name: 
   image: {fileID: 3195882143260061555, guid: b613a8bcd441a5049a13fdb6cbab8aaa, type: 3}
-  metodoCorrecto: 2
+  metodoCorrecto: 0
   feedbackCorrecto: 
   feedbackIncorrecto: 

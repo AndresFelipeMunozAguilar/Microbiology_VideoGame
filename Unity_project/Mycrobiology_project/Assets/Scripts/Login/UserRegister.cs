@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using Firebase;
@@ -20,25 +21,11 @@ public class UserRegister : MonoBehaviour
     public TMP_InputField  inputCodigoL;
     public TMP_InputField inputPasswordL;
     public TextMeshProUGUI StateRegister,StateLogin,StateGeneral,Name;
-    public static UserRegister Instance;
     private FirebaseFirestore db;
     private bool firebaseReady = false;
-    private string PlayerID;
+    public static UserRegister Instance;
 
-    [Header("UI")]
-    public GameObject registerWindow,loginWindow;
-    public Button btPlay;
-
-    public void RegisterWindowState(bool state)
-    {
-        registerWindow.SetActive(state);
-    }
-    public void LoginWindowState(bool state)
-    {
-        loginWindow.SetActive(state);
-    }
-    
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -50,6 +37,8 @@ public class UserRegister : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -65,14 +54,10 @@ public class UserRegister : MonoBehaviour
                 StateGeneral.text="Error de conexion:" + task.Result;
             }
         });
-        btPlay.interactable=false;
-        LoginWindowState(false);
-        RegisterWindowState(false);
+
     }
 
-    public string getPlayerId(){
-        return PlayerID;
-    }
+
     public void Registrar()
     {
         if (!firebaseReady)
@@ -124,7 +109,7 @@ public class UserRegister : MonoBehaviour
                         inputCodigo.text="";
                         inputNombre.text="";
                         inputPassword.text="";
-                        RegisterWindowState(false);
+                        FindAnyObjectByType<Menu>().RegisterWindowState(false);
                         Loguear(codigo,password);
                     }
                     else
@@ -171,7 +156,7 @@ public class UserRegister : MonoBehaviour
 
                 if (!snapshot.Exists)
                 {
-                    StateLogin.text = "Usuario no encontrado " + codigo +" : "+codigo.Length;
+                    StateLogin.text = "Usuario no encontrado";
                     return;
                 }
 
@@ -182,11 +167,13 @@ public class UserRegister : MonoBehaviour
                 {
                     StateLogin.text = "Login exitoso";
                     Name.text= "Bienvenido " +snapshot.GetValue<string>("nombre");
-                    btPlay.interactable=true;
-                    PlayerID = codigo;
+                    FindAnyObjectByType<Menu>().activePlay();
                     inputCodigoL.text="";
                     inputPasswordL.text="";
-                    LoginWindowState(false);
+                    FindAnyObjectByType<Menu>().LoginWindowState(false);
+                    FirebaseResultsUploader.Instance.setPlayerId(codigo);
+                    PlayerPrefs.SetString("playerID", codigo);
+                    PlayerPrefs.Save();
 
                 }
                 else
@@ -214,7 +201,72 @@ public class UserRegister : MonoBehaviour
 
         return sb.ToString();
     }
+    public void UploadEvaluation(EvaluationData data,TextMeshProUGUI tx)
+    {
+        if (!firebaseReady)
+        {
+            Debug.LogWarning("[Firebase] Todavía no está listo.");
+            tx.text= "Firebase no listo " +data.playerID+" : " +PlayerPrefs.GetString("playerID", "");
+        }
 
+        string rawJson = JsonUtility.ToJson(data, true);
+
+        List<Dictionary<string, object>> puzzleList = new List<Dictionary<string, object>>();
+
+        foreach (PuzzleResultData puzzle in data.puzzles)
+        {
+            Dictionary<string, object> puzzleData = new Dictionary<string, object>
+            {
+                { "puzzleID", puzzle.puzzleID },
+                { "score", puzzle.score },
+                { "bestScore", puzzle.bestScore },
+                { "performance", puzzle.performance }
+            };
+
+            puzzleList.Add(puzzleData);
+        }
+        data.playerID = PlayerPrefs.GetString("playerID", "");
+        Dictionary<string, object> result = new Dictionary<string, object>
+        {
+            { "playerID", data.playerID },
+            { "totalScore", data.totalScore },
+            { "date", data.date },
+            { "puzzles", puzzleList },
+            { "rawJson", rawJson },
+            { "createdAt", Timestamp.GetCurrentTimestamp() }
+        };
+
+        db.Collection("game_results").AddAsync(result).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                Debug.Log("[Firebase] Resultado subido correctamente.");
+                tx.text= "Resultados enviados al profesor";
+            }
+            else
+            {
+                Debug.LogError("[Firebase] Error subiendo resultado: " + task.Exception);
+                tx.text=  "Error subiendo resultados: " +task.Exception;
+            }
+        });
+        
+    }
+
+    public void UploadEvaluationFromFile2(TextMeshProUGUI tx)
+    {
+        string path = Application.persistentDataPath + "/evaluation.json";
+
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("[Firebase] No existe evaluation.json en: " + path);
+            tx.text= "No se encontraron resultados";
+        }
+
+        string json = File.ReadAllText(path);
+        EvaluationData data = JsonUtility.FromJson<EvaluationData>(json);
+
+        UploadEvaluation(data,tx);
+    }
 
     public void ListarUsuarios()
     {

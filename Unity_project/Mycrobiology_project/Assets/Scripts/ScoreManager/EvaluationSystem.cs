@@ -29,7 +29,11 @@ public class EvaluationSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        playerID = UserRegister.Instance.getPlayerId();
+        
+    }
+    void Start()
+    {
+        playerID = PlayerPrefs.GetString("playerID", "");
     }
 
     public string RegisterPuzzleResult(string puzzleID, int finalScore, int maxScore, int bestScore)
