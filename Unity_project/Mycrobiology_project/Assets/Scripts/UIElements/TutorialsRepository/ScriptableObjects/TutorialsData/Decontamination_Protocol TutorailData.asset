@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
   _puzzleID: Decontamination_Protocol
   _tutorialTitle: Decontamination Protocol
-  _thumbnailSprite: {fileID: -2521409195606705084, guid: 50c8048f29bcabb49bd89a5412e9e469, type: 3}
-  _fullTutorialSprite: {fileID: -2521409195606705084, guid: 50c8048f29bcabb49bd89a5412e9e469, type: 3}
+  _thumbnailSprite: {fileID: -5876779155623343429, guid: 7b2ed5efac8ed104eae7ebf340deca70, type: 3}
+  _fullTutorialSprite: {fileID: 5037917336336908888, guid: 715f7e7a8c3185e4e9e3a8a78c68db7d, type: 3}

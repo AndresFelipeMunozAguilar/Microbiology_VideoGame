@@ -37,10 +37,10 @@ public class Menu : MonoBehaviour
     }
     public void RegisterWindowState(bool state)
     {
-        registerWindow.SetActive(state);
+        if(registerWindow)registerWindow.SetActive(state);
     }
     public void LoginWindowState(bool state)
     {
-        loginWindow.SetActive(state);
+        if(loginWindow)loginWindow.SetActive(state);
     }
 }

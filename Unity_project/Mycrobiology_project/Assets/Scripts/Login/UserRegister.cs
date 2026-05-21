@@ -16,6 +16,8 @@ public class UserRegister : MonoBehaviour
     private bool firebaseReady = false;
     public static UserRegister Instance;
     TxMenu tx;
+    private string currentUser,currentPassword;
+    bool isLogin;
     private void Awake()
     {
         if (Instance == null)
@@ -41,19 +43,25 @@ public class UserRegister : MonoBehaviour
             {
                 db = FirebaseFirestore.DefaultInstance;
                 firebaseReady = true;
-                tx.StateGeneral.text="Inicia Sesion para jugar";
+                tx.StateGeneral.text="Inicia Sesion para jugar"; 
             }
             else
             {
                 tx.StateGeneral.text="Error de conexion:" + task.Result;
+                isLogin=false;
             }
         });
 
     }
-
+    public void Relogin()
+    {
+        if(!isLogin)return;
+        Loguear(currentUser,currentPassword);
+    }
 
     public void Registrar()
     {
+        isLogin=false;
         if (!firebaseReady)
         {
             tx.StateRegister.text="Server No listo";
@@ -135,6 +143,7 @@ public class UserRegister : MonoBehaviour
 
     public void Loguear(string codigo, string password)
     {
+        isLogin=false;
         if (string.IsNullOrEmpty(codigo) || string.IsNullOrEmpty(password))
         {
             tx.StateLogin.text = "Ingrese código y contraseña";
@@ -159,6 +168,9 @@ public class UserRegister : MonoBehaviour
 
                 if (storedPassword == inputPasswordMD5)
                 {
+                    currentUser=codigo;
+                    currentPassword=password;
+                    isLogin=true;
                     tx.StateLogin.text = "Login exitoso";
                     tx.StateGeneral.text= "Bienvenido " +snapshot.GetValue<string>("nombre");
                     FindAnyObjectByType<Menu>().activePlay();

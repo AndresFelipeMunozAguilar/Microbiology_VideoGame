@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
   _puzzleID: Waste_Sorting_Challenge
   _tutorialTitle: Waste Sorting Challenge
-  _thumbnailSprite: {fileID: 6719755784912921393, guid: 0280e7a43730afa45ba6cc7339d9b025, type: 3}
-  _fullTutorialSprite: {fileID: 6719755784912921393, guid: 0280e7a43730afa45ba6cc7339d9b025, type: 3}
+  _thumbnailSprite: {fileID: -8243931657195039584, guid: 0f74da99076ae1f43a52ee0410a69ec1, type: 3}
+  _fullTutorialSprite: {fileID: -2980597781855951520, guid: f1bd25e4e1e7bf348878d9f51d2dfaad, type: 3}

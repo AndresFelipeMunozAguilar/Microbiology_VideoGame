@@ -27,8 +27,8 @@ RectTransform:
   m_GameObject: {fileID: 6813883315094108872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.912769, y: 9.912769, z: 9.912769}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6099335106259510072}
   m_Father: {fileID: 0}
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 50c8048f29bcabb49bd89a5412e9e469, type: 3}
+  m_Texture: {fileID: 2800000, guid: 715f7e7a8c3185e4e9e3a8a78c68db7d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6902279009492987864, guid: a2b30f773b49cfd4dad082a6e677e084, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -34.5
+      value: -40.6
       objectReference: {fileID: 0}
     - target: {fileID: 6902279009492987864, guid: a2b30f773b49cfd4dad082a6e677e084, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

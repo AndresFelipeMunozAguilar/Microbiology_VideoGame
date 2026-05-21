@@ -14,5 +14,7 @@ public class TxMenu : MonoBehaviour
 
     private void Start() {
         UserRegister.Instance.setText(this);
+        UserRegister.Instance.Relogin();
+        
     }
 }
