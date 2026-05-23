@@ -71,4 +71,10 @@ public class TutorialCard : MonoBehaviour, IPointerClickHandler
         _onCardSelectedCallback?.Invoke(_tutorialData);
     }
 
+    private void OnDestroy()
+    {
+        // Limpieza de la referencia al callback para evitar Memory Leaks
+        _onCardSelectedCallback = null;
+    }
+
 }
