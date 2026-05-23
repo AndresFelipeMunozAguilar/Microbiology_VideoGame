@@ -36,10 +36,7 @@ public class TutorialsRepositoryManager : MonoBehaviour
 
             bool isUnlocked = false;
 
-            if (DataManager.Instance != null)
-            {
-                isUnlocked = DataManager.Instance.HasPuzzleBeenPlayed(tutorialData.PuzzleID);
-            }
+            if (DataManager.Instance != null) isUnlocked = DataManager.Instance.HasPuzzleBeenPlayed(tutorialData.PuzzleID);
 
             TutorialCard newCard = Instantiate(_cardPrefab, _gridContainer);
 
