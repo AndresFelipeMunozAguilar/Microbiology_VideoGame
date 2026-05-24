@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0d715fd32049a564dbcbabedb84bf911
+guid: 8935bdc7dd3d618469f4e73ac3532538
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7570093344910120282
-    second: EppPuzzleHalo_0
+      213: 2862339932523269868
+    second: PuzzleManagerSprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EppPuzzleHalo_0
+      name: PuzzleManagerSprite_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 8
-        width: 826
-        height: 1008
+        x: 106
+        y: 18
+        width: 818
+        height: 1001
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6aa651cf530a1f690800000000000000
-      internalID: -7570093344910120282
+      spriteID: cee0778d00319b720800000000000000
+      internalID: 2862339932523269868
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 12d572b278fe14842aeb95fdee05acab
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EppPuzzleHalo_0: -7570093344910120282
+      PuzzleManagerSprite_0: 2862339932523269868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
