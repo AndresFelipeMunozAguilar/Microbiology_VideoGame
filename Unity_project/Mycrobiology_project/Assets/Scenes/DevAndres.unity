@@ -824,30 +824,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 681384158333276256, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
-      propertyPath: m_Size.x
-      value: 2.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 681384158333276256, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
-      propertyPath: m_Size.y
-      value: 3.61
+    - target: {fileID: 461686142266812585, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1201116743335521203, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_Name
       value: EppPuzzleManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2088795124615221778, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088795124615221778, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088795124615221778, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1225798397}
-    - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
-      propertyPath: m_SortingOrder
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3933447875053993461, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1682758583
-      objectReference: {fileID: 0}
     - target: {fileID: 7113257419316145021, guid: 93b76c8a44aa8064c99daa6f0a318626, type: 3}
       propertyPath: _playerHealthLogic
       value: 
