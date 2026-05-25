@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 289534756578565229}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.04, y: -0.43, z: 0}
+  m_LocalPosition: {x: 12.04, y: -1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50,12 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
   halo: {fileID: 6192472732850097059}
   isVictoryAchieved: 0
-  gameplay: {fileID: 2498222950930519058, guid: c420204a7ad037a4b8ac2cdc98f3c033, type: 3}
+  _gameplay: {fileID: 0}
   puzzleGameplayPrefab: {fileID: 6220274305803757617, guid: c420204a7ad037a4b8ac2cdc98f3c033, type: 3}
   _playerHealthLogic: {fileID: 0}
   _playerDamageDealer: {fileID: 8210939894598448748}
   performanceResult: {fileID: 0}
   _gameManager: {fileID: 0}
+  PerformanceResultTx: {fileID: 0}
 --- !u!61 &6892247984168879791
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -29,16 +29,35 @@ public class EvaluationSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+    }
+    void Start()
+    {
+        playerID = PlayerPrefs.GetString("playerID", "");
     }
 
     public string RegisterPuzzleResult(string puzzleID, int finalScore, int maxScore, int bestScore)
     {
         Debug.Log($"EvaluationSystem: Registrando el resultado del puzzle:\n PuzzleID: {puzzleID}\n FinalScore: {finalScore}\n maxScore: {maxScore}\n bestScore: {bestScore}");
         if (puzzleFinalScores.ContainsKey(puzzleID))
-
         {
-            Debug.Log($"EvaluationSystem: Se encontró la key {puzzleID} en los puzzleFinalScores");
-            return CalculatePerformance(finalScore, maxScore);
+            int oldScore = puzzleFinalScores[puzzleID];
+            totalScore -= oldScore;
+
+            puzzleFinalScores[puzzleID] = finalScore;
+            totalScore += finalScore;
+
+            for (int i = 0; i < results.Count; i++)
+            {
+                if (results[i].puzzleID == puzzleID)
+                {
+                    results[i].score = finalScore;
+                    results[i].bestScore = Mathf.Max(results[i].bestScore, bestScore);
+                    results[i].performance = CalculatePerformance(finalScore, maxScore);
+                    SaveAllResults(playerID);
+                    return results[i].performance;
+                }
+            }
         }
 
         Debug.Log($"EvaluationSystem: Añadiendo puntajes del puzzle {puzzleID} a los resultados finales");
@@ -127,6 +146,7 @@ public class EvaluationSystem : MonoBehaviour
                 return "Rendimiento Deficiente";
             }
     }
+
     public void SaveAllResults(string playerID)
     {
         EvaluationData data = new EvaluationData
@@ -147,6 +167,6 @@ public class EvaluationSystem : MonoBehaviour
         if (data == null)
             return null;
 
-        return data.score;
+        return data.bestScore;
     }
 }

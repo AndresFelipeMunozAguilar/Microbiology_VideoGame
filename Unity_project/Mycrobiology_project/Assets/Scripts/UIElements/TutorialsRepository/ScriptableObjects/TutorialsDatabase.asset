@@ -15,3 +15,5 @@ MonoBehaviour:
   _allTutorials:
   - {fileID: 11400000, guid: 223d4d414cf525c4b85d9679dbc0dc0a, type: 2}
   - {fileID: 11400000, guid: 69885c23cd766494dbbc56157135121d, type: 2}
+  - {fileID: 11400000, guid: a78b7b291bcded14fb2b07dedfe8c1e2, type: 2}
+  - {fileID: 11400000, guid: 0d4b8f9605c3b24448fefe464d7049f7, type: 2}

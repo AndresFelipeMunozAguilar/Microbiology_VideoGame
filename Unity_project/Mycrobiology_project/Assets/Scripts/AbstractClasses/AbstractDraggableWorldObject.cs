@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,14 +7,14 @@ using UnityEngine.EventSystems;
 // eso implica que no sirve para elementos de la GUI
 [RequireComponent(typeof(Rigidbody2D), typeof(CanvasGroup))]
 public abstract class AbstractDraggableWorldObject : MonoBehaviour,
-    IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+    IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerUpHandler
 {
 
     [SerializeField] protected float _zDistanceToCamera;
     [SerializeField] protected Camera _mainCamera;
     [SerializeField] protected CanvasGroup _canvasGroup;
     [SerializeField] protected Rigidbody2D _rigidbody;
-
+    private Vector3 originalScale;
     protected virtual void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -22,6 +23,7 @@ public abstract class AbstractDraggableWorldObject : MonoBehaviour,
 
     public void Start()
     {
+        originalScale = transform.localScale;
         _mainCamera = Camera.main;
 
         // Se guarda la distancia Z entre el objeto y la cámara para que no salte al arrastrar
@@ -33,8 +35,13 @@ public abstract class AbstractDraggableWorldObject : MonoBehaviour,
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         // Lógica común: Resaltar objeto o sonido de click
+        transform.localScale = originalScale * 1.3f;
+        AudioManager.Instance.PlaySFX("pick");
     }
-
+    public virtual void OnPointerUp(PointerEventData eventData)
+    {
+        transform.localScale = originalScale;
+    }
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         if (_canvasGroup != null) _canvasGroup.blocksRaycasts = false;
@@ -46,7 +53,7 @@ public abstract class AbstractDraggableWorldObject : MonoBehaviour,
 
         OnDragStarted(); // Hook para subclases
     }
-
+    
     public void OnDrag(PointerEventData eventData)
     {
         // Lógica común: Transformación de coordenadas (Mundo)

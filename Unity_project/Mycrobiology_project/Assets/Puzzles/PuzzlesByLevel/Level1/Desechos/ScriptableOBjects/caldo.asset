@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f22fde6686aff74db7467a9f0aecf96, type: 3}
+  m_Name: caldo
+  m_EditorClassIdentifier: Assembly-CSharp::DesechoElement
+  Name: Caldo
+  image: {fileID: 7826737590967757604, guid: 81dc2f9be6e2d4042a3fc5a28d241968, type: 3}
+  metodoCorrecto: 1
+  feedbackCorrecto: 
+  feedbackIncorrecto: 

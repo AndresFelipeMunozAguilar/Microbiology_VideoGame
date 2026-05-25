@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c2ff5ef12c59c42827ccfe597d3d36, type: 3}
+  m_Name: Waste_Sorting_Challenge Tutorail Data
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
+  _puzzleID: Waste_Sorting_Challenge
+  _tutorialTitle: Waste Sorting Challenge
+  _thumbnailSprite: {fileID: -8243931657195039584, guid: 0f74da99076ae1f43a52ee0410a69ec1, type: 3}
+  _fullTutorialSprite: {fileID: -2980597781855951520, guid: f1bd25e4e1e7bf348878d9f51d2dfaad, type: 3}

@@ -6,9 +6,11 @@ public class ShowScoreFinal : MonoBehaviour
 {
     [SerializeField] GameObject Modulo;
     [SerializeField] RectTransform content;
+    [SerializeField] TextMeshProUGUI messageStatus;
 
     private void Start() {
         PrintFinalFeedback();
+        UserRegister.Instance.UploadEvaluationFromFile2(messageStatus);
     }
 
     void PrintFinalFeedback()

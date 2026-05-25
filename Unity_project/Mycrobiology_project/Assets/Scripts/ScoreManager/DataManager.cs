@@ -31,14 +31,16 @@ public class DataManager : MonoBehaviour
 
     public void SaveEvaluation(EvaluationData data)
     {
+
+        CurrentData = data;
         string json = JsonUtility.ToJson(data, true);
 
         string path = Application.persistentDataPath + "/evaluation.json";
 
         File.WriteAllText(path, json);
-
         Debug.Log("Datos guardados en: " + path);
     }
+
 
     private EvaluationData LoadEvaluation()
     {
@@ -83,7 +85,7 @@ public class DataManager : MonoBehaviour
 
     public bool HasPuzzleBeenPlayed(string puzzleID)
     {
-        LoadEvaluation();
+        CurrentData = LoadEvaluation();
 
         Debug.Log($"<color=blue>{this.GetType().Name}:</color> La ruta de Application.persistentDataPath es: {Application.persistentDataPath}");
 

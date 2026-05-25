@@ -11,11 +11,6 @@ public class GamePlayElements : AbstractPuzzleGameplay
     int elementsFinished = 0;
     PuzzleEvaluation score;
     bool IsPerfect = true;
-    private void Start()
-    {
-        transform.GetChild(0).gameObject.SetActive(false);
-
-    }
     public void NoPerfect() { IsPerfect = false; }
     void SelectElements()
     {
@@ -51,9 +46,9 @@ public class GamePlayElements : AbstractPuzzleGameplay
         Debug.Log("[ELEMENT] cuenta:" + elementsFinished + " : " + positions.Count);
         if (elementsFinished >= positions.Count)
         {
-            GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+            //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
             bool Finish = score.GetCurrentScore() <= 60 ? false : true;
-            score.FinishGame(Finish);
+            //score.FinishGame(Finish);
             if (Finish)
             {
                 if (IsPerfect) score.AddPoints("BonusPerfect");
@@ -71,6 +66,7 @@ public class GamePlayElements : AbstractPuzzleGameplay
     {
         transform.GetChild(0).gameObject.SetActive(true);
         score = GetComponent<PuzzleEvaluation>();
+        _puzzleEvaluation = score;
         if (_title) _title.text = score.puzzleID.ToString();
         SelectElements();
     }
