@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FinalScore.unity
     guid: 9de3fc27770a6f74c808f27dfd7b6b38
   - enabled: 1
+    path: Assets/Scenes/TutorialsRepository.unity
+    guid: 2f88aba439dfd3242a9bad12d0670401
+  - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 35093323718578243a4eaaf9d68943fe
   - enabled: 1

@@ -1,0 +1,622 @@
+---
+config:
+  theme: neo-dark
+---
+classDiagram
+    direction TB
+
+    class IPuzzlePausable {
+        <<Interface>>
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
+    }
+
+    class PuzzleCompletionCheckZone {
+        - string playerTag
+        - int _completedPuzzles
+        - int _totalPuzzles
+        - Collider2D _collider
+        - GameManager _gameManager
+        + Action~int,int~ OnPlayerGetsClose
+        + Action OnPlayerLeaves
+
+        + Awake() void
+        + OnEnable() void
+        + Start() void
+        + OnDisable() void 
+        + OnDestroy() void
+        + OnTriggerEnter2D(other: Collider2D) void
+        + CalculateCompletedPuzzles() int
+        + CalculateTotalPuzzles() int
+        + OnTriggerExit2D(other: Collider2D) void
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
+    }
+
+    class PuzzleCompletionText {
+        - TextMeshPro _textMeshPro
+        - PuzzleCompletionCheckZone _puzzleCompletionCheckZone
+        - float _duration
+        - float _yOffset
+        - Coroutine _activeAnimation
+        - Vector3 _initialPosition
+        - GameManager _gameManager
+
+        + Awake() void
+        + Start() void
+        + OnDestroy() void
+        + OnEnable() void
+        + OnDisable() void
+        - AnimateText(startAlpha: float, endAlpha: float, startPos: Vector3, endPos: Vector3, disableAtEnd: bool) IEnumerator
+        - StopCurrentAnimation() void
+        + Show() void
+        + Hide() void
+        + GetCompletionMessage(completedPuzzles: int, totalPuzzles: int) string
+        + ShowPuzzleCompletionText(completedPuzzles: int, totalPuzzles: int) void
+        + HidePuzzleCompletionText() void
+        + OnGameOver() void
+    }
+
+    class GameScenes {
+        <<enumeration>> 
+        TestMenu
+        DevAndres
+        DevBrandon
+        Develop
+        TestPuzzle
+        GameDemo
+        FinalScore
+        TutorialsRepository
+        Credits
+    }
+
+    class JoystickGuiController {
+        - GameObject joystick
+        - GameManager gameManager
+
+        + Start() void
+        - OnDestroy() void
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
+    }
+
+    class GameManager {
+        <<Singleton>>
+        - GameManager _instance$
+        + bool isGameOver
+        - bool isVictoryAchieved
+        + bool isPuzzleActive
+        - List~IPuzzlePausable~ puzzlePausables
+        - Action OnGameOver
+
+        + Awake() void
+        - GameManager() 
+        - CreateNewInstance() GameManager$
+        + GetInstance() GameManager$
+        + SubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
+        + UnsubscribePuzzlePausable(puzzlePausable: IPuzzlePausable) void
+        + PuzzlePauseAll() void
+        + PuzzleResumeAll() void
+        + SwitchIsPuzzleActive() void
+        + SubscribeToGameOver(subscriber: IGameOverSubscriber) void
+        + UnsubscribeToGameOver(subscriber: IGameOverSubscriber) void
+        + GameOver(reason: string) void
+        + Victory() void
+        + NotifyGameOverSubscribers() void
+        + LoadScene(scene: GameScenes) void
+    }
+
+    class MovePlayer {
+        - Rigidbody2D rb
+        - float speed
+        - Vector2 _input
+        - GameManager _gameManager
+
+        + Awake() void
+        - Start() void
+        + OnEnable() void
+        + OnDisable() void
+        - Update() void
+        - FixedUpdate() void
+        + Pause() void
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
+        + OnGameOver() void
+        + DeactivateScript() void
+        + ActivateScript() void
+    }
+
+    class CountdownBarManager {
+        - Image countdownBar
+        - bool isPaused
+        + Action~int~ OnTimeChanged
+        - int previousTimeRemaining
+        - float timeRemaining
+        - float maxTime
+        - GameManager _gameManager
+
+        + Awake() void
+        + OnEnable() void
+        + OnDisable() void
+        + Update() void
+        + StartCountdown() void
+        + SetPaused(paused: bool) void
+        + ResetCountdown() void
+        + TimeIsUp() void
+        + OnGameOver() void
+    }
+
+    class PuzzleHalo {
+        + float pulseSpeed
+        + float maxScale
+        + SpriteRenderer haloSr
+        + Vector3 haloBaseScale
+        + float minimumTransparency
+        + bool isPlayerClose
+        - GameManager _gameManager
+
+        - Start() void
+        - Update() void
+        + Pulse(referenceTime: float) void
+        + Glow(referenceTime: float) void
+        - OnTriggerEnter2D(other: Collider2D) void
+        - OnTriggerExit2D(other: Collider2D) void
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
+        + OnDestroy() void
+    }
+
+    class IGameOverSubscriber {
+        + OnGameOver() void
+    }
+
+    class PlayerHealthLogic {
+        - int maxLives
+        - int currentLives
+        - bool isDead
+        + Action~int~ OnHealthChanged$
+        - GameManager _gameManager
+
+        + Awake() void
+        + OnEnable() void
+        + OnDisable() void
+        + TakeDamage(damageAmount: int) void
+        + ReduceLivesNBound(damageAmount: int) int
+        + PlayerDead() void
+        + OnGameOver() void
+    }
+
+    class CountdownTextManager {
+        - TextMeshProUGUI _showText
+        - CountdownBarManager _countdownBarManager
+        - int showMinutes
+        - int showSeconds
+
+        + OnEnable() void
+        + OnDisable() void
+        + UpdateTextInMinutes(seconds: int) void
+    }
+
+    class PlayerHealthView {
+        - TextMeshProUGUI healthText
+        + OnEnable() void
+        + UpdateHealthText(currentLives: int) void
+        + OnDisable() void
+    }
+
+    class IDamageable {
+        <<interface>>
+        + TakeDamage(damageAmount: int) void
+    }
+
+    class IPuzzleManager {
+        <<interface>>
+        + StartPuzzle() void
+        + CompletePuzzle(didPlayerWin: bool) void
+        + GetScore() int
+        + GetPerformanceResult() PerformanceResult
+    }
+
+    class DamageThreshold {
+        + int threshold
+        + int damage
+    }
+
+    class PuzzleDamageTable {
+        <<ScriptableObject>>
+        + List~DamageThreshold~ damageThresholdPairs
+    }
+
+    %% Abstract draggable
+    class AbstractDraggableWorldObject{
+        <<abstract>> 
+        # float _zDistanceToCamera
+        # Camera _mainCamera
+        # CanvasGroup _canvasGroup
+        # Rigidbody2D _rigidbody
+
+        # Awake() void
+        + Start() void
+        + OnPointerDown(eventData: PointerEventData) void
+        + OnBeginDrag(eventData: PointerEventData) void
+        + OnDrag(eventData: PointerEventData) void
+        + OnEndDrag(eventData: PointerEventData) void
+        # OnInstanceStart() void
+        # OnDragStarted() void
+        # OnDuringDrag() void
+        # OnDragEnded() void
+    }
+
+    class PuzzleManager {
+        - PuzzleHalo halo
+        + bool isVictoryAchieved
+        + AbstractPuzzleGameplay _gameplay
+        - GameObject puzzleGameplayPrefab
+        - PlayerHealthLogic _playerHealthLogic
+        - PlayerDamageDealer _playerDamageDealer
+        - PerformanceResult performanceResult
+        - GameManager _gameManager
+        - TextMeshProUGUI PerformanceResultTx
+        - bool puzzleAlreadyCompleted
+
+        + Start() void
+        + OnTap() void
+        - PrepareScene() void
+        - SpawnGameplay() void
+        + StartPuzzle() void
+        + CompletePuzzle(didPlayerWin: bool) void
+        + ExecuteVictoryLogic() void
+        + ExecuteDefeatLogic() void
+        + GetScore() int
+        + GetPerformanceResult() PerformanceResult
+        + PuzzlePauseMe() void
+        + PuzzleResumeMe() void
+        + OnDestroy() void
+    }
+
+    class PlayerDamageDealer {
+        - int _damageAmount
+        - bool _canApplyDamage
+        - PuzzleDamageTable _puzzleDamageTable
+
+        + CalculateDamage(gameplayScore: int) void
+        + CanApplyDamage() bool
+        + DealDamage(target: IDamageable) void
+    }
+
+    class ITappable {
+        <<interface>>
+        + OnTap() void
+    }
+
+    class InputHandler {
+        - Raycaster raycaster
+        + Start() void
+        + OnDestroy() void
+        + OnTap(context: InputAction.CallbackContext ) void
+    }
+
+    class Raycaster {
+        - Camera mainCamera
+        + ProcessTap(screenPosition: Vector2 ) void
+    }
+
+    class ControlsManager {
+        - Map map
+        - Map.PlayerActions controls$
+        - ControlsManager instance$
+        + Awake() void
+        + Map.PlayerActions getControls() Map.PlayerActions$
+        + OnEnable() void
+        + OnDisable() void
+    }
+
+    class PerformanceResult {
+        - int numericScore
+        - string qualitativeResult
+        + calculateNumericScore() void
+        + setQualitativeResult() void
+        + toString() string
+    }
+
+    class PuzzleTutorial {
+        - AbstractPuzzleGameplay puzzleGameplay
+        - String puzzleName
+        - SpriteRenderer spriteRenderer
+        - string title
+        - Image gifTutorial
+        - string tutorialDescription
+
+        - Start() void
+        + StartPuzzleGameplay() void
+        + Destroy() void
+    }
+
+    class FeedbackText {
+        - string text
+        + Show(position: Vector3, text: string) void
+    }
+
+    class DataManager {
+        - EvaluationData CurrentData
+        + DataManager Instance$
+
+        - Awake() void
+        - Start() void
+        + SaveEvaluation(data: EvaluationData) void
+        - LoadEvaluation() EvaluationData
+        + GetPuzzleByID(ID: string) PuzzleResultData
+        + HasPuzzleBeenPlayed(puzzleID: string) bool
+    }
+
+    class PuzzleResultData {
+        + string puzzleID
+        + int score
+        + int bestScore
+        + bool tutorialFlag
+        + string performance
+    }
+
+    class EvaluationData {
+        + string playerID
+        + int totalScore
+        + string date
+        + List~PuzzleResultData~ puzzles
+    }
+
+    class EvaluationSystem {
+        <<Singleton>>
+        + EvaluationSystem Instance$
+        - string playerID
+        - List~PuzzleResultData~ results
+        - Dictionary~string,int~ puzzleFinalScores
+        - int totalScore
+        - int FinalScore
+        - int MaxTotalScore
+        - string totalPerformance
+        - int puzzlesAmount
+
+        - Awake() void
+        + RegisterPuzzleResult(puzzleID: string, finalScore: int, maxScore: int, bestScore: int) string
+        + GetPuzzlesAmount() int
+        + GetFinalScore() int
+        + GetTotalPerformance() string
+        + GetPuzzleScore(puzzleID: string) int
+        - CalculatePerformance(score: int, maxScore: int) string
+        + SaveAllResults(playerID: string) void
+        + GetBestScore(puzzleID: string) int?
+    }
+
+    class PuzzleEvaluation {
+        - string puzzleID
+        - int maxScore
+        - int minScore
+        - int winScoreThreshold
+        - int loseScoreThreshold
+        - int currentScore
+        - bool finished
+        - List~ActionKey~ values
+        - GameObject ScreenScore
+        - Dictionary~string,int~ runtimeDict
+        + Awake() void
+        + GetValue(key: string) int
+        + AddPoints(key: string) void
+        + AddPoints(amount: int) void
+        + RemovePoints(key: string) void
+        + RemovePoints(amount: int) void
+        + AddCustom(amount: int) void
+        + FinishGame(victory: bool) void
+        + GetCurrentScore() int
+        - ClampScore() void
+        - CheckAutoEnd() void
+        - SendResultToGlobal() void
+        + ShowResults(score: int, maxScore: int, performance: string, bestScore: int) void
+    }
+
+    class ScoreScreen {
+        - TextMeshProUGUI ScoreTx
+        - TextMeshProUGUI PerformanceTx
+        - TextMeshProUGUI BestScoreTx
+        + SendData(score:int,maxScore:int,performance:string,bestScore:int) void
+        - ScoreAnimation(text:TextMeshProUGUI,score:int,maxScore:int) IEnumerator
+        - PerformanceAnimation(performance:string) IEnumerator
+        + Close() void
+    }
+
+    class ActionKey {
+        + string key
+        + int value
+    }
+
+    class EasterEgg {
+        - bool isActivated
+        + OnClick()
+        + PlayAnimation()
+    }
+
+    class AbstractPuzzleGameplay {
+        <<abstract>>
+        # DataManager _dataManager
+        + PuzzleEvaluation _puzzleEvaluation
+        # GameObject _background
+        # Vector3 _spawnOffset
+        # bool _isFirstTimePlaying
+        # GameObject _tutorialPrefab
+        # TextMeshProUGUI _title
+
+        - Awake() void
+        + StartGameplay() void
+        # SetGlobalPositionTo(worldPosition: Vector3) void
+        # ActivateSonObjects() void
+        + SpawnBackground(position: Vector3, rotation: Quaternion, parent: Transform) void
+        + Victory() void*
+        + Defeat() void*
+        + ShowTutorial() void
+        + IsFirstTime() bool
+        + GetPuzzleEvaluation() PuzzleEvaluation
+        # NotifyPuzzleVictory(didPlayerWin: bool) void
+        # OnInstanceAwake() void
+        # OnStartGameplay() void
+    }
+
+    class TutorialDataSO {
+        - string _puzzleID
+        - string _tutorialTitle
+        - Sprite _thumbnailSprite
+        - Sprite _fullTutorialSprite
+
+        + PuzzleID string
+        + TutorialTitle string
+        + ThumbnailSprite Sprite
+        + FullTutorialSprite Sprite
+    }
+
+    class TutorialDatabaseSO {
+        - List~TutorialDataSO~ _allTutorials
+        + AllTutorials List~TutorialDataSO~
+
+        + FindTutorialByID(id: string) TutorialDataSO
+    }
+
+
+    class ImageSizeController {
+        - Vector2 _sizeRatio
+        - RectTransform _rectTransform
+        - RectTransform _parentRect
+        - Image _image
+
+        - Awake() void
+        - ResizeImage() void
+    }
+
+    class TitleSizeController {
+        - float _fixedHeight
+        - float _horizontalPadding
+        - float _minFontSize
+        - float _maxFontSize
+        - RectTransform _rectTransform
+        - RectTransform _parentRect
+        - TextMeshProUGUI _tmp
+
+        - Awake() void
+        - ConfigureText() void
+        - ResizeToParent() void
+    }
+
+    class TutorialCard {
+        - Image _thumbnailImage
+        - Image _overlayLockImage
+        - TextMeshProUGUI _titleText
+        - TutorialDataSO _tutorialData
+        - bool _isUnlocked
+        - Action~TutorialDataSO~ _onCardSelectedCallback
+
+        + Setup(data: TutorialDataSO, isUnlocked: bool, onCardSelected: Action<TutorialDataSO>) void
+        - RenderState() void
+        - RenderUncoveredCard() void
+        - RenderCoveredCard() void
+        + OnPointerClick(eventData: PointerEventData) void
+        - OnDestroy()
+    }
+
+    class TutorialsRepositoryManager {
+        - TutorialDatabaseSO _tutorialDatabase
+        - Transform _gridContainer
+        - TutorialCard _cardPrefab
+        - TutorialPopupView _popupViewer
+
+        - Start() void
+        - PopulateGallery() void
+        - OnTutorialCardClicked(clickedTutorialData: TutorialDataSO) void
+        - ValidateDependencies() void
+    }
+
+    class TutorialPopupView {
+        - GameObject _rootPopupPanel
+        - Image _fullSizeTutorialImage
+        - TextMeshProUGUI _titleText
+        - Button _closeButton
+
+        - Awake() void
+        + OpenWindow(data: TutorialDataSO) void
+        + CloseWindow() void
+        - OnDestroy() void
+        - ValidateDependencies() void
+    }
+
+    IPuzzlePausable <|.. PuzzleHalo
+    IPuzzlePausable <|.. PuzzleManager
+    IPuzzlePausable <|.. MovePlayer
+    IPuzzlePausable <|.. PuzzleCompletionCheckZone
+    JoystickGuiController ..|> IPuzzlePausable
+
+    PlayerHealthLogic ..|> IDamageable
+    PlayerHealthLogic ..|> IGameOverSubscriber
+
+    PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
+
+    GameScenes --* GameManager
+
+    GameManager <.. PlayerHealthLogic : notifica GameOver por vida
+    GameManager <.. PuzzleCompletionCheckZone : notifica Victory (Todos los puzzles fueron completados)
+    GameManager -- CountdownBarManager : notifica time up
+
+    CountdownTextManager -- CountdownBarManager : se suscribe a OnTimeChanged
+
+    PuzzleCompletionCheckZone -- PuzzleCompletionText : se suscribe a los eventos OnPlayerGetsClose/OnPlayerLeaves
+    EvaluationSystem <.. PuzzleCompletionCheckZone
+    PuzzleCompletionText ..|> IGameOverSubscriber
+    PuzzleCompletionCheckZone ..|> IGameOverSubscriber
+    CountdownBarManager ..|> IGameOverSubscriber
+    MovePlayer ..|> IGameOverSubscriber
+
+    PuzzleDamageTable *-- DamageThreshold
+    PlayerDamageDealer o-- PuzzleDamageTable
+
+    GameManager o-- IGameOverSubscriber : subscribes
+    IPuzzleManager <|.. PuzzleManager
+    AbstractPuzzleGameplay ..> IPuzzleManager : Notifica que se completó el puzzle
+
+    ITappable <|.. PuzzleManager
+
+    PuzzleManager *-- FeedbackText
+    PuzzleManager *-- PerformanceResult
+    PuzzleManager *-- PuzzleHalo
+    PuzzleManager -- PlayerHealthLogic
+    PuzzleManager *-- PlayerDamageDealer
+    PuzzleManager <.. EvaluationSystem
+    AbstractPuzzleGameplay -- PuzzleTutorial 
+    PuzzleManager *-- AbstractPuzzleGameplay
+
+    PuzzleManager -- DataManager
+    AbstractPuzzleGameplay -- DataManager
+    GameManager o-- DataManager
+
+    DataManager o-- EvaluationData
+    EvaluationData o-- PuzzleResultData
+
+    EvaluationSystem o-- PuzzleResultData
+    EvaluationSystem -- DataManager
+    PuzzleManager <.. EvaluationSystem : Cuenta el total de PuzzleManagers
+    PuzzleEvaluation -- EvaluationSystem
+    PuzzleEvaluation -- ScoreScreen
+    PuzzleEvaluation o-- ActionKey
+
+    AbstractPuzzleGameplay o-- PuzzleEvaluation
+
+    IPuzzlePausable --o GameManager: Se subscribe a la lista de PuzzlePausables
+    PuzzleManager -- GameManager : reporta resultado
+
+    InputHandler -- Raycaster
+    ControlsManager -- InputHandler
+    Raycaster -- ITappable
+
+    TutorialsRepositoryManager ..> DataManager : "consulta permanencia“
+    TutorialsRepositoryManager -- TutorialDatabaseSO 
+    TutorialDatabaseSO o-- TutorialDataSO : "contiene (lista)"
+    TutorialsRepositoryManager *-- TutorialCard : "instancia tarjetas en runtime"
+    TutorialPopupView -- TutorialsRepositoryManager : "controla / abre visor"
+    TutorialCard -- TutorialDataSO
+    TutorialPopupView ..> TutorialDataSO : "usa en OpenWindow (dependencia)"
+    ImageSizeController --* TutorialPopupView 
+    TitleSizeController --* TutorialPopupView

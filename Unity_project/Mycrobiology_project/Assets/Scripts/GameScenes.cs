@@ -7,6 +7,7 @@ public enum GameScenes
     TestPuzzle,
     GameDemo,
     FinalScore,
+    TutorialsRepository,
     Credits,
     GameDemo_B,
     TutorialsRepository,

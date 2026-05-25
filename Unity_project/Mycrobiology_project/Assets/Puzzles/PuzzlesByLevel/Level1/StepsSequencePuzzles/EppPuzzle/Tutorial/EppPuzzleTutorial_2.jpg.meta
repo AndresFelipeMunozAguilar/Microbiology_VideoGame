@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a52d4f0a6dda177428f0c79e7fd95229
+guid: 9d427f87db2e1f04bb05f1d799b23281
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3244697289823877012
-    second: EppTutorial_0
+      213: 3947763157914379796
+    second: EppPuzzleTutorial_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EppTutorial_0
+      name: EppPuzzleTutorial_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 972
-        height: 972
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 497ff937efa770d20800000000000000
-      internalID: 3244697289823877012
+      spriteID: 4166cdc0da549c630800000000000000
+      internalID: 3947763157914379796
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EppTutorial_0: 3244697289823877012
+      EppPuzzleTutorial_2_0: 3947763157914379796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

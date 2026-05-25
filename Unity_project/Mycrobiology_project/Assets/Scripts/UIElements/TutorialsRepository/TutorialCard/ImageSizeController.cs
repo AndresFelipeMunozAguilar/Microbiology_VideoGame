@@ -6,14 +6,14 @@ public class ImageSizeController : MonoBehaviour
 {
     [SerializeField] private Vector2 _sizeRatio = new Vector2(0.5f, 0.5f);
 
-    private RectTransform rectTransform;
-    private RectTransform parentRect;
+    private RectTransform _rectTransform;
+    private RectTransform _parentRect;
     private Image image;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        parentRect = transform.parent.GetComponent<RectTransform>();
+        _rectTransform = GetComponent<RectTransform>();
+        _parentRect = transform.parent.GetComponent<RectTransform>();
         image = GetComponent<Image>();
 
         ResizeImage();
@@ -21,15 +21,15 @@ public class ImageSizeController : MonoBehaviour
 
     private void ResizeImage()
     {
-        float targetWidth = parentRect.rect.width * _sizeRatio.x;
-        float targetHeight = parentRect.rect.height * _sizeRatio.y;
+        float targetWidth = _parentRect.rect.width * _sizeRatio.x;
+        float targetHeight = _parentRect.rect.height * _sizeRatio.y;
 
-        rectTransform.SetSizeWithCurrentAnchors(
+        _rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Horizontal,
             targetWidth
         );
 
-        rectTransform.SetSizeWithCurrentAnchors(
+        _rectTransform.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Vertical,
             targetHeight
         );

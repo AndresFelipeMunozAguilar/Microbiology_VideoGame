@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
   _puzzleID: EppDressUp
   _tutorialTitle: Epp Puzzle
-  _thumbnailSprite: {fileID: 3244697289823877012, guid: a52d4f0a6dda177428f0c79e7fd95229, type: 3}
-  _fullTutorialSprite: {fileID: 3244697289823877012, guid: a52d4f0a6dda177428f0c79e7fd95229, type: 3}
+  _thumbnailSprite: {fileID: 2862339932523269868, guid: 8935bdc7dd3d618469f4e73ac3532538, type: 3}
+  _fullTutorialSprite: {fileID: 3947763157914379796, guid: 9d427f87db2e1f04bb05f1d799b23281, type: 3}
