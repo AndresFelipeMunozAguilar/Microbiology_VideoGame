@@ -1,14 +1,13 @@
 public enum GameScenes
 {
     TestMenu,
+    GameDemo_B,
+    FinalScore,
+    Develop,
+    GameDemo,
     DevAndres,
     DevBrandon,
-    Develop,
     TestPuzzle,
-    GameDemo,
-    FinalScore,
     TutorialsRepository,
     Credits,
-    GameDemo_B,
-    TutorialsRepository,
 }
