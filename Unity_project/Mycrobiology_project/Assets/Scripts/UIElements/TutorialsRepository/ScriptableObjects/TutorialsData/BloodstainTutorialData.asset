@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDataSO
   _puzzleID: BloodStain
   _tutorialTitle: Bloodstain Puzzle
-  _thumbnailSprite: {fileID: -6658162155472894093, guid: ee9ab3e3c0326e64abaa627c3cbc79ed, type: 3}
-  _fullTutorialSprite: {fileID: -6658162155472894093, guid: ee9ab3e3c0326e64abaa627c3cbc79ed, type: 3}
+  _thumbnailSprite: {fileID: 78538845332517403, guid: d111bc8de858890439dd5b1c8a205a5b, type: 3}
+  _fullTutorialSprite: {fileID: 7925200863055748104, guid: adaf71594d922db4f8cf1ac7e1bbd865, type: 3}
