@@ -5,6 +5,7 @@ config:
 classDiagram
     direction TB
 
+
     class IPuzzlePausable {
         <<Interface>>
         + PuzzlePauseMe() void
@@ -544,13 +545,22 @@ classDiagram
         - ValidateDependencies() void
     }
 
+    class DummyDeleteMe {
+        <<Singleton>>
+
+       + int numero
+       - string letras
+
+       + Hola( hola2: int ) 
+    }
+
     IPuzzlePausable <|.. PuzzleHalo
     IPuzzlePausable <|.. PuzzleManager
     IPuzzlePausable <|.. MovePlayer
     IPuzzlePausable <|.. PuzzleCompletionCheckZone
     JoystickGuiController ..|> IPuzzlePausable
 
-    PlayerHealthLogic ..|> IDamageable
+    IDamageable <|.. PlayerHealthLogic
     PlayerHealthLogic ..|> IGameOverSubscriber
 
     PlayerHealthLogic <.. PlayerHealthView : se suscribe a OnHealthChanged$
@@ -592,8 +602,8 @@ classDiagram
     AbstractPuzzleGameplay -- DataManager
     GameManager o-- DataManager
 
-    DataManager o-- EvaluationData
-    EvaluationData o-- PuzzleResultData
+    EvaluationData --o DataManager
+    PuzzleResultData --o EvaluationData 
 
     EvaluationSystem o-- PuzzleResultData
     EvaluationSystem -- DataManager
