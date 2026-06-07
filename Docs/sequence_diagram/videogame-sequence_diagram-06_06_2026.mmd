@@ -10,6 +10,7 @@ sequenceDiagram
     participant PuzzleSys as Sistema de Puzzles
     participant Persistencia as Sistema de Persistencia
     participant BD as Base de Datos Centralizada (Cloud)
+    participant TutosRepo as Repositorio de Tutoriales
 
     Jugador ->> Core: Iniciar juego
     Core -) PuzzleSys: Pedir instanciar puzzles
@@ -41,15 +42,21 @@ sequenceDiagram
     end
 
     %% Ejecución del puzzle
-    PuzzleSys ->> Jugador: Ejecutar puzzle
-    Jugador -->> PuzzleSys: Resolver puzzle
+    PuzzleSys ->> Jugador: Ejecutar puzzle gameplay
+    PuzzleSys ->> PuzzleSys: Añadir o restar puntos a la calificación
+    Jugador -->> PuzzleSys: Resolver puzzle gameplay
 
     %% Calificación
     PuzzleSys ->> PuzzleSys: Calificar desempeño
+
+    %% Persistencia de resultados
+    PuzzleSys ->> Persistencia: Registrar resultado del puzzle
+    Persistencia ->> Persistencia: Actualizar log de desempeño
+
     PuzzleSys ->> Jugador: Mostrar feedback de desempeño
 
     %% Daño por mal desempeño
-    alt Desempeño = Malo
+    alt Desempeño != Perfecto
         PuzzleSys ->> Core: Reportar daño
         Core ->> Jugador: Aplicar daño
     end
@@ -64,11 +71,6 @@ sequenceDiagram
         PuzzleSys ->> Jugador: Mostrar victoria (Ganar juego)
     end
 
-    
-    %% Persistencia de resultados
-    PuzzleSys ->> Persistencia: Registrar resultado del puzzle
-    PuzzleSys ->> Persistencia: Actualizar log de desempeño
-
     Core->>Persistencia: Solicita registrar los logros de la sesión
     
     Note over Persistencia: El sistema aseguró la información en el paso anterior, <br/> al guardar los datos en el almacenamiento local del dispositivo.
@@ -82,7 +84,16 @@ sequenceDiagram
     end
 
     %% Libro de puzzles descubiertos
-    Jugador ->> Core: Pedir libro de puzzles
-    Core ->> Persistencia: Consultar descubrimiento de puzzles
-    Persistencia -->> Core: Respuesta de consulta
-    Core -->> Jugador: Mostrar puzzles descubiertos
+    Jugador ->> TutosRepo: Pedir libro de tutoriales de puzzles
+    TutosRepo ->> Persistencia: Pedir consultar si ya se ha jugado el puzzle
+    Persistencia -->> TutosRepo: Resultado de la consulta
+    
+    alt El puzzle no se ha jugado antes
+        TutosRepo ->> TutosRepo: Tapar la tarjeta con una cobertura
+    end
+
+    TutosRepo ->> Jugador: Mostrar tarjetas con miniaturas de los tutoriales
+    
+    Jugador ->> TutosRepo: Hacer tap sobre una tarjeta de tutorial descubierto
+    TutosRepo ->> Jugador: Mostrar tutorial en un modal grande
+    Jugador ->> TutosRepo: Cerrar la ventana modal
