@@ -22,11 +22,7 @@ public class TutorialsRepositoryManager : MonoBehaviour
 
     private void PopulateGallery()
     {
-        // Limpiar el contenedor previamente
-        foreach (Transform child in _gridContainer)
-        {
-            Destroy(child.gameObject);
-        }
+        CleanContainer();
 
         List<TutorialDataSO> allTutorials = _tutorialDatabase.AllTutorials;
 
@@ -45,6 +41,14 @@ public class TutorialsRepositoryManager : MonoBehaviour
                 isUnlocked,
                 OnTutorialCardClicked
             );
+        }
+    }
+
+    private void CleanContainer()
+    {
+        foreach (Transform child in _gridContainer)
+        {
+            Destroy(child.gameObject);
         }
     }
 
