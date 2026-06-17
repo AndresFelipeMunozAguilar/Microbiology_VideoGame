@@ -74,13 +74,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6, y: 6}
-    newSize: {x: 6, y: 6}
+    oldSize: {x: 15.36, y: 10.24}
+    newSize: {x: 174.2989, y: 87.379974}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6, y: 6}
+  m_Size: {x: 174.2989, y: 87.37997}
   m_EdgeRadius: 0
 --- !u!212 &2460492208495083087
 SpriteRenderer:
@@ -127,16 +127,16 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -829210223
+  m_SortingLayer: -1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8083079555343073661, guid: 0d8cc304bfd32a646b2a685eb42a7efc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -8007339525907306227, guid: a7de741765ad3654388b110be4272ca4, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 6, y: 6}
+  m_DrawMode: 2
+  m_Size: {x: 174.2989, y: 87.379974}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -209,20 +209,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1060988504400501624}
     m_ColliderPaths:
-    - - X: 230021360
-        Y: 176106912
-      - X: -230021360
-        Y: 176106912
-      - X: -230021360
-        Y: -176106912
-      - X: 230021360
-        Y: -176106912
+    - - X: 435747264
+        Y: 218449904
+      - X: -435747264
+        Y: 218449920
+      - X: -435747264
+        Y: -218449904
+      - X: 435747264
+        Y: -218449904
   m_CompositePaths:
     m_Paths:
-    - - {x: 23.002108, y: -17.610691}
-      - {x: 23.002108, y: 17.610691}
-      - {x: -23.002136, y: 17.610662}
-      - {x: -23.002108, y: -17.610691}
+    - - {x: 43.5747, y: -21.84499}
+      - {x: 43.5747, y: 21.84499}
+      - {x: -43.574726, y: 21.844963}
+      - {x: -43.5747, y: -21.84499}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -265,18 +265,18 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6, y: 6}
-    newSize: {x: 6, y: 6}
+    oldSize: {x: 15.36, y: 10.24}
+    newSize: {x: 174.2989, y: 87.379974}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -3, y: 3}
-      - {x: -3, y: -3}
-      - {x: 3, y: -3}
-      - {x: 3, y: 3}
+    - - {x: -87.14945, y: 43.689983}
+      - {x: -87.14945, y: -43.68998}
+      - {x: 87.14945, y: -43.68998}
+      - {x: 87.14945, y: 43.68998}
   m_UseDelaunayMesh: 1
 --- !u!1 &3241346524504387255
 GameObject:
