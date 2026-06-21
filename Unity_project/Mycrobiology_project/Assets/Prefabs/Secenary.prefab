@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1757905766472174974}
   - component: {fileID: 2190547495086531474}
   - component: {fileID: 1060988504400501624}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LimitScenary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 1166056301465738467}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.6673784, y: 5.87023, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -31.3664, y: -19.722, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5291077207634914566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,12 +75,12 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 15.36, y: 10.24}
-    newSize: {x: 174.2989, y: 87.379974}
+    newSize: {x: 305.7754, y: 152.62752}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 174.2989, y: 87.37997}
+  m_Size: {x: 150, y: 75}
   m_EdgeRadius: 0
 --- !u!212 &2460492208495083087
 SpriteRenderer:
@@ -136,7 +136,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 174.2989, y: 87.379974}
+  m_Size: {x: 305.7754, y: 152.62752}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -209,20 +209,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1060988504400501624}
     m_ColliderPaths:
-    - - X: 435747264
-        Y: 218449904
-      - X: -435747264
-        Y: 218449920
-      - X: -435747264
-        Y: -218449904
-      - X: 435747264
-        Y: -218449904
+    - - X: 1500000000
+        Y: 750000000
+      - X: -1500000000
+        Y: 750000000
+      - X: -1500000000
+        Y: -750000000
+      - X: 1500000000
+        Y: -750000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 43.5747, y: -21.84499}
-      - {x: 43.5747, y: 21.84499}
-      - {x: -43.574726, y: 21.844963}
-      - {x: -43.5747, y: -21.84499}
+    - - {x: 149.99997, y: -75}
+      - {x: 149.99997, y: 75}
+      - {x: -150, y: 74.99997}
+      - {x: -149.99997, y: -75}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -266,17 +266,17 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 15.36, y: 10.24}
-    newSize: {x: 174.2989, y: 87.379974}
+    newSize: {x: 305.7754, y: 152.62752}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -87.14945, y: 43.689983}
-      - {x: -87.14945, y: -43.68998}
-      - {x: 87.14945, y: -43.68998}
-      - {x: 87.14945, y: 43.68998}
+    - - {x: -150, y: 75}
+      - {x: -150, y: -75}
+      - {x: 150, y: -75}
+      - {x: 150, y: 75}
   m_UseDelaunayMesh: 1
 --- !u!1 &3241346524504387255
 GameObject:
@@ -339,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 5674870359622014847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0631001, y: 0.3502, z: -10}
+  m_LocalPosition: {x: -26.3, y: -24, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
