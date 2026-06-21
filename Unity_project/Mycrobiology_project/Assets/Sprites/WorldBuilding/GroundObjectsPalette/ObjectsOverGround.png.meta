@@ -608,6 +608,10 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: 64, y: 64}
+        - {x: 64, y: -6}
+        - {x: -44, y: -6}
+        - {x: -47, y: 45}
+        - {x: -59, y: 45}
         - {x: -59, y: 64}
         - {x: -59, y: 64}
       tessellationDetail: 0
@@ -633,6 +637,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: 64, y: 64}
+        - {x: 64, y: -6}
+        - {x: -64, y: -6}
         - {x: -64, y: 64}
         - {x: -64, y: 64}
       tessellationDetail: 0
@@ -658,6 +664,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: 64, y: 64}
+        - {x: 64, y: -6}
+        - {x: -64, y: -6}
         - {x: -64, y: 64}
         - {x: -64, y: 64}
       tessellationDetail: 0
@@ -684,6 +692,8 @@ TextureImporter:
       physicsShape:
       - - {x: -64, y: 64}
         - {x: 64, y: 64}
+        - {x: 64, y: -6}
+        - {x: -64, y: -6}
         - {x: -64, y: 64}
       tessellationDetail: 0
       bones: []
@@ -707,7 +717,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: 64, y: 64}
+      - - {x: -64, y: -5}
+        - {x: 64, y: -5}
+        - {x: 64, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: 64}
       tessellationDetail: 0
@@ -732,7 +744,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: 60, y: 64}
+      - - {x: 64, y: 64}
+        - {x: 64, y: -4}
+        - {x: -64, y: -4}
         - {x: -64, y: 64}
         - {x: -64, y: 64}
       tessellationDetail: 0
