@@ -5,6 +5,7 @@ using System;
 public class DataManager : MonoBehaviour
 {
     private EvaluationData CurrentData;
+    private string currentPlayerID;
     public static DataManager Instance
     {
         get;
@@ -26,25 +27,36 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        CurrentData = LoadEvaluation();
+        string playerID = PlayerPrefs.GetString("playerID", "");
+        currentPlayerID = playerID;
+        CurrentData = LoadEvaluation(playerID);
     }
 
-    public void SaveEvaluation(EvaluationData data)
+    public void SetPlayerID(string playerID)
     {
+        currentPlayerID = playerID;
+        CurrentData = LoadEvaluation(playerID);
+    }
+
+    public void SaveEvaluation(EvaluationData data, string playerID = null)
+    {
+        if (!string.IsNullOrEmpty(playerID))
+            currentPlayerID = playerID;
+        else
+            playerID = currentPlayerID;
 
         CurrentData = data;
         string json = JsonUtility.ToJson(data, true);
 
-        string path = Application.persistentDataPath + "/evaluation.json";
+        string path = GetEvaluationFilePath(playerID);
 
         File.WriteAllText(path, json);
         Debug.Log("Datos guardados en: " + path);
     }
 
-
-    private EvaluationData LoadEvaluation()
+    private EvaluationData LoadEvaluation(string playerID = null)
     {
-        string path = Application.persistentDataPath + "/evaluation.json";
+        string path = GetEvaluationFilePath(playerID);
 
         if (!File.Exists(path))
             return null;
@@ -52,6 +64,16 @@ public class DataManager : MonoBehaviour
         string json = File.ReadAllText(path);
 
         return JsonUtility.FromJson<EvaluationData>(json);
+    }
+
+    public static string GetEvaluationFilePath(string playerID = null)
+    {
+        string id = playerID;
+        if (string.IsNullOrEmpty(id))
+            id = PlayerPrefs.GetString("playerID", "");
+
+        string fileName = string.IsNullOrEmpty(id) ? "evaluation.json" : $"evaluation_{id}.json";
+        return Path.Combine(Application.persistentDataPath, fileName);
     }
 
     public PuzzleResultData GetPuzzleByID(string ID)
@@ -85,7 +107,7 @@ public class DataManager : MonoBehaviour
 
     public bool HasPuzzleBeenPlayed(string puzzleID)
     {
-        CurrentData = LoadEvaluation();
+        CurrentData = LoadEvaluation(currentPlayerID);
 
         Debug.Log($"<color=blue>{this.GetType().Name}:</color> La ruta de Application.persistentDataPath es: {Application.persistentDataPath}");
 

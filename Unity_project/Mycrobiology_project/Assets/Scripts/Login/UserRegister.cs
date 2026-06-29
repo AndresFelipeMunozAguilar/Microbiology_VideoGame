@@ -173,14 +173,18 @@ public class UserRegister : MonoBehaviour
                     isLogin=true;
                     tx.StateLogin.text = "Login exitoso";
                     tx.StateGeneral.text= "Bienvenido " +snapshot.GetValue<string>("nombre");
+                    PlayerPrefs.SetString("playerID", codigo);
+                    PlayerPrefs.Save();
+                    FirebaseResultsUploader.Instance.setPlayerId(codigo);
+                    if (DataManager.Instance != null)
+                    {
+                        DataManager.Instance.SetPlayerID(codigo);
+                        LoadBestScoresFromUserSnapshot(codigo, snapshot);
+                    }
                     FindAnyObjectByType<Menu>().activePlay();
                     tx.inputCodigoL.text="";
                     tx.inputPasswordL.text="";
                     FindAnyObjectByType<Menu>().LoginWindowState(false);
-                    FirebaseResultsUploader.Instance.setPlayerId(codigo);
-                    PlayerPrefs.SetString("playerID", codigo);
-                    PlayerPrefs.Save();
-
                 }
                 else
                 {
@@ -207,6 +211,57 @@ public class UserRegister : MonoBehaviour
 
         return sb.ToString();
     }
+
+    private void LoadBestScoresFromUserSnapshot(string playerID, DocumentSnapshot snapshot)
+    {
+        if (DataManager.Instance == null)
+            return;
+
+        if (!snapshot.ContainsField("bestScores"))
+            return;
+
+        Dictionary<string, object> bestScores = snapshot.GetValue<Dictionary<string, object>>("bestScores");
+        if (bestScores == null || bestScores.Count == 0)
+            return;
+
+        EvaluationData data = new EvaluationData
+        {
+            playerID = playerID,
+            totalScore = 0,
+            date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            puzzles = new System.Collections.Generic.List<PuzzleResultData>()
+        };
+
+        foreach (var kvp in bestScores)
+        {
+            int bestValue = 0;
+            if (kvp.Value is int i)
+                bestValue = i;
+            else if (kvp.Value is long l)
+                bestValue = (int)l;
+
+            data.puzzles.Add(new PuzzleResultData
+            {
+                puzzleID = kvp.Key,
+                score = 0,
+                bestScore = bestValue,
+                tutorialFlag = false,
+                performance = ""
+            });
+        }
+
+        DataManager.Instance.SaveEvaluation(data, playerID);
+    }
+
+    private string GetPlayerEvaluationPath()
+    {
+        string playerID = PlayerPrefs.GetString("playerID", "");
+        if (string.IsNullOrEmpty(playerID))
+            return Application.persistentDataPath + "/evaluation.json";
+
+        return Application.persistentDataPath + $"/evaluation_{playerID}.json";
+    }
+
     public void UploadEvaluation(EvaluationData data,TextMeshProUGUI tx)
     {
         if (!firebaseReady)
@@ -248,6 +303,7 @@ public class UserRegister : MonoBehaviour
             {
                 Debug.Log("[Firebase] Resultado subido correctamente.");
                 tx.text= "Resultados enviados al profesor";
+                SetBestScoresForUser(data.playerID, data.puzzles);
             }
             else
             {
@@ -258,14 +314,41 @@ public class UserRegister : MonoBehaviour
         
     }
 
+    private void SetBestScoresForUser(string playerID, System.Collections.Generic.List<PuzzleResultData> puzzles)
+    {
+        if (string.IsNullOrEmpty(playerID) || puzzles == null)
+            return;
+
+        Dictionary<string, object> bestScores = new Dictionary<string, object>();
+        foreach (PuzzleResultData puzzle in puzzles)
+        {
+            bestScores[puzzle.puzzleID] = puzzle.bestScore;
+        }
+
+        DocumentReference userRef = db.Collection("usuarios").Document(playerID);
+        userRef.SetAsync(new Dictionary<string, object> { { "bestScores", bestScores } }, SetOptions.MergeAll)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    Debug.Log("[Firebase] bestScores actualizados en usuario.");
+                }
+                else
+                {
+                    Debug.LogError("[Firebase] Error actualizando bestScores: " + task.Exception);
+                }
+            });
+    }
+
     public void UploadEvaluationFromFile2(TextMeshProUGUI tx)
     {
-        string path = Application.persistentDataPath + "/evaluation.json";
+        string path = GetPlayerEvaluationPath();
 
         if (!File.Exists(path))
         {
             Debug.LogWarning("[Firebase] No existe evaluation.json en: " + path);
             tx.text= "No se encontraron resultados";
+            return;
         }
 
         string json = File.ReadAllText(path);

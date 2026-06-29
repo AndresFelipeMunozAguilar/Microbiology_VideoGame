@@ -157,7 +157,7 @@ public class EvaluationSystem : MonoBehaviour
             puzzles = results
         };
 
-        DataManager.Instance.SaveEvaluation(data);
+        DataManager.Instance.SaveEvaluation(data, playerID);
     }
     public int? GetBestScore(string puzzleID)
     {

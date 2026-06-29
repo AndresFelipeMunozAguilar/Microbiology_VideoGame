@@ -115,12 +115,13 @@ public class FirebaseResultsUploader : MonoBehaviour
 
     public void UploadEvaluationFromFile(TextMeshProUGUI tx)
     {
-        string path = Application.persistentDataPath + "/evaluation.json";
+        string path = DataManager.GetEvaluationFilePath();
 
         if (!File.Exists(path))
         {
             Debug.LogWarning("[Firebase] No existe evaluation.json en: " + path);
             tx.text= "No se encontraron resultados";
+            return;
         }
 
         string json = File.ReadAllText(path);
