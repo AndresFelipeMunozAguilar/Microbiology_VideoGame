@@ -13,6 +13,12 @@ public class TxMenu : MonoBehaviour
     public TextMeshProUGUI StateRegister,StateLogin,StateGeneral;
 
     private void Start() {
+        if (UserRegister.Instance == null)
+        {
+            Debug.LogError("[TxMenu] No se encontro UserRegister en la escena.");
+            return;
+        }
+
         UserRegister.Instance.setText(this);
         UserRegister.Instance.Relogin();
         

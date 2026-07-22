@@ -6,6 +6,7 @@ using System.Text;
 using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -34,25 +35,40 @@ public class UserRegister : MonoBehaviour
     public void setText(TxMenu newTx)
     {
         tx=newTx;
+        if (firebaseReady)
+        {
+            SetGeneralStatus("Inicia Sesion para jugar");
+        }
     }
+
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                firebaseReady = false;
+                isLogin=false;
+                Debug.LogError("[Firebase] Error revisando dependencias: " + task.Exception);
+                SetGeneralStatus("Error de conexion con Firebase");
+                return;
+            }
+
             if (task.Result == DependencyStatus.Available)
             {
                 db = FirebaseFirestore.DefaultInstance;
                 firebaseReady = true;
-                tx.StateGeneral.text="Inicia Sesion para jugar"; 
+                SetGeneralStatus("Inicia Sesion para jugar"); 
             }
             else
             {
-                tx.StateGeneral.text="Error de conexion:" + task.Result;
+                SetGeneralStatus("Error de conexion:" + task.Result);
                 isLogin=false;
             }
         });
 
     }
+    
     public void Relogin()
     {
         if(!isLogin)return;
@@ -62,19 +78,22 @@ public class UserRegister : MonoBehaviour
     public void Registrar()
     {
         isLogin=false;
+        if (!EnsureTextReferences())
+            return;
+
         if (!firebaseReady)
         {
-            tx.StateRegister.text="Server No listo";
+            SetRegisterStatus("Server No listo");
             return;
         }
 
-        string codigo = tx.inputCodigo.text.Trim();
-        string nombre = tx.inputNombre.text.Trim();
-        string password = tx.inputPassword.text.Trim();
+        string codigo = ReadInput(tx.inputCodigo);
+        string nombre = ReadInput(tx.inputNombre);
+        string password = ReadInput(tx.inputPassword);
 
         if (string.IsNullOrEmpty(codigo) || string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(password))
         {
-            tx.StateRegister.text="Todos los campos son obligatorios.";
+            SetRegisterStatus("Todos los campos son obligatorios.");
             return;
         }
 
@@ -88,7 +107,7 @@ public class UserRegister : MonoBehaviour
 
                 if (snapshot.Exists)
                 {
-                    tx.StateRegister.text="Usuario ya existente";
+                    SetRegisterStatus("Usuario ya existente");
                     return;
                 }
 
@@ -106,49 +125,66 @@ public class UserRegister : MonoBehaviour
                 {
                     if (t.IsCompletedSuccessfully)
                     {
-                        tx.StateRegister.text="Usuario registrado correctamente.";
-                        tx.StateGeneral.text= "Registrado Correctamente";
-                        tx.inputCodigo.text="";
-                        tx.inputNombre.text="";
-                        tx.inputPassword.text="";
-                        FindAnyObjectByType<Menu>().RegisterWindowState(false);
+                        SetRegisterStatus("Usuario registrado correctamente.");
+                        SetGeneralStatus("Registrado Correctamente");
+                        ClearInput(tx.inputCodigo);
+                        ClearInput(tx.inputNombre);
+                        ClearInput(tx.inputPassword);
+                        Menu menu = FindAnyObjectByType<Menu>();
+                        if (menu != null)
+                        {
+                            menu.RegisterWindowState(false);
+                        }
                         Loguear(codigo,password);
                     }
                     else
                     {
-                        tx.StateRegister.text="Error al registrar: " + t.Exception;
+                        SetRegisterStatus("Error al registrar: " + t.Exception);
                     }
                 });
             }
             else
             {
-                tx.StateRegister.text="Error consultando usuario: " + task.Exception;
+                SetRegisterStatus("Error consultando usuario: " + task.Exception);
             }
         });
     }
     
     public void Login()
     {
-        tx.StateLogin.text = "Cargando...";
+        if (!EnsureTextReferences())
+            return;
+
+        SetLoginStatus("Cargando...");
         if (!firebaseReady)
         {
-            tx.StateLogin.text = "Server no listo";
+            SetLoginStatus("Server no listo");
             return;
         }
 
-        string codigo = tx.inputCodigoL.text.Trim();
-        string password =  tx.inputPasswordL.text.Trim();
+        string codigo = ReadInput(tx.inputCodigoL);
+        string password =  ReadInput(tx.inputPasswordL);
         Loguear(codigo,password);
     }
 
     public void Loguear(string codigo, string password)
     {
         isLogin=false;
+        if (!EnsureTextReferences())
+            return;
+
         if (string.IsNullOrEmpty(codigo) || string.IsNullOrEmpty(password))
         {
-            tx.StateLogin.text = "Ingrese código y contraseña";
+            SetLoginStatus("Ingrese codigo y contrasena");
             return;
         }
+
+        if (db == null)
+        {
+            SetLoginStatus("Server no listo");
+            return;
+        }
+
         DocumentReference userRef = db.Collection("usuarios").Document(codigo);
 
         userRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -159,7 +195,13 @@ public class UserRegister : MonoBehaviour
 
                 if (!snapshot.Exists)
                 {
-                    tx.StateLogin.text = "Usuario no encontrado";
+                    SetLoginStatus("Usuario no encontrado");
+                    return;
+                }
+
+                if (!snapshot.ContainsField("password"))
+                {
+                    SetLoginStatus("Usuario sin contrasena registrada");
                     return;
                 }
 
@@ -171,29 +213,43 @@ public class UserRegister : MonoBehaviour
                     currentUser=codigo;
                     currentPassword=password;
                     isLogin=true;
-                    tx.StateLogin.text = "Login exitoso";
-                    tx.StateGeneral.text= "Bienvenido " +snapshot.GetValue<string>("nombre");
+                    string userName = snapshot.ContainsField("nombre") ? snapshot.GetValue<string>("nombre") : codigo;
+                    SetLoginStatus("Login exitoso");
+                    SetGeneralStatus("Bienvenido " + userName);
                     PlayerPrefs.SetString("playerID", codigo);
                     PlayerPrefs.Save();
-                    FirebaseResultsUploader.Instance.setPlayerId(codigo);
+                    if (FirebaseResultsUploader.Instance != null)
+                    {
+                        FirebaseResultsUploader.Instance.setPlayerId(codigo);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Firebase] FirebaseResultsUploader no esta en la escena. Se continua usando PlayerPrefs.");
+                    }
+
                     if (DataManager.Instance != null)
                     {
                         DataManager.Instance.SetPlayerID(codigo);
                         LoadBestScoresFromUserSnapshot(codigo, snapshot);
                     }
-                    FindAnyObjectByType<Menu>().activePlay();
-                    tx.inputCodigoL.text="";
-                    tx.inputPasswordL.text="";
-                    FindAnyObjectByType<Menu>().LoginWindowState(false);
+                    Menu menu = FindAnyObjectByType<Menu>();
+                    if (menu != null)
+                    {
+                        menu.activePlay();
+                        menu.LoginWindowState(false);
+                    }
+
+                    ClearInput(tx.inputCodigoL);
+                    ClearInput(tx.inputPasswordL);
                 }
                 else
                 {
-                    tx.StateLogin.text = "Contraseña incorrecta";
+                    SetLoginStatus("Contrasena incorrecta");
                 }
             }
             else
             {
-                tx.StateLogin.text = "Error en login: " + task.Exception;
+                SetLoginStatus("Error en login: " + task.Exception);
             }
         });
     }
@@ -262,13 +318,19 @@ public class UserRegister : MonoBehaviour
         return Application.persistentDataPath + $"/evaluation_{playerID}.json";
     }
 
-    public void UploadEvaluation(EvaluationData data,TextMeshProUGUI tx)
+    public void UploadEvaluation(EvaluationData data,TextMeshProUGUI tx, GameObject btButton = null)
     {
         if (!firebaseReady)
         {
             Debug.LogWarning("[Firebase] Todavía no está listo.");
-            tx.text= "Firebase no listo " +data.playerID+" : " +PlayerPrefs.GetString("playerID", "");
+            tx.text = "Firebase no listo. Pulsa 'Reintentar' para volver a intentar.";
+            if (btButton != null) btButton.SetActive(true);
+            return;
         }
+
+        tx.text = "Enviando...";
+        if (btButton != null) btButton.SetActive(false);
+        StartCoroutine(HandleUploadTimeout(tx, btButton, data));
 
         string rawJson = JsonUtility.ToJson(data, true);
 
@@ -299,19 +361,30 @@ public class UserRegister : MonoBehaviour
 
         db.Collection("game_results").AddAsync(result).ContinueWithOnMainThread(task =>
         {
+            StopCoroutine(HandleUploadTimeout(tx, btButton, data));
             if (task.IsCompletedSuccessfully)
             {
                 Debug.Log("[Firebase] Resultado subido correctamente.");
-                tx.text= "Resultados enviados al profesor";
+                tx.text = "Resultados enviados al profesor";
+                if (btButton != null) btButton.SetActive(false);
                 SetBestScoresForUser(data.playerID, data.puzzles);
             }
             else
             {
                 Debug.LogError("[Firebase] Error subiendo resultado: " + task.Exception);
-                tx.text=  "Error subiendo resultados: " +task.Exception;
+                tx.text = "Error subiendo resultados: " + task.Exception;
+                if (btButton != null) btButton.SetActive(true);
             }
         });
         
+    }
+
+    private IEnumerator HandleUploadTimeout(TextMeshProUGUI tx, GameObject btButton, EvaluationData data)
+    {
+        yield return new WaitForSeconds(8f);
+
+        tx.text = "Error subiendo resultados: tiempo de espera agotado.";
+        if (btButton != null) btButton.SetActive(true);
     }
 
     private void SetBestScoresForUser(string playerID, System.Collections.Generic.List<PuzzleResultData> puzzles)
@@ -340,7 +413,7 @@ public class UserRegister : MonoBehaviour
             });
     }
 
-    public void UploadEvaluationFromFile2(TextMeshProUGUI tx)
+    public void UploadEvaluationFromFile2(TextMeshProUGUI tx, GameObject btButton = null)
     {
         string path = GetPlayerEvaluationPath();
 
@@ -348,20 +421,24 @@ public class UserRegister : MonoBehaviour
         {
             Debug.LogWarning("[Firebase] No existe evaluation.json en: " + path);
             tx.text= "No se encontraron resultados";
+            if (btButton != null) btButton.SetActive(true);
             return;
         }
 
         string json = File.ReadAllText(path);
         EvaluationData data = JsonUtility.FromJson<EvaluationData>(json);
 
-        UploadEvaluation(data,tx);
+        UploadEvaluation(data, tx, btButton);
     }
 
     public void ListarUsuarios()
     {
+        if (!EnsureTextReferences())
+            return;
+
         if (!firebaseReady)
         {
-            tx.StateGeneral.text = "Firebase no listo";
+            SetGeneralStatus("Firebase no listo");
             return;
         }
 
@@ -373,12 +450,12 @@ public class UserRegister : MonoBehaviour
 
                 if (snapshot.Count == 0)
                 {
-                    tx.StateGeneral.text = "No hay usuarios";
+                    SetGeneralStatus("No hay usuarios");
                     return;
                 }
 
                 string resultado = "Usuarios:\n";
-                string codigo = tx.inputCodigoL.text.Trim();
+                string codigo = ReadInput(tx.inputCodigoL);
 
                 foreach (DocumentSnapshot doc in snapshot.Documents)
                 {
@@ -393,14 +470,65 @@ public class UserRegister : MonoBehaviour
                     Debug.Log(id + " : " + id.Length);
                 }
 
-                tx.StateGeneral.text = resultado;
+                SetGeneralStatus(resultado);
             }
             else
             {
-                tx.StateGeneral.text = "Error listando usuarios: " + task.Exception;
+                SetGeneralStatus("Error listando usuarios: " + task.Exception);
             }
         });
     }
+
+    private bool EnsureTextReferences()
+    {
+        if (tx != null)
+            return true;
+
+        tx = FindAnyObjectByType<TxMenu>();
+        if (tx != null)
+            return true;
+
+        Debug.LogError("[UserRegister] No se encontro TxMenu en la escena.");
+        return false;
+    }
+
+    private void SetRegisterStatus(string message)
+    {
+        if (EnsureTextReferences() && tx.StateRegister != null)
+            tx.StateRegister.text = message;
+        else
+            Debug.LogWarning("[UserRegister] " + message);
+    }
+
+    private void SetLoginStatus(string message)
+    {
+        if (EnsureTextReferences() && tx.StateLogin != null)
+            tx.StateLogin.text = message;
+        else
+            Debug.LogWarning("[UserRegister] " + message);
+    }
+
+    private void SetGeneralStatus(string message)
+    {
+        if (EnsureTextReferences() && tx.StateGeneral != null)
+            tx.StateGeneral.text = message;
+        else
+            Debug.LogWarning("[UserRegister] " + message);
+    }
+
+    private static string ReadInput(TMP_InputField input)
+    {
+        return input != null ? input.text.Trim() : string.Empty;
+    }
+
+    private static void ClearInput(TMP_InputField input)
+    {
+        if (input != null)
+        {
+            input.text = string.Empty;
+        }
+    }
+
     [Serializable]
     public class SerializableUser
     {

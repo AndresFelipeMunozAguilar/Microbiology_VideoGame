@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
 
     public AudioClip[] sfxClips;
+    private string currentMusic = "";
 
     void Awake()
     {
@@ -21,6 +22,10 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        PlayMusic("menuMusic");
+    }   
 
     public void PlaySFX(string clipName)
     {
@@ -35,9 +40,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(string clipName)
     {
-        musicSource.clip = clip;
-        musicSource.Play();
+        if (currentMusic == clipName)
+        {
+            return;
+        }
+
+        AudioClip clip = System.Array.Find(sfxClips, c => c.name == clipName);
+        if (clip != null)
+        {
+            musicSource.Stop();
+            musicSource.clip = clip;
+            musicSource.Play();
+            currentMusic = clipName;
+        }
+        else
+        {
+            Debug.LogWarning("Audio clip not found: " + clipName);
+        }
     }
 }

@@ -2,6 +2,7 @@
   "project_info": {
     "project_number": "744923822378",
     "project_id": "biolimit-d81d3",
+    "firebase_url": "https://biolimit-d81d3-default-rtdb.firebaseio.com",
     "storage_bucket": "biolimit-d81d3.firebasestorage.app"
   },
   "client": [

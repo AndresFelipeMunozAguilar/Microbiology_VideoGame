@@ -24,18 +24,20 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     [Tooltip("Prefab que contiene la interfaz o guía del tutorial.")]
     [SerializeField] protected GameObject _tutorialPrefab;
+
     [SerializeField] protected TextMeshProUGUI _title;
 
+    // Este metodo inicializa las referencias base del puzzle.
     private void Awake()
     {
         _dataManager = DataManager.Instance;
 
-        Debug.Log($"<color=magenta>{this.GetType().Name}:</color> La instancia de DataManager (en start) fue encontrada?: {(_dataManager != null)}");
-
+        Debug.Log($"<color=magenta>{GetType().Name}:</color> La instancia de DataManager (en start) fue encontrada?: {(_dataManager != null)}");
 
         OnInstanceAwake();
     }
 
+    // Este metodo inicia el minijuego despues del tutorial o al tocar el puzzle.
     public void StartGameplay()
     {
         Vector3 inFrontOfCamera = Camera.main.transform.position;
@@ -62,6 +64,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         OnStartGameplay();
     }
 
+    // Este metodo ubica el puzzle en una posicion global conservando su profundidad.
     protected void SetGlobalPositionTo(Vector3 worldPosition)
     {
         Vector3 targetWorldPosition = worldPosition;
@@ -71,6 +74,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         transform.position = targetWorldPosition;
     }
 
+    // Este metodo activa los objetos hijos del puzzle al comenzar.
     protected void ActivateSonObjects()
     {
         foreach (Transform child in transform)
@@ -79,6 +83,7 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         }
     }
 
+    // Este metodo instancia el fondo visual del puzzle.
     public void SpawnBackground(Vector3 position, Quaternion rotation, Transform parent)
     {
         Instantiate(_background, position, rotation, parent);
@@ -88,15 +93,18 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
 
     public abstract void Defeat();
 
+    // Este metodo muestra el tutorial contextual del puzzle.
     public void ShowTutorial()
     {
         Debug.Log("Showing Puzzle Tutorial");
         Instantiate(_tutorialPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
     }
 
+    // Este metodo permite saber si el puzzle se juega por primera vez.
     public bool IsFirstTime()
     {
         Debug.Log($"<color=magenta>AbstractPuzzleGameplay:</color> Entramos en IsFirstTime. El _dataManager es null?: {_dataManager == null}");
+
         if (_dataManager == null) return false;
 
         _isFirstTimePlaying = !_dataManager
@@ -106,11 +114,13 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         return _isFirstTimePlaying;
     }
 
+    // Este metodo permite devolver la evaluacion asociada al puzzle.
     public PuzzleEvaluation GetPuzzleEvaluation()
     {
         return _puzzleEvaluation;
     }
 
+    // Este metodo informa al PuzzleManager que el puzzle ya termino.
     protected void NotifyPuzzleVictory(bool didPlayerWin)
     {
         IPuzzleManager puzzleManager = GetComponentInParent<IPuzzleManager>();
@@ -124,11 +134,9 @@ public abstract class AbstractPuzzleGameplay : MonoBehaviour
         puzzleManager.CompletePuzzle(didPlayerWin);
     }
 
-    // Hook para ser usado por las clases, de 
-    // requerir usar el método Awake() para 
-    // inicializar campos o propiedades
+    // Este metodo permite extender Awake desde las clases hijas.
     protected virtual void OnInstanceAwake() { }
 
-    // Hook que se ejecuta al final de StartGameplay
+    // Este metodo permite ejecutar logica adicional al iniciar el gameplay.
     protected virtual void OnStartGameplay() { }
 }

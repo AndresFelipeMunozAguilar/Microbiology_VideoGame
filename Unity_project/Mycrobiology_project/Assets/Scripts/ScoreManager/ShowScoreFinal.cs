@@ -7,12 +7,17 @@ public class ShowScoreFinal : MonoBehaviour
     [SerializeField] GameObject Modulo;
     [SerializeField] RectTransform content;
     [SerializeField] TextMeshProUGUI messageStatus;
+    [SerializeField] GameObject btReenviar;
 
     private void Start() {
         PrintFinalFeedback();
-        UserRegister.Instance.UploadEvaluationFromFile2(messageStatus);
+        UserRegister.Instance.UploadEvaluationFromFile2(messageStatus, btReenviar);
+        btReenviar.SetActive(false);
     }
-
+    public void Reenviar()
+    {
+        UserRegister.Instance.UploadEvaluationFromFile2(messageStatus, btReenviar);
+    }
     void PrintFinalFeedback()
     {
         List<PuzzleResultData> resultados = EvaluationSystem.Instance.getPuzzles();

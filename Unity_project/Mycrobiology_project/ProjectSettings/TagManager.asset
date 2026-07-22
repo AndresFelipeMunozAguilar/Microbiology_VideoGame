@@ -8,6 +8,7 @@ TagManager:
   - BloodStainPuzzleItem
   - DropZone
   - EppPuzzleItem
+  - Bt_play
   layers:
   - Default
   - TransparentFX

@@ -26,6 +26,8 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPu
     public Action<int, int> OnPlayerGetsClose;
     public Action OnPlayerLeaves;
 
+    private bool _playerIsInsideTrigger;
+    private bool _shouldReactToEnter = true;
 
     public void Awake()
     {
@@ -40,6 +42,8 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPu
     public void Start()
     {
         _gameManager.SubscribePuzzlePausable(this);
+        _playerIsInsideTrigger = IsPlayerInsideTriggerAtStart();
+        _shouldReactToEnter = !_playerIsInsideTrigger;
     }
 
     public void OnDisable()
@@ -52,11 +56,26 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPu
         _gameManager.UnsubscribePuzzlePausable(this);
     }
 
+    private bool IsPlayerInsideTriggerAtStart()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag(playerTag);
+        if (player == null) return false;
+
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        if (playerCollider == null) return false;
+
+        return playerCollider.IsTouching(_collider);
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log($"<color=cyan>PuzzleCompletionCheckZone:</color> Trigger entered by: {other.gameObject.name}");
 
         if (!other.CompareTag(playerTag)) return;
+        if (!_shouldReactToEnter) return;
+
+        _playerIsInsideTrigger = true;
+        _shouldReactToEnter = false;
 
         _completedPuzzles = CalculateCompletedPuzzles();
         // Calcular el total de Puzzles aquí evita
@@ -101,6 +120,8 @@ public class PuzzleCompletionCheckZone : MonoBehaviour, IGameOverSubscriber, IPu
 
         if (other.CompareTag(playerTag))
         {
+            _playerIsInsideTrigger = false;
+            _shouldReactToEnter = true;
             OnPlayerLeaves?.Invoke();
         }
     }
