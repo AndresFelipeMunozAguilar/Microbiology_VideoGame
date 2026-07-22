@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1682758583
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4237327079380181014, guid: 748d857dcaf2f1b4c9aec4b83386b96f, type: 3}
@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c18619c57f1874fa7c7bb28f4e89cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHalo
-  pulseSpeed: 3
-  minScaleMultiplier: 1
-  maxScaleMultiplier: 1.6
+  pulseSpeed: 8
+  minScaleMultiplier: 0.5
+  maxScaleMultiplier: 1.5
   minimumTransparency: 0.25
   maximumTransparency: 1
   haloSr: {fileID: 6512048809852494609}

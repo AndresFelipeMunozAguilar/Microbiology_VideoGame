@@ -313,8 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleHalo
   pulseSpeed: 8
-  minScaleMultiplier: 1
-  maxScaleMultiplier: 1.4
+  minScaleMultiplier: 0.5
+  maxScaleMultiplier: 1.5
   minimumTransparency: 0.5
   maximumTransparency: 1
   haloSr: {fileID: 0}
