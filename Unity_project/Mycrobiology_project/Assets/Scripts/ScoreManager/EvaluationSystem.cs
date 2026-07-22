@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EvaluationSystem : MonoBehaviour
 {
@@ -9,15 +9,19 @@ public class EvaluationSystem : MonoBehaviour
         private set;
     }
 
-    string playerID = "player";
+    private string playerID = "player";
     private List<PuzzleResultData> results = new List<PuzzleResultData>();
     private Dictionary<string, int> puzzleFinalScores = new Dictionary<string, int>();
     private int totalScore = 0;
-    private int FinalScore;
-    [SerializeField] private int MaxTotalScore = 100;
-    private string totalPerformance,ColorPerformance;
-    int puzzlesAmount;
+    private int finalAverageScore;
 
+    [SerializeField] private int MaxTotalScore = 100;
+
+    private string totalPerformance;
+    private string colorPerformance;
+    private int puzzlesAmount;
+
+    // Este metodo mantiene una sola instancia del sistema de evaluacion.
     private void Awake()
     {
         if (Instance == null)
@@ -29,16 +33,19 @@ public class EvaluationSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
-    void Start()
+
+    // Este metodo carga el identificador del jugador activo.
+    private void Start()
     {
         playerID = PlayerPrefs.GetString("playerID", "");
     }
 
+    // Este metodo registra o actualiza el resultado de un puzzle.
     public string RegisterPuzzleResult(string puzzleID, int finalScore, int maxScore, int bestScore)
     {
         Debug.Log($"EvaluationSystem: Registrando el resultado del puzzle:\n PuzzleID: {puzzleID}\n FinalScore: {finalScore}\n maxScore: {maxScore}\n bestScore: {bestScore}");
+
         if (puzzleFinalScores.ContainsKey(puzzleID))
         {
             int oldScore = puzzleFinalScores[puzzleID];
@@ -82,15 +89,32 @@ public class EvaluationSystem : MonoBehaviour
         return performance;
     }
 
+    // Este metodo limpia el progreso guardado en memoria para una nueva partida.
+    public void ResetProgress()
+    {
+        results.Clear();
+        puzzleFinalScores.Clear();
+        totalScore = 0;
+        finalAverageScore = 0;
+        totalPerformance = string.Empty;
+        puzzlesAmount = 0;
+    }
+
+    // Este metodo cuenta los puzzles disponibles en la escena actual.
     public int GetPuzzlesAmount()
     {
         PuzzleManager[] puzzles = Object.FindObjectsByType<PuzzleManager>(FindObjectsSortMode.None);
         puzzlesAmount = puzzles.Length;
         return puzzlesAmount;
     }
-    public string GetColor(){
-        return ColorPerformance;
+
+    // Este metodo permite devolver el color del rendimiento calculado.
+    public string GetColor()
+    {
+        return colorPerformance;
     }
+
+    // Este metodo permite devolver la lista de resultados registrados.
     public List<PuzzleResultData> getPuzzles()
     {
         if (results != null)
@@ -103,50 +127,65 @@ public class EvaluationSystem : MonoBehaviour
         }
     }
 
+    // Este metodo permite devolver la cantidad de puzzles completados.
     public int GetPuzzlesComplete()
     {
         return results.Count;
     }
 
-    public int GetFinalScore() => (totalScore / GetPuzzlesAmount());
+    // Este metodo calcula el puntaje final promedio del jugador.
+    public int GetFinalScore()
+    {
+        int totalPuzzles = GetPuzzlesAmount();
+
+        if (totalPuzzles == 0) return 0;
+
+        finalAverageScore = totalScore / totalPuzzles;
+        return finalAverageScore;
+    }
+
+    // Este metodo permite devolver el rendimiento general calculado.
     public string GetTotalPerformance() => totalPerformance;
 
+    // Este metodo permite consultar el puntaje final de un puzzle especifico.
     public int GetPuzzleScore(string puzzleID)
     {
         return puzzleFinalScores.TryGetValue(puzzleID, out int score) ? score : 0;
     }
 
+    // Este metodo convierte el puntaje en una categoria de rendimiento.
     private string CalculatePerformance(int score, int maxScore)
     {
         float percentage = (float)score / maxScore * 100f;
 
         if (percentage >= 90f)
-            {
-                ColorPerformance = "#2ECC71"; // Sobresaliente
-                return "Rendimiento Sobresaliente";
-            }
-            else if (percentage >= 75f)
-            {
-                ColorPerformance = "#7ED957"; // Satisfactorio
-                return "Rendimiento Satisfactorio";
-            }
-            else if (percentage >= 60f)
-            {
-                ColorPerformance = "#F1C40F"; // Aceptable
-                return "Rendimiento Aceptable";
-            }
-            else if (percentage >= 40f)
-            {
-                ColorPerformance = "#E67E22"; // En Progreso
-                return "Rendimiento en Progreso";
-            }
-            else
-            {
-                ColorPerformance = "#E74C3C"; // Deficiente
-                return "Rendimiento Deficiente";
-            }
+        {
+            colorPerformance = "#2ECC71"; // Sobresaliente
+            return "Rendimiento Sobresaliente";
+        }
+        else if (percentage >= 75f)
+        {
+            colorPerformance = "#7ED957"; // Satisfactorio
+            return "Rendimiento Satisfactorio";
+        }
+        else if (percentage >= 60f)
+        {
+            colorPerformance = "#F1C40F"; // Aceptable
+            return "Rendimiento Aceptable";
+        }
+        else if (percentage >= 40f)
+        {
+            colorPerformance = "#E67E22"; // En Progreso
+            return "Rendimiento en Progreso";
+        }
+        else
+        {
+            colorPerformance = "#E74C3C"; // Deficiente
+            return "Rendimiento Deficiente";
+        }
     }
 
+    // Este metodo guarda todos los resultados locales del jugador.
     public void SaveAllResults(string playerID)
     {
         EvaluationData data = new EvaluationData
@@ -159,9 +198,10 @@ public class EvaluationSystem : MonoBehaviour
 
         DataManager.Instance.SaveEvaluation(data, playerID);
     }
+
+    // Este metodo consulta el mejor puntaje guardado para un puzzle.
     public int? GetBestScore(string puzzleID)
     {
-
         PuzzleResultData data = DataManager.Instance.GetPuzzleByID(puzzleID);
 
         if (data == null)

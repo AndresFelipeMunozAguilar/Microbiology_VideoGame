@@ -11,12 +11,29 @@ public class Menu : MonoBehaviour
     public Button btPlay;
     void Start()
     {
-        btPlay.interactable=false;
+        if (!btPlay)
+        {
+            btPlay = GameObject.Find("Bt_play").GetComponent<Button>();
+        }
+        if(btPlay)btPlay.interactable=false;
         LoginWindowState(false);
         RegisterWindowState(false);
     }
     public void ChangeScene(int nextScene)
     {
+        GameScenes sceneToLoad = scenes[nextScene];
+        if(sceneToLoad == GameScenes.GameDemo_B || sceneToLoad == GameScenes.GameDemo)
+        {
+            if (EvaluationSystem.Instance != null)
+            {
+                EvaluationSystem.Instance.ResetProgress();
+            }
+            AudioManager.Instance.PlayMusic("gameMusic");
+        }
+        else
+        {
+            AudioManager.Instance.PlayMusic("menuMusic");
+        }
         SceneManager.LoadScene(scenes[nextScene].ToString());
     }
     public void Quit()
