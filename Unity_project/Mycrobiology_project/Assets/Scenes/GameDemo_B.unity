@@ -50136,9 +50136,9 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 14496191
-  m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingLayerID: -1743265361
+  m_SortingLayer: 1
+  m_SortingOrder: 40
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -79716,14 +79716,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PuzzleManagerDesechos
       objectReference: {fileID: 0}
-    - target: {fileID: 6512048809852494609, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6512048809852494609, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1682758583
-      objectReference: {fileID: 0}
     - target: {fileID: 6846132134302707237, guid: 475b4a945cee7a44bbf7127afa066432, type: 3}
       propertyPath: m_Name
       value: Desktop
@@ -79848,10 +79840,6 @@ PrefabInstance:
       propertyPath: PerformanceResultTx
       value: 
       objectReference: {fileID: 1629787190}
-    - target: {fileID: 6192472732850097059, guid: 1af064cbe81812f48b70873cde21680b, type: 3}
-      propertyPath: pulseSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6892247984168879791, guid: 1af064cbe81812f48b70873cde21680b, type: 3}
       propertyPath: m_Size.x
       value: 6.6550627
