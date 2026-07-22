@@ -1967,7 +1967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82f15f905fa76e4ea1e4f490d8e5006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu
-  scenes: 010000000900000008000000
+  scenes: 080000000500000009000000
   registerWindow: {fileID: 7112694844930512035}
   loginWindow: {fileID: 7112694844991098515}
   btPlay: {fileID: 1061579078}
