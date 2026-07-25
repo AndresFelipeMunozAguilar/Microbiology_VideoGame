@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 8886651812539597598}
   - component: {fileID: 2370207506638383891}
   - component: {fileID: 4271088483682290141}
-  - component: {fileID: 8842211190457092770}
+  - component: {fileID: 2378442600634074845}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TEXT DEFAULT
+  m_text: THE DEFAULT TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3406f8ab5ecac6d479d699f2e5737ce1, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 3406f8ab5ecac6d479d699f2e5737ce1, type: 2}
@@ -393,7 +393,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 60
-  m_fontSizeBase: 80.3
+  m_fontSizeBase: 57.3
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 12
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8842211190457092770
+--- !u!114 &2378442600634074845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -450,6 +450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TitleSizeController
   _fixedHeight: 96
-  _horizontalPadding: 10
+  _horizontalPadding: 110
   _minFontSize: 12
   _maxFontSize: 60
