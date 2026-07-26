@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9687874ea8983694e8f0cbed0adc0bb0, type: 3}
+  m_Name: PuzzleStepSequence
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleSequenceSO
+  _steps:
+  - {fileID: 11400000, guid: 475266f43e48bc74e8827d267f1eb1fc, type: 2}
+  - {fileID: 11400000, guid: c766f66dcd37f92418f82c5f8504f2c5, type: 2}
+  - {fileID: 11400000, guid: e4cb0d3464a26a848824b1fadc27241f, type: 2}
+  - {fileID: 11400000, guid: 463b89e78979ea64e9c265d2dd59e46c, type: 2}
+  - {fileID: 11400000, guid: 12b60e50855ac454788033c423ca1a90, type: 2}
+  _maxAllowedErrors: 4
+  _finalCleanSprite: {fileID: -6760744269409031231, guid: 9b6da677587542141aea80b2b72f45a8, type: 3}

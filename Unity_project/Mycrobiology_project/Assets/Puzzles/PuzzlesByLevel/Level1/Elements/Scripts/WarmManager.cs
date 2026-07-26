@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class WarmManager : MonoBehaviour
+{
+    [SerializeField] bool SwitchMecheroBaño; // true-> mechero false-> baño maria
+    [SerializeField] private float fillSpeed = 2f;
+    [SerializeField] Image barrTermometer;
+    [SerializeField] GameObject OnWarm;
+    private float targetFill = 0f;
+
+    void Start()
+    {
+        ChangeState(false);
+        OnWarm.SetActive(false);
+    }
+    public bool getSwitch()
+    {
+        return SwitchMecheroBaño;
+    }
+    public void newTemperature(float temperature)
+    {
+        // Convertir de 0–100 a 0–1
+        if (!OnWarm.activeSelf)
+        {
+            OnWarm.SetActive(true);
+        }
+        targetFill = Mathf.Clamp01(temperature / 100f);
+    }
+    public void ChangeState(bool state)
+    {
+        barrTermometer.transform.parent.gameObject.SetActive(state);
+        if(!state){
+            newTemperature(0);
+            OnWarm.SetActive(false);
+        }
+    }
+    private void Update()
+    {
+        // Movimiento suave hacia el objetivo
+        barrTermometer.fillAmount = Mathf.MoveTowards(
+            barrTermometer.fillAmount,
+            targetFill,
+            fillSpeed * Time.deltaTime
+        );
+    }
+    public void setColor(Color newColor)
+    {
+        barrTermometer.color=newColor;
+    }
+
+
+}

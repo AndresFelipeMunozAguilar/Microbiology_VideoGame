@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c02da416132fc4685e46eeeffb820b, type: 3}
+  m_Name: Element 4
+  m_EditorClassIdentifier: Assembly-CSharp::Element
+  colorSustance: {r: 0.4844084, g: 0, b: 0.6037736, a: 0}
+  Name: Acido Acetico
+  image: {fileID: -9187173292960127017, guid: 5132ec0ce827a35498beb6f1994c81ab, type: 3}
+  minTemperature: 60
+  maxTemperature: 80
+  isMechero: 0
+  "isBa\xF1oMaria": 1

@@ -16,27 +16,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PickUp",
-                    "type": "Button",
-                    "id": "7761735c-cd27-41a0-a6ea-e4d56f7eae1d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pickdown",
-                    "type": "Button",
-                    "id": "a062a811-1a1f-4df7-8522-1cfc1a4482bb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "6607f3c3-63ce-46bc-b9f2-448a8430e1a1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "0ecd03d7-bf3d-4373-a511-f9f31c163272",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "58a0374e-cbe4-49dc-ad5c-d15aa3f65d25",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -167,12 +167,12 @@
                 },
                 {
                     "name": "",
-                    "id": "9a7b5d25-71d6-4edb-97cb-2983bb73a174",
-                    "path": "<Keyboard>/z",
+                    "id": "0519ec60-e49b-42aa-9ad3-a43fb3270c70",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickUp",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -190,11 +190,72 @@
                 {
                     "name": "",
                     "id": "646f84cf-d1d1-4836-b730-bb966e4dca13",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Tap",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8b20b6f-ffa3-4bfa-8a52-1ab91f0a1beb",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd1d18f1-6841-4148-89e4-df48a113f0a4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03f243bb-2b20-4c45-a295-11802af337e2",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "New action map",
+            "id": "c3063ad2-c83b-488b-be27-ea2642232a0f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "93fe9350-6b35-431d-bb69-eebe526239cb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f0569d59-343e-4e6e-8441-bc5604941eed",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
