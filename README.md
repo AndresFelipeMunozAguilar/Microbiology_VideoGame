@@ -129,7 +129,7 @@ La documentación del proyecto se encuentra en la carpeta [Docs](Docs), donde se
 
 Este repositorio contiene el proyecto completo de Biolimit, incluyendo el desarrollo de Unity, los assets, las escenas, los scripts en C#, prefabs, ScriptableObjects y otros elementos necesarios para ejecutar y extender el juego.
 
-## Autores y equipo
+## Equipo de desarrollo y control
 
 ### Autores
 - Andrés Felipe Muñoz Aguilar - 2210087 (Ingeniería de Sistemas)
