@@ -70,20 +70,49 @@ El presente proyecto fue desarrollado en la versión 6000.3.2f1 de Unity.
 
 ```text
 README.md
-Docs/
-  class_diagram/
-  sequence_diagram/
-  use_case_diagram/
-  RUP/
-Unity_project/
-  Mycrobiology_project/
-    Assets/
-    Packages/
-    ProjectSettings/
-    Library/
-    Logs/
-    Temp/
-    UserSettings/
+Docs
+|-- class_diagram
+|-- sequence_diagram
+|-- use_case_diagram
+|-- RUP
+Unity_project
+|-- Mycrobiology_project
+    |-- Assets
+    |   |-- Animations
+    |   |-- Controls
+    |   |-- Firebase
+    |   |-- Imports
+    |   |   |-- Thaleah_PixelFont
+    |   |   |-- TextMesh Pro
+    |   |-- Prefabs
+    |   |-- Puzzles
+    |   |   |-- Commons
+    |   |   |-- PuzzlesByLevel
+    |   |       |-- Level1
+    |   |-- Resources
+    |   |-- Scenes
+    |   |-- Scripts
+    |   |   |-- AbstractClasses
+    |   |   |-- GameManager
+    |   |   |-- Interfaces
+    |   |   |-- Login
+    |   |   |-- Player
+    |   |   |-- PuzzleCompletionCheckZone
+    |   |   |-- Puzzles
+    |   |   |-- Raycaster
+    |   |   |-- ScoreManager
+    |   |   |-- Sounds
+    |   |   |-- UIElements
+    |   |-- Songs
+    |   |-- Sprites
+    |       |-- UI
+    |       |-- WorldBuilding
+    |-- Packages
+    |-- ProjectSettings
+    |-- Library
+    |-- Logs
+    |-- Temp
+    |-- UserSettings
 ```
 
 ## Documentación del proyecto
