@@ -1,6 +1,6 @@
 # Biolimit
 
-![Biolimit](Unity_project/Mycrobiology_project/Assets/Sprites/UI/Fondo.png)
+![Biolimit](Unity_project/Mycrobiology_project/Assets/Sprites/UI/GameBanner.png)
 
 Biolimit es un videojuego serio 2D, de puzzles cortos y enfoque educativo, desarrollado en Unity para apoyar la adherencia a las normas de bioseguridad en laboratorios de Microbiología y Bioanálisis. El objetivo principal es apoyar la adherencia a las normas de bioseguridad, mediante permitir que los estudiantes reiteren la aplicación de buenas prácticas de seguridad en un entorno didáctico semejante al de los laboratorios.
 
