@@ -1,0 +1,99 @@
+---
+config:
+  theme: neo-dark
+---
+sequenceDiagram
+    autonumber
+
+    actor Jugador
+    participant Core as Sistema de Juego
+    participant PuzzleSys as Sistema de Puzzles
+    participant Persistencia as Sistema de Persistencia
+    participant BD as Base de Datos Centralizada (Cloud)
+    participant TutosRepo as Repositorio de Tutoriales
+
+    Jugador ->> Core: Iniciar juego
+    Core -) PuzzleSys: Pedir instanciar puzzles
+
+
+    %%Cronometro
+    Core ->> Core: Iniciar cronómetro
+
+    loop Cronometro > 0
+        Core -) Core: Descontar tiempo basado en deltaTime
+    end
+
+    %% Game Over por tiempo
+    alt Tiempo agotado
+        Core ->> Jugador: Activar Game Over por Tiempo
+    end
+
+    %% Exploración
+    Jugador ->> Core: Moverse por el nivel
+    Jugador ->> Core: Interactuar con objeto de puzzle
+
+    %% Consulta de persistencia
+    Core ->> PuzzleSys: Solicitar inicio de puzzle
+    PuzzleSys ->> Persistencia: Consultar si es primera vez
+    Persistencia -->> PuzzleSys: Resultado consulta
+
+    alt Sí es primera vez
+        PuzzleSys ->> Jugador: Mostrar tutorial del puzzle
+    end
+
+    %% Ejecución del puzzle
+    PuzzleSys ->> Jugador: Ejecutar puzzle gameplay
+    PuzzleSys ->> PuzzleSys: Añadir o restar puntos a la calificación
+    Jugador -->> PuzzleSys: Resolver puzzle gameplay
+
+    %% Calificación
+    PuzzleSys ->> PuzzleSys: Calificar desempeño
+
+    %% Persistencia de resultados
+    PuzzleSys ->> Persistencia: Registrar resultado del puzzle
+    Persistencia ->> Persistencia: Actualizar log de desempeño
+
+    PuzzleSys ->> Jugador: Mostrar feedback de desempeño
+
+    %% Daño por mal desempeño
+    alt Desempeño != Perfecto
+        PuzzleSys ->> Core: Reportar daño
+        Core ->> Jugador: Aplicar daño
+    end
+
+    %% Game Over por salud
+    alt Salud <= 0
+        Core ->> Jugador: Activar Game Over por Salud
+    end
+
+    %% Condición de victoria
+    alt Todos los puzzles completados
+        PuzzleSys ->> Jugador: Mostrar victoria (Ganar juego)
+    end
+
+    Core->>Persistencia: Solicita registrar los logros de la sesión
+    
+    Note over Persistencia: El sistema aseguró la información en el paso anterior, <br/> al guardar los datos en el almacenamiento local del dispositivo.
+
+    Persistencia->>BD: Sincroniza el progreso del estudiante con la nube
+    
+    alt Sincronización Exitosa
+        BD-->>Jugador: El progreso ahora es visible para el profesor
+    else Sin conexión
+        Persistencia-->>Jugador: El progreso se guardó en local y se solicita que se reintente subirlo
+    end
+
+    %% Libro de puzzles descubiertos
+    Jugador ->> TutosRepo: Pedir libro de tutoriales de puzzles
+    TutosRepo ->> Persistencia: Pedir consultar si ya se ha jugado el puzzle
+    Persistencia -->> TutosRepo: Resultado de la consulta
+    
+    alt El puzzle no se ha jugado antes
+        TutosRepo ->> TutosRepo: Tapar la tarjeta con una cobertura
+    end
+
+    TutosRepo ->> Jugador: Mostrar tarjetas con miniaturas de los tutoriales
+    
+    Jugador ->> TutosRepo: Hacer tap sobre una tarjeta de tutorial descubierto
+    TutosRepo ->> Jugador: Mostrar tutorial en un modal grande
+    Jugador ->> TutosRepo: Cerrar la ventana modal

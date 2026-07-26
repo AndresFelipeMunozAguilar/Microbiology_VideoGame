@@ -7,6 +7,8 @@ TagManager:
   - TestPuzzleBall
   - BloodStainPuzzleItem
   - DropZone
+  - EppPuzzleItem
+  - Bt_play
   layers:
   - Default
   - TransparentFX
@@ -55,6 +57,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2959544077
+    locked: 0
+  - name: SuperiorWorld
+    uniqueID: 14496191
     locked: 0
   - name: Puzzles
     uniqueID: 445897211

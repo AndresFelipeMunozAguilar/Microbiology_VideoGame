@@ -1,8 +1,23 @@
 using UnityEngine;
 
-public class JoystickGuiController : MonoBehaviour,IPuzzlePausable
+public class JoystickGuiController : MonoBehaviour, IPuzzlePausable
 {
-    [SerializeField] GameObject joystick;
+    [SerializeField] private GameObject joystick;
+    [SerializeField] private GameManager gameManager;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        gameManager = GameManager.GetInstance();
+        gameManager.SubscribePuzzlePausable(this);
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.UnsubscribePuzzlePausable(this);
+    }
+
     public void PuzzlePauseMe()
     {
         joystick.SetActive(false);
@@ -11,16 +26,5 @@ public class JoystickGuiController : MonoBehaviour,IPuzzlePausable
     public void PuzzleResumeMe()
     {
         joystick.SetActive(true);
-    }
-    GameManager gameManager;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        gameManager = GameManager.GetInstance();
-        gameManager.SubscribePuzzlePausable(this);
-    }
-
-    private void OnDestroy() {
-        gameManager.UnsubscribePuzzlePausable(this);
     }
 }

@@ -85,14 +85,17 @@ public class ObjectManager : AbstractDraggableWorldObject
 
     void GoodDrop()
     {
+        AudioManager.Instance.PlaySFX("correct");
         score.AddPoints(Points);
         gamePlay.CompleteObject();
         GameObject check = Instantiate(Check,transform.parent);
+        Destroy(check,5f);
         Destroy(gameObject,5f);
     }
 
     void BadDrop(Transform wrongContainer)
     {
+        AudioManager.Instance.PlaySFX("wrong");
         Points-=Decrese;
         if(Points<=0)Points=1;
         if (isAnimating) return;
@@ -103,17 +106,13 @@ public class ObjectManager : AbstractDraggableWorldObject
     {
         isAnimating = true;
 
-        // Lo ponemos como hijo del contenedor incorrecto
         transform.SetParent(wrongContainer, false);
         transform.localPosition = Vector3.zero;
 
-        // Salto/parábola relativo al contenedor
         yield return StartCoroutine(JumpToContainerEdgeRoutine());
 
-        // Volver al padre original manteniendo posición mundial
         transform.SetParent(originalParent, true);
 
-        // Volver al escritorio
         yield return StartCoroutine(MoveToWorldRoutine(Vector2.zero, returnDuration));
 
         isAnimating = false;
@@ -130,11 +129,8 @@ public class ObjectManager : AbstractDraggableWorldObject
         {
             time += Time.deltaTime;
             float t = Mathf.Clamp01(time / jumpDuration);
-
-            // Movimiento horizontal/vertical base
             Vector3 pos = Vector3.Lerp(start, end, t);
 
-            // Parábola: 4h t(1-t)
             float arc = 4f * jumpHeight * t * (1f - t);
             pos.y += arc;
 

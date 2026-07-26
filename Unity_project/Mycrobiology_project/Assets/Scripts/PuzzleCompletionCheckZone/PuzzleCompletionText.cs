@@ -18,6 +18,7 @@ public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
     private Coroutine _activeAnimation;
     private Vector3 _initialPosition;
 
+    bool isFirsTime = true;
     // =======================[Métodos Iniciales]=======================
 
     public void Awake()
@@ -117,7 +118,10 @@ public class PuzzleCompletionText : MonoBehaviour, IGameOverSubscriber
     public string GetCompletionMessage(int completedPuzzles, int totalPuzzles)
     {
         if (totalPuzzles <= 0) return "Espera... ¿Donde están los puzzles?";
-
+        if(isFirsTime){
+            isFirsTime = false;
+            return "Completa todos los puzzles y vuelve aqui";
+        }
         // Si hay puzzles, empecemos a contarlos!!
         if (completedPuzzles >= 0 && completedPuzzles < totalPuzzles) return $"Puzzles completados: {completedPuzzles}/{totalPuzzles}";
         if (completedPuzzles >= totalPuzzles) return "¡Has completado todos los puzzles!";

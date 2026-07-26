@@ -8,14 +8,11 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     [SerializeField] GameObject BlankObject;
     PuzzleEvaluation score;
     int Amount_Complete;
-    private void Start()
-    {
-        transform.GetChild(0).gameObject.SetActive(false);
-    }
     public override void Defeat()
     {
-        score.FinishGame(false);
-        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        Debug.Log("[Containers] Derrota");
+        //score.FinishGame(false);
+        //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
         NotifyPuzzleVictory(false);
         Destroy(gameObject);
     }
@@ -24,16 +21,19 @@ public class PuzzleGameplayContainer : AbstractPuzzleGameplay
     {
         Debug.Log("[Containers] empezamos gameplay");
         transform.GetChild(0).gameObject.SetActive(true);
-        score=GetComponent<PuzzleEvaluation>();
-        if(Title)Title.text=score.puzzleID.ToString();
+        score = GetComponent<PuzzleEvaluation>();
+        _puzzleEvaluation = score;
+        if (_title) _title.text = score.puzzleID.ToString();
         SpawnObjects();
     }
 
     public override void Victory()
     {
-        GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
-        bool Finish = score.GetCurrentScore()<=60 ? false:true;
-        score.FinishGame(Finish);
+        
+        Debug.Log("[Containers] Victoria");
+        //GetComponentInParent<PlayerDamageDealer>().CalculateDamage(score.GetCurrentScore());
+        bool Finish = score.GetCurrentScore() <= 60 ? false : true;
+        //score.FinishGame(Finish);
         NotifyPuzzleVictory(Finish);
         Destroy(gameObject);
     }

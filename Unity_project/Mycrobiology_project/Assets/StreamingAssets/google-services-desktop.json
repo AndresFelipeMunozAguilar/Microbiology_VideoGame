@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "744923822378",
+    "project_id": "biolimit-d81d3",
+    "firebase_url": "https://biolimit-d81d3-default-rtdb.firebaseio.com",
+    "storage_bucket": "biolimit-d81d3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744923822378:android:a74b2464df17ce5f1b8653",
+        "android_client_info": {
+          "package_name": "com.biolimit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdAiQp4KuQJ4IZ3tmWAUmwrEFadGWHK4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

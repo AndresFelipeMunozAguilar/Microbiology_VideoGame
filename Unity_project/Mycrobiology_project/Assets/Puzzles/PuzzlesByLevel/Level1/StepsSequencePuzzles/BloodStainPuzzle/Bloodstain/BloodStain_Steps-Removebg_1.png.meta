@@ -1,0 +1,535 @@
+fileFormatVersion: 2
+guid: 031ecc76baf104c4d944e7d573c50b10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -781631631947679968
+    second: BloodStain_Steps-Removebg_1_0
+  - first:
+      213: -7882897658473935061
+    second: BloodStain_Steps-Removebg_1_1
+  - first:
+      213: -3319891761614018272
+    second: BloodStain_Steps-Removebg_1_2
+  - first:
+      213: 7235060608544468989
+    second: BloodStain_Steps-Removebg_1_3
+  - first:
+      213: -7403930801871561311
+    second: BloodStain_Steps-Removebg_1_4
+  - first:
+      213: -8272209752011965502
+    second: BloodStain_Steps-Removebg_1_5
+  - first:
+      213: 4781407226578693008
+    second: BloodStain_Steps-Removebg_1_6
+  - first:
+      213: -5998334555045866377
+    second: BloodStain_Steps-Removebg_1_7
+  - first:
+      213: 5593985974323867865
+    second: BloodStain_Steps-Removebg_1_8
+  - first:
+      213: 7446093007941943682
+    second: BloodStain_Steps-Removebg_1_9
+  - first:
+      213: -809029290514023502
+    second: BloodStain_Steps-Removebg_1_10
+  - first:
+      213: 9157906762218468060
+    second: BloodStain_Steps-Removebg_1_11
+  - first:
+      213: 3790243183445318623
+    second: BloodStain_Steps-Removebg_1_12
+  - first:
+      213: 6355290931536165757
+    second: BloodStain_Steps-Removebg_1_13
+  - first:
+      213: -3620599114391109171
+    second: BloodStain_Steps-Removebg_1_14
+  - first:
+      213: -6935464804947305384
+    second: BloodStain_Steps-Removebg_1_15
+  - first:
+      213: -7086527758073631320
+    second: BloodStain_Steps-Removebg_1_16
+  - first:
+      213: 3477641839774705637
+    second: BloodStain_Steps-Removebg_1_17
+  - first:
+      213: -2139110916777073944
+    second: BloodStain_Steps-Removebg_1_18
+  - first:
+      213: 2296074303472526327
+    second: BloodStain_Steps-Removebg_1_19
+  - first:
+      213: 2833129036027912321
+    second: BloodStain_Steps-Removebg_1_20
+  - first:
+      213: 2749669575013638240
+    second: BloodStain_Steps-Removebg_1_21
+  - first:
+      213: -5031247590997519856
+    second: BloodStain_Steps-Removebg_1_22
+  - first:
+      213: -7052856157447582914
+    second: BloodStain_Steps-Removebg_1_23
+  - first:
+      213: 7812588197466676551
+    second: BloodStain_Steps-Removebg_1_24
+  - first:
+      213: 6181621519545518990
+    second: BloodStain_Steps-Removebg_1_25
+  - first:
+      213: 9109528829549201014
+    second: BloodStain_Steps-Removebg_1_26
+  - first:
+      213: -2036403385276406939
+    second: BloodStain_Steps-Removebg_1_27
+  - first:
+      213: 4875813176778067242
+    second: BloodStain_Steps-Removebg_1_28
+  - first:
+      213: 8742989509760428951
+    second: BloodStain_Steps-Removebg_1_29
+  - first:
+      213: 372391106661536188
+    second: BloodStain_Steps-Removebg_1_30
+  - first:
+      213: -749776333551771623
+    second: BloodStain_Steps-Removebg_1_31
+  - first:
+      213: -8073887545088203729
+    second: BloodStain_Steps-Removebg_1_32
+  - first:
+      213: 6802711073637971787
+    second: BloodStain_Steps-Removebg_1_33
+  - first:
+      213: 3901263854362312175
+    second: BloodStain_Steps-Removebg_1_34
+  - first:
+      213: 6577545199467048695
+    second: BloodStain_Steps-Removebg_1_35
+  - first:
+      213: 8034016896811020809
+    second: BloodStain_Steps-Removebg_1_36
+  - first:
+      213: 7442171858475734556
+    second: BloodStain_Steps-Removebg_1_37
+  - first:
+      213: -429788047846214006
+    second: BloodStain_Steps-Removebg_1_38
+  - first:
+      213: -3405525515185231852
+    second: BloodStain_Steps-Removebg_1_39
+  - first:
+      213: -9037457816570263872
+    second: BloodStain_Steps-Removebg_1_40
+  - first:
+      213: -1259830267701449336
+    second: BloodStain_Steps-Removebg_1_41
+  - first:
+      213: 9131016372629937511
+    second: BloodStain_Steps-Removebg_1_42
+  - first:
+      213: 6012490074864156136
+    second: BloodStain_Steps-Removebg_1_43
+  - first:
+      213: 4770705590614474198
+    second: BloodStain_Steps-Removebg_1_44
+  - first:
+      213: 897383749279612838
+    second: BloodStain_Steps-Removebg_1_45
+  - first:
+      213: 5333854680199222131
+    second: BloodStain_Steps-Removebg_1_46
+  - first:
+      213: -46012540636068793
+    second: BloodStain_Steps-Removebg_1_47
+  - first:
+      213: 55930864914498190
+    second: BloodStain_Steps-Removebg_1_48
+  - first:
+      213: 8220620083336104773
+    second: BloodStain_Steps-Removebg_1_49
+  - first:
+      213: -3015178036475017077
+    second: BloodStain_Steps-Removebg_1_50
+  - first:
+      213: -2422500335328314234
+    second: BloodStain_Steps-Removebg_1_51
+  - first:
+      213: 5493397162476247767
+    second: BloodStain_Steps-Removebg_1_52
+  - first:
+      213: 7950357584984838531
+    second: BloodStain_Steps-Removebg_1_53
+  - first:
+      213: 4708880371495463426
+    second: BloodStain_Steps-Removebg_1_54
+  - first:
+      213: -7668250799099072382
+    second: BloodStain_Steps-Removebg_1_55
+  - first:
+      213: 1341995789986139893
+    second: BloodStain_Steps-Removebg_1_56
+  - first:
+      213: 1631748782192833257
+    second: BloodStain_Steps-Removebg_1_57
+  - first:
+      213: -5895617664470863789
+    second: BloodStain_Steps-Removebg_1_58
+  - first:
+      213: 7093868086090187488
+    second: BloodStain_Steps-Removebg_1_59
+  - first:
+      213: 3714616818490354879
+    second: BloodStain_Steps-Removebg_1_60
+  - first:
+      213: 5048895288835568455
+    second: BloodStain_Steps-Removebg_1_61
+  - first:
+      213: 2673226716113221191
+    second: BloodStain_Steps-Removebg_1_62
+  - first:
+      213: -7945804159376876872
+    second: BloodStain_Steps-Removebg_1_63
+  - first:
+      213: 7501756138455315536
+    second: BloodStain_Steps-Removebg_1_64
+  - first:
+      213: 1721969515378929802
+    second: BloodStain_Steps-Removebg_1_65
+  - first:
+      213: -7094802985695223700
+    second: BloodStain_Steps-Removebg_1_66
+  - first:
+      213: -6317232181965031763
+    second: BloodStain_Steps-Removebg_1_67
+  - first:
+      213: 8909502779923483398
+    second: BloodStain_Steps-Removebg_1_68
+  - first:
+      213: -9028829393236497057
+    second: BloodStain_Steps-Removebg_1_69
+  - first:
+      213: -7149052996514453020
+    second: BloodStain_Steps-Removebg_1_70
+  - first:
+      213: -1050288565935461509
+    second: BloodStain_Steps-Removebg_1_71
+  - first:
+      213: -3544319128027040992
+    second: BloodStain_Steps-Removebg_1_72
+  - first:
+      213: 3395650166360064863
+    second: BloodStain_Steps-Removebg_1_73
+  - first:
+      213: -7517789527894727360
+    second: BloodStain_Steps-Removebg_1_74
+  - first:
+      213: -6461857003820453629
+    second: BloodStain_Steps-Removebg_1_75
+  - first:
+      213: 4537978546046470868
+    second: BloodStain_Steps-Removebg_1_76
+  - first:
+      213: 7128728060669204123
+    second: BloodStain_Steps-Removebg_1_77
+  - first:
+      213: -5237674595456309441
+    second: BloodStain_Steps-Removebg_1_78
+  - first:
+      213: -7886580640150331817
+    second: BloodStain_Steps-Removebg_1_79
+  - first:
+      213: -1883271128675782144
+    second: BloodStain_Steps-Removebg_1_80
+  - first:
+      213: -1604638530200954352
+    second: BloodStain_Steps-Removebg_1_81
+  - first:
+      213: 812371577588003734
+    second: BloodStain_Steps-Removebg_1_82
+  - first:
+      213: 6749652386255609392
+    second: BloodStain_Steps-Removebg_1_83
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BloodStain_Steps-Removebg_1_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 654
+        width: 642
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 027bc880c261725f0800000000000000
+      internalID: -781631631947679968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodStain_Steps-Removebg_1_1
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 650
+        width: 642
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f07e158525a9290800000000000000
+      internalID: -7882897658473935061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodStain_Steps-Removebg_1_2
+      rect:
+        serializedVersion: 2
+        x: 1388
+        y: 654
+        width: 642
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 029204848006de1d0800000000000000
+      internalID: -3319891761614018272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodStain_Steps-Removebg_1_3
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 101
+        width: 642
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dffe6bc5a49186460800000000000000
+      internalID: 7235060608544468989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodStain_Steps-Removebg_1_4
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 101
+        width: 642
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ad5fd4d924ff3990800000000000000
+      internalID: -7403930801871561311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodStain_Steps-Removebg_1_5
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 260
+        width: 456
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cbfdcffe05333d80800000000000000
+      internalID: -8272209752011965502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d482139e40f589047b6cf444bf72daa7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":678.0,"y":551.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      BloodStain_Steps-Removebg_1_0: -781631631947679968
+      BloodStain_Steps-Removebg_1_1: -7882897658473935061
+      BloodStain_Steps-Removebg_1_2: -3319891761614018272
+      BloodStain_Steps-Removebg_1_3: 7235060608544468989
+      BloodStain_Steps-Removebg_1_4: -7403930801871561311
+      BloodStain_Steps-Removebg_1_5: -8272209752011965502
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePausable
 {
-
-
-    [Header("PuzzleManager")]
+    [Header("Puzzle Manager")]
     [SerializeField]
     private PuzzleHalo halo;
 
     public bool isVictoryAchieved = false;
 
-    [Header("PuzzleGameplay")]
+    [Header("Puzzle Gameplay")]
     public AbstractPuzzleGameplay _gameplay;
 
     [SerializeField]
@@ -31,23 +29,27 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
     [SerializeField]
     private GameManager _gameManager;
 
-    [SerializeField] TextMeshProUGUI PerformanceResultTx;
+    [SerializeField]
+    private TextMeshProUGUI PerformanceResultTx;
+
     private bool puzzleAlreadyCompleted = false;
+
+    // Este metodo suscribe el puzzle al sistema general de pausa.
     public void Start()
     {
         _gameManager = GameManager.GetInstance();
         _gameManager.SubscribePuzzlePausable(this);
-        PerformanceResultTx.text="";
+        PerformanceResultTx.text = "";
     }
 
-
+    // Este metodo responde al toque del jugador sobre el puzzle.
     public void OnTap()
     {
         if (!halo.isPlayerClose) return;
 
         PrepareScene();
 
-        Debug.Log($"<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre {this.transform.gameObject.name}");
+        Debug.Log($"<color=green>PuzzleManager:</color> Vamos a instanciar el puzzleGameplayPrefab con padre {transform.gameObject.name}");
         SpawnGameplay();
         if (_gameplay == null)
         {
@@ -56,29 +58,32 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         }
 
         StartPuzzle();
-
     }
 
+    // Este metodo bloquea la escena antes de abrir el minijuego.
     private void PrepareScene()
     {
         _gameManager.SwitchIsPuzzleActive();
         _gameManager.PuzzlePauseAll();
     }
 
+    // Este metodo crea la instancia jugable del puzzle seleccionado.
     private void SpawnGameplay()
     {
-        Instantiate(puzzleGameplayPrefab, this.transform)
-                .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzelGameplayOut);
-
+        Instantiate(puzzleGameplayPrefab, transform)
+                .TryGetComponent<AbstractPuzzleGameplay>(out AbstractPuzzleGameplay puzzleGameplayOut);
 
         Debug.Log("<color=green>PuzzleManager:</color> Vamos a asignar el componente PuzzleGamplay a la variable gameplay");
-        _gameplay = puzzelGameplayOut;
+        _gameplay = puzzleGameplayOut;
 
         Debug.Log($"<color=green>PuzzleManager:</color> El PuzzleGameplay fue instanciado en posicion: {_gameplay.transform.position} y posicion local: {_gameplay.transform.localPosition}");
     }
+
+    // Este metodo decide si se muestra el tutorial o se inicia directo el juego.
     public void StartPuzzle()
     {
         Debug.Log($"<color=green>PuzzleManager:</color> Entrando en StartPuzzle. El valor de _gameplay es: {_gameplay}");
+
         if (_gameplay.IsFirstTime())
         {
             _gameplay.ShowTutorial();
@@ -89,12 +94,14 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         }
     }
 
+    // Este metodo registra el cierre del puzzle y reanuda la exploracion.
     public void CompletePuzzle(bool didPlayerWin)
     {
         if (puzzleAlreadyCompleted) return;
-        _gameplay.puzzleEvaluation.FinishGame(didPlayerWin);
-        PerformanceResultTx.text=_gameplay.puzzleEvaluation.getPerformance();
-        ColorUtility.TryParseHtmlString(_gameplay.puzzleEvaluation.GetColor(), out Color c);
+
+        _gameplay._puzzleEvaluation.FinishGame(didPlayerWin);
+        PerformanceResultTx.text = _gameplay._puzzleEvaluation.getPerformance();
+        ColorUtility.TryParseHtmlString(_gameplay._puzzleEvaluation.GetColor(), out Color c);
         PerformanceResultTx.color = c;
         puzzleAlreadyCompleted = true;
 
@@ -102,10 +109,21 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
 
         Debug.Log("Puzzle completed!");
 
-        if (isVictoryAchieved) ExecuteVictoryLogic(); else ExecuteDefeatLogic();
+        if (isVictoryAchieved)
+        {
+            ExecuteVictoryLogic();
+        }
+        else
+        {
+            ExecuteDefeatLogic();
+        }
 
         _playerDamageDealer.CalculateDamage(GetScore());
-        if (_playerDamageDealer.CanApplyDamage()) _playerDamageDealer.DealDamage(_playerHealthLogic);
+
+        if (_playerDamageDealer.CanApplyDamage())
+        {
+            _playerDamageDealer.DealDamage(_playerHealthLogic);
+        }
 
         Destroy(halo.gameObject);
 
@@ -113,12 +131,14 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         _gameManager.PuzzleResumeAll();
     }
 
+    // Este metodo ejecuta las acciones visuales y de estado cuando el puzzle se gana.
     public void ExecuteVictoryLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Felicidades, ganaste el puzzle!");
         _gameplay.Victory();
     }
 
+    // Este metodo ejecuta las acciones visuales y de estado cuando el puzzle se pierde.
     public void ExecuteDefeatLogic()
     {
         Debug.Log("<color=green>PuzzleManager:</color> Lo siento, perdiste el puzzle.");
@@ -126,6 +146,7 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         _gameplay.Defeat();
     }
 
+    // Este metodo permite devolver el puntaje actual del minijuego.
     public int GetScore()
     {
         int currentGameplayScore = _gameplay.GetPuzzleEvaluation().GetCurrentScore();
@@ -133,24 +154,27 @@ public class PuzzleManager : MonoBehaviour, ITappable, IPuzzleManager, IPuzzlePa
         return currentGameplayScore;
     }
 
+    // Este metodo permite devolver el resultado de rendimiento configurado.
     public PerformanceResult GetPerformanceResult()
     {
         return performanceResult;
     }
 
+    // Este metodo desactiva el collider del puzzle mientras otro puzzle esta activo.
     public void PuzzlePauseMe()
     {
         Debug.Log("I am PuzzleMANAGER and my collider2d has been PAUSED.");
-        this.GetComponent<Collider2D>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
     }
 
+    // Este metodo vuelve a activar el collider del puzzle.
     public void PuzzleResumeMe()
     {
         Debug.Log("I am PuzzleMANAGER and i have been RESUMED without my collider2d.");
-        this.GetComponent<Collider2D>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 
-
+    // Este metodo retira la suscripcion cuando el objeto se destruye.
     public void OnDestroy()
     {
         _gameManager.UnsubscribePuzzlePausable(this);
