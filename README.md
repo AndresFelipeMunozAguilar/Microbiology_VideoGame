@@ -1,15 +1,15 @@
 # Biolimit
 
-![Biolimit](Unity_project/Mycrobiology_project/Assets/Sprites/UI/UISinFondo.png)
+![Biolimit](Unity_project/Mycrobiology_project/Assets/Sprites/UI/Fondo.png)
 
-Biolimit es un videojuego serio 2D, de pequeños puzzles y enfoque educativo, desarrollado en Unity para apoyar la adherencia a las normas de bioseguridad en laboratorios de microbiología y bioanálisis. El objetivo principal es que los estudiantes puedan repasar y reforzar buenas prácticas de seguridad mientras interactúan con un entorno inmersivo y didáctico.
+Biolimit es un videojuego serio 2D, de puzzles cortos y enfoque educativo, desarrollado en Unity para apoyar la adherencia a las normas de bioseguridad en laboratorios de Microbiología y Bioanálisis. El objetivo principal es apoyar la adherencia a las normas de bioseguridad, mediante permitir que los estudiantes reiteren la aplicación de buenas prácticas de seguridad en un entorno didáctico semejante al de los laboratorios.
 
 ## Descripción del proyecto
 
-- Tipo de juego: videojuego serio 2D, orientado a la educación y al aprendizaje.
-- Género: puzzles interactivos de tipo point and click y point and drag.
-- Plataforma objetivo: Android y Windows 10.
-- Modalidad: single-player.
+- Tipo de juego: Videojuego serio 2D, orientado a la educación y al aprendizaje.
+- Género: Puzzles interactivos de tipo point and click y point and drag.
+- Plataforma objetivo: Android y Windows.
+- Modalidad: Single-player.
 
 ## Demostración
 
@@ -19,7 +19,7 @@ Biolimit es un videojuego serio 2D, de pequeños puzzles y enfoque educativo, de
 
 ## Características principales
 
-- Gameplay 2D con exploración y resolución de puzzles.
+- Gameplay 2D basado en la búsqueda y resolución de puzzles.
 - Experiencia de aprendizaje basada en normas de bioseguridad.
 - Mecánicas de interacción por point and click y point and drag.
 - Diseño enfocado en un jugador (single-player).
@@ -41,30 +41,30 @@ Biolimit es un videojuego serio 2D, de pequeños puzzles y enfoque educativo, de
 
 ## Versión de Unity
 
-Este proyecto fue desarrollado con Unity versión 6000.3.2f1.
+El presente proyecto fue desarrollado en la versión 6000.3.2f1 de Unity.
 
 ## Instalación
 
 ### Windows 10
 
-1. Dirígete al siguiente enlace: https://fitman22.itch.io/Biolimit
-2. Descarga el ejecutable correspondiente a Windows.
-3. Extrae el archivo comprimido.
-4. Entra a la carpeta descargada.
-5. Haz doble clic en el ejecutable Bio Limit.exe.
+1. Entrar al siguiente enlace: [Página web de Itch.io del proyecto](https://fitman22.itch.io/Biolimit)
+2. Descargar el ejecutable correspondiente a Windows.
+3. Extraer el archivo comprimido.
+4. Entrar a la carpeta descargada.
+5. Hacer doble clic en el ejecutable "Bio Limit.exe".
 
 ### Android
 
-1. Dirígete al siguiente enlace: https://fitman22.itch.io/Biolimit
-2. Descarga el instalador para Android.
-3. En tu dispositivo, entra a Ajustes y permite instalaciones de origen desconocido desde el explorador de archivos.
-4. Abre el explorador de archivos, selecciona el instalador y dale tap para instalarlo.
-5. Busca el juego en el menú de tu teléfono Android.
+1. Entrar al siguiente enlace: [Página web de Itch.io del proyecto](https://fitman22.itch.io/Biolimit)
+2. Descargae el instalador para Android.
+3. En tu dispositivo, entrae a Ajustes y permitir instalaciones de origen desconocido desde el explorador de archivos.
+4. Abrir el explorador de archivos, seleccionar el instalador y hacer tap para instalarlo.
+5. Buscar el juego en el menú del teléfono Android.
 
 ## Assets externos utilizados
 
-- IA generativa: Gemini AI y ChatGPT para la creación y apoyo en assets visuales.
-- Artista: Norbelly Cecilia Sepúlveda Garzón, quien permitió el uso de assets para la construcción del mundo del juego.
+- IA generativa: Gemini AI y ChatGPT fueron usados para la creación y apoyo en assets visuales.
+- Artista: Norbelly Cecilia Sepúlveda Garzón, quien permitió el uso de assets que sirvieron para la construcción del mundo del juego.
 
 ## Estructura de carpetas
 
@@ -88,13 +88,13 @@ Unity_project/
 
 ## Documentación del proyecto
 
-La documentación del proyecto se encuentra en la carpeta [Docs](Docs), donde puedes encontrar:
+La documentación del proyecto se encuentra en la carpeta [Docs](Docs), donde se puede encontrar:
 
 - Diagramas de clase
 - Diagramas de secuencia
 - Diagramas de arquitectura
 - Diagramas de casos de uso
-- Evidencias de la metodología RUP
+- Evidencias del uso de la metodología RUP
 
 ## Repositorio y desarrollo
 
