@@ -13,9 +13,12 @@ Biolimit es un videojuego serio 2D, de puzzles cortos y enfoque educativo, desar
 
 ## Demostración
 
-![Demostración de Biolimit](https://placehold.co/800x450/png?text=GIF+de+Biolimit)
+![Demostración de Biolimit](Unity_project\Mycrobiology_project\Assets\Resources\GameplayGifs\Microbiology_Game-1.gif)
 
-> Puedes reemplazar esta imagen por un GIF real de gameplay en el futuro.
+![Demostración de Biolimit 2](Unity_project\Mycrobiology_project\Assets\Resources\GameplayGifs\Microbiology_Game-2.gif)
+
+![Demostración de Biolimit 3](Unity_project\Mycrobiology_project\Assets\Resources\GameplayGifs\Microbiology_Game-3.gif)
+
 
 ## Características principales
 
