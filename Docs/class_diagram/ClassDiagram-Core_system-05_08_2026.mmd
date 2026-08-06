@@ -429,11 +429,7 @@ classDiagram
         + int value
     }
 
-    class EasterEgg {
-        - bool isActivated
-        + OnClick()
-        + PlayAnimation()
-    }
+
 
     class AbstractPuzzleGameplay {
         <<abstract>>
@@ -545,14 +541,177 @@ classDiagram
         - ValidateDependencies() void
     }
 
-    class DummyDeleteMe {
+
+        class FirebaseResultsUploader {
         <<Singleton>>
-
-       + int numero
-       - string letras
-
-       + Hola( hola2: int ) 
+        - string PlayerID
+        + Instance$ : FirebaseResultsUploader
+        - Awake() void
+        + getPlayerId() string
+        + setPlayerId(id: string) void
     }
+
+    class UserRegister {
+        <<Singleton>>
+        - FirebaseFirestore db
+        - bool firebaseReady
+        + Instance$ : UserRegister
+        - TxMenu tx
+        - string currentUser
+        - string currentPassword
+        - bool isLogin
+        - Awake() void
+        + setText(newTx: TxMenu) void
+        - Start() void
+        + Relogin() void
+        + Registrar() void
+        + Login() void
+        + Loguear(codigo: string, password: string) void
+        - GetMD5(input: string) string
+        - LoadBestScoresFromUserSnapshot(playerID: string, snapshot: DocumentSnapshot) void
+        - GetPlayerEvaluationPath() string
+        + UploadEvaluation(data: EvaluationData, tx: TextMeshProUGUI, btButton: GameObject) void
+        - HandleUploadTimeout(tx: TextMeshProUGUI, btButton: GameObject, data: EvaluationData) IEnumerator
+        - SetBestScoresForUser(playerID: string, puzzles: List~PuzzleResultData~) void
+        + UploadEvaluationFromFile2(tx: TextMeshProUGUI, btButton: GameObject) void
+        + ListarUsuarios() void
+        - EnsureTextReferences() bool
+        - SetRegisterStatus(message: string) void
+        - SetLoginStatus(message: string) void
+        - SetGeneralStatus(message: string) void
+        - ReadInput(input: TMP_InputField) string$
+        - ClearInput(input: TMP_InputField) void
+    }
+
+    class SerializableUser {
+        + codigo: string
+        + nombre: string
+        + password: string
+        + SerializableUser(c: string, n: string, p: string) void
+    }
+
+    class TxMenu {
+        + inputCodigo: TMP_InputField
+        + inputNombre: TMP_InputField
+        + inputPassword: TMP_InputField
+        + inputCodigoL: TMP_InputField
+        + inputPasswordL: TMP_InputField
+        + StateRegister: TextMeshProUGUI
+        + StateLogin: TextMeshProUGUI
+        + StateGeneral: TextMeshProUGUI
+        - Start() void
+    }
+
+    class Menu {
+        - List~GameScenes~ scenes
+        + registerWindow: GameObject
+        + loginWindow: GameObject
+        + btPlay: Button
+        - Start() void
+        + ChangeScene(nextScene: int) void
+        + Quit() void
+        + Registrar() void
+        + Loguear() void
+        + activePlay() void
+        + RegisterWindowState(state: bool) void
+        + LoginWindowState(state: bool) void
+    }
+
+    class ShowScoreFinal {
+        - GameObject Modulo
+        - RectTransform content
+        - TextMeshProUGUI messageStatus
+        - GameObject btReenviar
+        - Start() void
+        + Reenviar() void
+        - PrintFinalFeedback() void
+    }
+
+    class InitModule {
+        - TextMeshProUGUI title
+        - TextMeshProUGUI score
+        - TextMeshProUGUI performance
+        - TextMeshProUGUI bestScore
+        + Init(txTitle: string, txScore: string, txPerformance: string, txBestScore: string) void
+    }
+
+    class ReturnToMenuButton {
+        + ReturnToMenu() void
+    }
+
+    class FollowCenter {
+        - Camera cam
+        - Vector3 offset
+        - Start() void
+        - LateUpdate() void
+        + SetOffset(newOffset: Vector3) void
+        + GetOffset() Vector3
+        + ApplyPosition() void
+    }
+
+    class Pc_Mobile_Changes {
+        + RectTransform objeto1
+        + Vector2 posicionPcObjeto1
+        + RectTransform objeto2
+        + Vector2 posicionPcObjeto2
+        + RectTransform objeto3
+        + Vector2 posicionPcObjeto3
+        - Start() void
+    }
+
+    class ButtonSound {
+        + soundName: string
+        - Button button
+        - Awake() void
+        - PlaySound() void
+        - OnDestroy() void
+    }
+
+    class AudioManager {
+        <<Singleton>>
+        + Instance$ : AudioManager
+        + sfxSource: AudioSource
+        + musicSource: AudioSource
+        + sfxClips: AudioClip[]
+        - string currentMusic
+        - Awake() void
+        - Start() void
+        + PlaySFX(clipName: string) void
+        + PlayMusic(clipName: string) void
+    }
+
+    class FirebaseFirestore {
+        + App: FirebaseApp
+        + Settings: FirebaseFirestoreSettings
+        + DefaultInstance$ : FirebaseFirestore
+        + LogLevel$ : LogLevel
+        - _databaseName: string
+        - _proxy: FirestoreProxy
+        - _settings: FirebaseFirestoreSettings
+        - _transactionManager: TransactionManager
+        - _instanceCache: IDictionary~FirestoreInstanceCacheKey, FirebaseFirestore~
+    }
+
+
+    UserRegister --> FirebaseFirestore
+    UserRegister --> TxMenu
+    UserRegister ..> FirebaseResultsUploader
+    UserRegister ..> Menu
+    UserRegister *-- SerializableUser
+
+    TxMenu ..> UserRegister
+
+    Menu ..> UserRegister
+    Menu ..> AudioManager
+
+    ShowScoreFinal ..> UserRegister
+    ShowScoreFinal ..> InitModule
+
+    ButtonSound ..> AudioManager
+
+    FirebaseResultsUploader ..> UserRegister
+
+    GameScenes <.. ReturnToMenuButton
 
     IPuzzlePausable <|.. PuzzleHalo
     IPuzzlePausable <|.. PuzzleManager
